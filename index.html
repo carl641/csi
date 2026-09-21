@@ -76,7 +76,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (min-width:1025px){
   .next{padding-top:32vh;padding-bottom:34vh;min-height:66vh;align-items:start}
   .next-inner{display:block}
-  .next-copy{position:relative;z-index:2;max-width:min(56vw,790px)}
+  .next-copy{position:relative;z-index:2;max-width:min(56vw,790px);margin-left:auto}
   .next-copy{padding-top:0}
 }
 .next-inner{
@@ -149,7 +149,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     height:min(192vh,2069px);
     aspect-ratio:990/1000;
     width:auto;min-height:0;
-    right:calc(-1 * min(192vh,2069px) * 990/1000 * .42);
+    left:calc(-1 * min(192vh,2069px) * 990/1000 * .42);
     overflow:hidden;
   }
   .next-figure::before,.next-figure::after{display:none}
@@ -190,7 +190,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   top:50%;transform:translateY(-50%);
   height:min(192vh,2069px);
   width:calc(min(192vh,2069px) * 470/1000);
-  right:calc(-1 * min(192vh,2069px) * 470/1000 * .34);
+  left:calc(-1 * min(192vh,2069px) * 470/1000 * .34);
   pointer-events:none;
 }
 @media (max-width:1024px){
@@ -200,7 +200,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     padding:clamp(60px,10vh,110px) clamp(20px,5vw,72px);
   }
   .i-frame{
-    position:relative;top:auto;right:auto;opacity:1;
+    position:relative;top:auto;left:auto;right:auto;opacity:1;
     width:100%;height:auto;aspect-ratio:16/10;
     overflow:hidden;transform:none!important;
   }
@@ -256,7 +256,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   top:50%;transform:translateY(-50%);
   height:min(192vh,2069px);
   width:calc(min(192vh,2069px) * 760/1000);
-  left:calc(-1 * min(192vh,2069px) * 760/1000 * .42);
+  right:calc(-1 * min(192vh,2069px) * 760/1000 * .42);
   pointer-events:none;
 }
 .letter-img{
@@ -295,7 +295,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     padding:clamp(60px,10vh,110px) clamp(20px,5vw,72px);
   }
   .s-frame{
-    position:relative;top:auto;left:auto;opacity:1;
+    position:relative;top:auto;left:auto;right:auto;opacity:1;
     width:100%;height:auto;
     aspect-ratio:16/10;overflow:hidden;transform:none!important;
   }
@@ -334,10 +334,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 @media (min-width:1025px){
   .third{
-    display:flex;align-items:center;justify-content:flex-end;
+    display:flex;align-items:center;justify-content:flex-start;
     padding:22vh clamp(20px,5vw,72px) 24vh;
   }
-  .third-inner{max-width:min(54vw,760px);margin-left:auto}
+  .third-inner{max-width:min(54vw,760px);margin-right:auto}
 }
 @media (max-width:1024px){
   .third{flex-direction:column;align-items:stretch;gap:36px}
@@ -353,10 +353,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 @media (min-width:1025px){
   .fourth{
-    display:flex;align-items:center;
+    display:flex;align-items:center;justify-content:flex-end;
     padding:32vh clamp(20px,5vw,72px) 34vh;
   }
-  .fourth-inner{max-width:min(54vw,760px)}
+  .fourth-inner{max-width:min(54vw,760px);margin-left:auto}
 }
 @media (max-width:1024px){
   .fourth{flex-direction:column;align-items:stretch;gap:36px}
@@ -395,10 +395,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .is-revealed .sweep{animation:none}
 }
 
-/* C and I enter from the right, S from the left */
+/* C and I enter from the left, S from the right */
 .next-figure .sweep,
-.i-frame .sweep{--from:1.05}
-.s-frame .sweep{--from:-1.05}
+.i-frame .sweep{--from:-1.05}
+.s-frame .sweep{--from:1.05}
 @media (prefers-reduced-motion:reduce){
   .is-revealed .sweep{animation:none}
 }
