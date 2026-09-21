@@ -6,7 +6,7 @@
 <title>Construction Services, Inc. — Architectural Metal Products</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Archivo:wght@400;600;800&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Lalezar&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0C1116;
@@ -1088,12 +1088,12 @@ body.is-stuck .masthead{
       <defs>
         <mask id="cut-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="990" height="1000">
           <rect x="0" y="0" width="990" height="1000" fill="#fff"/>
-          <text x="495" y="868" text-anchor="middle" font-family="Bungee" font-size="1020" fill="#000">C</text>
+          <text x="495" y="868" text-anchor="middle" font-family="Lalezar" font-size="1020" fill="#000">C</text>
         </mask>
       
         <mask id="show-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="990" height="1000">
           <rect x="0" y="0" width="990" height="1000" fill="#000"/>
-          <text x="495" y="868" text-anchor="middle" font-family="Bungee" font-size="1020" fill="#fff">C</text>
+          <text x="495" y="868" text-anchor="middle" font-family="Lalezar" font-size="1020" fill="#fff">C</text>
         </mask>
       </defs>
       <rect x="0" y="0" width="990" height="1000" style="fill:var(--ink)" mask="url(#cut-lcf)"/>
@@ -1124,12 +1124,12 @@ body.is-stuck .masthead{
       <defs>
         <mask id="cut-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="760" height="1000">
           <rect x="0" y="0" width="760" height="1000" fill="#fff"/>
-          <text x="380" y="872" text-anchor="middle" font-family="Bungee" font-size="1100" fill="#000">S</text>
+          <text x="380" y="872" text-anchor="middle" font-family="Lalezar" font-size="1100" fill="#000">S</text>
         </mask>
       
         <mask id="show-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="760" height="1000">
           <rect x="0" y="0" width="760" height="1000" fill="#000"/>
-          <text x="380" y="872" text-anchor="middle" font-family="Bungee" font-size="1100" fill="#fff">S</text>
+          <text x="380" y="872" text-anchor="middle" font-family="Lalezar" font-size="1100" fill="#fff">S</text>
         </mask>
       </defs>
       <rect x="0" y="0" width="760" height="1000" style="fill:var(--ink)" mask="url(#cut-lsf)"/>
@@ -1159,12 +1159,12 @@ body.is-stuck .masthead{
       <defs>
         <mask id="cut-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="470" height="1000">
           <rect x="0" y="0" width="470" height="1000" fill="#fff"/>
-          <text x="235" y="872" text-anchor="middle" font-family="Bungee" font-size="1100" fill="#000">I</text>
+          <text x="235" y="872" text-anchor="middle" font-family="Lalezar" font-size="1100" fill="#000">I</text>
         </mask>
       
         <mask id="show-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="470" height="1000">
           <rect x="0" y="0" width="470" height="1000" fill="#000"/>
-          <text x="235" y="872" text-anchor="middle" font-family="Bungee" font-size="1100" fill="#fff">I</text>
+          <text x="235" y="872" text-anchor="middle" font-family="Lalezar" font-size="1100" fill="#fff">I</text>
         </mask>
       </defs>
       <rect x="0" y="0" width="470" height="1000" style="fill:var(--ink)" mask="url(#cut-lif)"/>
@@ -1654,6 +1654,39 @@ nums.forEach(n=>statObserver.observe(n));
 
 try {
 /* ---- fit each glyph inside its frame, whatever the font metrics are ---- */
+/* how much of the frame the letterform itself takes up */
+const LETTER_FILL = 0.54;
+const inkCtx = (function(){
+  try { return document.createElement('canvas').getContext('2d'); }
+  catch(e){ return null; }
+})();
+
+/* what the glyph actually inks. getBBox() hands back the line box instead,
+   so a font with deep ascenders and descenders draws a much smaller letter
+   than a tight one at the same size */
+function inkBox(t){
+  if(!inkCtx) return null;
+  const cs = getComputedStyle(t);
+  const size = parseFloat(cs.fontSize);
+  const ch = (t.textContent || '').trim();
+  if(!size || !ch) return null;
+  inkCtx.font = size + 'px ' + cs.fontFamily;
+  if(parseFloat(inkCtx.font) !== size) return null;   // the shorthand didn't take
+  inkCtx.textAlign = 'center';        // matches text-anchor="middle"
+  inkCtx.textBaseline = 'alphabetic'; // matches the y attribute
+  const m = inkCtx.measureText(ch);
+  const l = m.actualBoundingBoxLeft, r = m.actualBoundingBoxRight;
+  const a = m.actualBoundingBoxAscent, d = m.actualBoundingBoxDescent;
+  if([l,r,a,d].some(v=>typeof v !== 'number')) return null;
+  const w = l + r, h = a + d;
+  if(!w || !h) return null;
+  return {
+    x: (parseFloat(t.getAttribute('x')) || 0) - l,
+    y: (parseFloat(t.getAttribute('y')) || 0) - a,
+    width: w, height: h, ink: true
+  };
+}
+
 function fitGlyphs(){
   document.querySelectorAll('.letter-cut').forEach(svg=>{
     const texts = [...svg.querySelectorAll('text')];
@@ -1661,11 +1694,14 @@ function fitGlyphs(){
     if(!t) return;
     texts.forEach(x=>x.removeAttribute('transform'));
     const vb = svg.getAttribute('viewBox').split(/\s+/).map(Number);
-    let b;
-    try { b = t.getBBox(); } catch(e){ return; }
+    let b = inkBox(t);
+    if(!b){
+      try { b = t.getBBox(); } catch(e){ return; }
+    }
     if(!b.width || !b.height) return;
     const pad = 4;
-    const k = Math.min((vb[2] - pad * 2) / b.width, (vb[3] - pad * 2) / b.height);
+    const fill = b.ink ? LETTER_FILL : 1;   // the line box brings its own slack
+    const k = Math.min((vb[2] - pad * 2) / b.width, (vb[3] - pad * 2) / b.height) * fill;
     const tx = (vb[2] - b.width * k) / 2 - b.x * k;
     const ty = (vb[3] - b.height * k) / 2 - b.y * k;
     const tr = `translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${k.toFixed(4)})`;
