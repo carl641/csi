@@ -1706,8 +1706,51 @@ function fitGlyphs(){
     const ty = (vb[3] - b.height * k) / 2 - b.y * k;
     const tr = `translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${k.toFixed(4)})`;
     texts.forEach(x=>x.setAttribute('transform', tr));
+    svg._ink = {x: tx + b.x * k, w: b.width * k};   // where the letter sits in the box
+  });
+  placeLetters();
+}
+
+/* ---- each letter rides the middle of whatever room is left beside its copy,
+       so a wider window brings more of it onto the screen rather than just
+       more empty floor ---- */
+const LETTER_SIDES = [
+  ['.next-figure', '.next-copy',    'left' ],
+  ['.s-frame',     '.third-inner',  'right'],
+  ['.i-frame',     '.fourth-inner', 'left' ]
+];
+
+function placeLetters(){
+  const vw = document.documentElement.clientWidth;
+  LETTER_SIDES.forEach(([frameSel, copySel, side])=>{
+    const frame = document.querySelector(frameSel);
+    const copy = document.querySelector(copySel);
+    if(!frame || !copy) return;
+    if(vw <= 1024){ frame.style.left = ''; frame.style.right = ''; return; }
+    const svg = frame.querySelector('.letter-cut');
+    if(!svg || !svg._ink) return;
+    const vbw = Number(svg.getAttribute('viewBox').split(/\s+/)[2]);
+    const box = frame.getBoundingClientRect();
+    if(!box.width || !vbw) return;
+    const unit = box.width / vbw;             // the svg fills the frame
+    const inkX = svg._ink.x * unit;           // letter's left edge inside the frame
+    const inkW = svg._ink.w * unit;
+    const gap = Math.max(24, Math.min(72, vw * 0.04));
+    const c = copy.getBoundingClientRect();
+    let centre;
+    if(side === 'left'){
+      const edge = c.left - gap;              // room runs 0 .. edge
+      centre = Math.min(edge / 2, edge - inkW / 2);
+    } else {
+      const edge = c.right + gap;             // room runs edge .. vw
+      centre = Math.max((edge + vw) / 2, edge + inkW / 2);
+    }
+    // too big for the room? it holds the copy's edge and hangs off the screen
+    frame.style.right = 'auto';
+    frame.style.left = (centre - inkW / 2 - inkX).toFixed(1) + 'px';
   });
 }
+
 if(document.fonts && document.fonts.ready){
   document.fonts.ready.then(fitGlyphs);
 }
