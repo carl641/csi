@@ -789,9 +789,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transform:translate(-46%,-50%) rotate(-7deg);
   transform-origin:60% 50%;
   font-family:'BBH Hegarty',Impact,sans-serif;
-  /* Hegarty sets CSI about twice as wide as Anton did, so the word is sized
-     to span the page rather than by the old cap height */
-  font-size:min(clamp(270px,46vw,730px), 113vh);line-height:1;
+  /* the outline runs larger than the footer's solid word: with no fill to
+     carry it, it needs the size to read across the picture */
+  font-size:min(clamp(350px,60vw,950px), 147vh);line-height:1;
   letter-spacing:.06em;white-space:nowrap;pointer-events:none;
   color:transparent;
   -webkit-text-stroke:1.5px rgba(242,239,233,.16);
