@@ -6,7 +6,7 @@
 <title>Construction Services, Inc. — Architectural Metal Products</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=BBH+Bogle&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0C1116;
@@ -17,7 +17,7 @@
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
   /* how tall each letter frame stands; the letterform fills about 57% of it */
-  --letter-h:min(173vh,1862px);
+  --letter-h:min(173vh,1862px,120vw);
 }
 :root:not([data-theme="light"]){color-scheme:dark}
 *{box-sizing:border-box}
@@ -149,9 +149,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     position:absolute;z-index:1;
     top:50%;transform:translateY(-50%);
     height:var(--letter-h);
-    aspect-ratio:990/1000;
+    aspect-ratio:1120/1000;
     width:auto;min-height:0;
-    left:calc(-1 * var(--letter-h) * 990/1000 * .42);
+    left:calc(-1 * var(--letter-h) * 1120/1000 * .52);
     overflow:hidden;
   }
   .next-figure::before,.next-figure::after{display:none}
@@ -191,8 +191,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position:absolute;overflow:hidden;
   top:50%;transform:translateY(-50%);
   height:var(--letter-h);
-  width:calc(var(--letter-h) * 580/1000);
-  left:calc(-1 * var(--letter-h) * 580/1000 * .34);
+  width:calc(var(--letter-h) * 430/1000);
+  left:calc(-1 * var(--letter-h) * 430/1000 * .34);
   pointer-events:none;
 }
 @media (max-width:1024px){
@@ -257,8 +257,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position:absolute;overflow:hidden;
   top:50%;transform:translateY(-50%);
   height:var(--letter-h);
-  width:calc(var(--letter-h) * 760/1000);
-  right:calc(-1 * var(--letter-h) * 760/1000 * .42);
+  width:calc(var(--letter-h) * 1120/1000);
+  right:calc(-1 * var(--letter-h) * 1120/1000 * .52);
   pointer-events:none;
 }
 .letter-img{
@@ -1084,21 +1084,21 @@ body.is-stuck .masthead{
 
     <figure class="next-figure">
       <div class="letter-img"></div>
-<svg class="letter-cut" id="lcf" viewBox="0 0 990 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<svg class="letter-cut" id="lcf" viewBox="0 0 1120 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <mask id="cut-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="990" height="1000">
-          <rect x="0" y="0" width="990" height="1000" fill="#fff"/>
-          <text x="495" y="868" text-anchor="middle" font-family="'BBH Bogle'" font-size="1020" fill="#000">C</text>
+        <mask id="cut-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="1120" height="1000">
+          <rect x="0" y="0" width="1120" height="1000" fill="#fff"/>
+          <text x="560" y="868" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1020" fill="#000">C</text>
         </mask>
       
-        <mask id="show-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="990" height="1000">
-          <rect x="0" y="0" width="990" height="1000" fill="#000"/>
-          <text x="495" y="868" text-anchor="middle" font-family="'BBH Bogle'" font-size="1020" fill="#fff">C</text>
+        <mask id="show-lcf" maskUnits="userSpaceOnUse" x="0" y="0" width="1120" height="1000">
+          <rect x="0" y="0" width="1120" height="1000" fill="#000"/>
+          <text x="560" y="868" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1020" fill="#fff">C</text>
         </mask>
       </defs>
-      <rect x="0" y="0" width="990" height="1000" style="fill:var(--ink)" mask="url(#cut-lcf)"/>
-      <rect class="sweep" x="0" y="0" width="990" height="1000" style="fill:#8A5A1E;--w:990px" mask="url(#show-lcf)"/>
-      <rect class="sweep sweep-2" x="0" y="0" width="990" height="1000" style="fill:var(--accent);--w:990px" mask="url(#show-lcf)"/>
+      <rect x="0" y="0" width="1120" height="1000" style="fill:var(--ink)" mask="url(#cut-lcf)"/>
+      <rect class="sweep" x="0" y="0" width="1120" height="1000" style="fill:#8A5A1E;--w:1120px" mask="url(#show-lcf)"/>
+      <rect class="sweep sweep-2" x="0" y="0" width="1120" height="1000" style="fill:var(--accent);--w:1120px" mask="url(#show-lcf)"/>
     </svg>
     </figure>
   </div>
@@ -1120,21 +1120,21 @@ body.is-stuck .masthead{
   </div>
   <div class="s-frame">
 <div class="letter-img"></div>
-    <svg class="letter-cut" id="lsf" viewBox="0 0 760 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <svg class="letter-cut" id="lsf" viewBox="0 0 1120 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <mask id="cut-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="760" height="1000">
-          <rect x="0" y="0" width="760" height="1000" fill="#fff"/>
-          <text x="380" y="872" text-anchor="middle" font-family="'BBH Bogle'" font-size="1100" fill="#000">S</text>
+        <mask id="cut-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="1120" height="1000">
+          <rect x="0" y="0" width="1120" height="1000" fill="#fff"/>
+          <text x="560" y="872" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1100" fill="#000">S</text>
         </mask>
       
-        <mask id="show-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="760" height="1000">
-          <rect x="0" y="0" width="760" height="1000" fill="#000"/>
-          <text x="380" y="872" text-anchor="middle" font-family="'BBH Bogle'" font-size="1100" fill="#fff">S</text>
+        <mask id="show-lsf" maskUnits="userSpaceOnUse" x="0" y="0" width="1120" height="1000">
+          <rect x="0" y="0" width="1120" height="1000" fill="#000"/>
+          <text x="560" y="872" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1100" fill="#fff">S</text>
         </mask>
       </defs>
-      <rect x="0" y="0" width="760" height="1000" style="fill:var(--ink)" mask="url(#cut-lsf)"/>
-      <rect class="sweep" x="0" y="0" width="760" height="1000" style="fill:#8A5A1E;--w:760px" mask="url(#show-lsf)"/>
-      <rect class="sweep sweep-2" x="0" y="0" width="760" height="1000" style="fill:var(--accent);--w:760px" mask="url(#show-lsf)"/>
+      <rect x="0" y="0" width="1120" height="1000" style="fill:var(--ink)" mask="url(#cut-lsf)"/>
+      <rect class="sweep" x="0" y="0" width="1120" height="1000" style="fill:#8A5A1E;--w:1120px" mask="url(#show-lsf)"/>
+      <rect class="sweep sweep-2" x="0" y="0" width="1120" height="1000" style="fill:var(--accent);--w:1120px" mask="url(#show-lsf)"/>
     </svg>
   </div>
 </section>
@@ -1155,21 +1155,21 @@ body.is-stuck .masthead{
   </div>
   <div class="i-frame">
 <div class="letter-img"></div>
-    <svg class="letter-cut" id="lif" viewBox="0 0 580 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <svg class="letter-cut" id="lif" viewBox="0 0 430 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <mask id="cut-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="580" height="1000">
-          <rect x="0" y="0" width="580" height="1000" fill="#fff"/>
-          <text x="290" y="872" text-anchor="middle" font-family="'BBH Bogle'" font-size="1100" fill="#000">I</text>
+        <mask id="cut-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="430" height="1000">
+          <rect x="0" y="0" width="430" height="1000" fill="#fff"/>
+          <text x="215" y="872" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1100" fill="#000">I</text>
         </mask>
       
-        <mask id="show-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="580" height="1000">
-          <rect x="0" y="0" width="580" height="1000" fill="#000"/>
-          <text x="290" y="872" text-anchor="middle" font-family="'BBH Bogle'" font-size="1100" fill="#fff">I</text>
+        <mask id="show-lif" maskUnits="userSpaceOnUse" x="0" y="0" width="430" height="1000">
+          <rect x="0" y="0" width="430" height="1000" fill="#000"/>
+          <text x="215" y="872" text-anchor="middle" font-family="'BBH Hegarty'" font-size="1100" fill="#fff">I</text>
         </mask>
       </defs>
-      <rect x="0" y="0" width="580" height="1000" style="fill:var(--ink)" mask="url(#cut-lif)"/>
-      <rect class="sweep" x="0" y="0" width="580" height="1000" style="fill:#8A5A1E;--w:580px" mask="url(#show-lif)"/>
-      <rect class="sweep sweep-2" x="0" y="0" width="580" height="1000" style="fill:var(--accent);--w:580px" mask="url(#show-lif)"/>
+      <rect x="0" y="0" width="430" height="1000" style="fill:var(--ink)" mask="url(#cut-lif)"/>
+      <rect class="sweep" x="0" y="0" width="430" height="1000" style="fill:#8A5A1E;--w:430px" mask="url(#show-lif)"/>
+      <rect class="sweep sweep-2" x="0" y="0" width="430" height="1000" style="fill:var(--accent);--w:430px" mask="url(#show-lif)"/>
     </svg>
   </div>
 </section>
