@@ -1716,7 +1716,7 @@ function fitGlyphs(){
        more empty floor ---- */
 /* where in that room the letter sits: .5 would be the middle, lower sits
    further out over the screen edge */
-const LETTER_BIAS = 0.34;
+const LETTER_BIAS = 0.26;
 
 const LETTER_SIDES = [
   ['.next-figure', '.next-copy',    'left' ],
@@ -1739,7 +1739,7 @@ function placeLetters(){
     const unit = box.width / vbw;             // the svg fills the frame
     const inkX = svg._ink.x * unit;           // letter's left edge inside the frame
     const inkW = svg._ink.w * unit;
-    const gap = Math.max(48, Math.min(180, vw * 0.09));
+    const gap = Math.max(48, Math.min(190, vw * 0.10));
     const c = copy.getBoundingClientRect();
     let centre;
     if(side === 'left'){
