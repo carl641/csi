@@ -1714,6 +1714,10 @@ function fitGlyphs(){
 /* ---- each letter rides the middle of whatever room is left beside its copy,
        so a wider window brings more of it onto the screen rather than just
        more empty floor ---- */
+/* where in that room the letter sits: .5 would be the middle, lower sits
+   further out over the screen edge */
+const LETTER_BIAS = 0.34;
+
 const LETTER_SIDES = [
   ['.next-figure', '.next-copy',    'left' ],
   ['.s-frame',     '.third-inner',  'right'],
@@ -1735,15 +1739,15 @@ function placeLetters(){
     const unit = box.width / vbw;             // the svg fills the frame
     const inkX = svg._ink.x * unit;           // letter's left edge inside the frame
     const inkW = svg._ink.w * unit;
-    const gap = Math.max(24, Math.min(72, vw * 0.04));
+    const gap = Math.max(48, Math.min(180, vw * 0.09));
     const c = copy.getBoundingClientRect();
     let centre;
     if(side === 'left'){
       const edge = c.left - gap;              // room runs 0 .. edge
-      centre = Math.min(edge / 2, edge - inkW / 2);
+      centre = Math.min(edge * LETTER_BIAS, edge - inkW / 2);
     } else {
       const edge = c.right + gap;             // room runs edge .. vw
-      centre = Math.max((edge + vw) / 2, edge + inkW / 2);
+      centre = Math.max(edge + (vw - edge) * (1 - LETTER_BIAS), edge + inkW / 2);
     }
     // too big for the room? it holds the copy's edge and hangs off the screen
     frame.style.right = 'auto';
