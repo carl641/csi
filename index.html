@@ -16,6 +16,8 @@
   --hair:rgba(242,239,233,.30);
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
+  /* how tall each letter frame stands; the letterform fills about 57% of it */
+  --letter-h:min(173vh,1862px);
 }
 :root:not([data-theme="light"]){color-scheme:dark}
 *{box-sizing:border-box}
@@ -146,10 +148,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .next-figure{
     position:absolute;z-index:1;
     top:50%;transform:translateY(-50%);
-    height:min(192vh,2069px);
+    height:var(--letter-h);
     aspect-ratio:990/1000;
     width:auto;min-height:0;
-    left:calc(-1 * min(192vh,2069px) * 990/1000 * .42);
+    left:calc(-1 * var(--letter-h) * 990/1000 * .42);
     overflow:hidden;
   }
   .next-figure::before,.next-figure::after{display:none}
@@ -188,9 +190,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .i-frame{
   position:absolute;overflow:hidden;
   top:50%;transform:translateY(-50%);
-  height:min(192vh,2069px);
-  width:calc(min(192vh,2069px) * 470/1000);
-  left:calc(-1 * min(192vh,2069px) * 470/1000 * .34);
+  height:var(--letter-h);
+  width:calc(var(--letter-h) * 470/1000);
+  left:calc(-1 * var(--letter-h) * 470/1000 * .34);
   pointer-events:none;
 }
 @media (max-width:1024px){
@@ -254,13 +256,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-frame{
   position:absolute;overflow:hidden;
   top:50%;transform:translateY(-50%);
-  height:min(192vh,2069px);
-  width:calc(min(192vh,2069px) * 760/1000);
-  right:calc(-1 * min(192vh,2069px) * 760/1000 * .42);
+  height:var(--letter-h);
+  width:calc(var(--letter-h) * 760/1000);
+  right:calc(-1 * var(--letter-h) * 760/1000 * .42);
   pointer-events:none;
 }
 .letter-img{
-  position:absolute;inset:-25% 0;
+  /* 1px in from the sides: at fractional frame widths the mask rounds a hair
+     short and a hairline of the photo shows past the letterform */
+  position:absolute;inset:-25% 1px;
   will-change:transform;
   background:
       radial-gradient(100% 75% at 70% 22%,#C9A063 0%,rgba(201,160,99,0) 58%),
