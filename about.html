@@ -110,6 +110,31 @@
   .record{grid-template-columns:1fr}
 }
 
+/* ---------- affiliations ---------- */
+.affil{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);
+  gap:clamp(24px,5vw,72px);align-items:center;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.affil .kicker{margin:0}
+.logos{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);
+}
+/* the logos are drawn for a white page, so each sits on its own white plate */
+.logo-plate{
+  display:flex;align-items:center;justify-content:center;
+  height:clamp(104px,10vw,140px);padding:clamp(16px,2vw,28px);
+  background:#fff;border-radius:2px;
+}
+.logo-plate img{display:block;max-width:100%;max-height:clamp(56px,5.8vw,84px);width:auto;height:auto}
+@media (max-width:860px){
+  .affil{grid-template-columns:1fr;gap:18px}
+}
+@media (max-width:420px){
+  .logos{grid-template-columns:1fr}
+}
+
 /* ---------- engineering ---------- */
 .eng{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -222,6 +247,16 @@
   <div class="record">
     <p class="record-note reveal">CSI is a member of <abbr title="National Ornamental &amp; Miscellaneous Metals Association">NOMMA</abbr>, and has earned numerous industry awards.</p>
     <p class="record-quote reveal" style="--d:120ms">We have fulfilled <em>all contractual obligations</em> since our inception.</p>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-labelledby="affiliations-h">
+  <div class="affil">
+    <p class="kicker reveal" id="affiliations-h">Affiliations</p>
+    <ul class="logos">
+      <li class="logo-plate reveal"><img src="https://3unloi5wlp.ucarecd.net/0fc01ddf-ccea-4f99-89a5-a585d5fe9951/-/preview/800x800/-/format/auto/nomma_logo_web.png" data-raw="https://3unloi5wlp.ucarecd.net/0fc01ddf-ccea-4f99-89a5-a585d5fe9951/nomma_logo_web.png" alt="NOMMA, the National Ornamental &amp; Miscellaneous Metals Association" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></li>
+      <li class="logo-plate reveal" style="--d:80ms"><img src="https://3unloi5wlp.ucarecd.net/08c45c58-8c4f-413a-b651-09c8ce0999d6/-/preview/800x800/-/format/auto/decatur-chamber-logo.png" data-raw="https://3unloi5wlp.ucarecd.net/08c45c58-8c4f-413a-b651-09c8ce0999d6/decatur-chamber-logo.png" alt="Decatur Chamber of Commerce" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></li>
+    </ul>
   </div>
 </section>
 
