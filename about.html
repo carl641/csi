@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Us — Construction Services, Inc.</title>
-<meta name="description" content="Leaders in architectural metalwork and railing since 1967 — engineering, fabrication and installation from a single source in Decatur, Alabama.">
+<meta name="description" content="Construction Services, Inc. was founded by Mike Scroggins and incorporated on February 3, 1967 — a specialized metals fabricator of rail systems, monumental and spiral stairs and architectural metalwork, with in-house engineering.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -12,15 +12,26 @@
 <link rel="stylesheet" href="site.css">
 <script>document.documentElement.classList.add('js')</script>
 <style>
-/* ---------- mission statement ---------- */
-.quote{
-  margin:0 0 clamp(44px,7vh,76px);max-width:19ch;
-  font-family:var(--serif);font-weight:300;font-style:italic;
-  font-size:clamp(34px,5.4vw,82px);line-height:1.04;letter-spacing:-.015em;
+/* ---------- history ---------- */
+.hist{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);
+  gap:clamp(28px,5vw,90px);align-items:start;
 }
-.quote span{color:var(--accent)}
+/* the year, drawn in outline in the site's display face */
+.hist-year{
+  margin:0;
+  font-family:var(--display);font-size:clamp(88px,10.4vw,200px);line-height:.8;
+  letter-spacing:.02em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1.5px var(--accent);
+}
+.hist-copy .h2{margin-bottom:clamp(20px,3.5vh,34px)}
+.hist-copy .intro-text{margin-bottom:.9em}
+@media (max-width:860px){
+  .hist{grid-template-columns:1fr}
+  .hist-year{-webkit-text-stroke-width:1px}
+}
 
-/* ---------- sectors ---------- */
+/* ---------- products ---------- */
 .rows{border-top:1px solid var(--hair)}
 .row{
   position:relative;display:grid;
@@ -32,18 +43,20 @@
 }
 .row-num{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--accent)}
 .row-title{
+  grid-column:2;
   font-size:clamp(26px,3.4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:.95;
   text-transform:uppercase;
   transition:color 220ms ease,transform 420ms cubic-bezier(.2,.7,.25,1);
 }
 .row-text{
+  grid-column:3;
   font-family:var(--serif);font-weight:300;
   font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:var(--mist);max-width:44ch;
 }
-.row .round-btn{justify-self:end}
+.row .round-btn{grid-column:4;justify-self:end}
 .row:hover .row-title,.row:focus-visible .row-title{color:var(--accent);transform:translateX(12px)}
 .row:hover .round-btn,.row:focus-visible .round-btn{background:var(--accent);border-color:var(--accent);color:var(--ink)}
-/* the sector's photo lifts out over the row while it's hovered */
+/* the product's photo lifts out over the row while it's hovered */
 .row-img{
   position:absolute;z-index:3;right:clamp(70px,10vw,170px);top:50%;
   width:clamp(220px,21vw,330px);aspect-ratio:4/3;
@@ -57,17 +70,74 @@
 .row:hover .row-img,.row:focus-visible .row-img{
   opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1);clip-path:inset(0);
 }
-/* no hover to reveal it: the photo sits in the row instead */
+/* no hover to reveal it: the photo sits in the row instead, and the title
+   takes the full width under its number so ARCHITECTURAL fits a small phone */
 @media (hover:none),(max-width:860px){
-  .row{grid-template-columns:40px minmax(0,1fr) 44px;row-gap:14px;align-items:start}
-  .row-title{grid-column:2}
-  .row .round-btn{grid-column:3;grid-row:1;width:44px;height:44px}
-  .row-text{grid-column:2 / 4}
+  .row{grid-template-columns:minmax(0,1fr) 44px;row-gap:14px}
+  .row-num{grid-column:1;grid-row:1}
+  .row .round-btn{grid-column:2;grid-row:1;width:44px;height:44px}
+  .row-title,.row-text{grid-column:1 / -1}
   .row-img{
-    position:relative;right:auto;top:auto;grid-column:1 / -1;grid-row:3;
+    position:relative;right:auto;top:auto;grid-column:1 / -1;
     width:100%;aspect-ratio:16/9;opacity:1;transform:none;clip-path:none;box-shadow:none;
   }
   .row:hover .row-title{transform:none}
+}
+
+.mats{margin-top:clamp(48px,8vh,84px)}
+.mats .kicker{margin-bottom:16px}
+.mat-note{margin:14px 0 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--mist)}
+
+/* ---------- record ---------- */
+.record{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);
+  gap:clamp(24px,5vw,72px);align-items:start;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.record-note{
+  margin:0;padding-top:.5em;
+  font-size:clamp(15px,1.25vw,17px);font-weight:600;line-height:1.5;color:var(--paper);
+  max-width:30ch;
+}
+.record-note abbr{text-decoration:none;color:var(--accent)}
+.record-quote{
+  margin:0;max-width:19ch;
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(32px,4.8vw,72px);line-height:1.05;letter-spacing:-.015em;
+}
+.record-quote em{color:var(--accent)}
+@media (max-width:860px){
+  .record{grid-template-columns:1fr}
+}
+
+/* ---------- engineering ---------- */
+.eng{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(40px,7vw,110px);align-items:center;
+}
+/* the drawing on its own white sheet, set slightly askew until it's hovered */
+.sheet{
+  margin:0;background:#fff;color:var(--ink);
+  padding:clamp(18px,2.6vw,36px) clamp(18px,2.6vw,36px) 0;
+  box-shadow:0 60px 90px -45px rgba(0,0,0,.95);
+  transform:rotate(-1.6deg);
+  transition:transform 700ms cubic-bezier(.2,.7,.25,1);
+}
+.sheet:hover{transform:rotate(0)}
+.sheet img{width:100%;max-width:434px;height:auto;margin:0 auto}
+.sheet figcaption{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;
+  margin-top:clamp(14px,2vw,24px);padding:12px 0 14px;
+  border-top:1px solid rgba(12,17,22,.16);
+  font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(12,17,22,.62);
+}
+.eng-items{display:grid;gap:clamp(30px,5vh,48px)}
+.eng-item{border-top:1px solid var(--hair);padding-top:22px}
+.eng-item .col-num{margin-bottom:clamp(16px,3vh,28px)}
+.eng-item .col-text{font-size:clamp(15px,1.25vw,17px)}
+@media (max-width:860px){
+  .eng{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -91,102 +161,94 @@
   </nav>
 
 <main>
-<section class="phero" aria-label="About us">
+<section class="phero" aria-label="Construction Services, Inc.">
   <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/2048x2048/-/format/auto/hq-hotel.png')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
-  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">1967</div>
+
   <div class="phero-copy">
-    <p class="eyebrow">About us</p>
-    <h1 class="phero-title">Architectural<br>metal products</h1>
+    <p class="eyebrow">Construction Services, Inc.</p>
+    <h1 class="phero-title">About us</h1>
     <p class="phero-lede">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
   </div>
 </section>
 
-<section class="sec" aria-label="Our mission">
-  <div class="intro reveal">
-    <p class="kicker">Our mission</p>
-    <p class="intro-text">Engineering and fabrication experience and capabilities, plus a wide range of materials and finishes, provide a single source for your metalwork needs — and single source responsibility for the complicated ornamental portions of a project.</p>
-  </div>
-  <div class="stats reveal" style="margin-top:clamp(56px,9vh,96px)">
-    <div class="stat">
-      <span class="stat-num"><span data-count="1967" data-raw="1">1967</span></span>
-      <span class="stat-label">Year established</span>
-      <span class="stat-note">Architectural metalwork and railing out of Decatur, Alabama.</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num"><span data-count="200">200</span>+</span>
-      <span class="stat-label">Projects completed</span>
-      <span class="stat-note">Large and small, from a single gazebo to an entire building complex.</span>
+<section class="sec" aria-labelledby="history-h">
+  <div class="hist">
+    <p class="hist-year reveal" aria-hidden="true">1967</p>
+    <div class="hist-copy">
+      <h2 class="h2 reveal" id="history-h">History</h2>
+      <p class="intro-text reveal">Construction Services, Inc. was founded by Mike Scroggins and has been incorporated since February 3, 1967.</p>
+      <p class="lede reveal">Once established as a manufacturer, CSI concentrated on miscellaneous metals, i.e. steel stairs and railings. Over the years, CSI has evolved into a specialized metals fabricator.</p>
     </div>
   </div>
 </section>
 
-<section class="sec sec-tight" aria-label="Our mission statement">
-  <p class="kicker reveal">Our mission statement</p>
-  <blockquote class="quote reveal"><span>&ldquo;</span>Provide a quality product in a timely manner.<span>&rdquo;</span></blockquote>
-  <p class="lede reveal">To achieve this we constantly interact with all concerned parties through various means such as:</p>
-  <div class="cols" style="margin-top:clamp(28px,5vh,48px)">
-    <div class="col reveal"><p class="col-num">01</p><h3 class="col-title">Verbal and written communication</h3></div>
-    <div class="col reveal" style="--d:80ms"><p class="col-num">02</p><h3 class="col-title">CPM scheduling</h3></div>
-    <div class="col reveal" style="--d:160ms"><p class="col-num">03</p><h3 class="col-title">Site visits</h3></div>
-  </div>
-</section>
-
-<section class="sec" aria-label="What we do">
-  <div class="sec-head reveal">
-    <div>
-      <h2 class="h2">What we do</h2>
-      <p class="lede">We routinely handle projects large and small, from an individual gazebo to rail systems for an entire building complex.</p>
-    </div>
-  </div>
+<section class="sec sec-tight" aria-labelledby="products-h">
+  <p class="kicker reveal" id="products-h" style="margin-bottom:clamp(18px,3vh,28px)">Our products include</p>
   <div class="rows">
-    <a class="row reveal" href="projects.html#architectural-metalwork" style="--d:0ms">
+    <a class="row reveal" href="projects.html#rail-systems" style="--d:0ms">
       <span class="row-num">01</span>
-      <span class="row-title">Architectural metalwork</span>
-      <span class="row-text">Engineering and fabrication experience across a wide range of materials and finishes, from one source.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/1200x1200/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg')" aria-hidden="true"></span>
+      <span class="row-title">Rail systems</span>
+      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/preview/1200x1200/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="projects.html#stair-systems" style="--d:60ms">
       <span class="row-num">02</span>
-      <span class="row-title">Stair systems</span>
-      <span class="row-text">Monumental stairs built as a single assembly, structure and rail detailed together.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/preview/1200x1200/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG')" aria-hidden="true"></span>
+      <span class="row-title">Monumental and radiused/<wbr>spiral stairs</span>
+      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
-    <a class="row reveal" href="projects.html#rail-systems" style="--d:120ms">
+    <a class="row reveal" href="projects.html#architectural-metalwork" style="--d:120ms">
       <span class="row-num">03</span>
-      <span class="row-title">Rail systems</span>
-      <span class="row-text">Rail systems for an entire building complex, or a single run of ornamental guard.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG')" aria-hidden="true"></span>
-      <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-    </a>
-    <a class="row reveal" href="projects.html#canopies" style="--d:180ms">
-      <span class="row-num">04</span>
-      <span class="row-title">Canopies</span>
-      <span class="row-text">Entrance and walkway canopies fabricated to the architect&rsquo;s intent and installed by our own crews.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg')" aria-hidden="true"></span>
-      <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-    </a>
-    <a class="row reveal" href="laser.html" style="--d:240ms">
-      <span class="row-num">05</span>
-      <span class="row-title">Laser cutting</span>
-      <span class="row-text">In-house laser cutting for perforated panels, screens and custom profiles.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/preview/1200x1200/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg')" aria-hidden="true"></span>
+      <span class="row-title">Architectural metalwork</span>
+      <span class="row-text">A wide variety, including, but not limited to, wall panels, torcheres, gazebos, column covers and decorative art designs.</span>
+      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/1200x1200/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
   </div>
+  <div class="cols mats" style="--n:2">
+    <div class="col reveal">
+      <p class="kicker">The materials used include</p>
+      <ul class="chips"><li>Carbon steel</li><li>Nickel silver</li><li>Aluminum</li><li>Brass</li><li>Bronze</li></ul>
+      <p class="mat-note">With any type of finish required.</p>
+    </div>
+    <div class="col reveal" style="--d:80ms">
+      <p class="kicker">We also offer</p>
+      <ul class="chips"><li>Glass</li><li>Wood</li><li>Casting</li><li class="chips-more">etc.</li></ul>
+    </div>
+  </div>
 </section>
 
-<section class="sec sec-tight" aria-label="One source">
-  <div class="split">
-    <figure class="split-img reveal"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/1600x1600/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg')" data-drift="0.08" data-slack="0.1"></div></figure>
-    <div class="reveal" style="--d:120ms">
-      <p class="kicker">Single source responsibility</p>
-      <h2 class="h2">One source for the ornamental package</h2>
-      <p class="lede">We also handle single projects that include a wide variety of different elements such as rails, monumental stairs, wall cladding, light fixtures, column covers and more.</p>
-      <p class="lede">Engineering, fabrication and installation sit together, so the rails, stairs, cladding and fixtures on a job are detailed by the people who will build them.</p>
-      <p class="lede" style="margin-bottom:clamp(28px,4.5vh,44px)">That single source responsibility is what keeps the complicated ornamental portions of a project from becoming somebody else&rsquo;s problem halfway through the schedule.</p>
-      <a class="cta" href="projects.html"><span class="cta-label">View portfolio</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+<section class="sec" aria-label="Our record">
+  <div class="record">
+    <p class="record-note reveal">CSI is a member of <abbr title="National Ornamental &amp; Miscellaneous Metals Association">NOMMA</abbr>, and has earned numerous industry awards.</p>
+    <p class="record-quote reveal" style="--d:120ms">We have fulfilled <em>all contractual obligations</em> since our inception.</p>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-labelledby="engineering-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="engineering-h">Engineering capabilities</h2>
+    </div>
+  </div>
+  <div class="eng">
+    <div class="reveal">
+      <figure class="sheet">
+        <img src="img/cad-stair-dannelly-field.webp" width="434" height="346" alt="3D model of a monumental stair for the Operations and Training Facility at Dannelly Field, Montgomery, Alabama" loading="lazy" decoding="async">
+        <figcaption><span>Operations and Training Facility</span><span>Dannelly Field, Montgomery, AL</span></figcaption>
+      </figure>
+    </div>
+    <div class="eng-items">
+      <div class="eng-item reveal">
+        <p class="col-num">01</p>
+        <h3 class="col-title">Structural computations</h3>
+        <p class="col-text">CSI offers structural computations of a design project by using COSMOS/M finite element analysis software. Monumental stairs, canopies and guard railings, to name a few, are analyzed for material sizes and connection details required to meet loading criteria and code requirements.</p>
+      </div>
+      <div class="eng-item reveal" style="--d:100ms">
+        <p class="col-num">02</p>
+        <h3 class="col-title">Preliminary design assistance</h3>
+        <p class="col-text">The preliminary design assistance can save the designer time and money in the development process. Our engineering department uses CAD and MicroStation systems that are compatible with most designers&rsquo; systems.</p>
+      </div>
     </div>
   </div>
 </section>
