@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Construction Services, Inc.</title>
+<meta name="description" content="Completed work by Construction Services, Inc. — architectural metalwork, stair systems, rail systems, canopies and laser cutting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- filters ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 clamp(28px,4.5vh,44px)}
+.filter{
+  padding:10px 16px;border:1px solid var(--hair);border-radius:999px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);
+  transition:background 200ms ease,color 200ms ease,border-color 200ms ease;
+}
+.filter span{margin-left:4px;opacity:.6;font-variant-numeric:tabular-nums}
+.filter:hover{color:var(--paper);border-color:var(--paper)}
+.filter.is-on{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+
+/* ---------- gallery ---------- */
+/* columns keep every photo at its own shape, so nothing gets cropped */
+.gallery{columns:3 300px;column-gap:clamp(12px,1.6vw,22px);margin:0;padding:0;list-style:none}
+.tile{break-inside:avoid;margin:0 0 clamp(12px,1.6vw,22px);animation:tileIn 600ms ease both}
+@keyframes tileIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tile-btn{position:relative;display:block;width:100%;padding:0;overflow:hidden;background:#10161C;text-align:left}
+.tile-btn img{
+  width:100%;height:auto;aspect-ratio:auto 4/3;
+  transition:transform 900ms cubic-bezier(.2,.7,.25,1);
+}
+.tile-btn::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(8,12,16,.86) 0%,rgba(8,12,16,.25) 42%,rgba(8,12,16,0) 68%);
+}
+.tile-cap{
+  position:absolute;z-index:2;left:18px;right:18px;bottom:16px;
+  display:flex;flex-direction:column;gap:6px;
+  transform:translateY(6px);transition:transform 500ms cubic-bezier(.2,.7,.25,1);
+}
+.tile-cat{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.tile-title{font-size:clamp(16px,1.4vw,20px);font-weight:600;letter-spacing:-.01em;line-height:1.15}
+.tile-btn:hover img,.tile-btn:focus-visible img{transform:scale(1.05)}
+.tile-btn:hover .tile-cap,.tile-btn:focus-visible .tile-cap{transform:none}
+.tile-btn:focus-visible{outline-offset:3px}
+
+/* ---------- full-screen viewer ---------- */
+html:has(.lightbox[open]){overflow:hidden}
+.lightbox{
+  width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;
+  margin:0;padding:0;border:0;
+  background:rgba(8,12,16,.97);color:var(--paper);
+}
+.lightbox::backdrop{background:rgba(8,12,16,.7)}
+.lightbox[open]{display:grid;grid-template-rows:minmax(0,1fr) auto;animation:lbIn 300ms ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lb-stage{display:flex;align-items:center;justify-content:center;min-height:0;padding:clamp(70px,10vh,96px) var(--gutter) 18px}
+.lb-img{max-width:100%;max-height:100%;width:auto;height:auto;box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.lb-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:18px var(--gutter) 26px;border-top:1px solid rgba(242,239,233,.12);
+}
+.lb-cap{display:flex;flex-direction:column;gap:6px;margin:0;min-width:0}
+.lb-cap .tile-title{font-size:clamp(17px,1.6vw,22px)}
+.lb-nav{display:flex;align-items:center;gap:10px}
+.lb-count{margin-right:8px;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--mist);font-variant-numeric:tabular-nums}
+.lb-close{position:absolute;top:18px;right:var(--gutter)}
+
+/* ---------- venues ---------- */
+.venue-place{margin:0 0 6px;font-family:var(--serif);font-style:italic;font-weight:300;font-size:13px;color:var(--mist)}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="projects.html" aria-current="page">Portfolio</a>
+    <a href="laser.html">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Portfolio">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/preview/2048x2048/-/format/auto/hq-integraph.png')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-copy">
+    <p class="eyebrow">Portfolio</p>
+    <h1 class="phero-title">Our work</h1>
+    <p class="phero-lede">Rails, stairs, canopies, cladding and laser-cut work from projects large and small.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="Project photos">
+  <div class="filters reveal" role="group" aria-label="Filter by sector">
+    <button class="filter is-on" type="button" data-filter="all" aria-pressed="true">All <span>28</span></button><button class="filter" type="button" data-filter="architectural-metalwork" aria-pressed="false">Architectural metalwork <span>5</span></button><button class="filter" type="button" data-filter="stair-systems" aria-pressed="false">Stair systems <span>6</span></button><button class="filter" type="button" data-filter="rail-systems" aria-pressed="false">Rail systems <span>7</span></button><button class="filter" type="button" data-filter="canopies" aria-pressed="false">Canopies <span>1</span></button><button class="filter" type="button" data-filter="laser-cutting" aria-pressed="false">Laser cutting <span>5</span></button>
+  </div>
+  <ul class="gallery" id="gallery">
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/preview/2048x2048/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/resize/800x/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG" srcset="https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/resize/480x/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG 480w, https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/resize/800x/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG 800w, https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/resize/1200x/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems: Vanderbilt Children&rsquo;s Hospital" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span><span class="tile-title">Vanderbilt Children&rsquo;s Hospital</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/2048x2048/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg" srcset="https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/resize/480x/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg 480w, https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg 800w, https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/resize/1200x/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems: Grand stair" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span><span class="tile-title">Grand stair</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/preview/2048x2048/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG" srcset="https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/resize/480x/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG 480w, https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG 800w, https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/resize/1200x/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Cooks Museum of Natural Science" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Cooks Museum of Natural Science</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="canopies" data-full="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/2048x2048/-/format/auto/hq-Canopy-%20Mansion.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/resize/800x/-/format/auto/hq-Canopy-%20Mansion.jpg" srcset="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/resize/480x/-/format/auto/hq-Canopy-%20Mansion.jpg 480w, https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/resize/800x/-/format/auto/hq-Canopy-%20Mansion.jpg 800w, https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/resize/1200x/-/format/auto/hq-Canopy-%20Mansion.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Canopies: Mansion" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Canopies</span><span class="tile-title">Mansion</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="architectural-metalwork" data-full="https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/2048x2048/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/resize/800x/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg" srcset="https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/resize/480x/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg 480w, https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/resize/800x/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg 800w, https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/resize/1200x/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Architectural metalwork: Vanderbilt Children&rsquo;s Hospital" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Architectural metalwork</span><span class="tile-title">Vanderbilt Children&rsquo;s Hospital</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="project" data-full="https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/preview/2048x2048/-/format/auto/hq-integraph.png">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/resize/800x/-/format/auto/hq-integraph.png" srcset="https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/resize/480x/-/format/auto/hq-integraph.png 480w, https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/resize/800x/-/format/auto/hq-integraph.png 800w, https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/resize/1200x/-/format/auto/hq-integraph.png 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Project: Intergraph" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Project</span><span class="tile-title">Intergraph</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/2048x2048/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/resize/800x/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" srcset="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/resize/480x/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG 480w, https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/resize/800x/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG 800w, https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/resize/1200x/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Silver rail" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Silver rail</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="laser-cutting" data-full="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/preview/2048x2048/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/800x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg" srcset="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/480x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 480w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/800x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 800w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/1200x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Laser cutting: Panel cut-out" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Laser cutting</span><span class="tile-title">Panel cut-out</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="project" data-full="https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/2048x2048/-/format/auto/hq-hotel.png">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/resize/800x/-/format/auto/hq-hotel.png" srcset="https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/resize/480x/-/format/auto/hq-hotel.png 480w, https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/resize/800x/-/format/auto/hq-hotel.png 800w, https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/resize/1200x/-/format/auto/hq-hotel.png 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Project: Hotel" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Project</span><span class="tile-title">Hotel</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="architectural-metalwork" data-full="https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/resize/800x/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg" srcset="https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/resize/480x/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg 480w, https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/resize/800x/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg 800w, https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/resize/1200x/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Architectural metalwork: Ceiling panels" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Architectural metalwork</span><span class="tile-title">Ceiling panels</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/preview/2048x2048/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg" srcset="https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/resize/480x/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg 480w, https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg 800w, https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/resize/1200x/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Outdoor rail" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Outdoor rail</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/preview/2048x2048/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg" srcset="https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/resize/480x/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg 480w, https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg 800w, https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/resize/1200x/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems: Stainless" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span><span class="tile-title">Stainless</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="laser-cutting" data-full="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg" srcset="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 480w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 800w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Laser cutting: Laser profile" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Laser cutting</span><span class="tile-title">Laser profile</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="architectural-metalwork" data-full="https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg" srcset="https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg 480w, https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg 800w, https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Architectural metalwork: Torchiere" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Architectural metalwork</span><span class="tile-title">Torchiere</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/preview/2048x2048/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg" srcset="https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/resize/480x/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg 480w, https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg 800w, https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/resize/1200x/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Garcia" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Garcia</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="project" data-full="https://3unloi5wlp.ucarecd.net/fe37b4df-efd6-4fc4-b3b5-ed3fc67a8c21/-/preview/2048x2048/-/format/auto/hq-college.png">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/fe37b4df-efd6-4fc4-b3b5-ed3fc67a8c21/-/resize/800x/-/format/auto/hq-college.png" srcset="https://3unloi5wlp.ucarecd.net/fe37b4df-efd6-4fc4-b3b5-ed3fc67a8c21/-/resize/480x/-/format/auto/hq-college.png 480w, https://3unloi5wlp.ucarecd.net/fe37b4df-efd6-4fc4-b3b5-ed3fc67a8c21/-/resize/800x/-/format/auto/hq-college.png 800w, https://3unloi5wlp.ucarecd.net/fe37b4df-efd6-4fc4-b3b5-ed3fc67a8c21/-/resize/1200x/-/format/auto/hq-college.png 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Project: College" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Project</span><span class="tile-title">College</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/preview/2048x2048/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/resize/800x/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG" srcset="https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/resize/480x/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG 480w, https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/resize/800x/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG 800w, https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/resize/1200x/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems: AFB" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span><span class="tile-title">AFB</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/preview/2048x2048/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg" srcset="https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/resize/480x/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg 480w, https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg 800w, https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/resize/1200x/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Red &amp; white mesh" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Red &amp; white mesh</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="laser-cutting" data-full="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/800x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg" srcset="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/480x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 480w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/800x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 800w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/1200x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Laser cutting" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Laser cutting</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="architectural-metalwork" data-full="https://3unloi5wlp.ucarecd.net/9aa85015-97f1-4b63-be09-200e472c2de0/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Teku.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/9aa85015-97f1-4b63-be09-200e472c2de0/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Teku.jpg" srcset="https://3unloi5wlp.ucarecd.net/9aa85015-97f1-4b63-be09-200e472c2de0/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Teku.jpg 480w, https://3unloi5wlp.ucarecd.net/9aa85015-97f1-4b63-be09-200e472c2de0/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Teku.jpg 800w, https://3unloi5wlp.ucarecd.net/9aa85015-97f1-4b63-be09-200e472c2de0/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Teku.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Architectural metalwork: Teku" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Architectural metalwork</span><span class="tile-title">Teku</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/preview/2048x2048/-/format/auto/hq-staircase.png">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/resize/800x/-/format/auto/hq-staircase.png" srcset="https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/resize/480x/-/format/auto/hq-staircase.png 480w, https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/resize/800x/-/format/auto/hq-staircase.png 800w, https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/resize/1200x/-/format/auto/hq-staircase.png 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems: Staircase" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span><span class="tile-title">Staircase</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/preview/2048x2048/-/format/auto/hq-Railing%20System%20-%20Brick.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Brick.jpg" srcset="https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/resize/480x/-/format/auto/hq-Railing%20System%20-%20Brick.jpg 480w, https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/resize/800x/-/format/auto/hq-Railing%20System%20-%20Brick.jpg 800w, https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/resize/1200x/-/format/auto/hq-Railing%20System%20-%20Brick.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Brick" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Brick</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="laser-cutting" data-full="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg" srcset="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 480w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 800w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Laser cutting" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Laser cutting</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="project" data-full="https://3unloi5wlp.ucarecd.net/c8d6708c-60d9-4276-9f6a-5fe65b7b78d5/-/preview/2048x2048/-/format/auto/hq-dynetics.png">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/c8d6708c-60d9-4276-9f6a-5fe65b7b78d5/-/resize/800x/-/format/auto/hq-dynetics.png" srcset="https://3unloi5wlp.ucarecd.net/c8d6708c-60d9-4276-9f6a-5fe65b7b78d5/-/resize/480x/-/format/auto/hq-dynetics.png 480w, https://3unloi5wlp.ucarecd.net/c8d6708c-60d9-4276-9f6a-5fe65b7b78d5/-/resize/800x/-/format/auto/hq-dynetics.png 800w, https://3unloi5wlp.ucarecd.net/c8d6708c-60d9-4276-9f6a-5fe65b7b78d5/-/resize/1200x/-/format/auto/hq-dynetics.png 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Project: Dynetics" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Project</span><span class="tile-title">Dynetics</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="rail-systems" data-full="https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/preview/2048x2048/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG" srcset="https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/resize/480x/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG 480w, https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/resize/800x/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG 800w, https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/resize/1200x/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Rail systems: Circle" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Rail systems</span><span class="tile-title">Circle</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="stair-systems" data-full="https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/preview/2048x2048/-/format/auto/hq-Monumental%20Stair-%20SS.JPG">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20SS.JPG" srcset="https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/resize/480x/-/format/auto/hq-Monumental%20Stair-%20SS.JPG 480w, https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/resize/800x/-/format/auto/hq-Monumental%20Stair-%20SS.JPG 800w, https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/resize/1200x/-/format/auto/hq-Monumental%20Stair-%20SS.JPG 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Stair systems" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Stair systems</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="architectural-metalwork" data-full="https://3unloi5wlp.ucarecd.net/1baf6415-3883-404b-8bc4-b524cf21f1aa/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Torchiere%202.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/1baf6415-3883-404b-8bc4-b524cf21f1aa/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Torchiere%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/1baf6415-3883-404b-8bc4-b524cf21f1aa/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Torchiere%202.jpg 480w, https://3unloi5wlp.ucarecd.net/1baf6415-3883-404b-8bc4-b524cf21f1aa/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Torchiere%202.jpg 800w, https://3unloi5wlp.ucarecd.net/1baf6415-3883-404b-8bc4-b524cf21f1aa/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Torchiere%202.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Architectural metalwork: Torchiere" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Architectural metalwork</span><span class="tile-title">Torchiere</span></span>
+      </button>
+    </li>
+    <li class="tile" data-cat="laser-cutting" data-full="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg">
+      <button class="tile-btn" type="button">
+        <img src="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/480x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 480w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/800x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 800w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/1200x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 1200w" sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw" alt="Laser cutting" loading="lazy" decoding="async">
+        <span class="tile-cap"><span class="tile-cat">Laser cutting</span></span>
+      </button>
+    </li>
+  </ul>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Project photo">
+  <div class="lb-stage"><img class="lb-img" alt=""></div>
+  <div class="lb-bar">
+    <p class="lb-cap"></p>
+    <div class="lb-nav">
+      <span class="lb-count"></span>
+      <button class="round-btn lb-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="round-btn lb-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
+  </div>
+  <button class="round-btn lb-close" type="button" aria-label="Close">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+</dialog>
+
+<section class="sec sec-tight" aria-label="See our work on display">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2">See our work on display</h2>
+      <p class="lede">Completed installations across the region — campuses, civic buildings and commercial interiors carrying our rails, stairs and cladding.</p>
+    </div>
+  </div>
+  <div class="cols" style="row-gap:clamp(36px,6vh,56px)">
+    <div class="col reveal" style="--d:0ms"><p class="col-num">01</p><p class="venue-place">Auburn, Alabama</p><h3 class="col-title">Auburn University</h3><p class="col-text">Land-grant university with a campus of around 30,000 students.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">02</p><p class="venue-place">Nationwide</p><h3 class="col-title">BlueCross BlueShield</h3><p class="col-text">Health insurance association whose member plans operate across all fifty states.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">03</p><p class="venue-place">Nashville, Tennessee</p><h3 class="col-title">Broadwest</h3><p class="col-text">Mixed-use development combining offices, residences and a hotel.</p></div>
+    <div class="col reveal" style="--d:0ms"><p class="col-num">04</p><p class="venue-place">Washington, D.C.</p><h3 class="col-title">Georgetown University</h3><p class="col-text">The oldest Catholic university in the United States, founded in 1789.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">05</p><p class="venue-place">Atlanta, Georgia</p><h3 class="col-title">Georgia Tech</h3><p class="col-text">Public research institute known for its engineering and computing programs.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">06</p><p class="venue-place">Research Triangle Park, North Carolina</p><h3 class="col-title">GlaxoSmithKline</h3><p class="col-text">British pharmaceutical company with major U.S. research and manufacturing sites.</p></div>
+    <div class="col reveal" style="--d:0ms"><p class="col-num">07</p><p class="venue-place">Washington, D.C.</p><h3 class="col-title">National Law Enforcement</h3><p class="col-text">Memorial and museum honoring officers killed in the line of duty.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">08</p><p class="venue-place">Kenedy, Texas</p><h3 class="col-title">Otto Kaiser</h3><p class="col-text">Memorial hospital serving Karnes County and the surrounding communities.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">09</p><p class="venue-place">Baton Rouge, Louisiana</p><h3 class="col-title">Louisiana State University</h3><p class="col-text">Flagship campus of the LSU system, founded in 1860.</p></div>
+    <div class="col reveal" style="--d:0ms"><p class="col-num">10</p><p class="venue-place">Huntsville, Alabama</p><h3 class="col-title">Intergraph</h3><p class="col-text">Engineering software firm, now part of Hexagon.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">11</p><p class="venue-place">Huntsville, Alabama</p><h3 class="col-title">Huntsville Hospital</h3><p class="col-text">The largest hospital in north Alabama and the region&rsquo;s principal medical center.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">12</p><p class="venue-place">Columbus, Georgia</p><h3 class="col-title">River Center Performing Arts</h3><p class="col-text">Concert and theater complex on the riverfront downtown.</p></div>
+    <div class="col reveal" style="--d:0ms"><p class="col-num">13</p><p class="venue-place">Evansville, Indiana</p><h3 class="col-title">University of Southern Indiana</h3><p class="col-text">Public university serving roughly 8,000 students.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">14</p><p class="venue-place">Homewood, Alabama</p><h3 class="col-title">Samford University</h3><p class="col-text">Private Christian university established in 1841.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">15</p><p class="venue-place">Ann Arbor, Michigan</p><h3 class="col-title">University of Michigan</h3><p class="col-text">Public research university, among the oldest in the country.</p></div>
+    <div class="col reveal" style="--d:0ms"><p class="col-num">16</p><p class="venue-place">Oakwood, Georgia</p><h3 class="col-title">Wayne Farms</h3><p class="col-text">One of the largest vertically integrated poultry producers in the United States.</p></div>
+    <div class="col reveal" style="--d:70ms"><p class="col-num">17</p><p class="venue-place">Huntsville, Alabama</p><h3 class="col-title">Whitesburg Baptist Church</h3><p class="col-text">Long-established congregation on Whitesburg Drive.</p></div>
+    <div class="col reveal" style="--d:140ms"><p class="col-num">18</p><p class="venue-place">San Antonio, Texas</p><h3 class="col-title">USAA</h3><p class="col-text">Financial services group serving military members and their families.</p></div>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="projects.html">Portfolio</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+try {
+/* ---- portfolio: filter by sector (the choice rides in the address, so a
+       link to projects.html#stair-systems opens on stairs) and a viewer ---- */
+const tiles   = [...document.querySelectorAll('.tile')];
+const filters = [...document.querySelectorAll('.filter')];
+
+function applyFilter(key, fromClick){
+  if(!filters.some(f=>f.dataset.filter === key)) key = 'all';
+  filters.forEach(f=>{
+    const on = f.dataset.filter === key;
+    f.classList.toggle('is-on', on);
+    f.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  tiles.forEach(t=>{ t.hidden = key !== 'all' && t.dataset.cat !== key; });
+  if(fromClick) history.replaceState(null, '', key === 'all' ? location.pathname : '#' + key);
+}
+filters.forEach(f=>f.addEventListener('click', ()=>applyFilter(f.dataset.filter, true)));
+window.addEventListener('hashchange', ()=>applyFilter(location.hash.slice(1), false));
+applyFilter(location.hash.slice(1), false);
+
+const box   = document.getElementById('lightbox');
+const img   = box.querySelector('.lb-img');
+const cap   = box.querySelector('.lb-cap');
+const count = box.querySelector('.lb-count');
+let shown = [], at = 0;
+
+function show(i){
+  at = (i + shown.length) % shown.length;
+  const t = shown[at];
+  img.src = t.dataset.full;
+  img.alt = t.querySelector('img').alt;
+  cap.innerHTML = t.querySelector('.tile-cap').innerHTML;
+  count.textContent = (at + 1) + ' / ' + shown.length;
+}
+tiles.forEach(t=>t.querySelector('.tile-btn').addEventListener('click', ()=>{
+  shown = tiles.filter(x=>!x.hidden);   // step through what the filter shows
+  show(shown.indexOf(t));
+  box.showModal();
+}));
+box.querySelector('.lb-prev').addEventListener('click', ()=>show(at - 1));
+box.querySelector('.lb-next').addEventListener('click', ()=>show(at + 1));
+box.querySelector('.lb-close').addEventListener('click', ()=>box.close());
+box.addEventListener('keydown', e=>{
+  if(e.key === 'ArrowRight') show(at + 1);
+  if(e.key === 'ArrowLeft')  show(at - 1);
+});
+// a click on the dark surround, not the photo or controls, closes it
+box.addEventListener('click', e=>{ if(e.target === box || e.target.classList.contains('lb-stage')) box.close(); });
+} catch (err) { console.error("feature failed:", err); }
+</script>
+</body>
+</html>
