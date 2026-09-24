@@ -189,6 +189,14 @@ body.is-stuck .masthead{
 }
 .lede a,.body-link{color:var(--paper);text-decoration-color:var(--accent);text-underline-offset:3px}
 
+/* short lists set as pills */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{
+  padding:8px 14px;border:1px solid var(--hair);border-radius:999px;
+  font-size:13px;font-weight:600;letter-spacing:.02em;
+}
+.chips .chips-more{border-color:transparent;padding-left:2px;padding-right:2px;color:var(--mist)}
+
 /* ---------- page hero ---------- */
 /* the home hero's treatment: full-bleed photo, the same dark grade and grain,
    the title set big at the bottom left */

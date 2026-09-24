@@ -14,6 +14,9 @@ Construction Services, Inc. — Architectural Metal Products.
   only one page uses sits in that page's own `<style>` or `<script>`. The
   masthead, menu, buttons and footer in `site.css` copy the ones inline in
   `index.html`, so change both together.
+- `img/` — images not on the CDN yet. `cad-stair-dannelly-field.webp`, the
+  engineering drawing on the About page, is cut from a screenshot of the
+  old site until the original file is uploaded.
 
 `projects.html#stair-systems` (likewise `#architectural-metalwork`,
 `#rail-systems`, `#canopies`, `#laser-cutting`) opens the portfolio
