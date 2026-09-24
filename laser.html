@@ -32,6 +32,13 @@
 }
 @media (prefers-reduced-motion:reduce){ .phero-scan{display:none} }
 
+/* the machine's own logotype, on a light plate since it was drawn for a white page */
+.plate{display:inline-flex;align-items:center;margin:0 0 18px;padding:10px 16px;background:#fff;border-radius:2px}
+.plate img{display:block;height:clamp(24px,2.2vw,32px);width:auto}
+.capab{margin:clamp(44px,7vh,76px) auto 0;max-width:1100px}
+.capab img{width:100%;height:auto}
+.capab figcaption{margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+
 /* four big figures read better as two pairs than squeezed into one row */
 .stats--pairs{grid-template-columns:repeat(2,minmax(0,1fr))}
 .stats--pairs .stat:nth-child(odd){padding-left:0;border-left:0}
@@ -81,7 +88,7 @@
 
 <main>
 <section class="phero" aria-label="Laser cutting">
-  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/preview/2048x2048/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/6627d6d4-db24-49ed-a18b-3699bfaf738b/TruLaser%203040%20-%20Hero1.avif')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
 
   <div class="phero-scan" aria-hidden="true"></div>
   <div class="phero-copy">
@@ -95,7 +102,7 @@
 <section class="sec" aria-label="The machine">
   <div class="sec-head reveal">
     <div>
-      <p class="kicker">TruLaser 3040</p>
+      <p class="plate"><img src="https://3unloi5wlp.ucarecd.net/4db9b660-0d77-4b53-bdf2-03cc6ba38992/-/preview/600x600/-/format/auto/TruLaser%203040%20-%20Logo.avif" data-raw="https://3unloi5wlp.ucarecd.net/4db9b660-0d77-4b53-bdf2-03cc6ba38992/TruLaser%203040%20-%20Logo.avif" alt="TruLaser 3040" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></p>
       <h2 class="h2">Precision sheet metal</h2>
       <p class="lede">Clean edges and fast cycle times on every cut.</p>
     </div>
@@ -122,6 +129,10 @@
       <span class="stat-note">Mild steel, stainless, aluminum, titanium and brass.</span>
     </div>
   </div>
+  <figure class="capab reveal">
+    <img src="https://3unloi5wlp.ucarecd.net/10d8435f-6933-4f17-b617-34e104a77a07/-/preview/2048x2048/-/format/auto/TruLaser%203040%20-%20Capabilities1.avif" data-raw="https://3unloi5wlp.ucarecd.net/10d8435f-6933-4f17-b617-34e104a77a07/TruLaser%203040%20-%20Capabilities1.avif" alt="TruLaser 3040 capabilities" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+    <figcaption>TruLaser 3040 capabilities</figcaption>
+  </figure>
 </section>
 
 <section class="sec sec-tight" aria-label="Materials and stock">
