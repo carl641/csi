@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canopies — Construction Services, Inc.</title>
+<meta name="description" content="Canopies by Construction Services, Inc. — Entrance and walkway canopies fabricated to the architect’s intent and installed by our own crews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- the photos ---------- */
+/* each photo is shown whole on a dark mat rather than cropped to the frame */
+.gal-stage{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:#10161C;touch-action:pan-y;
+}
+.gal-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;
+  transition:opacity 260ms ease;
+  /* a drag would start the browser's own image drag and swallow the swipe */
+  -webkit-user-drag:none;user-select:none;
+}
+.gal-img.is-fading{opacity:0}
+.gal-bar{
+  display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);
+  margin-top:14px;
+}
+.gal-count{
+  margin:0;flex:0 0 auto;
+  font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--mist);
+  font-variant-numeric:tabular-nums;
+}
+.gal-count b{color:var(--accent);font-weight:600}
+/* one segment per photo along a hairline, as on the home page carousel */
+.gal-rail{flex:1 1 auto;display:flex;min-width:0}
+.gal-seg{flex:1 1 0;min-width:0;height:28px;padding:0;position:relative}
+.gal-seg::before{
+  content:"";position:absolute;left:0;right:3px;top:50%;height:1px;
+  background:var(--hair);
+  transition:background 200ms ease,height 200ms ease,transform 200ms ease;
+}
+.gal-seg:hover::before{background:var(--paper)}
+.gal-seg.is-on::before{height:3px;transform:translateY(-1px);background:var(--accent)}
+.gal-nav{display:flex;gap:8px;flex:0 0 auto}
+.gal-nav .round-btn{width:42px;height:42px}
+/* a single photo needs no controls */
+.gal[data-photos="1"] .gal-bar{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .gal-img{transition:none}
+}
+
+/* ---------- the projects: one card each, its photos in a small gallery ---------- */
+.tally{margin:0 0 clamp(24px,4vh,40px)}
+.projs{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
+}
+.proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
+.proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.proj-count{
+  margin:0;flex:0 0 auto;
+  font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);
+}
+/* the gallery's own bar sits under the photo; with a caption below it, keep it tight */
+.proj .gal-bar{margin-top:8px}
+.proj .gal-nav .round-btn{width:36px;height:36px}
+.proj .gal-seg{height:24px}
+.proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
+@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .projs{grid-template-columns:1fr} }
+
+.more{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.more .h2{margin:0}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="architectural-metalwork.html">Metalwork</a>
+    <a href="monumental-stairs.html">Stairs</a>
+    <a href="rail-systems.html">Railings</a>
+    <a href="canopies.html" aria-current="page">Canopies</a>
+    <a href="laser.html">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Our work">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-copy">
+    <p class="eyebrow">Our work</p>
+    <h1 class="phero-title">Canopies</h1>
+    <p class="phero-lede">Entrance and walkway canopies fabricated to the architect&rsquo;s intent and installed by our own crews.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="Projects">
+  <p class="kicker tally reveal">17 photos</p>
+  <div class="projs">
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="8">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics1.avif" data-raw="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif" alt="Dynetics, photo 1 of 8" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 08</p>
+          <div class="gal-rail" role="group" aria-label="Dynetics photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics1.avif" data-raw="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif" data-alt="Dynetics, photo 1 of 8" aria-label="Photo 1 of 8" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/c80a43fe-5a83-4b89-b538-7695d89c8f9b/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics2.avif" data-raw="https://3unloi5wlp.ucarecd.net/c80a43fe-5a83-4b89-b538-7695d89c8f9b/Canopies%20-%20Dynetics2.avif" data-alt="Dynetics, photo 2 of 8" aria-label="Photo 2 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/d2720cbe-5778-479f-9cb5-77a330d40de0/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics3.avif" data-raw="https://3unloi5wlp.ucarecd.net/d2720cbe-5778-479f-9cb5-77a330d40de0/Canopies%20-%20Dynetics3.avif" data-alt="Dynetics, photo 3 of 8" aria-label="Photo 3 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/7dd3bd6a-6fe5-424b-b9ed-5611696c986f/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics4.avif" data-raw="https://3unloi5wlp.ucarecd.net/7dd3bd6a-6fe5-424b-b9ed-5611696c986f/Canopies%20-%20Dynetics4.avif" data-alt="Dynetics, photo 4 of 8" aria-label="Photo 4 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/bc7da210-9e1f-4a8c-b434-ec29d86663fe/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics5.avif" data-raw="https://3unloi5wlp.ucarecd.net/bc7da210-9e1f-4a8c-b434-ec29d86663fe/Canopies%20-%20Dynetics5.avif" data-alt="Dynetics, photo 5 of 8" aria-label="Photo 5 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/d0cbe805-03cf-4706-aaab-d298ce71545c/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics6.avif" data-raw="https://3unloi5wlp.ucarecd.net/d0cbe805-03cf-4706-aaab-d298ce71545c/Canopies%20-%20Dynetics6.avif" data-alt="Dynetics, photo 6 of 8" aria-label="Photo 6 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/0f3efbf0-0f46-4956-bf6d-94323f6e0551/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics7.avif" data-raw="https://3unloi5wlp.ucarecd.net/0f3efbf0-0f46-4956-bf6d-94323f6e0551/Canopies%20-%20Dynetics7.avif" data-alt="Dynetics, photo 7 of 8" aria-label="Photo 7 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/cec781ca-e643-4bbe-a40e-8a7dac2f280d/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics8.avif" data-raw="https://3unloi5wlp.ucarecd.net/cec781ca-e643-4bbe-a40e-8a7dac2f280d/Canopies%20-%20Dynetics8.avif" data-alt="Dynetics, photo 8 of 8" aria-label="Photo 8 of 8" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Dynetics</h3>
+        <p class="proj-count">8 photos</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:70ms">
+      <div class="gal" data-gal data-photos="8">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital1.avif" data-raw="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/Canopies%20-%20Otto%20Hospital1.avif" alt="Otto Kaiser Memorial Hospital, photo 1 of 8" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 08</p>
+          <div class="gal-rail" role="group" aria-label="Otto Kaiser Memorial Hospital photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital1.avif" data-raw="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/Canopies%20-%20Otto%20Hospital1.avif" data-alt="Otto Kaiser Memorial Hospital, photo 1 of 8" aria-label="Photo 1 of 8" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5fb319f8-3eaf-4f88-abba-76740eafbddb/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital2.avif" data-raw="https://3unloi5wlp.ucarecd.net/5fb319f8-3eaf-4f88-abba-76740eafbddb/Canopies%20-%20Otto%20Hospital2.avif" data-alt="Otto Kaiser Memorial Hospital, photo 2 of 8" aria-label="Photo 2 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5161e9b6-c498-4bf1-bc57-92ca0b966673/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital3.avif" data-raw="https://3unloi5wlp.ucarecd.net/5161e9b6-c498-4bf1-bc57-92ca0b966673/Canopies%20-%20Otto%20Hospital3.avif" data-alt="Otto Kaiser Memorial Hospital, photo 3 of 8" aria-label="Photo 3 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/dea5d8d4-8be8-4155-804b-ebacb05a6e74/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital4.avif" data-raw="https://3unloi5wlp.ucarecd.net/dea5d8d4-8be8-4155-804b-ebacb05a6e74/Canopies%20-%20Otto%20Hospital4.avif" data-alt="Otto Kaiser Memorial Hospital, photo 4 of 8" aria-label="Photo 4 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/06bfbc0e-6d32-412d-a25d-8aa55519cd86/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital5.avif" data-raw="https://3unloi5wlp.ucarecd.net/06bfbc0e-6d32-412d-a25d-8aa55519cd86/Canopies%20-%20Otto%20Hospital5.avif" data-alt="Otto Kaiser Memorial Hospital, photo 5 of 8" aria-label="Photo 5 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/3f560603-368c-426e-9425-ef86b26090aa/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital6.avif" data-raw="https://3unloi5wlp.ucarecd.net/3f560603-368c-426e-9425-ef86b26090aa/Canopies%20-%20Otto%20Hospital6.avif" data-alt="Otto Kaiser Memorial Hospital, photo 6 of 8" aria-label="Photo 6 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/37323372-6479-4e9b-8ea1-288e954c365a/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital7.avif" data-raw="https://3unloi5wlp.ucarecd.net/37323372-6479-4e9b-8ea1-288e954c365a/Canopies%20-%20Otto%20Hospital7.avif" data-alt="Otto Kaiser Memorial Hospital, photo 7 of 8" aria-label="Photo 7 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/70dfdf8f-9783-412b-8d28-c02da781f0da/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital8.avif" data-raw="https://3unloi5wlp.ucarecd.net/70dfdf8f-9783-412b-8d28-c02da781f0da/Canopies%20-%20Otto%20Hospital8.avif" data-alt="Otto Kaiser Memorial Hospital, photo 8 of 8" aria-label="Photo 8 of 8" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Otto Kaiser Memorial Hospital</h3>
+        <p class="proj-count">8 photos</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:140ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" data-raw="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" alt="More canopies, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="More canopies photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" data-raw="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" data-alt="More canopies, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">More canopies</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More of our work">
+  <div class="more reveal">
+    <h2 class="h2">More of our work</h2>
+    <div class="actions"><a class="cta cta-ghost" href="architectural-metalwork.html"><span class="cta-label">Architectural Metalwork</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="monumental-stairs.html"><span class="cta-label">Monumental Stairs</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="rail-systems.html"><span class="cta-label">Rail Systems</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="laser.html"><span class="cta-label">Laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+try {
+/* ---- case study galleries: step through each project's photos ---- */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+document.querySelectorAll('[data-gal]').forEach(gal=>{
+  const img   = gal.querySelector('.gal-img');
+  const stage = gal.querySelector('.gal-stage');
+  const segs  = [...gal.querySelectorAll('.gal-seg')];
+  const num   = gal.querySelector('.gal-count b');
+  if(segs.length < 2) return;
+  let at = 0, token = 0;
+  // once one upload has come back unresized, ask for originals straight away
+  const want = s => window.csiRawOnly ? s.dataset.raw : s.dataset.src;
+
+  function load(s){
+    return new Promise(done=>{
+      const pre = new Image();
+      pre.onload = ()=>done(pre.src);
+      pre.onerror = ()=>{
+        if(pre.src !== s.dataset.raw){ window.csiRawOnly = 1; pre.src = s.dataset.raw; }
+        else done(null);
+      };
+      pre.src = want(s);
+    });
+  }
+
+  function show(i){
+    at = (i + segs.length) % segs.length;
+    const s = segs[at], mine = ++token;
+    segs.forEach((x,n)=>{
+      x.classList.toggle('is-on', n === at);
+      x.setAttribute('aria-current', n === at ? 'true' : 'false');
+    });
+    num.textContent = String(at + 1).padStart(2, '0');
+    if(!reducedMotion) img.classList.add('is-fading');
+    // swap once the next photo is in, so the fade never lands on an empty frame
+    load(s).then(src=>{
+      if(mine !== token) return;          // a later click has taken over
+      if(src){ img.src = src; img.dataset.raw = s.dataset.raw; img.alt = s.dataset.alt; }
+      requestAnimationFrame(()=>img.classList.remove('is-fading'));
+      load(segs[(at + 1) % segs.length]);  // have the one after ready too
+    });
+  }
+
+  segs.forEach((s,n)=>s.addEventListener('click', ()=>show(n)));
+  gal.querySelector('.gal-prev').addEventListener('click', ()=>show(at - 1));
+  gal.querySelector('.gal-next').addEventListener('click', ()=>show(at + 1));
+  gal.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight'){ e.preventDefault(); show(at + 1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); show(at - 1); }
+  });
+  // a sideways swipe on the photo steps through them too
+  let x0 = null;
+  stage.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
+  stage.addEventListener('pointerup', e=>{
+    if(x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', ()=>{ x0 = null; });
+  // warm the second photo the first time someone reaches for the controls
+  gal.addEventListener('pointerenter', ()=>load(segs[1]), {once:true});
+});
+} catch (err) { console.error("feature failed:", err); }
+</script>
+</body>
+</html>

@@ -872,7 +872,12 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-@media (max-width:1024px){
+/* nine menu items: the subtitle beside the name steps aside while they
+   share the line, and below 1180px the menu folds into the burger */
+@media (min-width:1181px) and (max-width:1400px){
+  .masthead .mark span{display:none}
+}
+@media (max-width:1180px){
   .burger{display:flex}
   .menu{
     position:fixed;inset:0;z-index:7;
@@ -1057,7 +1062,10 @@ body.is-stuck .masthead{
       <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
       <a href="about.html">About Us</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="projects.html">Portfolio</a>
+      <a href="architectural-metalwork.html">Metalwork</a>
+      <a href="monumental-stairs.html">Stairs</a>
+      <a href="rail-systems.html">Railings</a>
+      <a href="canopies.html">Canopies</a>
       <a href="laser.html">Laser</a>
       <a href="careers.html">Careers</a>
       <a href="contact.html">Contact Us</a>
@@ -1159,8 +1167,8 @@ body.is-stuck .masthead{
       <h2>One source for the ornamental package</h2>
     <p class="third-lede">Engineering, fabrication and installation sit together, so the rails, stairs, cladding and fixtures on a job are detailed by the people who will build them.</p>
     <p class="third-lede">That single source responsibility is what keeps the complicated ornamental portions of a project from becoming somebody else&rsquo;s problem halfway through the schedule.</p>
-    <a class="cta" href="projects.html">
-      <span class="cta-label">View portfolio</span>
+    <a class="cta" href="architectural-metalwork.html">
+      <span class="cta-label">Architectural metalwork</span>
       <span class="cta-arrow" aria-hidden="true">
         <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
           <path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/>
@@ -1446,7 +1454,10 @@ body.is-stuck .masthead{
         <p class="foot-h">Company</p>
         <a href="about.html">About Us</a>
         <a href="case-studies.html">Case Studies</a>
-        <a href="projects.html">Portfolio</a>
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
         <a href="laser.html">Laser</a>
         <a href="careers.html">Careers</a>
         <a href="contact.html">Contact Us</a>
@@ -1481,10 +1492,10 @@ body.is-stuck .masthead{
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const SLIDES = [
-  {name:"Architectural Metalwork", desc:"Engineering and fabrication experience across a wide range of materials and finishes, from one source.", cta:"View portfolio", href:"projects.html#architectural-metalwork"},
-  {name:"Stair Systems",           desc:"Monumental stairs built as a single assembly, structure and rail detailed together.", cta:"View portfolio", href:"projects.html#stair-systems"},
-  {name:"Rail Systems",            desc:"Rail systems for an entire building complex, or a single run of ornamental guard.", cta:"View portfolio", href:"projects.html#rail-systems"},
-  {name:"Canopies",                desc:"Entrance and walkway canopies fabricated to the architect's intent and installed by our own crews.", cta:"View portfolio", href:"projects.html#canopies"},
+  {name:"Architectural Metalwork", desc:"Engineering and fabrication experience across a wide range of materials and finishes, from one source.", cta:"See the work",   href:"architectural-metalwork.html"},
+  {name:"Stair Systems",           desc:"Monumental stairs built as a single assembly, structure and rail detailed together.", cta:"See the work",   href:"monumental-stairs.html"},
+  {name:"Rail Systems",            desc:"Rail systems for an entire building complex, or a single run of ornamental guard.", cta:"See the work",   href:"rail-systems.html"},
+  {name:"Canopies",                desc:"Entrance and walkway canopies fabricated to the architect's intent and installed by our own crews.", cta:"See the work",   href:"canopies.html"},
   {name:"Laser Cutting",           desc:"In-house laser cutting for perforated panels, screens and custom profiles.", cta:"See laser work",  href:"laser.html"}
 ];
 
@@ -1618,7 +1629,7 @@ function setMenu(open){
 }
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 1024) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
 
 // start the hero immediately, before any later feature block can throw
 layoutRail(); go(0); restart();
