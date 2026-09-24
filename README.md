@@ -14,11 +14,12 @@ Construction Services, Inc. — Architectural Metal Products.
   only one page uses sits in that page's own `<style>` or `<script>`. The
   masthead, menu, buttons and footer in `site.css` copy the ones inline in
   `index.html`, so change both together.
-- `img/` — images not on the CDN yet. `cad-stair-dannelly-field.webp`, the
-  engineering drawing on the About page, is cut from a screenshot of the
-  old site until the original file is uploaded. `mcnamara-terminal.webp`,
-  on the Case Studies page, is the concourse photo the home page's S
-  letterform first carried.
+
+Photos come in two batches on the CDN. The first (`hq-…` JPEGs and PNGs) is
+asked for as resized copies. The second (AVIF files named for their page or
+project, such as `Case Studies - Vanderbilt3.avif`) may not be resizable by
+the CDN, so an `<img>` asks for a resized copy and falls back to the
+original file (`data-raw`), and a CSS background links the original.
 
 `projects.html#stair-systems` (likewise `#architectural-metalwork`,
 `#rail-systems`, `#canopies`, `#laser-cutting`) opens the portfolio

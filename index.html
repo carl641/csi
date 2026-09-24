@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
 <!-- the first hero photo, fetched before the script builds its frame; keep it in step with .f0 -->
-<link rel="preload" as="image" fetchpriority="high" href="https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/2048x2048/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" href="https://3unloi5wlp.ucarecd.net/622bc792-920a-487f-abdb-5fdbf8573b36/Hero.avif">
 <style>
 :root{
   --ink:#0C1116;
@@ -54,15 +54,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     linear-gradient(to top,rgba(8,12,16,.94) 0%,rgba(8,12,16,.55) 38%,rgba(8,12,16,.18) 70%,rgba(8,12,16,.45) 100%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
 }
-/* photography comes off the Uploadcare CDN. each URL asks for a resized
-   copy rather than the original upload: -/preview/ caps the long side and
-   -/format/auto/ serves AVIF or WebP to browsers that take them. the
-   filename on the end is only a label */
-.f0{background:url("https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/2048x2048/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg") center/cover no-repeat;}
-.f1{background:url("https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/2048x2048/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg") center/cover no-repeat;}
+/* photography comes off the Uploadcare CDN. the JPEG and PNG uploads are
+   asked for as resized copies: -/preview/ caps the long side and
+   -/format/auto/ serves AVIF or WebP to browsers that take them. the AVIF
+   uploads are linked as they are, since the CDN may not resize AVIF and a
+   background image has no way to fall back. the filename is only a label */
+.f0{background:url("https://3unloi5wlp.ucarecd.net/622bc792-920a-487f-abdb-5fdbf8573b36/Hero.avif") center/cover no-repeat;}
+.f1{background:url("https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif") center/cover no-repeat;}
 .f2{background:url("https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/2048x2048/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG") center/cover no-repeat;}
 .f3{background:url("https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/2048x2048/-/format/auto/hq-Canopy-%20Mansion.jpg") center/cover no-repeat;}
-.f4{background:url("https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/preview/2048x2048/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg") center/cover no-repeat;}
+.f4{background:url("https://3unloi5wlp.ucarecd.net/6627d6d4-db24-49ed-a18b-3699bfaf738b/TruLaser%203040%20-%20Hero1.avif") center/cover no-repeat;}
 .f5{background:
   radial-gradient(90% 80% at 35% 15%,#9FB59A 0%,rgba(159,181,154,0) 58%),
   radial-gradient(90% 70% at 88% 85%,#1A2420 0%,rgba(26,36,32,0) 70%),
@@ -280,9 +281,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       linear-gradient(196deg,#2E3B45,#0C1218);
 }
 .next-figure .letter-img{
-  /* cropped to 3:2 at the CDN: at 115vh tall a portrait original comes up
-     narrower than the C and leaves its sides empty. the S gets the same crop */
-  background-image:url("https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/scale_crop/2040x1360/center/-/format/auto/hq-hotel.png");
+  /* the Our Mission photo, as uploaded */
+  background-image:url("https://3unloi5wlp.ucarecd.net/6c32bd75-9855-461e-af9b-ebeb954b3945/Home%20-%20Our%20Mission.avif");
   /* one copy, sized to the screen rather than the oversized letter box —
      a repeat makes any movement impossible to read */
   background-size:auto 115vh;
@@ -291,6 +291,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background-color:#10161C;
 }
 .s-frame .letter-img{
+  /* cropped to 3:2 at the CDN: at 115vh tall a portrait original comes up
+     narrower than the letter and leaves its sides empty */
   background:#10161C url("https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/scale_crop/2040x1360/center/-/format/auto/hq-integraph.png") center 45% / auto 115vh no-repeat;
 }
 .i-frame .letter-img{
@@ -691,8 +693,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:var(--mist);
   max-width:46ch;
 }
-.pj1{background-image:url("https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/preview/1600x1600/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG");background-size:cover;background-position:center}
-.pj2{background-image:url("https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/preview/1600x1600/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG");background-size:cover;background-position:center}
+.pj1{background-image:url("https://3unloi5wlp.ucarecd.net/51029410-3c4f-49cc-b511-22767a903342/Case%20Studies%20-%20Vanderbilt1.avif");background-size:cover;background-position:center}
+.pj2{background-image:url("https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/Case%20Studies%20-%20Cooks1.avif");background-size:cover;background-position:center}
 @media (max-width:760px){
   .journal-grid{grid-template-columns:1fr;gap:clamp(20px,3.5vh,32px)}
   /* the copy moves inside the picture */

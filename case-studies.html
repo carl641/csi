@@ -34,16 +34,37 @@
   .index-place{grid-column:2}
 }
 
-/* ---------- shared by both layouts ---------- */
+/* ---------- a project: its photos beside its write-up ---------- */
+.case{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(32px,6vw,100px);align-items:start;
+  margin:clamp(90px,15vh,170px) 0;
+  scroll-margin-top:90px;
+}
+.cases > :first-child{margin-top:0}
+.cases > :last-child{margin-bottom:0}
+.case--flip .case-media{order:2}
+.case-body{position:sticky;top:110px;padding-top:clamp(0px,2vh,20px)}
+.case-num{
+  margin:0 0 clamp(18px,3vh,30px);
+  font-family:var(--display);font-size:clamp(84px,11vw,170px);line-height:.8;
+  color:transparent;-webkit-text-stroke:1.5px rgba(242,239,233,.3);
+}
 .case-meta{
   margin:0 0 12px;
   font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+}
+.case-title{
+  margin:0 0 26px;font-size:clamp(30px,3.8vw,56px);font-weight:800;
+  letter-spacing:-.03em;line-height:.98;text-transform:uppercase;
 }
 .title-sub{
   display:block;margin-top:.5em;
   font-family:var(--serif);font-style:italic;font-weight:300;font-size:.5em;
   letter-spacing:0;line-height:1.2;text-transform:none;color:var(--mist);
 }
+/* uppercase titles keep the small c in McNamara */
+.nc{text-transform:none}
 .facts{margin:0 0 28px;border-top:1px solid var(--hair)}
 .facts > div{
   display:grid;grid-template-columns:minmax(90px,.35fr) 1fr;gap:18px;
@@ -56,67 +77,45 @@
   font-size:clamp(16px,1.35vw,18px);line-height:1.62;color:var(--mist);
 }
 .case-text + .case-text{margin-top:1em}
-/* uppercase titles keep the small c in McNamara */
-.nc{text-transform:none}
 
-/* ---------- a project with photos ---------- */
-.case{
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
-  gap:clamp(32px,6vw,100px);align-items:start;
-  margin:clamp(90px,15vh,170px) 0;
-  scroll-margin-top:90px;
+/* ---------- the photos ---------- */
+/* each photo is shown whole on a dark mat rather than cropped to the frame */
+.gal-stage{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:#10161C;touch-action:pan-y;
 }
-.case--flip .case-media{order:2}
-.cases > :first-child{margin-top:0}
-.case-media{position:relative}
-.case-media.has-inset{padding-bottom:clamp(60px,10vw,150px)}
-.case-img{position:relative;overflow:hidden;background:#10161C;margin:0}
-.case-img > div{
-  position:absolute;inset:-8% 0;
-  background:var(--photo) center/cover no-repeat;
-  translate:0 var(--py,0px);
+.gal-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;
+  transition:opacity 260ms ease;
+  /* a drag would start the browser's own image drag and swallow the swipe */
+  -webkit-user-drag:none;user-select:none;
 }
-.case-img--main{aspect-ratio:var(--shape,4/5)}
-/* a second photo overlapping the first, framed off it by a band of page colour */
-.case-img--inset{
-  position:absolute;bottom:0;right:calc(-1 * clamp(0px,3vw,48px));
-  width:52%;aspect-ratio:1;
-  outline:clamp(6px,.8vw,12px) solid var(--ink);
-  box-shadow:0 40px 70px -30px rgba(0,0,0,.9);
+.gal-img.is-fading{opacity:0}
+.gal-bar{
+  display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);
+  margin-top:14px;
 }
-.case--flip .case-img--inset{right:auto;left:calc(-1 * clamp(0px,3vw,48px))}
-.case-body{position:sticky;top:110px;padding-top:clamp(0px,4vh,40px)}
-.case-num{
-  margin:0 0 clamp(18px,3vh,30px);
-  font-family:var(--display);font-size:clamp(84px,11vw,170px);line-height:.8;
-  color:transparent;-webkit-text-stroke:1.5px rgba(242,239,233,.3);
+.gal-count{
+  margin:0;flex:0 0 auto;
+  font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--mist);
+  font-variant-numeric:tabular-nums;
 }
-.case-title{
-  margin:0 0 26px;font-size:clamp(30px,3.8vw,56px);font-weight:800;
-  letter-spacing:-.03em;line-height:.98;text-transform:uppercase;
+.gal-count b{color:var(--accent);font-weight:600}
+/* one segment per photo along a hairline, as on the home page carousel */
+.gal-rail{flex:1 1 auto;display:flex;min-width:0}
+.gal-seg{flex:1 1 0;min-width:0;height:28px;padding:0;position:relative}
+.gal-seg::before{
+  content:"";position:absolute;left:0;right:3px;top:50%;height:1px;
+  background:var(--hair);
+  transition:background 200ms ease,height 200ms ease,transform 200ms ease;
 }
-
-/* ---------- a project without photos: one ruled row ---------- */
-.entry{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);
-  gap:clamp(24px,5vw,90px);align-items:start;
-  padding:clamp(40px,7vh,72px) 0;
-  border-bottom:1px solid var(--hair);
-  scroll-margin-top:70px;
-}
-.entry:first-child,.case + .entry{border-top:1px solid var(--hair)}
-.entry-num{
-  margin:0 0 clamp(16px,2.6vh,24px);
-  font-family:var(--display);font-size:clamp(56px,6vw,96px);line-height:.8;
-  color:transparent;-webkit-text-stroke:1.2px rgba(242,239,233,.3);
-}
-.entry-title{
-  margin:0 0 24px;font-size:clamp(24px,2.5vw,38px);font-weight:800;
-  letter-spacing:-.03em;line-height:1;text-transform:uppercase;
-}
-.entry .facts{margin-bottom:0}
-/* the text lines up under the number rather than floating at the top */
-.entry-text{padding-top:clamp(0px,1vh,10px)}
+.gal-seg:hover::before{background:var(--paper)}
+.gal-seg.is-on::before{height:3px;transform:translateY(-1px);background:var(--accent)}
+.gal-nav{display:flex;gap:8px;flex:0 0 auto}
+.gal-nav .round-btn{width:42px;height:42px}
+/* a single photo needs no controls */
+.gal[data-photos="1"] .gal-bar{display:none}
 
 .more{
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
@@ -127,10 +126,9 @@
   .case{grid-template-columns:1fr}
   .case--flip .case-media{order:0}
   .case-body{position:static;padding-top:0}
-  .case-img--main{aspect-ratio:4/3}
-  .case-img--inset,.case--flip .case-img--inset{right:0;left:auto;width:46%}
-  .entry{grid-template-columns:1fr;gap:26px}
-  .entry-text{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .gal-img{transition:none}
 }
 </style>
 </head>
@@ -190,9 +188,29 @@
   <div class="cases">
 
   <article class="case" id="vanderbilt">
-    <div class="case-media has-inset reveal">
-      <figure class="case-img case-img--main"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/preview/1600x1600/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG')" data-drift="0.08" data-slack="0.08"></div></figure>
-      <figure class="case-img case-img--inset"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/1200x1200/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg')" data-drift="0.06" data-slack="0.08"></div></figure>
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="8">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/51029410-3c4f-49cc-b511-22767a903342/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt1.avif" data-raw="https://3unloi5wlp.ucarecd.net/51029410-3c4f-49cc-b511-22767a903342/Case%20Studies%20-%20Vanderbilt1.avif" alt="Vanderbilt Children’s Hospital, photo 1 of 8" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 08</p>
+          <div class="gal-rail" role="group" aria-label="Vanderbilt Children’s Hospital photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/51029410-3c4f-49cc-b511-22767a903342/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt1.avif" data-raw="https://3unloi5wlp.ucarecd.net/51029410-3c4f-49cc-b511-22767a903342/Case%20Studies%20-%20Vanderbilt1.avif" data-alt="Vanderbilt Children’s Hospital, photo 1 of 8" aria-label="Photo 1 of 8" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/239b2c37-0876-42ee-910e-d796e8f5c8cb/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt2.avif" data-raw="https://3unloi5wlp.ucarecd.net/239b2c37-0876-42ee-910e-d796e8f5c8cb/Case%20Studies%20-%20Vanderbilt2.avif" data-alt="Vanderbilt Children’s Hospital, photo 2 of 8" aria-label="Photo 2 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/cf764d27-d336-49ee-96de-042cdc3f951f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt3.avif" data-raw="https://3unloi5wlp.ucarecd.net/cf764d27-d336-49ee-96de-042cdc3f951f/Case%20Studies%20-%20Vanderbilt3.avif" data-alt="Vanderbilt Children’s Hospital, photo 3 of 8" aria-label="Photo 3 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/b8a7e877-275d-466c-a24d-fe2a0c924546/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt4.avif" data-raw="https://3unloi5wlp.ucarecd.net/b8a7e877-275d-466c-a24d-fe2a0c924546/Case%20Studies%20-%20Vanderbilt4.avif" data-alt="Vanderbilt Children’s Hospital, photo 4 of 8" aria-label="Photo 4 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/81f26464-2784-48b0-8462-94e680e4b917/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt5.avif" data-raw="https://3unloi5wlp.ucarecd.net/81f26464-2784-48b0-8462-94e680e4b917/Case%20Studies%20-%20Vanderbilt5.avif" data-alt="Vanderbilt Children’s Hospital, photo 5 of 8" aria-label="Photo 5 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/3f82d71e-7fb6-4ff5-83f6-2fb09f3b1e8d/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt6.avif" data-raw="https://3unloi5wlp.ucarecd.net/3f82d71e-7fb6-4ff5-83f6-2fb09f3b1e8d/Case%20Studies%20-%20Vanderbilt6.avif" data-alt="Vanderbilt Children’s Hospital, photo 6 of 8" aria-label="Photo 6 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9a48b6d5-d05a-4685-a629-be76c89f2cca/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt7.avif" data-raw="https://3unloi5wlp.ucarecd.net/9a48b6d5-d05a-4685-a629-be76c89f2cca/Case%20Studies%20-%20Vanderbilt7.avif" data-alt="Vanderbilt Children’s Hospital, photo 7 of 8" aria-label="Photo 7 of 8" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/79daaee5-9b66-4a7e-b672-bdf5b2f18668/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Vanderbilt8.avif" data-raw="https://3unloi5wlp.ucarecd.net/79daaee5-9b66-4a7e-b672-bdf5b2f18668/Case%20Studies%20-%20Vanderbilt8.avif" data-alt="Vanderbilt Children’s Hospital, photo 8 of 8" aria-label="Photo 8 of 8" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="case-body reveal" style="--d:120ms">
       <p class="case-num" aria-hidden="true">01</p>
@@ -208,7 +226,24 @@
 
   <article class="case case--flip" id="cooks-museum">
     <div class="case-media reveal">
-      <figure class="case-img case-img--main"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/preview/1600x1600/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG')" data-drift="0.08" data-slack="0.08"></div></figure>
+      <div class="gal" data-gal data-photos="4">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Cooks1.avif" data-raw="https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/Case%20Studies%20-%20Cooks1.avif" alt="Cooks Museum of Natural Science, photo 1 of 4" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 04</p>
+          <div class="gal-rail" role="group" aria-label="Cooks Museum of Natural Science photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Cooks1.avif" data-raw="https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/Case%20Studies%20-%20Cooks1.avif" data-alt="Cooks Museum of Natural Science, photo 1 of 4" aria-label="Photo 1 of 4" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/dfe74186-3073-4d00-873b-72e31f6d54c1/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Cooks2.avif" data-raw="https://3unloi5wlp.ucarecd.net/dfe74186-3073-4d00-873b-72e31f6d54c1/Case%20Studies%20-%20Cooks2.avif" data-alt="Cooks Museum of Natural Science, photo 2 of 4" aria-label="Photo 2 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/1a76f310-78fe-44c4-b782-b8269e255e72/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Cooks3.avif" data-raw="https://3unloi5wlp.ucarecd.net/1a76f310-78fe-44c4-b782-b8269e255e72/Case%20Studies%20-%20Cooks3.avif" data-alt="Cooks Museum of Natural Science, photo 3 of 4" aria-label="Photo 3 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/b4c1cd75-46fd-4f17-93b8-38e7bb15985d/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Cooks4.avif" data-raw="https://3unloi5wlp.ucarecd.net/b4c1cd75-46fd-4f17-93b8-38e7bb15985d/Case%20Studies%20-%20Cooks4.avif" data-alt="Cooks Museum of Natural Science, photo 4 of 4" aria-label="Photo 4 of 4" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="case-body reveal" style="--d:120ms">
       <p class="case-num" aria-hidden="true">02</p>
@@ -222,24 +257,59 @@
     </div>
   </article>
 
-  <article class="entry" id="ua-classroom-building">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">03</p>
+  <article class="case" id="ua-classroom-building">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="3">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/ad79af1f-f538-450a-acc7-71dcfb82cfdd/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20UA1.avif" data-raw="https://3unloi5wlp.ucarecd.net/ad79af1f-f538-450a-acc7-71dcfb82cfdd/Case%20Studies%20-%20UA1.avif" alt="University of Alabama Classroom Building, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 03</p>
+          <div class="gal-rail" role="group" aria-label="University of Alabama Classroom Building photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/ad79af1f-f538-450a-acc7-71dcfb82cfdd/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20UA1.avif" data-raw="https://3unloi5wlp.ucarecd.net/ad79af1f-f538-450a-acc7-71dcfb82cfdd/Case%20Studies%20-%20UA1.avif" data-alt="University of Alabama Classroom Building, photo 1 of 3" aria-label="Photo 1 of 3" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/94ae15c8-abe9-4021-ab9e-c7ccc15510b9/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20UA2.avif" data-raw="https://3unloi5wlp.ucarecd.net/94ae15c8-abe9-4021-ab9e-c7ccc15510b9/Case%20Studies%20-%20UA2.avif" data-alt="University of Alabama Classroom Building, photo 2 of 3" aria-label="Photo 2 of 3" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/db2006c6-595d-46ae-99c7-47c7d2da6fcf/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20UA3.avif" data-raw="https://3unloi5wlp.ucarecd.net/db2006c6-595d-46ae-99c7-47c7d2da6fcf/Case%20Studies%20-%20UA3.avif" data-alt="University of Alabama Classroom Building, photo 3 of 3" aria-label="Photo 3 of 3" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">03</p>
       <p class="case-meta">Tuscaloosa, AL</p>
-      <h2 class="entry-title">University of Alabama Classroom Building</h2>
+      <h2 class="case-title">University of Alabama Classroom Building</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Turner-Batson</dd></div>
         <div><dt>Contractor</dt><dd>Bailey Harris</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">CSI furnished and installed the stainless steel and glass railings at monumental stairs and balconies. Railing system was custom fabricated to meet specification requirements. Glass fittings and hand rail brackets have a No. 8 mirror finish. All other materials have a No. 6 directional finish.</p>
     </div>
   </article>
 
-  <article class="case" id="intergraph">
+  <article class="case case--flip" id="intergraph">
     <div class="case-media reveal">
-      <figure class="case-img case-img--main" style="--shape:4/3"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/preview/1600x1600/-/format/auto/hq-integraph.png')" data-drift="0.08" data-slack="0.08"></div></figure>
+      <div class="gal" data-gal data-photos="5">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/618cc7f1-4690-4724-9578-7f1be9c068c0/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph1.avif" data-raw="https://3unloi5wlp.ucarecd.net/618cc7f1-4690-4724-9578-7f1be9c068c0/Case%20Studies%20-%20Intergraph1.avif" alt="Intergraph Corporate Office, photo 1 of 5" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 05</p>
+          <div class="gal-rail" role="group" aria-label="Intergraph Corporate Office photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/618cc7f1-4690-4724-9578-7f1be9c068c0/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph1.avif" data-raw="https://3unloi5wlp.ucarecd.net/618cc7f1-4690-4724-9578-7f1be9c068c0/Case%20Studies%20-%20Intergraph1.avif" data-alt="Intergraph Corporate Office, photo 1 of 5" aria-label="Photo 1 of 5" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9753ecf2-ad8e-4459-8179-ede78b1a7d64/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph2.avif" data-raw="https://3unloi5wlp.ucarecd.net/9753ecf2-ad8e-4459-8179-ede78b1a7d64/Case%20Studies%20-%20Intergraph2.avif" data-alt="Intergraph Corporate Office, photo 2 of 5" aria-label="Photo 2 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/6f0678aa-c30c-4877-bbca-c7be80a7195e/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph3.avif" data-raw="https://3unloi5wlp.ucarecd.net/6f0678aa-c30c-4877-bbca-c7be80a7195e/Case%20Studies%20-%20Intergraph3.avif" data-alt="Intergraph Corporate Office, photo 3 of 5" aria-label="Photo 3 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/08b1824b-5e9f-4397-9bf3-d109801f1968/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph4.avif" data-raw="https://3unloi5wlp.ucarecd.net/08b1824b-5e9f-4397-9bf3-d109801f1968/Case%20Studies%20-%20Intergraph4.avif" data-alt="Intergraph Corporate Office, photo 4 of 5" aria-label="Photo 4 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/7a318014-f35e-450f-a807-d60cad9731c8/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Intergraph5.avif" data-raw="https://3unloi5wlp.ucarecd.net/7a318014-f35e-450f-a807-d60cad9731c8/Case%20Studies%20-%20Intergraph5.avif" data-alt="Intergraph Corporate Office, photo 5 of 5" aria-label="Photo 5 of 5" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="case-body reveal" style="--d:120ms">
       <p class="case-num" aria-hidden="true">04</p>
@@ -253,17 +323,38 @@
     </div>
   </article>
 
-  <article class="entry" id="lsu-business">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">05</p>
+  <article class="case" id="lsu-business">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="7">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6f55d2b1-647e-4a8f-9140-71a05d6c324e/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6f55d2b1-647e-4a8f-9140-71a05d6c324e/Case%20Studies%20-%20LSU1.avif" alt="LSU School of Business, photo 1 of 7" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 07</p>
+          <div class="gal-rail" role="group" aria-label="LSU School of Business photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/6f55d2b1-647e-4a8f-9140-71a05d6c324e/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6f55d2b1-647e-4a8f-9140-71a05d6c324e/Case%20Studies%20-%20LSU1.avif" data-alt="LSU School of Business, photo 1 of 7" aria-label="Photo 1 of 7" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/864f743e-2553-4061-87cd-0b9bdeebd134/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU2.avif" data-raw="https://3unloi5wlp.ucarecd.net/864f743e-2553-4061-87cd-0b9bdeebd134/Case%20Studies%20-%20LSU2.avif" data-alt="LSU School of Business, photo 2 of 7" aria-label="Photo 2 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/254951f7-aed1-48aa-8654-90b42e3786c8/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU3.avif" data-raw="https://3unloi5wlp.ucarecd.net/254951f7-aed1-48aa-8654-90b42e3786c8/Case%20Studies%20-%20LSU3.avif" data-alt="LSU School of Business, photo 3 of 7" aria-label="Photo 3 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/732dd49f-1c4a-420d-bf3a-7659c491fa74/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU4.avif" data-raw="https://3unloi5wlp.ucarecd.net/732dd49f-1c4a-420d-bf3a-7659c491fa74/Case%20Studies%20-%20LSU4.avif" data-alt="LSU School of Business, photo 4 of 7" aria-label="Photo 4 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/133cb9ad-9a30-452b-a242-7bdc81fa0241/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU5.avif" data-raw="https://3unloi5wlp.ucarecd.net/133cb9ad-9a30-452b-a242-7bdc81fa0241/Case%20Studies%20-%20LSU5.avif" data-alt="LSU School of Business, photo 5 of 7" aria-label="Photo 5 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/4d81eeb1-da2b-43aa-8fae-3c2e0fc55928/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU6.avif" data-raw="https://3unloi5wlp.ucarecd.net/4d81eeb1-da2b-43aa-8fae-3c2e0fc55928/Case%20Studies%20-%20LSU6.avif" data-alt="LSU School of Business, photo 6 of 7" aria-label="Photo 6 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/4716c3ed-71ae-4f8f-a7e5-924d5b69b617/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20LSU7.avif" data-raw="https://3unloi5wlp.ucarecd.net/4716c3ed-71ae-4f8f-a7e5-924d5b69b617/Case%20Studies%20-%20LSU7.avif" data-alt="LSU School of Business, photo 7 of 7" aria-label="Photo 7 of 7" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">05</p>
       <p class="case-meta">Baton Rouge, LA</p>
-      <h2 class="entry-title">LSU School of Business</h2>
+      <h2 class="case-title">LSU School of Business</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Ikon 5</dd></div>
         <div><dt>Contractor</dt><dd>Lemoine/Brasfield &amp; Gorrie</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">CSI furnished and installed the &ldquo;TECU&rdquo; wall panels for this building. All panels were custom fabricated to layout of building. &ldquo;TECU&rdquo; panels were provided with a mill finish to allow panels to patina naturally.</p>
       <p class="case-text">CSI furnished and installed the monumental stairs along with the stainless steel and glass railings. The glass railings at stairs and balconies are installed using CSI button connection system. Exposed elements of stair are finish painted to meet specifications for Architecturally Exposed Structural Steel (AESS).</p>
       <p class="case-text">CSI furnished and installed the decorative bronze grilles and glass canopy system. Outriggers are custom fabricated stainless steel with a No. 4 directional finish. Glass is connected to outriggers using spider brackets. The decorative bronze grilles have a patina finish. All materials were formed from bronze sheet to the designed profiles then stretched formed. CSI used the stretch formed materials to fabricate framed units for installation. The bronze grillage was connected to the curtain wall system using outriggers.</p>
@@ -272,7 +363,26 @@
 
   <article class="case case--flip" id="hotel-van-zandt">
     <div class="case-media reveal">
-      <figure class="case-img case-img--main" style="--shape:4/3"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/1600x1600/-/format/auto/hq-hotel.png')" data-drift="0.08" data-slack="0.08"></div></figure>
+      <div class="gal" data-gal data-photos="6">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f2160bd5-977f-42e7-95a4-93f0179eb587/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f2160bd5-977f-42e7-95a4-93f0179eb587/Case%20Studies%20-%20Van%20Zandt1.avif" alt="Hotel Van Zandt, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 06</p>
+          <div class="gal-rail" role="group" aria-label="Hotel Van Zandt photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/f2160bd5-977f-42e7-95a4-93f0179eb587/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f2160bd5-977f-42e7-95a4-93f0179eb587/Case%20Studies%20-%20Van%20Zandt1.avif" data-alt="Hotel Van Zandt, photo 1 of 6" aria-label="Photo 1 of 6" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/ccf3ed8b-1660-4a55-8efd-003269beedd3/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt2.avif" data-raw="https://3unloi5wlp.ucarecd.net/ccf3ed8b-1660-4a55-8efd-003269beedd3/Case%20Studies%20-%20Van%20Zandt2.avif" data-alt="Hotel Van Zandt, photo 2 of 6" aria-label="Photo 2 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/d8d76082-2837-48a1-995b-c1e2da29ea4c/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt3.avif" data-raw="https://3unloi5wlp.ucarecd.net/d8d76082-2837-48a1-995b-c1e2da29ea4c/Case%20Studies%20-%20Van%20Zandt3.avif" data-alt="Hotel Van Zandt, photo 3 of 6" aria-label="Photo 3 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/1696cd2d-cb9a-45f0-9de1-5c9aa0d17ce5/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt4.avif" data-raw="https://3unloi5wlp.ucarecd.net/1696cd2d-cb9a-45f0-9de1-5c9aa0d17ce5/Case%20Studies%20-%20Van%20Zandt4.avif" data-alt="Hotel Van Zandt, photo 4 of 6" aria-label="Photo 4 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/aa5b5f32-59a6-4135-af30-42c2f638973a/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt5.avif" data-raw="https://3unloi5wlp.ucarecd.net/aa5b5f32-59a6-4135-af30-42c2f638973a/Case%20Studies%20-%20Van%20Zandt5.avif" data-alt="Hotel Van Zandt, photo 5 of 6" aria-label="Photo 5 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5bd65477-a333-4511-834f-2142f768011c/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Van%20Zandt6.avif" data-raw="https://3unloi5wlp.ucarecd.net/5bd65477-a333-4511-834f-2142f768011c/Case%20Studies%20-%20Van%20Zandt6.avif" data-alt="Hotel Van Zandt, photo 6 of 6" aria-label="Photo 6 of 6" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="case-body reveal" style="--d:120ms">
       <p class="case-num" aria-hidden="true">06</p>
@@ -286,100 +396,232 @@
     </div>
   </article>
 
-  <article class="entry" id="novartis">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">07</p>
+  <article class="case" id="novartis">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="4">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/27920902-ab18-45d3-96e5-8ecf636cca20/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Novartis1.avif" data-raw="https://3unloi5wlp.ucarecd.net/27920902-ab18-45d3-96e5-8ecf636cca20/Case%20Studies%20-%20Novartis1.avif" alt="Novartis QC Administration Building, photo 1 of 4" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 04</p>
+          <div class="gal-rail" role="group" aria-label="Novartis QC Administration Building photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/27920902-ab18-45d3-96e5-8ecf636cca20/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Novartis1.avif" data-raw="https://3unloi5wlp.ucarecd.net/27920902-ab18-45d3-96e5-8ecf636cca20/Case%20Studies%20-%20Novartis1.avif" data-alt="Novartis QC Administration Building, photo 1 of 4" aria-label="Photo 1 of 4" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9fc898b5-c18d-45f3-97ff-59b9f29fbbbf/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Novartis2.avif" data-raw="https://3unloi5wlp.ucarecd.net/9fc898b5-c18d-45f3-97ff-59b9f29fbbbf/Case%20Studies%20-%20Novartis2.avif" data-alt="Novartis QC Administration Building, photo 2 of 4" aria-label="Photo 2 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/8b808ed9-1c06-422c-889e-5f4aebd0a466/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Novartis3.avif" data-raw="https://3unloi5wlp.ucarecd.net/8b808ed9-1c06-422c-889e-5f4aebd0a466/Case%20Studies%20-%20Novartis3.avif" data-alt="Novartis QC Administration Building, photo 3 of 4" aria-label="Photo 3 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/7c3c7cee-48da-49d1-ad93-de304eac503c/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Novartis4.avif" data-raw="https://3unloi5wlp.ucarecd.net/7c3c7cee-48da-49d1-ad93-de304eac503c/Case%20Studies%20-%20Novartis4.avif" data-alt="Novartis QC Administration Building, photo 4 of 4" aria-label="Photo 4 of 4" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">07</p>
       <p class="case-meta">Holly Springs, NC</p>
-      <h2 class="entry-title">Novartis QC Administration Building</h2>
+      <h2 class="case-title">Novartis QC Administration Building</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Flad &amp; Associates</dd></div>
         <div><dt>Contractor</dt><dd>BE &amp; K Building Group</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">CSI provided the spiral stair and railings along with the balcony railings for this project. The stair features a 2&frac14;&Prime; thick &times; 42&Prime; wide single inside stringer. The stair stringer also served as the guardrail. The treads and risers cantilever 5&prime;-0&Prime; out from the 2&frac14;&Prime; plate stringer. Stair specification required the steel materials to meet Architecturally Exposed Structural Steel standards. The railing system included steel post assemblies along with stainless steel wall rail / hand railings and clear tempered glass.</p>
     </div>
   </article>
 
-  <article class="entry" id="usi">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">08</p>
+  <article class="case case--flip" id="usi">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="6">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/4f5c2e81-1c47-4036-841d-6d9edeb009ef/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4f5c2e81-1c47-4036-841d-6d9edeb009ef/Case%20Studies%20-%20USI1.avif" alt="University of Southern Indiana, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 06</p>
+          <div class="gal-rail" role="group" aria-label="University of Southern Indiana photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/4f5c2e81-1c47-4036-841d-6d9edeb009ef/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4f5c2e81-1c47-4036-841d-6d9edeb009ef/Case%20Studies%20-%20USI1.avif" data-alt="University of Southern Indiana, photo 1 of 6" aria-label="Photo 1 of 6" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9279bed1-126b-4fa8-8fe2-9cf10795327f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI2.avif" data-raw="https://3unloi5wlp.ucarecd.net/9279bed1-126b-4fa8-8fe2-9cf10795327f/Case%20Studies%20-%20USI2.avif" data-alt="University of Southern Indiana, photo 2 of 6" aria-label="Photo 2 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/a89cdec1-f889-47b6-ab38-2579e60db743/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI3.avif" data-raw="https://3unloi5wlp.ucarecd.net/a89cdec1-f889-47b6-ab38-2579e60db743/Case%20Studies%20-%20USI3.avif" data-alt="University of Southern Indiana, photo 3 of 6" aria-label="Photo 3 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/7ce1a195-4176-4148-b109-2d510c27edc6/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI4.avif" data-raw="https://3unloi5wlp.ucarecd.net/7ce1a195-4176-4148-b109-2d510c27edc6/Case%20Studies%20-%20USI4.avif" data-alt="University of Southern Indiana, photo 4 of 6" aria-label="Photo 4 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/044006af-e735-464f-bc62-6e55700ede16/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI5.avif" data-raw="https://3unloi5wlp.ucarecd.net/044006af-e735-464f-bc62-6e55700ede16/Case%20Studies%20-%20USI5.avif" data-alt="University of Southern Indiana, photo 5 of 6" aria-label="Photo 5 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/79d80464-514e-4107-9f8a-f326db9b8cb0/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USI6.avif" data-raw="https://3unloi5wlp.ucarecd.net/79d80464-514e-4107-9f8a-f326db9b8cb0/Case%20Studies%20-%20USI6.avif" data-alt="University of Southern Indiana, photo 6 of 6" aria-label="Photo 6 of 6" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">08</p>
       <p class="case-meta">Evansville, IN</p>
-      <h2 class="entry-title">University of Southern Indiana</h2>
+      <h2 class="case-title">University of Southern Indiana</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>TFC Architects &amp; Engineering</dd></div>
         <div><dt>Contractor</dt><dd>Weddle Brothers Building Group</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">CSI provided the glass and stainless steel railings at monumental stair and balconies. The glass system is a stainless steel button system with stainless steel back plate. Stainless steel materials have a No. 4 finish.</p>
     </div>
   </article>
 
-  <article class="entry" id="samford-brock">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">09</p>
+  <article class="case" id="samford-brock">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="3">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/5048f792-bbec-4f89-a389-565aa66cdd9f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Samford1.avif" data-raw="https://3unloi5wlp.ucarecd.net/5048f792-bbec-4f89-a389-565aa66cdd9f/Case%20Studies%20-%20Samford1.avif" alt="Brock School of Business, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 03</p>
+          <div class="gal-rail" role="group" aria-label="Brock School of Business photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/5048f792-bbec-4f89-a389-565aa66cdd9f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Samford1.avif" data-raw="https://3unloi5wlp.ucarecd.net/5048f792-bbec-4f89-a389-565aa66cdd9f/Case%20Studies%20-%20Samford1.avif" data-alt="Brock School of Business, photo 1 of 3" aria-label="Photo 1 of 3" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/79da339a-f6c6-4abe-b869-6fa787ee6a05/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Samford2.avif" data-raw="https://3unloi5wlp.ucarecd.net/79da339a-f6c6-4abe-b869-6fa787ee6a05/Case%20Studies%20-%20Samford2.avif" data-alt="Brock School of Business, photo 2 of 3" aria-label="Photo 2 of 3" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/d007e934-4044-4d44-9ab6-2723616c590f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Samford3.avif" data-raw="https://3unloi5wlp.ucarecd.net/d007e934-4044-4d44-9ab6-2723616c590f/Case%20Studies%20-%20Samford3.avif" data-alt="Brock School of Business, photo 3 of 3" aria-label="Photo 3 of 3" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">09</p>
       <p class="case-meta">Birmingham, AL</p>
-      <h2 class="entry-title">Brock School of Business <span class="title-sub">Samford University</span></h2>
+      <h2 class="case-title">Brock School of Business <span class="title-sub">Samford University</span></h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Davis Architects</dd></div>
         <div><dt>Contractor</dt><dd>Hoar Construction</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">We fabricated and installed the stair as well as glass railings on stair and second and third floor openings. Glass railings have stainless steel handrails along with stainless steel cladding.</p>
     </div>
   </article>
 
-  <article class="entry" id="georgetown">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">10</p>
+  <article class="case case--flip" id="georgetown">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="10">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/c3d668da-fa4a-45b3-88a4-ce404f334320/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown1.avif" data-raw="https://3unloi5wlp.ucarecd.net/c3d668da-fa4a-45b3-88a4-ce404f334320/Case%20Studies%20-%20Georgetown1.avif" alt="Georgetown University, photo 1 of 10" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 10</p>
+          <div class="gal-rail" role="group" aria-label="Georgetown University photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/c3d668da-fa4a-45b3-88a4-ce404f334320/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown1.avif" data-raw="https://3unloi5wlp.ucarecd.net/c3d668da-fa4a-45b3-88a4-ce404f334320/Case%20Studies%20-%20Georgetown1.avif" data-alt="Georgetown University, photo 1 of 10" aria-label="Photo 1 of 10" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/ea692a36-98df-45ae-8dd1-803e788ead5f/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown2.avif" data-raw="https://3unloi5wlp.ucarecd.net/ea692a36-98df-45ae-8dd1-803e788ead5f/Case%20Studies%20-%20Georgetown2.avif" data-alt="Georgetown University, photo 2 of 10" aria-label="Photo 2 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/23ba69dd-181d-4d6b-bfe8-6905d807a8b9/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown3.avif" data-raw="https://3unloi5wlp.ucarecd.net/23ba69dd-181d-4d6b-bfe8-6905d807a8b9/Case%20Studies%20-%20Georgetown3.avif" data-alt="Georgetown University, photo 3 of 10" aria-label="Photo 3 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/e6f6993c-663f-4a7c-a6a5-f8479ec812fe/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown4.avif" data-raw="https://3unloi5wlp.ucarecd.net/e6f6993c-663f-4a7c-a6a5-f8479ec812fe/Case%20Studies%20-%20Georgetown4.avif" data-alt="Georgetown University, photo 4 of 10" aria-label="Photo 4 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/1ea28828-7332-4282-9b60-095de88689d4/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown5.avif" data-raw="https://3unloi5wlp.ucarecd.net/1ea28828-7332-4282-9b60-095de88689d4/Case%20Studies%20-%20Georgetown5.avif" data-alt="Georgetown University, photo 5 of 10" aria-label="Photo 5 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/702932f3-100c-41ab-9e8e-ba7675ff0123/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown6.avif" data-raw="https://3unloi5wlp.ucarecd.net/702932f3-100c-41ab-9e8e-ba7675ff0123/Case%20Studies%20-%20Georgetown6.avif" data-alt="Georgetown University, photo 6 of 10" aria-label="Photo 6 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5381a4d2-8404-4260-9a36-ecbbccd4c7c5/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown7.avif" data-raw="https://3unloi5wlp.ucarecd.net/5381a4d2-8404-4260-9a36-ecbbccd4c7c5/Case%20Studies%20-%20Georgetown7.avif" data-alt="Georgetown University, photo 7 of 10" aria-label="Photo 7 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/3a89ab96-f6a1-4b36-9d19-f1bf15ead0c8/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown8.avif" data-raw="https://3unloi5wlp.ucarecd.net/3a89ab96-f6a1-4b36-9d19-f1bf15ead0c8/Case%20Studies%20-%20Georgetown8.avif" data-alt="Georgetown University, photo 8 of 10" aria-label="Photo 8 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/06e3d1d4-c3a9-46f6-9b68-570d2d7547f5/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown9.avif" data-raw="https://3unloi5wlp.ucarecd.net/06e3d1d4-c3a9-46f6-9b68-570d2d7547f5/Case%20Studies%20-%20Georgetown9.avif" data-alt="Georgetown University, photo 9 of 10" aria-label="Photo 9 of 10" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/7f28e437-d875-40c2-a404-04d2347d180d/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Georgetown10.avif" data-raw="https://3unloi5wlp.ucarecd.net/7f28e437-d875-40c2-a404-04d2347d180d/Case%20Studies%20-%20Georgetown10.avif" data-alt="Georgetown University, photo 10 of 10" aria-label="Photo 10 of 10" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">10</p>
       <p class="case-meta">Washington, DC</p>
-      <h2 class="entry-title">Georgetown University <span class="title-sub">Student Center</span></h2>
+      <h2 class="case-title">Georgetown University <span class="title-sub">Student Center</span></h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Ikon 5</dd></div>
         <div><dt>Contractor</dt><dd>Whiting-Turner</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">We furnished and installed the bronze window screen system along with the bronze door surrounds.</p>
     </div>
   </article>
 
-  <article class="entry" id="law-enforcement-memorial">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">11</p>
+  <article class="case" id="law-enforcement-memorial">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="4">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/39030b40-a8f2-4172-91a6-a5552a36a8a8/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20NLEO%20Memorial1.avif" data-raw="https://3unloi5wlp.ucarecd.net/39030b40-a8f2-4172-91a6-a5552a36a8a8/Case%20Studies%20-%20NLEO%20Memorial1.avif" alt="National Law Enforcement Officers Memorial, photo 1 of 4" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 04</p>
+          <div class="gal-rail" role="group" aria-label="National Law Enforcement Officers Memorial photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/39030b40-a8f2-4172-91a6-a5552a36a8a8/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20NLEO%20Memorial1.avif" data-raw="https://3unloi5wlp.ucarecd.net/39030b40-a8f2-4172-91a6-a5552a36a8a8/Case%20Studies%20-%20NLEO%20Memorial1.avif" data-alt="National Law Enforcement Officers Memorial, photo 1 of 4" aria-label="Photo 1 of 4" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/8f891ed3-063f-4f41-b4ff-f4e656c50f7a/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20NLEO%20Memorial2.avif" data-raw="https://3unloi5wlp.ucarecd.net/8f891ed3-063f-4f41-b4ff-f4e656c50f7a/Case%20Studies%20-%20NLEO%20Memorial2.avif" data-alt="National Law Enforcement Officers Memorial, photo 2 of 4" aria-label="Photo 2 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/f6d2592a-88f3-4b6f-b447-7b0e78c4c640/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20NLEO%20Memorial3.avif" data-raw="https://3unloi5wlp.ucarecd.net/f6d2592a-88f3-4b6f-b447-7b0e78c4c640/Case%20Studies%20-%20NLEO%20Memorial3.avif" data-alt="National Law Enforcement Officers Memorial, photo 3 of 4" aria-label="Photo 3 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/ab231775-9f48-4a21-b410-fcb56c766e83/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20NLEO%20Memorial4.avif" data-raw="https://3unloi5wlp.ucarecd.net/ab231775-9f48-4a21-b410-fcb56c766e83/Case%20Studies%20-%20NLEO%20Memorial4.avif" data-alt="National Law Enforcement Officers Memorial, photo 4 of 4" aria-label="Photo 4 of 4" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">11</p>
       <p class="case-meta">Washington, DC</p>
-      <h2 class="entry-title">National Law Enforcement Officers Memorial</h2>
+      <h2 class="case-title">National Law Enforcement Officers Memorial</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Davis Buckley &amp; Associate Architects</dd></div>
         <div><dt>Contractor</dt><dd>George Hyman Construction</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">Finish painted aluminum trellis systems, gazebos, pergolas and column covers. Custom fabricated book readers with etched glass surfaces for name locations. Elevator head houses were completely re-clad with sand-blasted stainless steel.</p>
       <p class="case-text">All of the public transit systems above ground and underground were uninterrupted throughout the construction period.</p>
     </div>
   </article>
 
-  <article class="entry" id="river-center">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">12</p>
+  <article class="case case--flip" id="river-center">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="3">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/81338a38-1771-4b4b-a31b-e2e687323be5/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20River%20Center1.avif" data-raw="https://3unloi5wlp.ucarecd.net/81338a38-1771-4b4b-a31b-e2e687323be5/Case%20Studies%20-%20River%20Center1.avif" alt="Bill Heard River Center Performing Arts Theater, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 03</p>
+          <div class="gal-rail" role="group" aria-label="Bill Heard River Center Performing Arts Theater photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/81338a38-1771-4b4b-a31b-e2e687323be5/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20River%20Center1.avif" data-raw="https://3unloi5wlp.ucarecd.net/81338a38-1771-4b4b-a31b-e2e687323be5/Case%20Studies%20-%20River%20Center1.avif" data-alt="Bill Heard River Center Performing Arts Theater, photo 1 of 3" aria-label="Photo 1 of 3" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/35634653-0ff1-4c64-b70d-4529d88e8cf6/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20River%20Center2.avif" data-raw="https://3unloi5wlp.ucarecd.net/35634653-0ff1-4c64-b70d-4529d88e8cf6/Case%20Studies%20-%20River%20Center2.avif" data-alt="Bill Heard River Center Performing Arts Theater, photo 2 of 3" aria-label="Photo 2 of 3" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/190c39b8-a517-47f6-a56c-8dcf05577d19/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20River%20Center3.avif" data-raw="https://3unloi5wlp.ucarecd.net/190c39b8-a517-47f6-a56c-8dcf05577d19/Case%20Studies%20-%20River%20Center3.avif" data-alt="Bill Heard River Center Performing Arts Theater, photo 3 of 3" aria-label="Photo 3 of 3" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">12</p>
       <p class="case-meta">Columbus, GA</p>
-      <h2 class="entry-title">Bill Heard River Center Performing Arts Theater</h2>
+      <h2 class="case-title">Bill Heard River Center Performing Arts Theater</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Hecht, Burdeshaw, Johnson, Kidd &amp; Clark</dd></div>
         <div><dt>Contractor</dt><dd>Beers Construction Company</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">This project consisted of the construction of over-sized painted aluminum ribbons criss-crossing overhead with a steel suspension hanging system. The ribbons had over 500 penetrations for catwalk supports, fire protection piping, cable supports and lighting supports. Each penetration had to be precisely located in the engineering phase through coordination with other trades&rsquo; drawings.</p>
     </div>
   </article>
 
   <article class="case" id="mcnamara-terminal">
     <div class="case-media reveal">
-      <figure class="case-img case-img--main" style="--shape:4/3"><div style="--photo:url('img/mcnamara-terminal.webp')" data-drift="0.08" data-slack="0.08"></div></figure>
+      <div class="gal" data-gal data-photos="5">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/3d74ccba-333a-439b-98ed-f97405bd52d6/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d74ccba-333a-439b-98ed-f97405bd52d6/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines1.avif" alt="Edward H. McNamara Terminal, photo 1 of 5" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 05</p>
+          <div class="gal-rail" role="group" aria-label="Edward H. McNamara Terminal photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/3d74ccba-333a-439b-98ed-f97405bd52d6/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d74ccba-333a-439b-98ed-f97405bd52d6/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines1.avif" data-alt="Edward H. McNamara Terminal, photo 1 of 5" aria-label="Photo 1 of 5" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/976bee05-6fc6-48dc-ace6-2dc0892f3db2/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines2.avif" data-raw="https://3unloi5wlp.ucarecd.net/976bee05-6fc6-48dc-ace6-2dc0892f3db2/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines2.avif" data-alt="Edward H. McNamara Terminal, photo 2 of 5" aria-label="Photo 2 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/76c2e934-723a-443e-82d9-ee45c396fdbd/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines3.avif" data-raw="https://3unloi5wlp.ucarecd.net/76c2e934-723a-443e-82d9-ee45c396fdbd/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines3.avif" data-alt="Edward H. McNamara Terminal, photo 3 of 5" aria-label="Photo 3 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/31b0c516-3e0a-4569-bc3b-1d46c34c387d/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines4.avif" data-raw="https://3unloi5wlp.ucarecd.net/31b0c516-3e0a-4569-bc3b-1d46c34c387d/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines4.avif" data-alt="Edward H. McNamara Terminal, photo 4 of 5" aria-label="Photo 4 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/91b1f55d-7aaf-4bbf-babf-d8e8484d85df/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines5.avif" data-raw="https://3unloi5wlp.ucarecd.net/91b1f55d-7aaf-4bbf-babf-d8e8484d85df/Case%20Studies%20-%20RMcNamara%20Terminal%2C%20NW%20Airlines5.avif" data-alt="Edward H. McNamara Terminal, photo 5 of 5" aria-label="Photo 5 of 5" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="case-body reveal" style="--d:120ms">
       <p class="case-num" aria-hidden="true">13</p>
@@ -394,49 +636,103 @@
     </div>
   </article>
 
-  <article class="entry" id="duke-childrens">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">14</p>
+  <article class="case case--flip" id="duke-childrens">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="4">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/c222b366-ca09-490e-96cb-44b5e5954186/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Duke%20U1.avif" data-raw="https://3unloi5wlp.ucarecd.net/c222b366-ca09-490e-96cb-44b5e5954186/Case%20Studies%20-%20Duke%20U1.avif" alt="Duke University Medical Center Children’s Health, photo 1 of 4" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 04</p>
+          <div class="gal-rail" role="group" aria-label="Duke University Medical Center Children’s Health photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/c222b366-ca09-490e-96cb-44b5e5954186/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Duke%20U1.avif" data-raw="https://3unloi5wlp.ucarecd.net/c222b366-ca09-490e-96cb-44b5e5954186/Case%20Studies%20-%20Duke%20U1.avif" data-alt="Duke University Medical Center Children’s Health, photo 1 of 4" aria-label="Photo 1 of 4" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/76991231-27b7-4d1f-9046-aaafa68b846e/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Duke%20U2.avif" data-raw="https://3unloi5wlp.ucarecd.net/76991231-27b7-4d1f-9046-aaafa68b846e/Case%20Studies%20-%20Duke%20U2.avif" data-alt="Duke University Medical Center Children’s Health, photo 2 of 4" aria-label="Photo 2 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/dc1c2ebd-b4e5-44a3-bf46-03d05a4cda52/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Duke%20U3.avif" data-raw="https://3unloi5wlp.ucarecd.net/dc1c2ebd-b4e5-44a3-bf46-03d05a4cda52/Case%20Studies%20-%20Duke%20U3.avif" data-alt="Duke University Medical Center Children’s Health, photo 3 of 4" aria-label="Photo 3 of 4" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5468a481-ebe0-4bb2-b346-3b3628b5a9e0/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Duke%20U4.avif" data-raw="https://3unloi5wlp.ucarecd.net/5468a481-ebe0-4bb2-b346-3b3628b5a9e0/Case%20Studies%20-%20Duke%20U4.avif" data-alt="Duke University Medical Center Children’s Health, photo 4 of 4" aria-label="Photo 4 of 4" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">14</p>
       <p class="case-meta">Raleigh/Durham, NC</p>
-      <h2 class="entry-title">Duke University Medical Center Children&rsquo;s Health</h2>
+      <h2 class="case-title">Duke University Medical Center Children&rsquo;s Health</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>Kaplan McLaughlin Diaz</dd></div>
         <div><dt>Contractor</dt><dd>Bovis Construction Corporation</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">This project consisted of the construction of ornamental aluminum railings with a wood cap and bent tempered glass, colored clear glass inserts, as well as clear powder coat painted perforated metal panels.</p>
       <p class="case-text">Besides the rail system, this extensive project also included ornamental lighting enclosures at column/balcony fronts, ornamental column capitals and tower features, as well as ornamental stainless steel drinking fountains.</p>
     </div>
   </article>
 
-  <article class="entry" id="schuster-center">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">15</p>
+  <article class="case" id="schuster-center">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="3">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/53e93847-78f7-40a4-8172-876bc9d38c19/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/53e93847-78f7-40a4-8172-876bc9d38c19/Case%20Studies%20-%20Schuster1.avif" alt="Schuster Performing Arts Center, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 03</p>
+          <div class="gal-rail" role="group" aria-label="Schuster Performing Arts Center photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/53e93847-78f7-40a4-8172-876bc9d38c19/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/53e93847-78f7-40a4-8172-876bc9d38c19/Case%20Studies%20-%20Schuster1.avif" data-alt="Schuster Performing Arts Center, photo 1 of 3" aria-label="Photo 1 of 3" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/b3c623c6-51c0-49c9-80a0-14b36c1a8626/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Schuster2.avif" data-raw="https://3unloi5wlp.ucarecd.net/b3c623c6-51c0-49c9-80a0-14b36c1a8626/Case%20Studies%20-%20Schuster2.avif" data-alt="Schuster Performing Arts Center, photo 2 of 3" aria-label="Photo 2 of 3" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/3fac97d0-f372-4c3b-8735-e6824520e1a2/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20Schuster3.avif" data-raw="https://3unloi5wlp.ucarecd.net/3fac97d0-f372-4c3b-8735-e6824520e1a2/Case%20Studies%20-%20Schuster3.avif" data-alt="Schuster Performing Arts Center, photo 3 of 3" aria-label="Photo 3 of 3" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">15</p>
       <p class="case-meta">Dayton, OH</p>
-      <h2 class="entry-title">Schuster Performing Arts Center</h2>
+      <h2 class="case-title">Schuster Performing Arts Center</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>GBBN Architects</dd></div>
         <div><dt>Contractor</dt><dd>Messer/Danis Corporation &ndash; A Joint Venture</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">This project consisted of the construction of a monumental spiral stair with support columns and outriggers.</p>
       <p class="case-text">Additional project elements include glass guard rails with wood top rail, aluminum wall and floor grills, column capitals, light enclosures and wall panels.</p>
     </div>
   </article>
 
-  <article class="entry" id="usaa">
-    <div class="entry-head reveal">
-      <p class="entry-num" aria-hidden="true">16</p>
+  <article class="case case--flip" id="usaa">
+    <div class="case-media reveal">
+      <div class="gal" data-gal data-photos="5">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f194756a-92e9-40b1-99e0-9ef31b9a386a/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f194756a-92e9-40b1-99e0-9ef31b9a386a/Case%20Studies%20-%20USAA1.avif" alt="USAA Insurance Company Office Expansion, photo 1 of 5" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 05</p>
+          <div class="gal-rail" role="group" aria-label="USAA Insurance Company Office Expansion photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/f194756a-92e9-40b1-99e0-9ef31b9a386a/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f194756a-92e9-40b1-99e0-9ef31b9a386a/Case%20Studies%20-%20USAA1.avif" data-alt="USAA Insurance Company Office Expansion, photo 1 of 5" aria-label="Photo 1 of 5" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/18cd8299-41e3-4548-8bda-2c2b9e91ae76/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA2.avif" data-raw="https://3unloi5wlp.ucarecd.net/18cd8299-41e3-4548-8bda-2c2b9e91ae76/Case%20Studies%20-%20USAA2.avif" data-alt="USAA Insurance Company Office Expansion, photo 2 of 5" aria-label="Photo 2 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/46cb219a-a925-4878-bb8c-e231bb3c1581/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA3.avif" data-raw="https://3unloi5wlp.ucarecd.net/46cb219a-a925-4878-bb8c-e231bb3c1581/Case%20Studies%20-%20USAA3.avif" data-alt="USAA Insurance Company Office Expansion, photo 3 of 5" aria-label="Photo 3 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/442530b9-b255-4fbe-9dbd-0ac2e1acd2bf/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA4.avif" data-raw="https://3unloi5wlp.ucarecd.net/442530b9-b255-4fbe-9dbd-0ac2e1acd2bf/Case%20Studies%20-%20USAA4.avif" data-alt="USAA Insurance Company Office Expansion, photo 4 of 5" aria-label="Photo 4 of 5" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/d259ec70-401e-4d94-ba32-120bfc3e7ec0/-/preview/1600x1600/-/format/auto/Case%20Studies%20-%20USAA5.avif" data-raw="https://3unloi5wlp.ucarecd.net/d259ec70-401e-4d94-ba32-120bfc3e7ec0/Case%20Studies%20-%20USAA5.avif" data-alt="USAA Insurance Company Office Expansion, photo 5 of 5" aria-label="Photo 5 of 5" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">16</p>
       <p class="case-meta">San Antonio, TX</p>
-      <h2 class="entry-title">USAA Insurance Company Office Expansion</h2>
+      <h2 class="case-title">USAA Insurance Company Office Expansion</h2>
       <dl class="facts">
         <div><dt>Architect</dt><dd>The Whitney Group</dd></div>
         <div><dt>Contractor</dt><dd>HCB Contractors</dd></div>
       </dl>
-    </div>
-    <div class="entry-text reveal" style="--d:100ms">
       <p class="case-text">This project consisted of the construction of seven different gazebos, one representing each continent. Additionally, Construction Services provided glass and wood cap guard railings, a terrazzo world map using bronze accent dividers, decorative steel railings and a painted steel trellis system.</p>
     </div>
   </article>
@@ -503,6 +799,71 @@
 </footer>
 
 <script src="site.js"></script>
+<script>
+try {
+/* ---- case study galleries: step through each project's photos ---- */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+document.querySelectorAll('[data-gal]').forEach(gal=>{
+  const img   = gal.querySelector('.gal-img');
+  const stage = gal.querySelector('.gal-stage');
+  const segs  = [...gal.querySelectorAll('.gal-seg')];
+  const num   = gal.querySelector('.gal-count b');
+  if(segs.length < 2) return;
+  let at = 0, token = 0;
+  // once one upload has come back unresized, ask for originals straight away
+  const want = s => window.csiRawOnly ? s.dataset.raw : s.dataset.src;
+
+  function load(s){
+    return new Promise(done=>{
+      const pre = new Image();
+      pre.onload = ()=>done(pre.src);
+      pre.onerror = ()=>{
+        if(pre.src !== s.dataset.raw){ window.csiRawOnly = 1; pre.src = s.dataset.raw; }
+        else done(null);
+      };
+      pre.src = want(s);
+    });
+  }
+
+  function show(i){
+    at = (i + segs.length) % segs.length;
+    const s = segs[at], mine = ++token;
+    segs.forEach((x,n)=>{
+      x.classList.toggle('is-on', n === at);
+      x.setAttribute('aria-current', n === at ? 'true' : 'false');
+    });
+    num.textContent = String(at + 1).padStart(2, '0');
+    if(!reducedMotion) img.classList.add('is-fading');
+    // swap once the next photo is in, so the fade never lands on an empty frame
+    load(s).then(src=>{
+      if(mine !== token) return;          // a later click has taken over
+      if(src){ img.src = src; img.dataset.raw = s.dataset.raw; img.alt = s.dataset.alt; }
+      requestAnimationFrame(()=>img.classList.remove('is-fading'));
+      load(segs[(at + 1) % segs.length]);  // have the one after ready too
+    });
+  }
+
+  segs.forEach((s,n)=>s.addEventListener('click', ()=>show(n)));
+  gal.querySelector('.gal-prev').addEventListener('click', ()=>show(at - 1));
+  gal.querySelector('.gal-next').addEventListener('click', ()=>show(at + 1));
+  gal.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight'){ e.preventDefault(); show(at + 1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); show(at - 1); }
+  });
+  // a sideways swipe on the photo steps through them too
+  let x0 = null;
+  stage.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
+  stage.addEventListener('pointerup', e=>{
+    if(x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', ()=>{ x0 = null; });
+  // warm the second photo the first time someone reaches for the controls
+  gal.addEventListener('pointerenter', ()=>load(segs[1]), {once:true});
+});
+} catch (err) { console.error("feature failed:", err); }
+</script>
 </body>
 </html>
