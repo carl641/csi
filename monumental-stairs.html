@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monumental Stairs — Construction Services, Inc.</title>
+<meta name="description" content="Monumental Stairs by Construction Services, Inc. — Monumental stairs built as a single assembly, structure and rail detailed together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- the photos ---------- */
+/* each photo is shown whole on a dark mat rather than cropped to the frame */
+.gal-stage{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:#10161C;touch-action:pan-y;
+}
+.gal-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;
+  transition:opacity 260ms ease;
+  /* a drag would start the browser's own image drag and swallow the swipe */
+  -webkit-user-drag:none;user-select:none;
+}
+.gal-img.is-fading{opacity:0}
+.gal-bar{
+  display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);
+  margin-top:14px;
+}
+.gal-count{
+  margin:0;flex:0 0 auto;
+  font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--mist);
+  font-variant-numeric:tabular-nums;
+}
+.gal-count b{color:var(--accent);font-weight:600}
+/* one segment per photo along a hairline, as on the home page carousel */
+.gal-rail{flex:1 1 auto;display:flex;min-width:0}
+.gal-seg{flex:1 1 0;min-width:0;height:28px;padding:0;position:relative}
+.gal-seg::before{
+  content:"";position:absolute;left:0;right:3px;top:50%;height:1px;
+  background:var(--hair);
+  transition:background 200ms ease,height 200ms ease,transform 200ms ease;
+}
+.gal-seg:hover::before{background:var(--paper)}
+.gal-seg.is-on::before{height:3px;transform:translateY(-1px);background:var(--accent)}
+.gal-nav{display:flex;gap:8px;flex:0 0 auto}
+.gal-nav .round-btn{width:42px;height:42px}
+/* a single photo needs no controls */
+.gal[data-photos="1"] .gal-bar{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .gal-img{transition:none}
+}
+
+/* ---------- the projects: one card each, its photos in a small gallery ---------- */
+.tally{margin:0 0 clamp(24px,4vh,40px)}
+.projs{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
+}
+.proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
+.proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.proj-count{
+  margin:0;flex:0 0 auto;
+  font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);
+}
+/* the gallery's own bar sits under the photo; with a caption below it, keep it tight */
+.proj .gal-bar{margin-top:8px}
+.proj .gal-nav .round-btn{width:36px;height:36px}
+.proj .gal-seg{height:24px}
+.proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
+@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .projs{grid-template-columns:1fr} }
+
+.more{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.more .h2{margin:0}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="architectural-metalwork.html">Metalwork</a>
+    <a href="monumental-stairs.html" aria-current="page">Stairs</a>
+    <a href="rail-systems.html">Railings</a>
+    <a href="canopies.html">Canopies</a>
+    <a href="laser.html">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Our work">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-copy">
+    <p class="eyebrow">Our work</p>
+    <h1 class="phero-title">Monumental<br>stairs</h1>
+    <p class="phero-lede">Monumental stairs built as a single assembly, structure and rail detailed together.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="Projects">
+  <p class="kicker tally reveal">20 photos</p>
+  <div class="projs">
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="9">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" data-raw="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" alt="Martin Road Apartments, photo 1 of 9" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 09</p>
+          <div class="gal-rail" role="group" aria-label="Martin Road Apartments photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" data-raw="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" data-alt="Martin Road Apartments, photo 1 of 9" aria-label="Photo 1 of 9" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/2f70f820-9ab0-4144-a7a8-e0d59fa7d400/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments2.avif" data-raw="https://3unloi5wlp.ucarecd.net/2f70f820-9ab0-4144-a7a8-e0d59fa7d400/Monumental%20Stairs%20-%20Martin%20Road%20Apartments2.avif" data-alt="Martin Road Apartments, photo 2 of 9" aria-label="Photo 2 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/daab28df-b7cb-41e3-8b66-8923fea8787b/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments3.avif" data-raw="https://3unloi5wlp.ucarecd.net/daab28df-b7cb-41e3-8b66-8923fea8787b/Monumental%20Stairs%20-%20Martin%20Road%20Apartments3.avif" data-alt="Martin Road Apartments, photo 3 of 9" aria-label="Photo 3 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/68fe567a-c48a-4b89-bc5e-6dd4f8909565/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments4.avif" data-raw="https://3unloi5wlp.ucarecd.net/68fe567a-c48a-4b89-bc5e-6dd4f8909565/Monumental%20Stairs%20-%20Martin%20Road%20Apartments4.avif" data-alt="Martin Road Apartments, photo 4 of 9" aria-label="Photo 4 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/357bc124-2d36-4019-8645-134dc87d25bc/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments5.avif" data-raw="https://3unloi5wlp.ucarecd.net/357bc124-2d36-4019-8645-134dc87d25bc/Monumental%20Stairs%20-%20Martin%20Road%20Apartments5.avif" data-alt="Martin Road Apartments, photo 5 of 9" aria-label="Photo 5 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/07049dc1-230c-4ad3-b4a4-17923943c1d0/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments6.avif" data-raw="https://3unloi5wlp.ucarecd.net/07049dc1-230c-4ad3-b4a4-17923943c1d0/Monumental%20Stairs%20-%20Martin%20Road%20Apartments6.avif" data-alt="Martin Road Apartments, photo 6 of 9" aria-label="Photo 6 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/3573f3ce-7d30-4efa-8d10-a06a1778d308/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments7.avif" data-raw="https://3unloi5wlp.ucarecd.net/3573f3ce-7d30-4efa-8d10-a06a1778d308/Monumental%20Stairs%20-%20Martin%20Road%20Apartments7.avif" data-alt="Martin Road Apartments, photo 7 of 9" aria-label="Photo 7 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/0e2d9ecd-2a33-43db-88fa-302b5a85bc71/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments8.avif" data-raw="https://3unloi5wlp.ucarecd.net/0e2d9ecd-2a33-43db-88fa-302b5a85bc71/Monumental%20Stairs%20-%20Martin%20Road%20Apartments8.avif" data-alt="Martin Road Apartments, photo 8 of 9" aria-label="Photo 8 of 9" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/00a9a36a-e8a4-41ac-9ad4-e95fd871b193/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments9.avif" data-raw="https://3unloi5wlp.ucarecd.net/00a9a36a-e8a4-41ac-9ad4-e95fd871b193/Monumental%20Stairs%20-%20Martin%20Road%20Apartments9.avif" data-alt="Martin Road Apartments, photo 9 of 9" aria-label="Photo 9 of 9" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Martin Road Apartments</h3>
+        <p class="proj-count">9 photos</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:70ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20US%20Embassy1.avif" data-raw="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/Monumental%20Stairs%20-%20US%20Embassy1.avif" alt="U.S. Embassy, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="U.S. Embassy photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20US%20Embassy1.avif" data-raw="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/Monumental%20Stairs%20-%20US%20Embassy1.avif" data-alt="U.S. Embassy, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">U.S. Embassy</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:140ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20GA%20Tech1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/Monumental%20Stairs%20-%20GA%20Tech1.avif" alt="Georgia Tech, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="Georgia Tech photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20GA%20Tech1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/Monumental%20Stairs%20-%20GA%20Tech1.avif" data-alt="Georgia Tech, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Georgia Tech</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" alt="University of Michigan, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="University of Michigan photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" data-alt="University of Michigan, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">University of Michigan</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:70ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/Monumental%20Stairs%20-%20Schuster1.avif" alt="Schuster Performing Arts Center, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="Schuster Performing Arts Center photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/Monumental%20Stairs%20-%20Schuster1.avif" data-alt="Schuster Performing Arts Center, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Schuster Performing Arts Center</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:140ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Galxo1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/Monumental%20Stairs%20-%20Galxo1.avif" alt="GlaxoSmithKline, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="GlaxoSmithKline photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Galxo1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/Monumental%20Stairs%20-%20Galxo1.avif" data-alt="GlaxoSmithKline, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">GlaxoSmithKline</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="6">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Hero1.avif" data-raw="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif" alt="More monumental stairs, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 06</p>
+          <div class="gal-rail" role="group" aria-label="More monumental stairs photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Hero1.avif" data-raw="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif" data-alt="More monumental stairs, photo 1 of 6" aria-label="Photo 1 of 6" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg" data-raw="https://3unloi5wlp.ucarecd.net/b9456f02-a729-46cf-9474-95eef482e487/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20Grand%20Stair.jpg" data-alt="More monumental stairs, photo 2 of 6" aria-label="Photo 2 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg" data-raw="https://3unloi5wlp.ucarecd.net/9456c562-3011-45c5-9667-189affe880ad/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20Stainless.jpg" data-alt="More monumental stairs, photo 3 of 6" aria-label="Photo 3 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG" data-raw="https://3unloi5wlp.ucarecd.net/f6ced19f-4a8b-43b7-9b57-328d858328a6/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair%20-%20AFB.JPG" data-alt="More monumental stairs, photo 4 of 6" aria-label="Photo 4 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/preview/1200x1200/-/format/auto/hq-staircase.png" data-raw="https://3unloi5wlp.ucarecd.net/59fa5ac8-2ab3-4e93-bb6e-e1623eee9fe4/-/preview/1200x1200/-/format/auto/hq-staircase.png" data-alt="More monumental stairs, photo 5 of 6" aria-label="Photo 5 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20SS.JPG" data-raw="https://3unloi5wlp.ucarecd.net/a8d9d952-5d40-4bda-8ef0-9d112b6ce72c/-/preview/1200x1200/-/format/auto/hq-Monumental%20Stair-%20SS.JPG" data-alt="More monumental stairs, photo 6 of 6" aria-label="Photo 6 of 6" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">More monumental stairs</h3>
+        <p class="proj-count">6 photos</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More of our work">
+  <div class="more reveal">
+    <h2 class="h2">More of our work</h2>
+    <div class="actions"><a class="cta cta-ghost" href="architectural-metalwork.html"><span class="cta-label">Architectural Metalwork</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="rail-systems.html"><span class="cta-label">Rail Systems</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="canopies.html"><span class="cta-label">Canopies</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="laser.html"><span class="cta-label">Laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+try {
+/* ---- case study galleries: step through each project's photos ---- */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+document.querySelectorAll('[data-gal]').forEach(gal=>{
+  const img   = gal.querySelector('.gal-img');
+  const stage = gal.querySelector('.gal-stage');
+  const segs  = [...gal.querySelectorAll('.gal-seg')];
+  const num   = gal.querySelector('.gal-count b');
+  if(segs.length < 2) return;
+  let at = 0, token = 0;
+  // once one upload has come back unresized, ask for originals straight away
+  const want = s => window.csiRawOnly ? s.dataset.raw : s.dataset.src;
+
+  function load(s){
+    return new Promise(done=>{
+      const pre = new Image();
+      pre.onload = ()=>done(pre.src);
+      pre.onerror = ()=>{
+        if(pre.src !== s.dataset.raw){ window.csiRawOnly = 1; pre.src = s.dataset.raw; }
+        else done(null);
+      };
+      pre.src = want(s);
+    });
+  }
+
+  function show(i){
+    at = (i + segs.length) % segs.length;
+    const s = segs[at], mine = ++token;
+    segs.forEach((x,n)=>{
+      x.classList.toggle('is-on', n === at);
+      x.setAttribute('aria-current', n === at ? 'true' : 'false');
+    });
+    num.textContent = String(at + 1).padStart(2, '0');
+    if(!reducedMotion) img.classList.add('is-fading');
+    // swap once the next photo is in, so the fade never lands on an empty frame
+    load(s).then(src=>{
+      if(mine !== token) return;          // a later click has taken over
+      if(src){ img.src = src; img.dataset.raw = s.dataset.raw; img.alt = s.dataset.alt; }
+      requestAnimationFrame(()=>img.classList.remove('is-fading'));
+      load(segs[(at + 1) % segs.length]);  // have the one after ready too
+    });
+  }
+
+  segs.forEach((s,n)=>s.addEventListener('click', ()=>show(n)));
+  gal.querySelector('.gal-prev').addEventListener('click', ()=>show(at - 1));
+  gal.querySelector('.gal-next').addEventListener('click', ()=>show(at + 1));
+  gal.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight'){ e.preventDefault(); show(at + 1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); show(at - 1); }
+  });
+  // a sideways swipe on the photo steps through them too
+  let x0 = null;
+  stage.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
+  stage.addEventListener('pointerup', e=>{
+    if(x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', ()=>{ x0 = null; });
+  // warm the second photo the first time someone reaches for the controls
+  gal.addEventListener('pointerenter', ()=>load(segs[1]), {once:true});
+});
+} catch (err) { console.error("feature failed:", err); }
+</script>
+</body>
+</html>

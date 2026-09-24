@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rail Systems — Construction Services, Inc.</title>
+<meta name="description" content="Rail Systems by Construction Services, Inc. — Rail systems for an entire building complex, or a single run of ornamental guard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- the photos ---------- */
+/* each photo is shown whole on a dark mat rather than cropped to the frame */
+.gal-stage{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:#10161C;touch-action:pan-y;
+}
+.gal-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;
+  transition:opacity 260ms ease;
+  /* a drag would start the browser's own image drag and swallow the swipe */
+  -webkit-user-drag:none;user-select:none;
+}
+.gal-img.is-fading{opacity:0}
+.gal-bar{
+  display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);
+  margin-top:14px;
+}
+.gal-count{
+  margin:0;flex:0 0 auto;
+  font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--mist);
+  font-variant-numeric:tabular-nums;
+}
+.gal-count b{color:var(--accent);font-weight:600}
+/* one segment per photo along a hairline, as on the home page carousel */
+.gal-rail{flex:1 1 auto;display:flex;min-width:0}
+.gal-seg{flex:1 1 0;min-width:0;height:28px;padding:0;position:relative}
+.gal-seg::before{
+  content:"";position:absolute;left:0;right:3px;top:50%;height:1px;
+  background:var(--hair);
+  transition:background 200ms ease,height 200ms ease,transform 200ms ease;
+}
+.gal-seg:hover::before{background:var(--paper)}
+.gal-seg.is-on::before{height:3px;transform:translateY(-1px);background:var(--accent)}
+.gal-nav{display:flex;gap:8px;flex:0 0 auto}
+.gal-nav .round-btn{width:42px;height:42px}
+/* a single photo needs no controls */
+.gal[data-photos="1"] .gal-bar{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .gal-img{transition:none}
+}
+
+/* ---------- the projects: one card each, its photos in a small gallery ---------- */
+.tally{margin:0 0 clamp(24px,4vh,40px)}
+.projs{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
+}
+.proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
+.proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.proj-count{
+  margin:0;flex:0 0 auto;
+  font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);
+}
+/* the gallery's own bar sits under the photo; with a caption below it, keep it tight */
+.proj .gal-bar{margin-top:8px}
+.proj .gal-nav .round-btn{width:36px;height:36px}
+.proj .gal-seg{height:24px}
+.proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
+@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .projs{grid-template-columns:1fr} }
+
+.more{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.more .h2{margin:0}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="architectural-metalwork.html">Metalwork</a>
+    <a href="monumental-stairs.html">Stairs</a>
+    <a href="rail-systems.html" aria-current="page">Railings</a>
+    <a href="canopies.html">Canopies</a>
+    <a href="laser.html">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Our work">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-copy">
+    <p class="eyebrow">Our work</p>
+    <h1 class="phero-title">Rail<br>systems</h1>
+    <p class="phero-lede">Rail systems for an entire building complex, or a single run of ornamental guard.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="Projects">
+  <p class="kicker tally reveal">17 photos</p>
+  <div class="projs">
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="7">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese1.avif" data-raw="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif" alt="McNeese, photo 1 of 7" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 07</p>
+          <div class="gal-rail" role="group" aria-label="McNeese photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese1.avif" data-raw="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif" data-alt="McNeese, photo 1 of 7" aria-label="Photo 1 of 7" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/353d3b9e-483f-449b-a5a0-7299e73948c4/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese2.avif" data-raw="https://3unloi5wlp.ucarecd.net/353d3b9e-483f-449b-a5a0-7299e73948c4/Rail%20Systems%20-%20McNeese2.avif" data-alt="McNeese, photo 2 of 7" aria-label="Photo 2 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/f006dab0-f18c-4bfb-9b8a-418180f83a28/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese3.avif" data-raw="https://3unloi5wlp.ucarecd.net/f006dab0-f18c-4bfb-9b8a-418180f83a28/Rail%20Systems%20-%20McNeese3.avif" data-alt="McNeese, photo 3 of 7" aria-label="Photo 3 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9fc9dac7-da99-4c1e-8bd7-a13f9557d479/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese4.avif" data-raw="https://3unloi5wlp.ucarecd.net/9fc9dac7-da99-4c1e-8bd7-a13f9557d479/Rail%20Systems%20-%20McNeese4.avif" data-alt="McNeese, photo 4 of 7" aria-label="Photo 4 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/1ec13ccc-4ed5-4a36-b2ca-e15df30968d8/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese5.avif" data-raw="https://3unloi5wlp.ucarecd.net/1ec13ccc-4ed5-4a36-b2ca-e15df30968d8/Rail%20Systems%20-%20McNeese5.avif" data-alt="McNeese, photo 5 of 7" aria-label="Photo 5 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/ea6c28fd-5a95-4a4e-bbf4-501752a2702f/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese6.avif" data-raw="https://3unloi5wlp.ucarecd.net/ea6c28fd-5a95-4a4e-bbf4-501752a2702f/Rail%20Systems%20-%20McNeese6.avif" data-alt="McNeese, photo 6 of 7" aria-label="Photo 6 of 7" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/cac31372-a11f-41b1-b7d4-b1eb85207e50/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese7.avif" data-raw="https://3unloi5wlp.ucarecd.net/cac31372-a11f-41b1-b7d4-b1eb85207e50/Rail%20Systems%20-%20McNeese7.avif" data-alt="McNeese, photo 7 of 7" aria-label="Photo 7 of 7" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">McNeese</h3>
+        <p class="proj-count">7 photos</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:70ms">
+      <div class="gal" data-gal data-photos="1">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20Colonnade1.avif" data-raw="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/Rail%20Systems%20-%20Colonnade1.avif" alt="Colonnade, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 01</p>
+          <div class="gal-rail" role="group" aria-label="Colonnade photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20Colonnade1.avif" data-raw="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/Rail%20Systems%20-%20Colonnade1.avif" data-alt="Colonnade, photo 1 of 1" aria-label="Photo 1 of 1" aria-current="true"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">Colonnade</h3>
+        <p class="proj-count">1 photo</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:140ms">
+      <div class="gal" data-gal data-photos="3">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" data-raw="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" alt="BlueCross BlueShield, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 03</p>
+          <div class="gal-rail" role="group" aria-label="BlueCross BlueShield photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" data-raw="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" data-alt="BlueCross BlueShield, photo 1 of 3" aria-label="Photo 1 of 3" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/37802658-bdce-45dc-b070-c572faef88d2/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20BlueCross%20BlueShield2.avif" data-raw="https://3unloi5wlp.ucarecd.net/37802658-bdce-45dc-b070-c572faef88d2/Rail%20Systems%20-%20BlueCross%20BlueShield2.avif" data-alt="BlueCross BlueShield, photo 2 of 3" aria-label="Photo 2 of 3" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/05411b15-1afd-47a7-b116-6584cbe05ab7/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20BlueCross%20BlueShield3.avif" data-raw="https://3unloi5wlp.ucarecd.net/05411b15-1afd-47a7-b116-6584cbe05ab7/Rail%20Systems%20-%20BlueCross%20BlueShield3.avif" data-alt="BlueCross BlueShield, photo 3 of 3" aria-label="Photo 3 of 3" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">BlueCross BlueShield</h3>
+        <p class="proj-count">3 photos</p>
+      </div>
+    </article>
+    <article class="proj reveal" style="--d:0ms">
+      <div class="gal" data-gal data-photos="6">
+        <div class="gal-stage">
+          <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" data-raw="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" alt="More rail systems, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
+        </div>
+        <div class="gal-bar">
+          <p class="gal-count" aria-live="polite"><b>01</b> / 06</p>
+          <div class="gal-rail" role="group" aria-label="More rail systems photos">
+            <button class="gal-seg is-on" type="button" data-src="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" data-raw="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" data-alt="More rail systems, photo 1 of 6" aria-label="Photo 1 of 6" aria-current="true"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg" data-raw="https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg" data-alt="More rail systems, photo 2 of 6" aria-label="Photo 2 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/preview/1200x1200/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg" data-raw="https://3unloi5wlp.ucarecd.net/5cba8fa7-4291-44c1-bf00-2427ff0b882b/-/preview/1200x1200/-/format/auto/hq-Railing%20System%20-%20Garcia.jpg" data-alt="More rail systems, photo 3 of 6" aria-label="Photo 3 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg" data-raw="https://3unloi5wlp.ucarecd.net/f7c61683-b270-4965-a166-2d03442c5fd7/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Red%20White%20Mesh.jpg" data-alt="More rail systems, photo 4 of 6" aria-label="Photo 4 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/preview/1200x1200/-/format/auto/hq-Railing%20System%20-%20Brick.jpg" data-raw="https://3unloi5wlp.ucarecd.net/c69701e7-3f2a-4a62-b0cf-f44036d1760f/-/preview/1200x1200/-/format/auto/hq-Railing%20System%20-%20Brick.jpg" data-alt="More rail systems, photo 5 of 6" aria-label="Photo 5 of 6" aria-current="false"></button>
+            <button class="gal-seg" type="button" data-src="https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG" data-raw="https://3unloi5wlp.ucarecd.net/fd8fa696-00e9-4d52-a43f-5095bdaf1ceb/-/preview/1200x1200/-/format/auto/hq-Railing%20Systems%20-%20Circle.JPG" data-alt="More rail systems, photo 6 of 6" aria-label="Photo 6 of 6" aria-current="false"></button>
+          </div>
+          <div class="gal-nav">
+            <button class="round-btn gal-prev" type="button" aria-label="Previous photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <button class="round-btn gal-next" type="button" aria-label="Next photo"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-cap">
+        <h3 class="proj-title">More rail systems</h3>
+        <p class="proj-count">6 photos</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More of our work">
+  <div class="more reveal">
+    <h2 class="h2">More of our work</h2>
+    <div class="actions"><a class="cta cta-ghost" href="architectural-metalwork.html"><span class="cta-label">Architectural Metalwork</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="monumental-stairs.html"><span class="cta-label">Monumental Stairs</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="canopies.html"><span class="cta-label">Canopies</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="laser.html"><span class="cta-label">Laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+try {
+/* ---- case study galleries: step through each project's photos ---- */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+document.querySelectorAll('[data-gal]').forEach(gal=>{
+  const img   = gal.querySelector('.gal-img');
+  const stage = gal.querySelector('.gal-stage');
+  const segs  = [...gal.querySelectorAll('.gal-seg')];
+  const num   = gal.querySelector('.gal-count b');
+  if(segs.length < 2) return;
+  let at = 0, token = 0;
+  // once one upload has come back unresized, ask for originals straight away
+  const want = s => window.csiRawOnly ? s.dataset.raw : s.dataset.src;
+
+  function load(s){
+    return new Promise(done=>{
+      const pre = new Image();
+      pre.onload = ()=>done(pre.src);
+      pre.onerror = ()=>{
+        if(pre.src !== s.dataset.raw){ window.csiRawOnly = 1; pre.src = s.dataset.raw; }
+        else done(null);
+      };
+      pre.src = want(s);
+    });
+  }
+
+  function show(i){
+    at = (i + segs.length) % segs.length;
+    const s = segs[at], mine = ++token;
+    segs.forEach((x,n)=>{
+      x.classList.toggle('is-on', n === at);
+      x.setAttribute('aria-current', n === at ? 'true' : 'false');
+    });
+    num.textContent = String(at + 1).padStart(2, '0');
+    if(!reducedMotion) img.classList.add('is-fading');
+    // swap once the next photo is in, so the fade never lands on an empty frame
+    load(s).then(src=>{
+      if(mine !== token) return;          // a later click has taken over
+      if(src){ img.src = src; img.dataset.raw = s.dataset.raw; img.alt = s.dataset.alt; }
+      requestAnimationFrame(()=>img.classList.remove('is-fading'));
+      load(segs[(at + 1) % segs.length]);  // have the one after ready too
+    });
+  }
+
+  segs.forEach((s,n)=>s.addEventListener('click', ()=>show(n)));
+  gal.querySelector('.gal-prev').addEventListener('click', ()=>show(at - 1));
+  gal.querySelector('.gal-next').addEventListener('click', ()=>show(at + 1));
+  gal.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight'){ e.preventDefault(); show(at + 1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); show(at - 1); }
+  });
+  // a sideways swipe on the photo steps through them too
+  let x0 = null;
+  stage.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
+  stage.addEventListener('pointerup', e=>{
+    if(x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', ()=>{ x0 = null; });
+  // warm the second photo the first time someone reaches for the controls
+  gal.addEventListener('pointerenter', ()=>load(segs[1]), {once:true});
+});
+} catch (err) { console.error("feature failed:", err); }
+</script>
+</body>
+</html>

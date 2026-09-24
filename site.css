@@ -90,7 +90,12 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-@media (max-width:1024px){
+/* nine menu items: the subtitle beside the name steps aside while they
+   share the line, and below 1180px the menu folds into the burger */
+@media (min-width:1181px) and (max-width:1400px){
+  .masthead .mark span{display:none}
+}
+@media (max-width:1180px){
   .burger{display:flex}
   .menu{
     position:fixed;inset:0;z-index:7;

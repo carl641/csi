@@ -19,7 +19,7 @@ function setMenu(open){
 }
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 1024) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
 document.addEventListener('keydown', e=>{
   if(e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false);
 });
