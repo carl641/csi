@@ -16,7 +16,9 @@ Construction Services, Inc. — Architectural Metal Products.
   `index.html`, so change both together.
 - `img/` — images not on the CDN yet. `cad-stair-dannelly-field.webp`, the
   engineering drawing on the About page, is cut from a screenshot of the
-  old site until the original file is uploaded.
+  old site until the original file is uploaded. `mcnamara-terminal.webp`,
+  on the Case Studies page, is the concourse photo the home page's S
+  letterform first carried.
 
 `projects.html#stair-systems` (likewise `#architectural-metalwork`,
 `#rail-systems`, `#canopies`, `#laser-cutting`) opens the portfolio
