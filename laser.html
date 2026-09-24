@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laser — Construction Services, Inc.</title>
+<meta name="description" content="In-house laser cutting on a TruLaser 3040 — up to 10kW, mild steel up to 28mm thick on sheets up to 6.6 × 13 ft, in mild steel, stainless, aluminum, titanium and brass.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* a line of light runs down the photo once as the page opens */
+.phero-scan{
+  position:absolute;left:0;right:0;top:0;z-index:-2;height:2px;
+  background:var(--accent);
+  box-shadow:0 0 16px 2px rgba(255,194,75,.6),0 0 60px 8px rgba(255,194,75,.2);
+  opacity:0;pointer-events:none;
+  animation:scan 2800ms cubic-bezier(.45,0,.3,1) 600ms both;
+}
+.phero-scan::before{
+  content:"";position:absolute;left:0;right:0;bottom:2px;height:140px;
+  background:linear-gradient(to top,rgba(255,194,75,.16),rgba(255,194,75,0));
+}
+@keyframes scan{
+  0%  {opacity:0;transform:translateY(8vh)}
+  12% {opacity:1}
+  82% {opacity:1}
+  100%{opacity:0;transform:translateY(86vh)}
+}
+@media (prefers-reduced-motion:reduce){ .phero-scan{display:none} }
+
+/* four big figures read better as two pairs than squeezed into one row */
+.stats--pairs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stats--pairs .stat:nth-child(odd){padding-left:0;border-left:0}
+@media (max-width:560px){ .stats--pairs{grid-template-columns:1fr} }
+
+.spec-lists .col-title{margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{
+  padding:8px 14px;border:1px solid var(--hair);border-radius:999px;
+  font-size:13px;font-weight:600;letter-spacing:.02em;
+}
+
+/* ---------- photo strip ---------- */
+.strip{
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,440px);
+  gap:clamp(12px,1.6vw,22px);
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;
+  margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);
+  scroll-padding:0 var(--gutter);
+}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{margin:0;scroll-snap-align:start}
+.strip-img{aspect-ratio:4/5;overflow:hidden;background:#10161C}
+.strip-img img{width:100%;height:100%;object-fit:cover;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
+.strip figure:hover img{transform:scale(1.04)}
+.strip figcaption{display:flex;gap:10px;align-items:baseline;margin-top:14px}
+.tile-cat{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.strip-title{font-size:15px;font-weight:600}
+.strip-nav{display:flex;gap:10px}
+@media (max-width:760px){ .strip-nav{display:none} }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="projects.html">Portfolio</a>
+    <a href="laser.html" aria-current="page">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Laser cutting">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/preview/2048x2048/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-scan" aria-hidden="true"></div>
+  <div class="phero-copy">
+    <p class="eyebrow">Laser cutting</p>
+    <h1 class="phero-title">Cut<br>in house</h1>
+    <p class="phero-lede">In-house laser cutting for perforated panels, screens and custom profiles.</p>
+    <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="sec" aria-label="The machine">
+  <div class="sec-head reveal">
+    <div>
+      <p class="kicker">TruLaser 3040</p>
+      <h2 class="h2">Precision sheet metal</h2>
+      <p class="lede">Clean edges and fast cycle times on every cut.</p>
+    </div>
+  </div>
+  <div class="stats stats--pairs reveal">
+    <div class="stat">
+      <span class="stat-num"><span data-count="10">10</span><small>kW</small></span>
+      <span class="stat-label">Laser power</span>
+      <span class="stat-note">Up to 10kW.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num"><span data-count="28">28</span><small>mm</small></span>
+      <span class="stat-label">Mild steel thickness</span>
+      <span class="stat-note">Cuts mild steel up to 28mm thick.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">6.6 &times; 13<small>ft</small></span>
+      <span class="stat-label">Sheet size</span>
+      <span class="stat-note">On sheets up to 6.6 &times; 13 ft.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num"><span data-count="5">5</span></span>
+      <span class="stat-label">Metals</span>
+      <span class="stat-note">Mild steel, stainless, aluminum, titanium and brass.</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="Materials and stock">
+  <div class="cols spec-lists">
+    <div class="col reveal">
+      <p class="col-num">01</p>
+      <h3 class="col-title">Five metals</h3>
+      <ul class="chips"><li>Mild steel</li><li>Stainless</li><li>Aluminum</li><li>Titanium</li><li>Brass</li></ul>
+    </div>
+    <div class="col reveal" style="--d:80ms">
+      <p class="col-num">02</p>
+      <h3 class="col-title">Flat &amp; tube</h3>
+      <ul class="chips"><li>Sheet</li><li>Plate</li><li>Perforated stock</li><li>Tube</li></ul>
+    </div>
+    <div class="col reveal" style="--d:160ms">
+      <p class="col-num">03</p>
+      <h3 class="col-title">What we cut</h3>
+      <ul class="chips"><li>Perforated panels</li><li>Screens</li><li>Custom profiles</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-label="Laser work">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2">Laser work</h2>
+      <p class="lede">Sheet, plate, perforated stock and tube, cut in house. <a href="projects.html#laser-cutting">See it in the portfolio</a>.</p>
+    </div>
+    <div class="strip-nav">
+      <button class="round-btn" id="strip-prev" type="button" aria-label="Previous photos"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="round-btn" id="strip-next" type="button" aria-label="Next photos"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
+  </div>
+  <div class="strip" id="strip">
+    <figure class="reveal" style="--d:0ms">
+      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg" srcset="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/600x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 600w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Panel cut-out" loading="lazy" decoding="async"></div>
+      <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Panel cut-out</span></figcaption>
+    </figure>
+    <figure class="reveal" style="--d:70ms">
+      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg" srcset="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 600w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Laser profile" loading="lazy" decoding="async"></div>
+      <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Laser profile</span></figcaption>
+    </figure>
+    <figure class="reveal" style="--d:140ms">
+      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg" srcset="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/600x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 600w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+    </figure>
+    <figure class="reveal" style="--d:210ms">
+      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg" srcset="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 600w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+    </figure>
+    <figure class="reveal" style="--d:280ms">
+      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 600w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="projects.html">Portfolio</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+try {
+/* ---- the photo strip steps one photo at a time ---- */
+const strip = document.getElementById('strip');
+const step = ()=>{
+  const f = strip.querySelector('figure');
+  return f ? f.getBoundingClientRect().width + (parseFloat(getComputedStyle(strip).columnGap) || 0) : strip.clientWidth;
+};
+document.getElementById('strip-prev').addEventListener('click', ()=>strip.scrollBy({left:-step()}));
+document.getElementById('strip-next').addEventListener('click', ()=>strip.scrollBy({left: step()}));
+} catch (err) { console.error("feature failed:", err); }
+</script>
+</body>
+</html>

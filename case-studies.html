@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Studies — Construction Services, Inc.</title>
+<meta name="description" content="Selected case studies from Construction Services, Inc. — the ornamental scope on each job, the materials and finishes chosen, and how the work was fabricated and installed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+.cases{display:grid;gap:clamp(100px,18vh,200px)}
+.case{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(32px,6vw,100px);align-items:start;
+  scroll-margin-top:90px;
+}
+.case:nth-child(even) .case-media{order:2}
+.case-media{position:relative}
+.case-media.has-inset{padding-bottom:clamp(60px,10vw,150px)}
+.case-img{position:relative;overflow:hidden;background:#10161C;margin:0}
+.case-img > div{
+  position:absolute;inset:-8% 0;
+  background:var(--photo) center/cover no-repeat;
+  translate:0 var(--py,0px);
+}
+.case-img--main{aspect-ratio:4/5}
+/* a second photo overlapping the first, framed off it by a band of page colour */
+.case-img--inset{
+  position:absolute;bottom:0;right:calc(-1 * clamp(0px,3vw,48px));
+  width:52%;aspect-ratio:1;
+  outline:clamp(6px,.8vw,12px) solid var(--ink);
+  box-shadow:0 40px 70px -30px rgba(0,0,0,.9);
+}
+.case:nth-child(even) .case-img--inset{right:auto;left:calc(-1 * clamp(0px,3vw,48px))}
+.case-body{position:sticky;top:110px;padding-top:clamp(0px,4vh,40px)}
+.case-num{
+  margin:0 0 clamp(18px,3vh,30px);
+  font-family:var(--display);font-size:clamp(84px,11vw,170px);line-height:.8;
+  color:transparent;-webkit-text-stroke:1.5px rgba(242,239,233,.3);
+}
+.case-meta{
+  display:flex;gap:14px;margin:0 0 12px;
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);
+}
+.case-meta span:first-child{color:var(--accent)}
+.case-title{
+  margin:0 0 26px;font-size:clamp(30px,3.8vw,56px);font-weight:800;
+  letter-spacing:-.03em;line-height:.98;text-transform:uppercase;
+}
+.facts{margin:0 0 28px;border-top:1px solid var(--hair)}
+.facts > div{
+  display:grid;grid-template-columns:minmax(90px,.35fr) 1fr;gap:18px;
+  padding:13px 0;border-bottom:1px solid var(--hair);
+}
+.facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.facts dd{margin:0;font-size:15px;line-height:1.45}
+.case-text{
+  margin:0;max-width:58ch;font-family:var(--serif);font-weight:300;
+  font-size:clamp(16px,1.35vw,18px);line-height:1.62;color:var(--mist);
+}
+.more{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.more .h2{margin:0}
+@media (max-width:900px){
+  .case{grid-template-columns:1fr}
+  .case:nth-child(even) .case-media{order:0}
+  .case-body{position:static;padding-top:0}
+  .case-img--main{aspect-ratio:4/3}
+  .case-img--inset,.case:nth-child(even) .case-img--inset{right:0;left:auto;width:46%}
+}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <a href="about.html">About Us</a>
+    <a href="case-studies.html" aria-current="page">Case Studies</a>
+    <a href="projects.html">Portfolio</a>
+    <a href="laser.html">Laser</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+<main>
+<section class="phero" aria-label="Case studies">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/2048x2048/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+
+  <div class="phero-copy">
+    <p class="eyebrow">Case studies</p>
+    <h1 class="phero-title">See what<br>we have built</h1>
+    <p class="phero-lede">Selected case studies — the ornamental scope on each job, the materials and finishes chosen, and how the work was fabricated and installed.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="Case studies">
+  <div class="cases">
+
+  <article class="case" id="vanderbilt">
+    <div class="case-media has-inset reveal">
+      <figure class="case-img case-img--main"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/db7680ac-3af5-4a70-bb9e-33e50474690b/-/preview/1600x1600/-/format/auto/hq-Professional%20Photo-%20Monumental%20Stair%20-%20Vanderbilt%20Childrens.JPG')" data-drift="0.08" data-slack="0.08"></div></figure>
+      <figure class="case-img case-img--inset"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/abb912f2-8b45-4620-93ef-a49ec2a98a87/-/preview/1200x1200/-/format/auto/hq-Professional%20Photo%20-%20Rail%20%26%20Architectural%20Metalwork%20-Vanderbilt%20Childrens.jpg')" data-drift="0.06" data-slack="0.08"></div></figure>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">01</p>
+      <p class="case-meta"><span>Nashville, TN</span><span>Case study</span></p>
+      <h2 class="case-title">Vanderbilt Children&rsquo;s Hospital</h2>
+      <dl class="facts">
+        <div><dt>Architect</dt><dd>Donald Blair Architects</dd></div>
+        <div><dt>Contractor</dt><dd>Turner Construction Company</dd></div>
+        <div><dt>Scope</dt><dd>Monumental stair, railings, stainless steel cladding and decorative ribbon banners</dd></div>
+      </dl>
+      <p class="case-text">CSI provided the monumental stair, railings, stainless steel cladding and decorative ribbon banners. The railings have two colors with a faux finish and stainless steel stars, a stainless steel top rail and double stainless steel hand rails; the remaining materials are carbon steel. The ribbon banners at the intermediate landing and second floor lobby were laser cut and spiraled, and the monumental stair is serpentine with a flare out at the bottom. All materials were painted and finished in our shop.</p>
+    </div>
+  </article>
+
+  <article class="case" id="cooks-museum">
+    <div class="case-media reveal">
+      <figure class="case-img case-img--main"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/9d3793f8-ed36-460e-82de-9fe3b483c0bb/-/preview/1600x1600/-/format/auto/hq-Railing%20System%20-%20Cooks%20Museum.JPG')" data-drift="0.08" data-slack="0.08"></div></figure>
+    </div>
+    <div class="case-body reveal" style="--d:120ms">
+      <p class="case-num" aria-hidden="true">02</p>
+      <p class="case-meta"><span>Decatur, AL</span><span>Case study</span></p>
+      <h2 class="case-title">Cooks Museum of Natural Science</h2>
+      <dl class="facts">
+        <div><dt>Architect</dt><dd>Fuqua &amp; Partners</dd></div>
+        <div><dt>Contractor</dt><dd>Fite Building Company</dd></div>
+        <div><dt>Scope</dt><dd>Stainless steel and glass railing system for the spiraled stair and balcony</dd></div>
+      </dl>
+      <p class="case-text">CSI provided and installed the side mounted, double balustrade stainless steel and glass railing system for the spiraled stair and balcony. The glass for this project was bent &frac12;&rdquo; clear tempered laminated. The railing system features glass brackets attached to the railing using continuous top and bottom horizontal rods.</p>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More of our work">
+  <div class="more reveal">
+    <h2 class="h2">More of our work</h2>
+    <a class="cta" href="projects.html"><span class="cta-label">View portfolio</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="outline-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="projects.html">Portfolio</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>
