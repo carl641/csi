@@ -4,10 +4,10 @@ Construction Services, Inc. — Architectural Metal Products.
 
 ## Contents
 
-- `index.html` — home page. A single self-contained file: fonts load from
-  Google Fonts, everything else (styles, scripts, photography as base64
-  JPEGs) is inline, so it runs by opening the file in a browser with no
-  build step or server.
+- `index.html` — home page. A single file: fonts load from Google Fonts and
+  photography from the Uploadcare CDN (`3unloi5wlp.ucarecd.net`), with
+  styles and scripts inline, so it runs by opening the file in a browser
+  with no build step or server.
 
 ### Home page sections
 
