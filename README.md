@@ -36,5 +36,6 @@ Contact Us and Careers under About Us. The footer still lists every page.
 
 Hero with rotating sector frames · Our mission (animated stat counters) ·
 Leaders in architectural metalwork (S letterform) · One source for the
-ornamental package (I letterform) · Laser cutting carousel · Get a quote ·
-See our work on display (venue rail) · Employment · Case studies · Footer.
+ornamental package (I letterform) · Laser cutting carousel ·
+See our work on display (venue rail) · Employment · Case studies ·
+Get a quote · Footer.
