@@ -119,7 +119,6 @@
 .strip-img img{width:100%;height:100%;object-fit:cover;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
 .strip figure:hover img{transform:scale(1.04)}
 .strip figcaption{display:flex;gap:10px;align-items:baseline;margin-top:14px}
-.tile-cat{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .strip-title{font-size:15px;font-weight:600}
 .strip-nav{display:flex;gap:10px}
 </style>
@@ -317,23 +316,20 @@
     <div class="strip-track" id="strip-track">
       <figure class="reveal" style="--d:0ms">
         <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg" srcset="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/600x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 600w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Panel cut-out" loading="lazy" decoding="async"></div>
-        <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Panel cut-out</span></figcaption>
+        <figcaption><span class="strip-title">Panel cut-out</span></figcaption>
       </figure>
       <figure class="reveal" style="--d:70ms">
         <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg" srcset="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 600w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Laser profile" loading="lazy" decoding="async"></div>
-        <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Laser profile</span></figcaption>
+        <figcaption><span class="strip-title">Laser profile</span></figcaption>
       </figure>
       <figure class="reveal" style="--d:140ms">
         <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg" srcset="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/600x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 600w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
       </figure>
       <figure class="reveal" style="--d:210ms">
         <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg" srcset="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 600w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
       </figure>
       <figure class="reveal" style="--d:280ms">
         <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 600w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
       </figure>
     </div>
   </div>
@@ -452,6 +448,31 @@ strip.addEventListener('pointerup', e=>{
   if(Math.abs(dx) > 40) (dx < 0 ? next : prev)();
 });
 strip.addEventListener('pointercancel', ()=>{ x0 = null; });
+
+/* ---- and it turns on its own: one photo every few seconds, paused while
+   someone is pointing at it or using it, while it's off screen or the tab
+   is hidden, and never with reduced motion. A click or swipe restarts the
+   wait, so it doesn't move again straight after ---- */
+const EVERY = 3500;
+let timer = null, hovering = false, focused = false, onScreen = false;
+const stop = ()=>{ clearInterval(timer); timer = null; };
+const start = ()=>{
+  stop();
+  if(reducedMotion || hovering || focused || !onScreen || document.hidden) return;
+  timer = setInterval(next, EVERY);
+};
+const section = strip.closest('section');
+section.addEventListener('pointerenter', e=>{ if(e.pointerType === 'mouse'){ hovering = true; stop(); } });
+section.addEventListener('pointerleave', e=>{ if(e.pointerType === 'mouse'){ hovering = false; start(); } });
+// only keyboard focus pauses it; a mouse click on an arrow also focuses it
+section.addEventListener('focusin', e=>{ if(e.target.matches(':focus-visible')){ focused = true; stop(); } });
+section.addEventListener('focusout', e=>{ if(!section.contains(e.relatedTarget)){ focused = false; start(); } });
+['strip-prev','strip-next'].forEach(id=>document.getElementById(id).addEventListener('click', start));
+strip.addEventListener('pointerup', start);
+document.addEventListener('visibilitychange', start);
+if('IntersectionObserver' in window){
+  new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.25}).observe(strip);
+} else { onScreen = true; start(); }
 } catch (err) { console.error("feature failed:", err); }
 
 </script>
