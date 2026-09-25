@@ -55,13 +55,13 @@
 }
 .row .round-btn{grid-column:4;justify-self:end}
 .row:hover .row-title,.row:focus-visible .row-title{color:var(--accent);transform:translateX(12px)}
-.row:hover .round-btn,.row:focus-visible .round-btn{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.row:hover .round-btn,.row:focus-visible .round-btn{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
 /* the product's photo lifts out over the row while it's hovered */
 .row-img{
   position:absolute;z-index:3;right:clamp(70px,10vw,170px);top:50%;
   width:clamp(220px,21vw,330px);aspect-ratio:4/3;
-  background:#10161C var(--photo) center/cover no-repeat;
-  box-shadow:0 30px 60px -30px rgba(0,0,0,.85);
+  background:var(--mat) var(--photo) center/cover no-repeat;
+  box-shadow:0 30px 60px -30px rgba(21,25,29,.45);
   opacity:0;pointer-events:none;
   transform:translateY(-50%) rotate(-4deg) scale(.86);
   clip-path:inset(50% 0 50% 0);
@@ -142,9 +142,9 @@
 }
 /* the drawing on its own white sheet, set slightly askew until it's hovered */
 .sheet{
-  margin:0;background:#fff;color:var(--ink);
+  margin:0;background:#fff;color:#0C1116;
   padding:clamp(18px,2.6vw,36px) clamp(18px,2.6vw,36px) 0;
-  box-shadow:0 60px 90px -45px rgba(0,0,0,.95);
+  box-shadow:0 50px 80px -45px rgba(21,25,29,.45);
   transform:rotate(-1.6deg);
   transition:transform 700ms cubic-bezier(.2,.7,.25,1);
 }
