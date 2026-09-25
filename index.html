@@ -12,17 +12,54 @@
 <link rel="preload" as="image" type="image/avif" fetchpriority="high" href="https://3unloi5wlp.ucarecd.net/622bc792-920a-487f-abdb-5fdbf8573b36/Hero.avif">
 <style>
 :root{
-  --ink:#0C1116;
-  --paper:#F2EFE9;
-  --mist:rgba(242,239,233,.72);
-  --accent:#FFC24B;
-  --hair:rgba(242,239,233,.30);
+  /* a light page: --ink is the page colour and --paper the type on it.
+     Photo sections switch back to the dark set below */
+  --ink:#F4F1EA;
+  --paper:#15191D;
+  --mist:rgba(21,25,29,.7);
+  --hair:rgba(21,25,29,.18);
+  --hair-soft:rgba(21,25,29,.1);
+  /* --accent is for type and lines; the yellow can't carry type on a light
+     page, so here it deepens to bronze. --fill is the button yellow */
+  --accent:#8F5A00;
+  --fill:#FFC24B;
+  --on-fill:#15191D;
+  --bar:rgba(244,241,234,.9);
+  --bar-solid:rgba(244,241,234,.98);
+  --mat:#E6E0D5;
+  --word-hi:#EFEAE1;
+  --word-top:#E9E3D8;
+  --word-bot:#E2DBCE;
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
   /* how tall each letter frame stands; the letterform fills about 57% of it */
   --letter-h:min(173vh,1862px,120vw);
 }
-:root:not([data-theme="light"]){color-scheme:dark}
+:root{color-scheme:light}
+/* over photography the type stays light on the dark grade */
+.hero,.work,.fifth,.seventh,
+body:not(.is-stuck):not(.menu-open) .masthead{
+  --ink:#0C1116;
+  --paper:#F2EFE9;
+  --mist:rgba(242,239,233,.72);
+  --hair:rgba(242,239,233,.30);
+  --hair-soft:rgba(242,239,233,.16);
+  --accent:#FFC24B;
+  --bar:rgba(8,12,16,.88);
+  color:var(--paper);
+  color-scheme:dark;
+}
+/* the desktop links sit over the hero photo until the header bar shows */
+@media (min-width:1181px){
+  body:not(.is-stuck) .menu{
+    --paper:#F2EFE9;
+    --mist:rgba(242,239,233,.72);
+    --hair:rgba(242,239,233,.30);
+    --hair-soft:rgba(242,239,233,.16);
+    --accent:#FFC24B;
+    --bar:rgba(8,12,16,.92);
+  }
+}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
@@ -179,7 +216,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* soft top edge so the picture eases out of the copy above it */
   .next-figure::after{
     content:"";position:absolute;inset:0;z-index:2;display:block;
-    background:linear-gradient(to bottom,var(--ink) 0%,rgba(12,17,22,.5) 22%,rgba(12,17,22,0) 52%);
+    background:linear-gradient(to bottom,var(--ink) 0%,rgba(244,241,234,.5) 22%,rgba(244,241,234,0) 52%);
     pointer-events:none;
   }
 }
@@ -288,15 +325,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background-size:auto 115vh;
   background-position:center 45%;
   background-repeat:no-repeat;
-  background-color:#10161C;
+  background-color:var(--mat);
 }
 .s-frame .letter-img{
   /* cropped to 3:2 at the CDN: at 115vh tall a portrait original comes up
      narrower than the letter and leaves its sides empty */
-  background:#10161C url("https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/scale_crop/2040x1360/center/-/format/auto/hq-integraph.png") center 45% / auto 115vh no-repeat;
+  background:var(--mat) url("https://3unloi5wlp.ucarecd.net/64077bcf-5551-4ce3-9552-7529842f0674/-/scale_crop/2040x1360/center/-/format/auto/hq-integraph.png") center 45% / auto 115vh no-repeat;
 }
 .i-frame .letter-img{
-  background:#10161C url("https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg") center 45% / auto 115vh no-repeat;
+  background:var(--mat) url("https://3unloi5wlp.ucarecd.net/d6b54526-571c-4c40-b2bf-d829b2ba1010/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metal%20Work%20-torchiere%201.jpg") center 45% / auto 115vh no-repeat;
 }
 .letter-cut{
   position:absolute;inset:0;width:100%;height:100%;
@@ -441,7 +478,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:flex;align-items:center;justify-content:center;
   transition:background 200ms ease,color 200ms ease,border-color 200ms ease,opacity 200ms ease;
 }
-.work-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.work-btn:hover{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
 .work-btn[disabled]{opacity:.3;pointer-events:none}
 .work-track{
   position:absolute;inset:0;
@@ -661,16 +698,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .post-img::before{
   content:"";position:absolute;inset:0;z-index:2;
-  border:1px solid rgba(242,239,233,0);
+  border:1px solid transparent;
   transition:border-color 420ms ease;
 }
 .post-link:hover .post-img,
 .post-link:focus-visible .post-img{
   transform:translateY(-10px) scale(1.012);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.75);
+  box-shadow:0 24px 50px -24px rgba(21,25,29,.4);
 }
 .post-link:hover .post-img::before,
-.post-link:focus-visible .post-img::before{border-color:rgba(242,239,233,.28)}
+.post-link:focus-visible .post-img::before{border-color:var(--hair)}
 .post-link:active .post-img{transform:translateY(-4px) scale(1.004)}
 .post-meta{
   display:flex;gap:14px;align-items:center;margin:0 0 12px;
@@ -697,8 +734,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .pj2{background-image:url("https://3unloi5wlp.ucarecd.net/07ea4c1a-f03b-4f1d-af97-e06a2c3b637b/Case%20Studies%20-%20Cooks1.avif");background-size:cover;background-position:center}
 @media (max-width:760px){
   .journal-grid{grid-template-columns:1fr;gap:clamp(20px,3.5vh,32px)}
-  /* the copy moves inside the picture */
+  /* the copy moves inside the picture, so it takes the dark set */
   .post-link{
+    --paper:#F2EFE9;
+    --mist:rgba(242,239,233,.72);
+    --hair:rgba(242,239,233,.30);
+    --accent:#FFC24B;
+    color:var(--paper);
     position:relative;display:flex;align-items:flex-end;
     min-height:clamp(380px,62vh,520px);
     overflow:hidden;
@@ -742,8 +784,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   letter-spacing:.06em;white-space:nowrap;pointer-events:none;
   will-change:transform;
   background:
-    radial-gradient(90% 120% at 30% 20%,#1B2229 0%,rgba(27,34,41,0) 62%),
-    linear-gradient(180deg,#141A20 0%,#0E141A 82%);
+    radial-gradient(90% 120% at 30% 20%,var(--word-hi) 0%,transparent 62%),
+    linear-gradient(180deg,var(--word-top) 0%,var(--word-bot) 82%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;
   opacity:.9;
@@ -818,7 +860,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .masthead{
   position:fixed;top:0;left:0;right:0;z-index:9;
   display:flex;align-items:flex-start;justify-content:space-between;
-  gap:24px;
+  gap:24px;color:var(--paper);
   padding:22px clamp(20px,5vw,72px);
   background:transparent;
   border-bottom:1px solid transparent;
@@ -832,8 +874,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 body.menu-open .mark{opacity:0}
 body.is-stuck .menu{top:12px}
 body.is-stuck .masthead{
-  background:rgba(8,12,16,.88);
-  border-bottom-color:rgba(242,239,233,.16);
+  background:var(--bar);
+  border-bottom-color:var(--hair-soft);
   padding-top:14px;padding-bottom:14px;
   backdrop-filter:blur(12px);
 }
@@ -879,8 +921,8 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
     position:absolute;top:calc(100% + 12px);left:-20px;
     min-width:calc(100% + 40px);width:max-content;
     gap:8px;padding:14px 20px 16px;
-    background:rgba(8,12,16,.92);
-    border:1px solid rgba(242,239,233,.16);
+    background:var(--bar);
+    border:1px solid var(--hair-soft);
     backdrop-filter:blur(12px);
     opacity:0;visibility:hidden;transform:translateY(-6px);
     transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
@@ -925,7 +967,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
     padding:clamp(86px,13vh,132px) clamp(28px,7vw,72px) clamp(28px,6vh,48px);
     /* a phone on its side is too short for the whole list: let it scroll */
     overflow-y:auto;overscroll-behavior:contain;
-    background:rgba(8,12,16,.97);
+    background:var(--bar-solid);
     backdrop-filter:blur(18px);
     font-size:clamp(15px,2.6vw,19px);font-weight:600;
     text-transform:uppercase;letter-spacing:-.02em;
@@ -995,7 +1037,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
   display:inline-block;
   padding:14px 30px;
   font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ink);background:var(--accent);
+  color:var(--on-fill);background:var(--fill);
   text-decoration:none;
   transition:background 180ms ease;
 }
@@ -1010,7 +1052,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
   transition:transform 300ms cubic-bezier(.25,.9,.3,1),opacity 200ms ease;
 }
 .cta-arrow svg{display:block}
-.cta:hover,.cta:focus-visible{background:#fff}
+.cta:hover,.cta:focus-visible{background:var(--paper);color:var(--ink)}
 .cta:hover .cta-label,.cta:focus-visible .cta-label{transform:translateX(-9px)}
 .cta:hover .cta-arrow,.cta:focus-visible .cta-arrow{
   opacity:1;transform:translateY(-50%) translateX(0) scale(1);
