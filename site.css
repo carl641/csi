@@ -38,24 +38,32 @@ img{display:block;max-width:100%}
   border-bottom:1px solid transparent;
   transition:background 320ms ease,border-color 320ms ease,padding 320ms ease;
 }
+/* while the menu shares the line, the header sits a little lower */
+@media (min-width:1181px){
+  .masthead{padding-top:34px}
+}
 .mark{display:flex;align-items:baseline;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:18px;line-height:1;transition:opacity 200ms ease}
 a.mark{color:inherit;text-decoration:none}
 body.menu-open .mark{opacity:0}
-body.menu-open .masthead{border-bottom-color:transparent;background:transparent}
-body.is-stuck .menu{top:18px}
+body.is-stuck .menu{top:12px}
 body.is-stuck .masthead{
   background:rgba(8,12,16,.88);
   border-bottom-color:rgba(242,239,233,.16);
   padding-top:14px;padding-bottom:14px;
   backdrop-filter:blur(12px);
 }
+/* the open burger menu covers the page, stuck header bar included */
+body.menu-open .masthead{border-bottom-color:transparent;background:transparent;backdrop-filter:none}
 .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);letter-spacing:0}
 .menu{
   position:fixed;z-index:10;
-  top:26px;right:var(--gutter);
+  top:32px;right:var(--gutter);
   transition:top 320ms ease;
   display:flex;gap:clamp(14px,2.4vw,34px);
-  font-size:13px;font-weight:600;color:var(--mist);
+  /* 15px from 1364px up; narrower, it eases back toward 13px so it still
+     fits beside the full company name. Its top keeps the links on the
+     name's baseline */
+  font-size:clamp(13px,1.1vw,15px);font-weight:600;color:var(--mist);
 }
 .menu-mark{display:none}
 .menu a{
@@ -97,7 +105,7 @@ body.is-stuck .masthead{
     transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
   }
   /* once the header bar shows, the panel hangs from its lower edge */
-  body.is-stuck .drop{top:28px}
+  body.is-stuck .drop{top:34px}
   /* bridges the gap under About Us, so the pointer can travel down to it */
   .drop::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:14px}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
@@ -145,6 +153,7 @@ body.is-stuck .masthead{
     visibility:hidden;
     transition:transform 520ms cubic-bezier(.22,.9,.28,1),visibility 520ms;
   }
+  body.is-stuck .menu{top:0}
   .menu.is-open{transform:translateX(0);visibility:visible}
   .menu-mark{
     display:flex;
