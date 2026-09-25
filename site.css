@@ -1,7 +1,7 @@
-/* Shared styles for the inner pages: about, case studies, portfolio, laser,
-   careers and contact. The tokens, masthead, menu, buttons and footer are
-   copied from index.html, which keeps its own inline copy — change both
-   together. Anything used by one page only lives in that page's <style>. */
+/* Shared styles for the inner pages: about, case studies, the four sector
+   pages, laser, careers and contact. The tokens, masthead, menu, buttons and
+   footer are copied from index.html, which keeps its own inline copy — change
+   both together. Anything used by one page only lives in that page's <style>. */
 
 :root{
   --ink:#0C1116;
@@ -68,9 +68,44 @@ body.is-stuck .masthead{
 }
 .menu a:hover{color:var(--paper)}
 .menu a:hover::after{transform:scaleX(1)}
-/* the page you're on keeps its underline */
-.menu a[aria-current="page"]{color:var(--paper)}
-.menu a[aria-current="page"]::after{transform:scaleX(1)}
+/* the page you're on keeps its underline, and About Us keeps it for the
+   two pages in its dropdown */
+.menu a[aria-current="page"],.menu a.is-parent{color:var(--paper)}
+.menu a[aria-current="page"]::after,.menu a.is-parent::after{transform:scaleX(1)}
+
+/* About Us sits last and drops down to Contact Us and Careers: a mouse
+   opens it by hovering, touch and keyboard by the arrow beside it */
+.menu-drop{position:relative;display:flex;gap:3px}
+.drop-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:20px;margin-right:-6px;
+}
+.drop-toggle svg{transition:transform 260ms cubic-bezier(.3,0,.2,1)}
+.menu-drop:hover > a,.menu-drop.is-open > a,
+.menu-drop:hover .drop-toggle,.menu-drop.is-open .drop-toggle{color:var(--paper)}
+.menu-drop.is-open .drop-toggle svg{transform:rotate(180deg)}
+.drop{display:flex;flex-direction:column;align-items:flex-start}
+@media (min-width:1181px){
+  .drop{
+    position:absolute;top:calc(100% + 12px);left:-20px;
+    min-width:calc(100% + 40px);width:max-content;
+    gap:8px;padding:14px 20px 16px;
+    background:rgba(8,12,16,.92);
+    border:1px solid rgba(242,239,233,.16);
+    backdrop-filter:blur(12px);
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
+  }
+  /* once the header bar shows, the panel hangs from its lower edge */
+  body.is-stuck .drop{top:28px}
+  /* bridges the gap under About Us, so the pointer can travel down to it */
+  .drop::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:14px}
+  .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+}
+@media (min-width:1181px) and (hover:hover){
+  .menu-drop:hover .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+  .menu-drop:hover .drop-toggle svg{transform:rotate(180deg)}
+}
 
 /* hamburger */
 .burger{
@@ -90,11 +125,7 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-/* nine menu items: the subtitle beside the name steps aside while they
-   share the line, and below 1180px the menu folds into the burger */
-@media (min-width:1181px) and (max-width:1400px){
-  .masthead .mark span{display:none}
-}
+/* at 1180px and below the menu folds into the burger */
 @media (max-width:1180px){
   .burger{display:flex}
   .menu{
@@ -102,7 +133,9 @@ body.is-stuck .masthead{
     width:100%;
     flex-direction:column;justify-content:flex-start;align-items:flex-start;
     gap:clamp(14px,2.6vh,24px);
-    padding:clamp(86px,13vh,132px) clamp(28px,7vw,72px) 0;
+    padding:clamp(86px,13vh,132px) clamp(28px,7vw,72px) clamp(28px,6vh,48px);
+    /* a phone on its side is too short for the whole list: let it scroll */
+    overflow-y:auto;overscroll-behavior:contain;
     background:rgba(8,12,16,.97);
     backdrop-filter:blur(18px);
     font-size:clamp(15px,2.6vw,19px);font-weight:600;
@@ -128,6 +161,15 @@ body.is-stuck .masthead{
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
   .menu a[aria-current="page"]{color:var(--accent)}
+  /* the dropdown opens out into a list under About Us */
+  .menu-drop{flex-direction:column;align-items:flex-start;gap:clamp(12px,2.2vh,18px)}
+  .drop-toggle{display:none}
+  .drop{
+    gap:clamp(12px,2.2vh,18px);
+    padding-left:18px;border-left:1px solid var(--hair);
+    font-size:.84em;color:var(--mist);
+  }
+  .menu a.is-parent:not(:hover)::after{transform:scaleX(0)}
 }
 @media (max-width:760px){
   .mark span{display:none}
@@ -477,5 +519,5 @@ body.is-stuck .masthead{
 @media (prefers-reduced-motion:reduce){
   .phero-img,.phero-copy > *{animation:none}
   .js .reveal{opacity:1;transform:none;transition:none}
-  .menu,.burger span{transition-duration:1ms}
+  .menu,.burger span,.drop,.drop-toggle svg{transition-duration:1ms}
 }

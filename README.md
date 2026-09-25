@@ -24,8 +24,13 @@ original file (`data-raw`), and a CSS background links the original.
 
 The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
-open them. With nine pages in the menu, the header drops its subtitle
-between 1181px and 1400px and folds the menu into the burger at 1180px.
+open them.
+
+The menu runs Case Studies, the four sector pages and Laser, with About Us
+last, on the right. About Us drops down to Contact Us and Careers: a mouse
+opens it by hovering, and the arrow beside it opens it for touch and
+keyboard. At 1180px and below the menu folds into the burger, which lists
+Contact Us and Careers under About Us. The footer still lists every page.
 
 ### Home page sections
 

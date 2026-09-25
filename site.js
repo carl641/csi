@@ -20,8 +20,30 @@ function setMenu(open){
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
 window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
+
+/* About Us drops down to Contact Us and Careers. Hovering opens it (in the
+   CSS); the arrow beside it opens it for touch and keyboard, and it closes
+   on a click elsewhere, on Escape, or when focus moves on past it */
+const drop    = menu.querySelector('.menu-drop');
+const dropBtn = drop && drop.querySelector('.drop-toggle');
+function setDrop(open){
+  if(!drop) return;
+  drop.classList.toggle('is-open', open);
+  dropBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+if(drop){
+  dropBtn.addEventListener('click', ()=>setDrop(!drop.classList.contains('is-open')));
+  document.addEventListener('click', e=>{ if(!drop.contains(e.target)) setDrop(false); });
+  drop.addEventListener('focusout', e=>{ if(!drop.contains(e.relatedTarget)) setDrop(false); });
+}
+
 document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false);
+  if(e.key !== 'Escape') return;
+  if(drop && drop.classList.contains('is-open')){
+    if(drop.contains(document.activeElement)) dropBtn.focus();
+    setDrop(false);
+  }
+  if(menu.classList.contains('is-open')) setMenu(false);
 });
 
 function onScroll(){ document.body.classList.toggle('is-stuck', window.scrollY > 24); }
