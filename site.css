@@ -96,7 +96,8 @@ body.is-stuck .masthead{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + 7px);right:var(--gutter);
   transition:top 320ms ease;
-  display:flex;gap:clamp(14px,2.4vw,34px);
+  /* tighter between 1281px and ~1550px, so the full menu still clears the name */
+  display:flex;gap:clamp(18px,calc(4.4vw - 34px),34px);
   /* 7px below the header's top padding centres the links on the two
      lines of the name */
   font-size:15px;font-weight:600;color:var(--mist);
