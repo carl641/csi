@@ -19,6 +19,7 @@
   --bar:rgba(244,241,234,.9);
   --bar-solid:rgba(244,241,234,.98);
   --mat:#E6E0D5;
+  --tint:#ECE7DE;
   --word-hi:#EFEAE1;
   --word-top:#E9E3D8;
   --word-bot:#E2DBCE;
@@ -399,7 +400,9 @@ body.is-stuck .masthead{
 
 /* a sector page's overview: the intro, three columns, then its materials */
 .svc-lede{margin:clamp(18px,3vh,28px) 0 0}
-.svc-cols{margin-top:clamp(48px,8vh,88px)}
+/* a section set on a slightly deeper tone, to part it from its neighbours */
+.sec--tint{background:var(--tint)}
+.sec-title{margin-bottom:clamp(30px,5vh,52px)}
 .svc-mat{
   display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);
   gap:clamp(18px,5vw,72px);align-items:start;
@@ -419,6 +422,51 @@ body.is-stuck .masthead{
 .proj-credits div{display:grid;grid-template-columns:100px 1fr;gap:10px}
 .proj-credits dt{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);padding-top:1px}
 .proj-credits dd{margin:0}
+
+/* featured projects: the gallery large beside its write-up, alternating sides */
+.feats{display:grid;gap:clamp(64px,11vh,128px)}
+.feat{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  gap:clamp(28px,4.5vw,72px);align-items:center;
+}
+.feat:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
+.feat:nth-child(even) .gal{order:2}
+.feat-body{max-width:46ch}
+.feat .proj-place{margin-top:0}
+.feat-title{
+  margin:0 0 16px;font-size:clamp(24px,2.6vw,38px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.05;
+}
+.feat .proj-text{font-size:clamp(15px,1.2vw,17px)}
+.feat .proj-credits{margin-top:20px;padding-top:16px;border-top:1px solid var(--hair)}
+.feat-count{margin:18px 0 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist)}
+@media (max-width:860px){
+  .feat,.feat:nth-child(even){grid-template-columns:1fr}
+  .feat:nth-child(even) .gal{order:0}
+  .feat-body{max-width:none}
+}
+
+/* everything else grouped into a compact grid of smaller tiles; the
+   catch-all collection takes two cells */
+.more-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  margin-bottom:clamp(26px,4vh,40px);
+  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
+}
+.more-head .h2{margin:0}
+.more-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(30px,5vh,48px) clamp(14px,1.6vw,22px);
+}
+.more-grid .proj--all{grid-column:span 2}
+.more-grid .proj-title{font-size:clamp(15px,1.1vw,17px)}
+@media (max-width:1100px){
+  .more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* phones keep the small tiles two across, with the collection full width */
+@media (max-width:560px){
+  .more-grid .proj-cap{flex-direction:column;align-items:flex-start;gap:2px}
+}
 
 /* numbered columns under a hairline, like the home page's venue cards */
 .cols{

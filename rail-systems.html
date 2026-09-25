@@ -55,12 +55,7 @@
   .gal-img{transition:none}
 }
 
-/* ---------- the projects: one card each, its photos in a small gallery ---------- */
-.tally{margin:0 0 clamp(24px,4vh,40px)}
-.projs{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
-}
+/* ---------- the project tiles: each one's photos in a small gallery ---------- */
 .proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
 .proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
 .proj-count{
@@ -72,8 +67,6 @@
 .proj .gal-nav .round-btn{width:36px;height:36px}
 .proj .gal-seg{height:24px}
 .proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
-@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:640px){ .projs{grid-template-columns:1fr} }
 
 .more{
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
@@ -128,7 +121,11 @@
       <p class="lede svc-lede">We build to custom designs or from stock component systems to fulfill your design specifications — a single run of ornamental guard, or the railings for an entire building complex. Guard railings are analyzed for the material sizes and connection details they need to meet loading criteria and code, and the same team that details them fabricates and installs them.</p>
     </div>
   </div>
-  <div class="cols svc-cols">
+</section>
+
+<section class="sec sec--tint" aria-label="What we build">
+  <h2 class="h2 sec-title reveal">What we build</h2>
+  <div class="cols">
     <div class="col reveal" style="--d:0ms">
       <p class="col-num">01</p>
       <h3 class="col-title">Custom &amp; stock systems</h3>
@@ -154,11 +151,15 @@
   </div>
 </section>
 
-<section class="sec sec-tight" aria-label="Projects">
-  <h2 class="h2 reveal">Selected work</h2>
-  <p class="kicker tally reveal">17 photos</p>
-  <div class="projs">
-    <article class="proj reveal" style="--d:0ms">
+<section class="sec" aria-label="Featured projects">
+  <div class="sec-head reveal">
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h2 class="h2">Featured projects</h2>
+    </div>
+  </div>
+  <div class="feats">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="7">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20McNeese1.avif" data-raw="https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif" alt="McNeese State University, photo 1 of 7" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -180,18 +181,18 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">McNeese State University</h3>
-        <p class="proj-count">7 photos</p>
+      <div class="feat-body">
+        <p class="proj-place">Lake Charles, LA</p>
+        <h3 class="feat-title">McNeese State University</h3>
+        <p class="proj-text">CSI provided the stainless steel and glass railings, along with the stainless steel one-line railings at the monumental stairs and balconies. The aluminum and glass railings at the upper-level bowl feature custom-fabricated, clear powder-coated posts. CSI also provided the two-line aisle railings.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>Alfred Palma, LLC</dd></div>
+          <div><dt>Architect</dt><dd>Randy M. Goodloe &amp; Crawford Architects</dd></div>
+        </dl>
+        <p class="feat-count">7 photos</p>
       </div>
-      <p class="proj-place">Lake Charles, LA</p>
-      <p class="proj-text">CSI provided the stainless steel and glass railings, along with the stainless steel one-line railings at the monumental stairs and balconies. The aluminum and glass railings at the upper-level bowl feature custom-fabricated, clear powder-coated posts. CSI also provided the two-line aisle railings.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>Alfred Palma, LLC</dd></div>
-        <div><dt>Architect</dt><dd>Randy M. Goodloe &amp; Crawford Architects</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:70ms">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20Colonnade1.avif" data-raw="https://3unloi5wlp.ucarecd.net/02e91c41-04c1-475e-b133-6f2e62a2e36d/Rail%20Systems%20-%20Colonnade1.avif" alt="Colonnade Tower, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -207,18 +208,18 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">Colonnade Tower</h3>
-        <p class="proj-count">1 photo</p>
+      <div class="feat-body">
+        <p class="proj-place">Birmingham, AL</p>
+        <h3 class="feat-title">Colonnade Tower</h3>
+        <p class="proj-text">CSI provided and installed the smoke baffles, the stair, and the stainless steel and glass railing, as well as the stainless steel cladding at the stair and balcony.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>Hoar Construction</dd></div>
+          <div><dt>Architect</dt><dd>Hendon + Huckstine Architects</dd></div>
+        </dl>
+        <p class="feat-count">1 photo</p>
       </div>
-      <p class="proj-place">Birmingham, AL</p>
-      <p class="proj-text">CSI provided and installed the smoke baffles, the stair, and the stainless steel and glass railing, as well as the stainless steel cladding at the stair and balcony.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>Hoar Construction</dd></div>
-        <div><dt>Architect</dt><dd>Hendon + Huckstine Architects</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:140ms">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="3">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/-/preview/1200x1200/-/format/auto/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" data-raw="https://3unloi5wlp.ucarecd.net/11f04ba0-a408-4d19-a8d4-2085aeb8af7c/Rail%20Systems%20-%20BlueCross%20BlueShield1.avif" alt="Blue Cross &amp; Blue Shield, photo 1 of 3" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -236,18 +237,26 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">Blue Cross &amp; Blue Shield</h3>
-        <p class="proj-count">3 photos</p>
+      <div class="feat-body">
+        <p class="proj-place">Columbus, GA</p>
+        <h3 class="feat-title">Blue Cross &amp; Blue Shield</h3>
+        <p class="proj-text">CSI provided the glass and stainless steel button railings at the monumental stair and balconies. The stainless steel has a No. 4 circular finish.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>Batson Cook</dd></div>
+          <div><dt>Architect</dt><dd>Hecht Burdeshaw Architects, Inc.</dd></div>
+        </dl>
+        <p class="feat-count">3 photos</p>
       </div>
-      <p class="proj-place">Columbus, GA</p>
-      <p class="proj-text">CSI provided the glass and stainless steel button railings at the monumental stair and balconies. The stainless steel has a No. 4 circular finish.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>Batson Cook</dd></div>
-        <div><dt>Architect</dt><dd>Hecht Burdeshaw Architects, Inc.</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:0ms">
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More projects">
+  <div class="more-head reveal">
+    <h2 class="h2">More projects</h2>
+  </div>
+  <div class="feats">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="6">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" data-raw="https://3unloi5wlp.ucarecd.net/6d2829d8-ad15-4bbc-aa6f-2cf2ee685c65/-/preview/1200x1200/-/format/auto/hq-Rail%20Systems%20-%20Silver%20Rail.JPG" alt="More rail systems, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -268,9 +277,10 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">More rail systems</h3>
-        <p class="proj-count">6 photos</p>
+      <div class="feat-body">
+        <h3 class="feat-title">More rail systems</h3>
+        <p class="proj-text">A further look at our rail systems, across the projects above and beyond them.</p>
+        <p class="feat-count">6 photos</p>
       </div>
     </article>
   </div>

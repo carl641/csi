@@ -55,12 +55,7 @@
   .gal-img{transition:none}
 }
 
-/* ---------- the projects: one card each, its photos in a small gallery ---------- */
-.tally{margin:0 0 clamp(24px,4vh,40px)}
-.projs{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
-}
+/* ---------- the project tiles: each one's photos in a small gallery ---------- */
 .proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
 .proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
 .proj-count{
@@ -72,8 +67,6 @@
 .proj .gal-nav .round-btn{width:36px;height:36px}
 .proj .gal-seg{height:24px}
 .proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
-@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:640px){ .projs{grid-template-columns:1fr} }
 
 .more{
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
@@ -128,7 +121,11 @@
       <p class="lede svc-lede">CSI engineers, fabricates and installs entrance and walkway canopies to the architect’s intent, from radial glass canopies to long-span aluminum systems. Every canopy is analyzed with COSMOS/M finite element software for the material sizes and connection details it needs to meet loading criteria and code, and our own crews install it.</p>
     </div>
   </div>
-  <div class="cols svc-cols">
+</section>
+
+<section class="sec sec--tint" aria-label="What we build">
+  <h2 class="h2 sec-title reveal">What we build</h2>
+  <div class="cols">
     <div class="col reveal" style="--d:0ms">
       <p class="col-num">01</p>
       <h3 class="col-title">Glass &amp; steel canopies</h3>
@@ -154,11 +151,15 @@
   </div>
 </section>
 
-<section class="sec sec-tight" aria-label="Projects">
-  <h2 class="h2 reveal">Selected work</h2>
-  <p class="kicker tally reveal">17 photos</p>
-  <div class="projs">
-    <article class="proj reveal" style="--d:0ms">
+<section class="sec" aria-label="Featured projects">
+  <div class="sec-head reveal">
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h2 class="h2">Featured projects</h2>
+    </div>
+  </div>
+  <div class="feats">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="8">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/-/preview/1200x1200/-/format/auto/Canopies%20-%20Dynetics1.avif" data-raw="https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif" alt="Dynetics, photo 1 of 8" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -181,18 +182,18 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">Dynetics</h3>
-        <p class="proj-count">8 photos</p>
+      <div class="feat-body">
+        <p class="proj-place">Huntsville, AL</p>
+        <h3 class="feat-title">Dynetics</h3>
+        <p class="proj-text">CSI provided the glass and painted steel canopy. The canopy is radial, with center columns and cantilevered structural outriggers.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>B.L. Harbert International</dd></div>
+          <div><dt>Architect</dt><dd>L. Hughes Associates</dd></div>
+        </dl>
+        <p class="feat-count">8 photos</p>
       </div>
-      <p class="proj-place">Huntsville, AL</p>
-      <p class="proj-text">CSI provided the glass and painted steel canopy. The canopy is radial, with center columns and cantilevered structural outriggers.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>B.L. Harbert International</dd></div>
-        <div><dt>Architect</dt><dd>L. Hughes Associates</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:70ms">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="8">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/-/preview/1200x1200/-/format/auto/Canopies%20-%20Otto%20Hospital1.avif" data-raw="https://3unloi5wlp.ucarecd.net/753cd9b6-c29d-466a-8f32-f94d09e16acd/Canopies%20-%20Otto%20Hospital1.avif" alt="Otto Kaiser Memorial Hospital, photo 1 of 8" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -215,18 +216,26 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">Otto Kaiser Memorial Hospital</h3>
-        <p class="proj-count">8 photos</p>
+      <div class="feat-body">
+        <p class="proj-place">Kenedy, TX</p>
+        <h3 class="feat-title">Otto Kaiser Memorial Hospital</h3>
+        <p class="proj-text">CSI provided the custom fabricated aluminum canopies. The system has long open spans at multiple elevations and varying pitch, and is powder coated dark bronze.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>Robins &amp; Morton</dd></div>
+          <div><dt>Architect</dt><dd>O’Connell Robertson</dd></div>
+        </dl>
+        <p class="feat-count">8 photos</p>
       </div>
-      <p class="proj-place">Kenedy, TX</p>
-      <p class="proj-text">CSI provided the custom fabricated aluminum canopies. The system has long open spans at multiple elevations and varying pitch, and is powder coated dark bronze.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>Robins &amp; Morton</dd></div>
-        <div><dt>Architect</dt><dd>O’Connell Robertson</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:140ms">
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More projects">
+  <div class="more-head reveal">
+    <h2 class="h2">More projects</h2>
+  </div>
+  <div class="feats">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" data-raw="https://3unloi5wlp.ucarecd.net/68349995-1a35-42e8-be7d-a4ca0ba55744/-/preview/1200x1200/-/format/auto/hq-Canopy-%20Mansion.jpg" alt="More canopies, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -242,9 +251,10 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">More canopies</h3>
-        <p class="proj-count">1 photo</p>
+      <div class="feat-body">
+        <h3 class="feat-title">More canopies</h3>
+        <p class="proj-text">A further look at our canopy work.</p>
+        <p class="feat-count">1 photo</p>
       </div>
     </article>
   </div>
