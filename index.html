@@ -831,6 +831,7 @@ body.is-stuck{--head-top:16px;--head-bottom:16px}
 .mark{display:flex;align-items:baseline;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:18px;line-height:1;transition:opacity 200ms ease}
 /* in the header the subtitle sits under the name, as in the burger menu */
 .masthead .mark{flex-direction:column;align-items:flex-start;gap:6px}
+/* while the burger menu is open, its own copy of the name stands in */
 body.menu-open .mark{opacity:0}
 body.is-stuck .masthead{
   background:rgba(8,12,16,.88);
@@ -925,7 +926,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
     width:100%;
     flex-direction:column;justify-content:flex-start;align-items:flex-start;
     gap:clamp(14px,2.6vh,24px);
-    padding:clamp(86px,13vh,132px) clamp(28px,7vw,72px) clamp(28px,6vh,48px);
+    padding:clamp(86px,13vh,132px) clamp(20px,5vw,72px) clamp(28px,6vh,48px);
     /* a phone on its side is too short for the whole list: let it scroll */
     overflow-y:auto;overscroll-behavior:contain;
     background:rgba(8,12,16,.97);
@@ -938,18 +939,19 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
     transition:transform 520ms cubic-bezier(.22,.9,.28,1),visibility 520ms;
   }
   .menu.is-open{transform:translateX(0);visibility:visible}
+  /* the menu's copy of the name slides in with it and lands exactly on
+     the header's, at the top of the page or scrolled */
   .menu-mark{
-    display:flex;
-    position:absolute;top:clamp(64px,8.5vh,80px);left:clamp(28px,7vw,72px);
-    flex-direction:column;align-items:flex-start;gap:8px;
-    font-size:clamp(20px,3.6vw,27px);font-weight:800;letter-spacing:-.025em;
-    text-transform:none;line-height:1;
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+    position:absolute;top:var(--head-top);left:clamp(20px,5vw,72px);
+    font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1;
+    text-transform:none;
   }
   .menu-mark span{
     font-family:var(--serif);font-style:italic;font-weight:300;
-    font-size:clamp(13px,2vw,17px);color:var(--mist);letter-spacing:0;
+    font-size:14px;color:var(--mist);letter-spacing:0;
   }
-  .menu{padding-top:clamp(128px,19vh,160px)}
+  .menu{padding-top:clamp(116px,18vh,150px)}
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
   /* the dropdown opens out into a list under About Us */
@@ -1092,6 +1094,8 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
   .mark{font-size:15px}
   /* phones keep the subtitle under the name too, with a little less room */
   .masthead .mark span{display:block;font-size:12px}
+  .menu-mark{font-size:15px}
+  .menu-mark span{font-size:12px}
   :root{--head-top:26px;--head-bottom:20px}
   body.is-stuck{--head-top:13px;--head-bottom:13px}
   .stage{bottom:104px}
@@ -1117,7 +1121,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
   </header>
 
     <nav class="menu" id="menu">
-      <div class="menu-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <div class="menu-mark" aria-hidden="true">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
       <a href="architectural-metalwork.html">Metalwork</a>
       <a href="monumental-stairs.html">Stairs</a>
       <a href="rail-systems.html">Railings</a>
