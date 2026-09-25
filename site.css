@@ -31,25 +31,27 @@ img{display:block;max-width:100%}
 /* ---------- masthead ---------- */
 .masthead{
   position:fixed;top:0;left:0;right:0;z-index:9;
-  display:flex;align-items:flex-start;justify-content:space-between;
+  display:flex;align-items:center;justify-content:space-between;
   gap:24px;
   padding:22px var(--gutter);
   background:transparent;
   border-bottom:1px solid transparent;
   transition:background 320ms ease,border-color 320ms ease,padding 320ms ease;
 }
-/* while the menu shares the line, the header sits a little lower */
+/* on desktop the header sits lower, with room above and below the name */
 @media (min-width:1181px){
-  .masthead{padding-top:34px}
+  .masthead{padding-top:40px;padding-bottom:28px}
 }
 .mark{display:flex;align-items:baseline;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:18px;line-height:1;transition:opacity 200ms ease}
 a.mark{color:inherit;text-decoration:none}
+/* in the header the subtitle sits under the name, as in the burger menu */
+.masthead .mark{flex-direction:column;align-items:flex-start;gap:6px}
 body.menu-open .mark{opacity:0}
-body.is-stuck .menu{top:12px}
+body.is-stuck .menu{top:27px}
 body.is-stuck .masthead{
   background:rgba(8,12,16,.88);
   border-bottom-color:rgba(242,239,233,.16);
-  padding-top:14px;padding-bottom:14px;
+  padding-top:20px;padding-bottom:20px;
   backdrop-filter:blur(12px);
 }
 /* the open burger menu covers the page, stuck header bar included */
@@ -57,13 +59,11 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
 .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);letter-spacing:0}
 .menu{
   position:fixed;z-index:10;
-  top:32px;right:var(--gutter);
+  top:47px;right:var(--gutter);
   transition:top 320ms ease;
   display:flex;gap:clamp(14px,2.4vw,34px);
-  /* 15px from 1364px up; narrower, it eases back toward 13px so it still
-     fits beside the full company name. Its top keeps the links on the
-     name's baseline */
-  font-size:clamp(13px,1.1vw,15px);font-weight:600;color:var(--mist);
+  /* its top centres the links on the two lines of the name */
+  font-size:15px;font-weight:600;color:var(--mist);
 }
 .menu-mark{display:none}
 .menu a{
@@ -105,14 +105,17 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
     transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
   }
   /* once the header bar shows, the panel hangs from its lower edge */
-  body.is-stuck .drop{top:34px}
-  /* bridges the gap under About Us, so the pointer can travel down to it */
-  .drop::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:14px}
+  body.is-stuck .drop{top:51px}
+  /* while it's open, an unseen strip under About Us carries the pointer
+     down to the panel; it sits beneath the links and the panel */
+  .menu-drop::after{content:"";position:absolute;z-index:-1;left:-20px;right:-20px;top:100%;height:40px;display:none}
+  .menu-drop.is-open::after{display:block}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
 @media (min-width:1181px) and (hover:hover){
   .menu-drop:hover .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
   .menu-drop:hover .drop-toggle svg{transform:rotate(180deg)}
+  .menu-drop:hover::after{display:block}
 }
 
 /* hamburger */
