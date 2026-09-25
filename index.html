@@ -30,6 +30,8 @@
   --word-hi:#EFEAE1;
   --word-top:#E9E3D8;
   --word-bot:#E2DBCE;
+  /* the one photo behind every Get a quote section */
+  --quote-photo:url("https://3unloi5wlp.ucarecd.net/1d087e8e-2363-457a-9e9b-3a3003951def/Contact%20Us%20-%20Hero1.avif");
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
   /* how tall each letter frame stands; the letterform fills about 57% of it */
@@ -292,7 +294,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .fifth-img::after,.seventh-img::after{
   content:"";position:absolute;inset:0;
   background:
-    radial-gradient(75% 65% at 50% 50%,rgba(8,12,16,.78) 0%,rgba(8,12,16,.45) 55%,rgba(8,12,16,.2) 100%),
+    radial-gradient(75% 65% at 50% 50%,rgba(8,12,16,.8) 0%,rgba(8,12,16,.5) 55%,rgba(8,12,16,.25) 100%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
 }
 .sixth{
@@ -658,7 +660,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 
 .fifth-img{
-  background:url("https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg") center / cover no-repeat;
+  background:#10161C var(--quote-photo) center / cover no-repeat;
 }
 .seventh-img{
   background:url("https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/preview/2048x2048/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg") center / cover no-repeat;

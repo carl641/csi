@@ -23,6 +23,8 @@
   --word-hi:#EFEAE1;
   --word-top:#E9E3D8;
   --word-bot:#E2DBCE;
+  /* the one photo behind every Get a quote section */
+  --quote-photo:url("https://3unloi5wlp.ucarecd.net/1d087e8e-2363-457a-9e9b-3a3003951def/Contact%20Us%20-%20Hero1.avif");
   --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
   --display:'BBH Hegarty',Impact,sans-serif;
@@ -566,7 +568,7 @@ body.is-stuck .masthead{
 }
 .band-img{
   position:absolute;inset:-18% 0;z-index:-3;
-  background:#10161C var(--photo) center/cover no-repeat;
+  background:#10161C var(--quote-photo) center/cover no-repeat;
   translate:0 var(--py,0px);
 }
 .band-img::after{
