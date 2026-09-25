@@ -16,39 +16,30 @@
 .contact-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,48px)}
 .contact-head h2{margin:0;font-size:clamp(30px,4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1}
 .contact-head p{margin:0;max-width:44ch;font-family:var(--serif);font-weight:300;font-size:17px;line-height:1.5;color:var(--mist)}
-.contact-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hair)}
-.contact-block{padding:clamp(28px,5vh,44px) clamp(18px,2vw,32px);border-bottom:1px solid var(--hair)}
-.contact-block + .contact-block{border-left:1px solid var(--hair)}
-.contact-block:first-child{padding-left:0}
-.contact-block:last-child{padding-right:0}
+.contact-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(40px,6vh,64px) clamp(28px,3.5vw,56px)}
 .contact-block h3{
-  display:flex;align-items:center;gap:10px;margin:0 0 22px;
-  font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:12px;margin:0 0 20px;
+  font-size:clamp(20px,1.7vw,24px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--paper);
 }
-.contact-block h3 svg{flex:none}
-.contact-block address{margin:0;font-style:normal;font-size:clamp(17px,1.35vw,21px);font-weight:600;line-height:1.35;color:var(--paper)}
-.contact-list{margin:0;padding:0;display:grid;gap:18px}
-.contact-list div{display:grid;gap:4px}
-.contact-list dt{font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--mist)}
-.contact-list dd{margin:0;font-size:clamp(17px,1.35vw,21px);font-weight:600;line-height:1.3;color:var(--paper);overflow-wrap:anywhere}
+.contact-block h3 svg{flex:none;color:var(--accent)}
+.contact-block address,.contact-list dd{
+  margin:0;font-style:normal;font-weight:400;
+  font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:var(--paper);overflow-wrap:anywhere;
+}
+.contact-list{margin:0;padding:0;display:grid;gap:16px}
+.contact-list div{display:grid;gap:2px}
+.contact-list dt{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
 .contact-block a:not(.contact-link){
   color:inherit;text-decoration:none;
   background:linear-gradient(var(--accent),var(--accent)) left bottom/0 2px no-repeat;
-  padding-bottom:3px;
+  padding-bottom:2px;
   transition:background-size 420ms cubic-bezier(.3,0,.2,1),color 220ms ease;
 }
 .contact-block a:not(.contact-link):hover,.contact-block a:not(.contact-link):focus-visible{background-size:100% 2px;color:var(--accent)}
-.contact-note{margin:16px 0 0;font-family:var(--serif);font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
+.contact-note{margin:14px 0 0;font-family:var(--serif);font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
 .contact-link{color:var(--paper);text-decoration-color:var(--accent);text-underline-offset:3px}
-@media (max-width:1100px){
-  .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .contact-block:nth-child(odd){padding-left:0;border-left:0}
-  .contact-block:nth-child(even){padding-right:0}
-}
-@media (max-width:640px){
-  .contact-grid{grid-template-columns:1fr}
-  .contact-block,.contact-block + .contact-block{padding-left:0;padding-right:0;border-left:0}
-}
+@media (max-width:1100px){.contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -97,16 +88,16 @@
   </div>
   <div class="contact-grid">
     <div class="contact-block reveal">
-      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Mailing address</h3>
+      <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Mailing address</h3>
       <address>Construction Services, Inc.<br>1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</address>
     </div>
     <div class="contact-block reveal" style="--d:60ms">
-      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Shipping address</h3>
+      <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Shipping address</h3>
       <address>Construction Services, Inc.<br>1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</address>
       <p class="contact-note"><a class="contact-link" href="https://www.google.com/maps/search/?api=1&amp;query=1111+Cedar+Lake+Road+SE%2C+Decatur%2C+AL+35603" target="_blank" rel="noopener">Get directions</a></p>
     </div>
     <div class="contact-block reveal" style="--d:120ms">
-      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Phone numbers</h3>
+      <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Phone numbers</h3>
       <dl class="contact-list">
         <div><dt>Main office</dt><dd><a href="tel:256-355-7081">256.355.7081</a></dd></div>
         <div><dt>Quotes &amp; estimating</dt><dd><a href="tel:256-355-7081">256.355.7081</a></dd></div>
@@ -114,7 +105,7 @@
       </dl>
     </div>
     <div class="contact-block reveal" style="--d:180ms">
-      <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>Email</h3>
+      <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>Email</h3>
       <dl class="contact-list">
         <div><dt>General inquiries</dt><dd><a href="mailto:info@csialabama.com">info@csialabama.com</a></dd></div>
         <div><dt>Quotes — send the drawings</dt><dd><a href="mailto:info@csialabama.com">info@csialabama.com</a></dd></div>
