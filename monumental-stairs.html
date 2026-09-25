@@ -55,12 +55,7 @@
   .gal-img{transition:none}
 }
 
-/* ---------- the projects: one card each, its photos in a small gallery ---------- */
-.tally{margin:0 0 clamp(24px,4vh,40px)}
-.projs{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(40px,6vh,64px) clamp(16px,2vw,28px);
-}
+/* ---------- the project tiles: each one's photos in a small gallery ---------- */
 .proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
 .proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
 .proj-count{
@@ -72,8 +67,6 @@
 .proj .gal-nav .round-btn{width:36px;height:36px}
 .proj .gal-seg{height:24px}
 .proj .gal[data-photos="1"] + .proj-cap{margin-top:14px}
-@media (max-width:1100px){ .projs{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:640px){ .projs{grid-template-columns:1fr} }
 
 .more{
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
@@ -128,7 +121,11 @@
       <p class="lede svc-lede">Stairs can be constructed from carbon steel and stainless steel in all types of finishes. We can offer a painted finish, or a stair ready to receive a covering of your choice. CSI engineers, fabricates and installs each stair as a single assembly, analyzed with COSMOS/M finite element software for the member sizes and connections it needs to meet loading criteria and code.</p>
     </div>
   </div>
-  <div class="cols svc-cols">
+</section>
+
+<section class="sec sec--tint" aria-label="What we build">
+  <h2 class="h2 sec-title reveal">What we build</h2>
+  <div class="cols">
     <div class="col reveal" style="--d:0ms">
       <p class="col-num">01</p>
       <h3 class="col-title">Any configuration</h3>
@@ -154,11 +151,15 @@
   </div>
 </section>
 
-<section class="sec sec-tight" aria-label="Projects">
-  <h2 class="h2 reveal">Selected work</h2>
-  <p class="kicker tally reveal">20 photos</p>
-  <div class="projs">
-    <article class="proj reveal" style="--d:0ms">
+<section class="sec" aria-label="Featured projects">
+  <div class="sec-head reveal">
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h2 class="h2">Featured projects</h2>
+    </div>
+  </div>
+  <div class="feats">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="9">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" data-raw="https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif" alt="Martin Road Apartments, photo 1 of 9" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -182,18 +183,18 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">Martin Road Apartments</h3>
-        <p class="proj-count">9 photos</p>
+      <div class="feat-body">
+        <p class="proj-place">Huntsville, AL</p>
+        <h3 class="feat-title">Martin Road Apartments</h3>
+        <p class="proj-text">The monumental stair has a single stringer at its centerline with ash wood treads. Its glass guardrail is 13/16″ low-iron glass on a button rail system, with a 1″ × 2″ ash wood handrail and wall rail. At the balcony, 9/16″ low-iron glass sits in an aluminum shoe system wrapped in non-directional stainless steel cladding. The ash has a natural finish with a clear top coat.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>Doster Construction</dd></div>
+          <div><dt>Architect</dt><dd>J. Price Architecture</dd></div>
+        </dl>
+        <p class="feat-count">9 photos</p>
       </div>
-      <p class="proj-place">Huntsville, AL</p>
-      <p class="proj-text">The monumental stair has a single stringer at its centerline with ash wood treads. Its glass guardrail is 13/16″ low-iron glass on a button rail system, with a 1″ × 2″ ash wood handrail and wall rail. At the balcony, 9/16″ low-iron glass sits in an aluminum shoe system wrapped in non-directional stainless steel cladding. The ash has a natural finish with a clear top coat.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>Doster Construction</dd></div>
-        <div><dt>Architect</dt><dd>J. Price Architecture</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:70ms">
+    <article class="feat reveal">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20US%20Embassy1.avif" data-raw="https://3unloi5wlp.ucarecd.net/8e1385e4-287b-42ae-9c8a-1bdfa2cd9629/Monumental%20Stairs%20-%20US%20Embassy1.avif" alt="United States Embassy, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -209,18 +210,26 @@
           </div>
         </div>
       </div>
-      <div class="proj-cap">
-        <h3 class="proj-title">United States Embassy</h3>
-        <p class="proj-count">1 photo</p>
+      <div class="feat-body">
+        <p class="proj-place">Moscow, Russia</p>
+        <h3 class="feat-title">United States Embassy</h3>
+        <p class="proj-text">An elliptical stainless steel monumental stair on a center stringer, with glass treads and perforated risers, and stainless steel and glass guard railings.</p>
+        <dl class="proj-credits">
+          <div><dt>Contractor</dt><dd>H.B. Zachry</dd></div>
+          <div><dt>Architect</dt><dd>General Services Administration</dd></div>
+        </dl>
+        <p class="feat-count">1 photo</p>
       </div>
-      <p class="proj-place">Moscow, Russia</p>
-      <p class="proj-text">An elliptical stainless steel monumental stair on a center stringer, with glass treads and perforated risers, and stainless steel and glass guard railings.</p>
-      <dl class="proj-credits">
-        <div><dt>Contractor</dt><dd>H.B. Zachry</dd></div>
-        <div><dt>Architect</dt><dd>General Services Administration</dd></div>
-      </dl>
     </article>
-    <article class="proj reveal" style="--d:140ms">
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="More projects">
+  <div class="more-head reveal">
+    <h2 class="h2">More projects</h2>
+  </div>
+  <div class="more-grid">
+    <article class="proj reveal" style="--d:0ms">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20GA%20Tech1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/Monumental%20Stairs%20-%20GA%20Tech1.avif" alt="Georgia Tech, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -241,7 +250,7 @@
         <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:0ms">
+    <article class="proj reveal" style="--d:60ms">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" alt="University of Michigan, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -262,7 +271,7 @@
         <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:70ms">
+    <article class="proj reveal" style="--d:120ms">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/Monumental%20Stairs%20-%20Schuster1.avif" alt="Schuster Performing Arts Center, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -283,7 +292,7 @@
         <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:140ms">
+    <article class="proj reveal" style="--d:180ms">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Galxo1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/Monumental%20Stairs%20-%20Galxo1.avif" alt="GlaxoSmithKline, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -304,7 +313,7 @@
         <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:0ms">
+    <article class="proj proj--all reveal" style="--d:0ms">
       <div class="gal" data-gal data-photos="6">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Hero1.avif" data-raw="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif" alt="More monumental stairs, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
