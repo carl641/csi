@@ -45,8 +45,9 @@ body:not(.is-stuck):not(.menu-open) .burger{
   color-scheme:dark;
 }
 /* the desktop links sit over the hero photo until the header bar shows */
-@media (min-width:1181px){
+@media (min-width:1281px){
   body:not(.is-stuck) .menu{
+    --ink:#0C1116;
     --paper:#F2EFE9;
     --mist:rgba(242,239,233,.72);
     --hair:rgba(242,239,233,.30);
@@ -116,6 +117,17 @@ body.is-stuck .masthead{
 .menu a[aria-current="page"],.menu a.is-parent{color:var(--paper)}
 .menu a[aria-current="page"]::after,.menu a.is-parent::after{transform:scaleX(1)}
 
+/* Get a quote, last in the menu: a small filled button whose negative
+   margins keep the row, and so the links, where they were */
+.menu a.menu-cta{
+  margin:-5px 0 -5px 6px;padding:9px 16px;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--on-fill);background:var(--fill);
+  transition:background 180ms ease,color 180ms ease;
+}
+.menu a.menu-cta::after{display:none}
+.menu a.menu-cta:hover,.menu a.menu-cta:focus-visible{background:var(--paper);color:var(--ink)}
+
 /* About Us sits last and drops down to Contact Us and Careers: a mouse
    opens it by hovering, touch and keyboard by the arrow beside it */
 .menu-drop{position:relative;display:flex;gap:3px}
@@ -128,7 +140,7 @@ body.is-stuck .masthead{
 .menu-drop:hover .drop-toggle,.menu-drop.is-open .drop-toggle{color:var(--paper)}
 .menu-drop.is-open .drop-toggle svg{transform:rotate(180deg)}
 .drop{display:flex;flex-direction:column;align-items:flex-start}
-@media (min-width:1181px){
+@media (min-width:1281px){
   .drop{
     position:absolute;top:calc(100% + 12px);left:-20px;
     min-width:calc(100% + 40px);width:max-content;
@@ -148,7 +160,7 @@ body.is-stuck .masthead{
   .menu-drop.is-open::after{display:block}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
-@media (min-width:1181px) and (hover:hover){
+@media (min-width:1281px) and (hover:hover){
   .menu-drop:hover .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
   .menu-drop:hover .drop-toggle svg{transform:rotate(180deg)}
   .menu-drop:hover::after{display:block}
@@ -177,8 +189,8 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-/* at 1180px and below the menu folds into the burger */
-@media (max-width:1180px){
+/* at 1280px and below the menu folds into the burger */
+@media (max-width:1280px){
   .burger{display:flex}
   .menu{
     position:fixed;inset:0;z-index:10;
@@ -214,6 +226,8 @@ body.is-stuck .masthead{
   .menu{padding-top:calc(var(--head-top) + 68px)}
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
+  /* in the burger menu the button closes the list */
+  .menu a.menu-cta{margin:clamp(6px,1.4vh,14px) 0 0;padding:14px 26px;font-size:13px}
   .menu a[aria-current="page"]{color:var(--accent)}
   /* the dropdown opens out into a list under About Us */
   .menu-drop{flex-direction:column;align-items:flex-start;gap:clamp(12px,2.2vh,18px)}
