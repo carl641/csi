@@ -987,8 +987,8 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
 .title{
   margin:0;font-weight:800;text-transform:uppercase;
   /* sized by the window's height as well as its width, so on a shorter
-     laptop screen the two-line titles stay well clear of the header */
-  font-size:clamp(40px,min(6.8vw,11vh),108px);line-height:.86;letter-spacing:-.035em;
+     laptop screen the titles stay well clear of the header */
+  font-size:clamp(44px,min(8vw,13vh),128px);line-height:.86;letter-spacing:-.035em;
 }
 .desc{
   font-family:var(--serif);font-weight:300;
@@ -1552,7 +1552,7 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const SLIDES = [
-  {name:"Architectural Metalwork", desc:"Engineering and fabrication experience across a wide range of materials and finishes, from one source.", cta:"See the work",   href:"architectural-metalwork.html"},
+  {name:"Metalwork",               desc:"Engineering and fabrication experience across a wide range of materials and finishes, from one source.", cta:"See the work",   href:"architectural-metalwork.html"},
   {name:"Stair Systems",           desc:"Monumental stairs built as a single assembly, structure and rail detailed together.", cta:"See the work",   href:"monumental-stairs.html"},
   {name:"Rail Systems",            desc:"Rail systems for an entire building complex, or a single run of ornamental guard.", cta:"See the work",   href:"rail-systems.html"},
   {name:"Canopies",                desc:"Entrance and walkway canopies fabricated to the architect's intent and installed by our own crews.", cta:"See the work",   href:"canopies.html"},
