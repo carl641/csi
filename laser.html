@@ -46,6 +46,30 @@
 
 .spec-lists .col-title{margin-bottom:16px}
 
+/* ---------- laser-cut parts: the photos large on the left, the facts
+   staying in view beside them ---------- */
+.parts{
+  display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,88px);align-items:start;
+}
+.parts-imgs{display:grid;gap:clamp(24px,4vh,40px)}
+.parts-imgs figure{margin:0}
+.parts-imgs img{display:block;width:100%;height:auto;background:var(--mat)}
+.parts-imgs figcaption{margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+.parts-info{position:sticky;top:110px}
+.parts-info .lede{margin-bottom:0}
+.parts-facts{margin:clamp(24px,4vh,36px) 0 clamp(26px,4vh,36px);border-top:1px solid var(--hair)}
+.parts-facts > div{
+  display:grid;grid-template-columns:minmax(96px,.4fr) 1fr;gap:16px;
+  padding:12px 0;border-bottom:1px solid var(--hair);
+}
+.parts-facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.parts-facts dd{margin:0;font-size:15px;line-height:1.45}
+@media (max-width:860px){
+  .parts{grid-template-columns:1fr}
+  .parts-info{position:static;order:-1}
+}
+
 /* ---------- photo strip ---------- */
 .strip{
   display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,440px);
@@ -107,6 +131,37 @@
   </div>
 </section>
 
+<section class="sec" aria-label="Laser-cut parts">
+  <div class="parts">
+    <div class="parts-imgs">
+      <figure class="reveal">
+        <img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <figcaption>Laser-cut S</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <figcaption>Laser-cut gear</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <figcaption>Laser-cut grid</figcaption>
+      </figure>
+    </div>
+    <div class="parts-info reveal">
+      <p class="kicker">Laser cutting</p>
+      <h2 class="h2">Laser-cut parts</h2>
+      <p class="lede">From a single custom profile to a run of identical parts, cut in house on our TruLaser 3040 from sheet, plate, perforated stock and tube.</p>
+      <dl class="parts-facts">
+        <div><dt>Machine</dt><dd>TruLaser 3040, up to 10kW</dd></div>
+        <div><dt>Materials</dt><dd>Mild steel, stainless, aluminum, titanium and brass</dd></div>
+        <div><dt>Thickness</dt><dd>Mild steel up to 28mm</dd></div>
+        <div><dt>Sheet size</dt><dd>Up to 6.6 &times; 13 ft</dd></div>
+        <div><dt>What we cut</dt><dd>Perforated panels, screens and custom profiles</dd></div>
+      </dl>
+      <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
 <section class="sec" aria-label="The machine">
   <div class="sec-head reveal">
     <div>
