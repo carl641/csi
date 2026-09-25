@@ -106,17 +106,15 @@
   .parts-info{position:static;order:-1}
 }
 
-/* ---------- photo strip ---------- */
+/* ---------- photo strip: a loop that runs endlessly either way ---------- */
 .strip{
-  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,440px);
-  gap:clamp(12px,1.6vw,22px);
-  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
-  scrollbar-width:none;
+  overflow:hidden;touch-action:pan-y;
   margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);
-  scroll-padding:0 var(--gutter);
 }
-.strip::-webkit-scrollbar{display:none}
-.strip figure{margin:0;scroll-snap-align:start}
+.strip-track{display:flex;gap:clamp(12px,1.6vw,22px);will-change:transform}
+.strip figure{margin:0;flex:0 0 min(78vw,440px)}
+/* a drag would start the browser's own image drag and swallow the swipe */
+.strip img{-webkit-user-drag:none;user-select:none}
 .strip-img{aspect-ratio:4/5;overflow:hidden;background:var(--mat)}
 .strip-img img{width:100%;height:100%;object-fit:cover;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
 .strip figure:hover img{transform:scale(1.04)}
@@ -124,7 +122,6 @@
 .tile-cat{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .strip-title{font-size:15px;font-weight:600}
 .strip-nav{display:flex;gap:10px}
-@media (max-width:760px){ .strip-nav{display:none} }
 </style>
 </head>
 <body>
@@ -317,26 +314,28 @@
     </div>
   </div>
   <div class="strip" id="strip">
-    <figure class="reveal" style="--d:0ms">
-      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg" srcset="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/600x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 600w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Panel cut-out" loading="lazy" decoding="async"></div>
-      <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Panel cut-out</span></figcaption>
-    </figure>
-    <figure class="reveal" style="--d:70ms">
-      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg" srcset="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 600w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Laser profile" loading="lazy" decoding="async"></div>
-      <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Laser profile</span></figcaption>
-    </figure>
-    <figure class="reveal" style="--d:140ms">
-      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg" srcset="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/600x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 600w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
-    </figure>
-    <figure class="reveal" style="--d:210ms">
-      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg" srcset="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 600w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
-    </figure>
-    <figure class="reveal" style="--d:280ms">
-      <div class="strip-img"><img src="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 600w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
-      <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
-    </figure>
+    <div class="strip-track" id="strip-track">
+      <figure class="reveal" style="--d:0ms">
+        <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg" srcset="https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/600x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 600w, https://3unloi5wlp.ucarecd.net/2c30a38f-290d-47ae-a891-c2e506a7e045/-/resize/900x/-/format/auto/hq-Laser%20Panel%20Cut%20Out.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Panel cut-out" loading="lazy" decoding="async"></div>
+        <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Panel cut-out</span></figcaption>
+      </figure>
+      <figure class="reveal" style="--d:70ms">
+        <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg" srcset="https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 600w, https://3unloi5wlp.ucarecd.net/032beba7-751b-46a8-b629-dcb1a6b3561d/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20Profile.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting: Laser profile" loading="lazy" decoding="async"></div>
+        <figcaption><span class="tile-cat">Laser cutting</span> <span class="strip-title">Laser profile</span></figcaption>
+      </figure>
+      <figure class="reveal" style="--d:140ms">
+        <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg" srcset="https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/600x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 600w, https://3unloi5wlp.ucarecd.net/ce67cf2f-dbc9-42e3-8338-a6fa444965d5/-/resize/900x/-/format/auto/hq-Architectural%20Metalwork-%20LASER.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+      </figure>
+      <figure class="reveal" style="--d:210ms">
+        <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg" srcset="https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 600w, https://3unloi5wlp.ucarecd.net/e5b0a6b5-4d6e-4a2e-9e55-344a62e9bc09/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%20.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+      </figure>
+      <figure class="reveal" style="--d:280ms">
+        <div class="strip-img"><img draggable="false" src="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg" srcset="https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/600x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 600w, https://3unloi5wlp.ucarecd.net/9adca6b8-18e3-458c-826c-a266c0dd3866/-/resize/900x/-/format/auto/hq-Architectural%20Metal%20Work%20-%20Laser%202.jpg 900w" sizes="(max-width:640px) 78vw, 440px" alt="Laser cutting" loading="lazy" decoding="async"></div>
+        <figcaption><span class="tile-cat">Laser cutting</span></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -399,14 +398,60 @@
 <script src="site.js"></script>
 <script>
 try {
-/* ---- the photo strip steps one photo at a time ---- */
+/* ---- the photo strip loops endlessly either way: next slides the row on
+   by one photo and moves the first to the back, previous brings the last
+   to the front and slides it in ---- */
 const strip = document.getElementById('strip');
+const track = document.getElementById('strip-track');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EASE = 'transform 620ms cubic-bezier(.3,0,.2,1)';
+let busy = false;
 const step = ()=>{
-  const f = strip.querySelector('figure');
-  return f ? f.getBoundingClientRect().width + (parseFloat(getComputedStyle(strip).columnGap) || 0) : strip.clientWidth;
+  const f = track.firstElementChild;
+  return f.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
 };
-document.getElementById('strip-prev').addEventListener('click', ()=>strip.scrollBy({left:-step()}));
-document.getElementById('strip-next').addEventListener('click', ()=>strip.scrollBy({left: step()}));
+// finish once the slide ends, or after a moment if the transition never reports back
+function settle(done){
+  let over = false;
+  const end = ()=>{ if(over) return; over = true; track.removeEventListener('transitionend', end); done(); busy = false; };
+  track.addEventListener('transitionend', end);
+  setTimeout(end, 800);
+}
+function next(){
+  if(busy) return;
+  if(reducedMotion){ track.appendChild(track.firstElementChild); return; }
+  busy = true;
+  track.style.transition = EASE;
+  track.style.transform = 'translateX(' + (-step()) + 'px)';
+  settle(()=>{
+    track.style.transition = 'none';
+    track.appendChild(track.firstElementChild);
+    track.style.transform = 'translateX(0)';
+  });
+}
+function prev(){
+  if(busy) return;
+  if(reducedMotion){ track.prepend(track.lastElementChild); return; }
+  busy = true;
+  track.style.transition = 'none';
+  track.prepend(track.lastElementChild);
+  track.style.transform = 'translateX(' + (-step()) + 'px)';
+  void track.offsetWidth;   // lock that position in before sliding back
+  track.style.transition = EASE;
+  track.style.transform = 'translateX(0)';
+  settle(()=>{});
+}
+document.getElementById('strip-prev').addEventListener('click', prev);
+document.getElementById('strip-next').addEventListener('click', next);
+// a sideways swipe steps it too
+let x0 = null;
+strip.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
+strip.addEventListener('pointerup', e=>{
+  if(x0 === null) return;
+  const dx = e.clientX - x0; x0 = null;
+  if(Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+});
+strip.addEventListener('pointercancel', ()=>{ x0 = null; });
 } catch (err) { console.error("feature failed:", err); }
 
 </script>
