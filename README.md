@@ -8,7 +8,7 @@ Construction Services, Inc. — Architectural Metal Products.
   photography from the Uploadcare CDN (`3unloi5wlp.ucarecd.net`), with
   styles and scripts inline, so it runs by opening the file in a browser
   with no build step or server.
-- `about.html`, `products.html`, `case-studies.html`, `architectural-metalwork.html`,
+- `about.html`, `products.html`, `markets.html`, `resources.html`, `case-studies.html`, `architectural-metalwork.html`,
   `monumental-stairs.html`, `rail-systems.html`, `canopies.html`,
   `laser.html`, `careers.html`, `contact.html` — the pages in the nav, in
   the home page's design. They share `site.css` and `site.js`; anything
@@ -26,7 +26,7 @@ The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
 
-The menu runs Products, Case Studies and About Us. Products drops down to
+The menu runs Products, Markets, Case Studies, Resources and About Us. Products drops down to
 the four sector pages and Laser, and About Us to Contact Us and Careers: a
 mouse opens them by hovering, and the arrow beside each opens it for touch
 and keyboard. At 1180px and below the menu folds into the burger, which
@@ -45,3 +45,11 @@ Get a quote · Footer.
 The Products page sums up the four product lines as large photo cards,
 each linking to its page, with laser cutting highlighted on a dark band
 of its own.
+
+The Resources page is for architects and contractors: spec and detail
+downloads, finishes, FAQs, safety and credentials, laser-cut panel
+railings and who to call. Anything still to be supplied by CSI (the
+download files, lead times, EMR, awards, contact names) is set as a
+placeholder with suggested content, in a dashed outline with a
+Placeholder tag (`.ph` and `.ph-tag` in the page's styles), so it can be
+found and replaced.

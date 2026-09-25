@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resources — Construction Services, Inc.</title>
+<meta name="description" content="Specifications, typical details, finishes, FAQs and contacts for architects and contractors working with Construction Services, Inc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+.phero--short{min-height:72vh;min-height:72svh}
+
+/* placeholders: suggested content, dashed so it's easy to find and replace */
+.ph{outline:1.5px dashed #B98A1E;outline-offset:3px}
+.ph-tag{
+  display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;
+  background:#FFE7B0;color:#5A4100;
+  font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  vertical-align:middle;white-space:nowrap;font-style:normal;
+}
+
+/* ---------- downloads ---------- */
+.dl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
+.dl{
+  display:flex;flex-direction:column;gap:10px;
+  padding:22px 22px 20px;border:1px solid var(--hair);border-radius:6px;background:#FBF9F5;
+}
+.dl-type{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0;
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.dl-sec{font-family:var(--serif);font-weight:400;font-size:13px;letter-spacing:0;text-transform:none;color:var(--mist);font-variant-numeric:tabular-nums}
+.dl h3{margin:0;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.dl p{margin:0;font-family:var(--serif);font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
+.dl-foot{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dl-fmt{font-size:12px;font-weight:600;color:var(--mist)}
+@media (max-width:980px){.dl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.dl-grid{grid-template-columns:1fr}}
+
+/* ---------- finishes: drawn swatches until sample photos replace them ---------- */
+.fin-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
+.fin{margin:0}
+.sw{aspect-ratio:1;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.sw--no4{background:repeating-linear-gradient(90deg,#C9CDD1 0 1px,#B7BCC1 1px 2px,#D3D6D9 2px 4px),#C4C8CC}
+.sw--no8{background:linear-gradient(135deg,#F4F6F7 0%,#9EA5AB 28%,#EDF0F2 46%,#6F777E 70%,#DDE1E4 100%)}
+.sw--pc{background:radial-gradient(120% 90% at 30% 20%,#4A3B2F,#2E241C)}
+.sw--pat{background:radial-gradient(40% 35% at 30% 30%,rgba(92,138,112,.75),rgba(92,138,112,0)),radial-gradient(45% 40% at 72% 68%,rgba(70,112,92,.7),rgba(70,112,92,0)),linear-gradient(135deg,#7A5530,#4E3620)}
+.sw--blk{background:radial-gradient(35% 30% at 25% 35%,rgba(90,86,80,.55),rgba(90,86,80,0)),radial-gradient(40% 35% at 70% 70%,rgba(60,62,66,.8),rgba(60,62,66,0)),#232427}
+.sw--aess{background:linear-gradient(160deg,#5C6268,#474C51)}
+.fin figcaption{margin-top:12px}
+.fin b{display:block;font-size:14px;font-weight:600;line-height:1.3}
+.fin span{display:block;margin-top:4px;font-family:var(--serif);font-weight:300;font-size:13px;line-height:1.4;color:var(--mist)}
+.fin-note{margin:clamp(20px,3vh,28px) 0 0;padding:12px 16px;border-radius:6px;font-family:var(--serif);font-weight:300;font-size:15px;color:var(--mist)}
+@media (max-width:980px){.fin-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.fin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- FAQs ---------- */
+.faq{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:clamp(24px,5vw,72px);align-items:start}
+.faq-list{border-top:1px solid var(--hair)}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:20px 0;font-size:clamp(17px,1.5vw,20px);font-weight:600;letter-spacing:-.01em;line-height:1.3;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:0 0 auto;width:11px;height:11px;margin-right:4px;
+  border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+  transform:rotate(45deg) translate(-3px,-3px);transition:transform 240ms ease;
+}
+.faq details[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+.faq summary:hover{color:var(--accent)}
+.faq .ans{margin:0 0 22px;max-width:62ch;font-family:var(--serif);font-weight:300;font-size:17px;line-height:1.55;color:var(--mist)}
+@media (max-width:860px){.faq{grid-template-columns:1fr}}
+
+/* ---------- credentials ---------- */
+.cred{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hair)}
+.cred > div{padding:26px clamp(16px,2vw,28px) 26px 0;border-bottom:1px solid var(--hair)}
+.cred > div + div{padding-left:clamp(16px,2vw,28px);border-left:1px solid var(--hair)}
+.cred-num{display:block;font-size:clamp(34px,3.6vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.cred-label{display:block;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.cred-note{display:block;margin-top:6px;font-family:var(--serif);font-weight:300;font-size:14px;line-height:1.45;color:var(--mist)}
+.awards{margin:clamp(24px,4vh,36px) 0 0;padding:18px 20px;border-radius:6px}
+.awards p{margin:0;font-family:var(--serif);font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
+@media (max-width:900px){
+  .cred{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cred > div:nth-child(odd){padding-left:0;border-left:0}
+}
+@media (max-width:480px){
+  .cred{grid-template-columns:1fr}
+  .cred > div,.cred > div + div{padding-left:0;border-left:0}
+}
+
+/* ---------- laser-cut panel railings ---------- */
+.panel-rail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.panel-rail .chips{margin-top:22px}
+.panel-rail .actions{margin-top:26px}
+@media (max-width:860px){.panel-rail{grid-template-columns:1fr}}
+
+/* ---------- contacts ---------- */
+.people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
+.person{padding:22px;border:1px solid var(--hair);border-radius:6px;background:#FBF9F5}
+.person .kicker{margin-bottom:12px}
+.person h3{margin:0 0 6px;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.person p{margin:0;font-size:15px;line-height:1.5;color:var(--mist);font-variant-numeric:tabular-nums}
+.person a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:3px}
+@media (max-width:860px){.people{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="mark" href="index.html">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></a>
+  </header>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="menu" id="menu">
+    <div class="menu-mark" aria-hidden="true">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <div class="menu-drop">
+      <a href="products.html">Products</a>
+      <button class="drop-toggle" type="button" aria-label="Products menu" aria-expanded="false" aria-controls="menu-products"><svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="drop" id="menu-products">
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+      </div>
+    </div>
+    <a href="markets.html">Markets</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="resources.html" aria-current="page">Resources</a>
+    <div class="menu-drop">
+      <a href="about.html">About Us</a>
+      <button class="drop-toggle" type="button" aria-label="About Us menu" aria-expanded="false" aria-controls="menu-about"><svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="drop" id="menu-about">
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+    <a class="menu-cta" href="contact.html">Get a quote</a>
+  </nav>
+
+<main>
+<section class="phero phero--short" aria-label="Resources">
+  <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/0c9f8485-8a9d-43fc-9480-34e2a1b7f6e2/Monumental%20Stairs%20-%20Martin%20Road%20Apartments1.avif')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
+  <div class="phero-copy">
+    <h1 class="phero-title">Resources</h1>
+    <p class="phero-lede">Specifications, typical details and straight answers for the architects and contractors who put ornamental metal into a set of drawings.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="dl-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="dl-h">Specs &amp; details</h2>
+      <p class="lede">Written in the three-part CSI MasterFormat layout, ready to drop into a project manual.</p>
+    </div>
+  </div>
+  <div class="dl-grid">
+    <article class="dl ph reveal" style="--d:0ms">
+      <p class="dl-type">Specification <span class="dl-sec">05 52 00</span></p>
+      <h3>Metal railings</h3>
+      <p>Glass, stainless, cable and ornamental rail systems, with materials, finishes and loading criteria.</p>
+      <div class="dl-foot"><span class="dl-fmt">DOCX · PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+    <article class="dl ph reveal" style="--d:70ms">
+      <p class="dl-type">Specification <span class="dl-sec">05 51 00</span></p>
+      <h3>Metal stairs</h3>
+      <p>Monumental, radiused and spiral stairs, including center-stringer designs and AESS finishing.</p>
+      <div class="dl-foot"><span class="dl-fmt">DOCX · PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+    <article class="dl ph reveal" style="--d:140ms">
+      <p class="dl-type">Specification <span class="dl-sec">05 70 00</span></p>
+      <h3>Decorative metal</h3>
+      <p>Column covers, cladding, grilles, light fixtures, gazebos and special enclosures.</p>
+      <div class="dl-foot"><span class="dl-fmt">DOCX · PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+    <article class="dl ph reveal" style="--d:0ms">
+      <p class="dl-type">Details</p>
+      <h3>Typical rail &amp; stair details</h3>
+      <p>Post mounts, button and shoe glass connections, handrail brackets and stringer sections.</p>
+      <div class="dl-foot"><span class="dl-fmt">DWG · PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+    <article class="dl ph reveal" style="--d:70ms">
+      <p class="dl-type">Guide</p>
+      <h3>Finishes guide</h3>
+      <p>Every finish CSI offers, what it suits and how to call it out in a specification.</p>
+      <div class="dl-foot"><span class="dl-fmt">PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+    <article class="dl ph reveal" style="--d:140ms">
+      <p class="dl-type">Company</p>
+      <h3>Capabilities statement</h3>
+      <p>One page on CSI for prequalification packages: history, engineering, shop and key projects.</p>
+      <div class="dl-foot"><span class="dl-fmt">PDF</span><span class="ph-tag">Placeholder</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec sec--tint" aria-labelledby="fin-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="fin-h">Finishes</h2>
+      <p class="lede">The finishes on CSI projects, from mirror-polished stainless steel to a natural patina.</p>
+    </div>
+  </div>
+  <div class="fin-grid reveal">
+    <figure class="fin"><div class="sw sw--no4" aria-hidden="true"></div><figcaption><b>No. 4 stainless</b><span>Brushed, directional or circular grain.</span></figcaption></figure>
+    <figure class="fin"><div class="sw sw--no8" aria-hidden="true"></div><figcaption><b>No. 8 mirror</b><span>Polished stainless for glass fittings and brackets.</span></figcaption></figure>
+    <figure class="fin"><div class="sw sw--pc" aria-hidden="true"></div><figcaption><b>Powder coat</b><span>Any color; dark bronze shown.</span></figcaption></figure>
+    <figure class="fin"><div class="sw sw--pat" aria-hidden="true"></div><figcaption><b>Patina bronze</b><span>For grilles, handrails and decorative work.</span></figcaption></figure>
+    <figure class="fin"><div class="sw sw--blk" aria-hidden="true"></div><figcaption><b>Blackened steel</b><span>Stairs, rails and column wraps.</span></figcaption></figure>
+    <figure class="fin"><div class="sw sw--aess" aria-hidden="true"></div><figcaption><b>AESS paint</b><span>Exposed structural steel, finish painted.</span></figcaption></figure>
+  </div>
+  <p class="fin-note ph">Suggested: replace the drawn swatches with photos of real finish samples from the shop. <span class="ph-tag">Placeholder</span></p>
+</section>
+
+<section class="sec" aria-labelledby="faq-h">
+  <div class="faq">
+    <div class="reveal">
+      <p class="kicker">Before you call</p>
+      <h2 class="h2" id="faq-h">Common questions</h2>
+    </div>
+    <div class="faq-list reveal" style="--d:80ms">
+      <details open>
+        <summary>Do you work outside Alabama?</summary>
+        <p class="ans">Yes. CSI has built projects from Texas to Washington, DC, and a monumental stair for the United States Embassy in Moscow.</p>
+      </details>
+      <details>
+        <summary>Do you provide the engineering?</summary>
+        <p class="ans">Yes. We run structural computations with COSMOS/M finite element analysis software. Stairs, canopies and guard railings are analyzed for the material sizes and connection details they need to meet loading criteria and code.</p>
+      </details>
+      <details>
+        <summary>What do you need to price a job?</summary>
+        <p class="ans">Send the drawings and we will price the ornamental scope. <span class="ph">Suggested: “PDF drawings and the project manual are best; send them at least a week before bid day.”</span><span class="ph-tag">Placeholder</span></p>
+      </details>
+      <details>
+        <summary>Do you install, or supply only?</summary>
+        <p class="ans">Our own crews install what we build, so one company answers for the scope from drawing to punch list. <span class="ph">Suggested: “We also supply fabricated work to other installers on request.”</span><span class="ph-tag">Placeholder</span></p>
+      </details>
+      <details>
+        <summary>Custom design or stock components?</summary>
+        <p class="ans">Either. We build custom railings to the architect’s drawings, or use stock component systems where the specification allows.</p>
+      </details>
+      <details>
+        <summary>What are typical lead times?</summary>
+        <p class="ans"><span class="ph">Suggested: “Most rail and stair packages ship 6–10 weeks after approved shop drawings; we confirm a schedule with every quote.”</span><span class="ph-tag">Placeholder</span></p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tint" aria-labelledby="cred-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="cred-h">Safety &amp; credentials</h2>
+      <p class="lede">What a general contractor checks before adding a subcontractor to the bid list.</p>
+    </div>
+  </div>
+  <div class="cred reveal">
+    <div><span class="cred-num">1967</span><span class="cred-label">Incorporated</span><span class="cred-note">Founded by Mike Scroggins.</span></div>
+    <div><span class="cred-num">NOMMA</span><span class="cred-label">Member</span><span class="cred-note">National Ornamental &amp; Miscellaneous Metals Association.</span></div>
+    <div class="ph"><span class="cred-num">0.00</span><span class="cred-label">EMR <span class="ph-tag">Placeholder</span></span><span class="cred-note">Suggested: the current experience modification rate, from the insurer.</span></div>
+    <div class="ph"><span class="cred-num">OSHA</span><span class="cred-label">Training <span class="ph-tag">Placeholder</span></span><span class="cred-note">Suggested: OSHA 10 / 30 certifications held by field crews, and the safety program.</span></div>
+  </div>
+  <div class="awards ph reveal">
+    <p>Suggested: the industry awards CSI has earned, with the year and project for each — for example, “NOMMA Top Job Award, 20XX — Vanderbilt Children’s Hospital stair.” <span class="ph-tag">Placeholder</span></p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="pr-h">
+  <div class="panel-rail">
+    <figure class="split-img reveal" style="aspect-ratio:4/3"><div style="--photo:url('https://3unloi5wlp.ucarecd.net/c9d39c9e-5a1a-4d93-a707-25ee3d63dd30/Architectural%20Metalwork%20-%20Lifeway1.avif');inset:0" aria-hidden="true"></div></figure>
+    <div class="reveal" style="--d:100ms">
+      <p class="kicker">Laser cutting &times; rail systems</p>
+      <h2 class="h2" id="pr-h">Laser-cut panel railings</h2>
+      <p class="lede">Guardrail infill cut from a single sheet on our TruLaser 3040, in any pattern: perforations, a client’s motif, lettering or a custom profile — like the decorative Cor-ten panels cut for Lifeway, each to its own pattern.</p>
+      <ul class="chips"><li>Mild steel</li><li>Stainless</li><li>Aluminum</li><li>Cor-ten</li><li>Up to 6.6 &times; 13 ft sheets</li></ul>
+      <div class="actions"><a class="cta cta-ghost" href="laser.html"><span class="cta-label">See laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-labelledby="ppl-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="ppl-h">Who to call</h2>
+      <p class="lede">A named person for each kind of question, so a bid or an RFI goes straight to the right desk.</p>
+    </div>
+  </div>
+  <div class="people">
+    <div class="person reveal">
+      <p class="kicker">Main office</p>
+      <h3>Construction Services, Inc.</h3>
+      <p><a href="tel:256-355-7081">256.355.7081</a><br><a href="mailto:info@csialabama.com">info@csialabama.com</a><br>1111 Cedar Lake Road, SE, Decatur, AL 35603</p>
+    </div>
+    <div class="person ph reveal" style="--d:70ms">
+      <p class="kicker">Estimating <span class="ph-tag">Placeholder</span></p>
+      <h3>Estimator’s name</h3>
+      <p>Suggested: bids, pricing and drawings.<br>Direct line · Email</p>
+    </div>
+    <div class="person ph reveal" style="--d:140ms">
+      <p class="kicker">Project management <span class="ph-tag">Placeholder</span></p>
+      <h3>Project manager’s name</h3>
+      <p>Suggested: RFIs, submittals and scheduling.<br>Direct line · Email</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-label="Get a quote">
+  <div class="band-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/2048x2048/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg')" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
+  <div class="band-inner reveal">
+    <h2>Get a quote</h2>
+    <p class="lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" aria-label="Footer">
+  <div class="foot-word" aria-hidden="true" data-drift="-0.08" data-ease="0.03">CSI</div>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="mark foot-mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <p class="foot-line">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer links">
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <a href="about.html">About Us</a>
+        <a href="products.html">Products</a>
+        <a href="markets.html">Markets</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="resources.html">Resources</a>
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Head office</p>
+        <a href="contact.html">1111 Cedar Lake Road, SE<br>Decatur, Alabama 35603</a>
+        <a href="mailto:info@csialabama.com">info@csialabama.com</a>
+        <a href="tel:256-355-7081">Tel: 256.355.7081</a>
+        <a href="contact.html">Fax: 256.351.9145</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Employment</p>
+        <a href="mailto:info@csialabama.com">Send a cover letter and C.V. to info@csialabama.com</a>
+        <p class="foot-h" style="margin-top:18px">Get a quote</p>
+        <a href="tel:256-355-7081">256-355-7081</a>
+      </div>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 by Construction Services, Inc.</p>
+    <div class="foot-legal">
+      <a href="contact.html">Contact</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>
