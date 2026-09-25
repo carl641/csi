@@ -51,7 +51,7 @@ body:not(.is-stuck):not(.menu-open) .burger{
   color-scheme:dark;
 }
 /* the desktop links sit over the hero photo until the header bar shows */
-@media (min-width:1281px){
+@media (min-width:1181px){
   body:not(.is-stuck) .menu{
     --ink:#0C1116;
     --paper:#F2EFE9;
@@ -884,8 +884,7 @@ body.is-stuck .masthead{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + 7px);right:clamp(20px,5vw,72px);
   transition:top 320ms ease;
-  /* tighter between 1281px and ~1550px, so the full menu still clears the name */
-  display:flex;gap:clamp(18px,calc(4.4vw - 34px),34px);
+  display:flex;gap:clamp(14px,2.4vw,34px);
   /* 7px below the header's top padding centres the links on the two
      lines of the name */
   font-size:15px;font-weight:600;color:var(--mist);
@@ -915,8 +914,9 @@ body.is-stuck .masthead{
 .menu a.menu-cta::after{display:none}
 .menu a.menu-cta:hover,.menu a.menu-cta:focus-visible{background:var(--paper);color:var(--ink)}
 
-/* About Us sits last and drops down to Contact Us and Careers: a mouse
-   opens it by hovering, touch and keyboard by the arrow beside it */
+/* Products drops down to the five product pages, and About Us to Contact
+   Us and Careers: a mouse opens them by hovering, touch and keyboard by
+   the arrow beside each */
 .menu-drop{position:relative;display:flex;gap:3px}
 .drop-toggle{
   display:flex;align-items:center;justify-content:center;
@@ -927,7 +927,7 @@ body.is-stuck .masthead{
 .menu-drop:hover .drop-toggle,.menu-drop.is-open .drop-toggle{color:var(--paper)}
 .menu-drop.is-open .drop-toggle svg{transform:rotate(180deg)}
 .drop{display:flex;flex-direction:column;align-items:flex-start}
-@media (min-width:1281px){
+@media (min-width:1181px){
   .drop{
     position:absolute;top:calc(100% + 12px);left:-20px;
     min-width:calc(100% + 40px);width:max-content;
@@ -947,7 +947,7 @@ body.is-stuck .masthead{
   .menu-drop.is-open::after{display:block}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
-@media (min-width:1281px) and (hover:hover){
+@media (min-width:1181px) and (hover:hover){
   .menu-drop:hover .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
   .menu-drop:hover .drop-toggle svg{transform:rotate(180deg)}
   .menu-drop:hover::after{display:block}
@@ -976,8 +976,8 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-/* at 1280px and below the menu folds into the burger */
-@media (max-width:1280px){
+/* at 1180px and below the menu folds into the burger */
+@media (max-width:1180px){
   .burger{display:flex}
   .menu{
     position:fixed;inset:0;z-index:10;
@@ -1184,12 +1184,17 @@ body.is-stuck .masthead{
 
     <nav class="menu" id="menu">
       <div class="menu-mark" aria-hidden="true">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
-      <a href="products.html">Products</a>
-      <a href="architectural-metalwork.html">Metalwork</a>
-      <a href="monumental-stairs.html">Stairs</a>
-      <a href="rail-systems.html">Railings</a>
-      <a href="canopies.html">Canopies</a>
-      <a href="laser.html">Laser</a>
+      <div class="menu-drop">
+        <a href="products.html">Products</a>
+        <button class="drop-toggle" type="button" aria-label="Products menu" aria-expanded="false" aria-controls="menu-products"><svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="drop" id="menu-products">
+          <a href="architectural-metalwork.html">Metalwork</a>
+          <a href="monumental-stairs.html">Stairs</a>
+          <a href="rail-systems.html">Railings</a>
+          <a href="canopies.html">Canopies</a>
+          <a href="laser.html">Laser</a>
+        </div>
+      </div>
       <a href="case-studies.html">Case Studies</a>
       <div class="menu-drop">
         <a href="about.html">About Us</a>
@@ -1760,7 +1765,7 @@ function setMenu(open){
 }
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 1280) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
 
 // start the hero immediately, before any later feature block can throw
 layoutRail(); go(0); restart();
@@ -1768,20 +1773,28 @@ layoutRail(); go(0); restart();
 /* About Us drops down to Contact Us and Careers. Hovering opens it (in the
    CSS); the arrow beside it opens it for touch and keyboard, and it closes
    on a click elsewhere, on Escape, or when focus moves on past it */
-const drop    = menu.querySelector('.menu-drop');
-const dropBtn = drop.querySelector('.drop-toggle');
-function setDrop(open){
-  drop.classList.toggle('is-open', open);
-  dropBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+const drops = [...menu.querySelectorAll('.menu-drop')].map(el=>({el, btn:el.querySelector('.drop-toggle')}));
+function setDrop(d, open){
+  d.el.classList.toggle('is-open', open);
+  d.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
-dropBtn.addEventListener('click', ()=>setDrop(!drop.classList.contains('is-open')));
-document.addEventListener('click', e=>{ if(!drop.contains(e.target)) setDrop(false); });
-drop.addEventListener('focusout', e=>{ if(!drop.contains(e.relatedTarget)) setDrop(false); });
+drops.forEach(d=>{
+  d.btn.addEventListener('click', ()=>{
+    const open = !d.el.classList.contains('is-open');
+    drops.forEach(o=>{ if(o !== d) setDrop(o, false); });
+    setDrop(d, open);
+  });
+  document.addEventListener('click', e=>{ if(!d.el.contains(e.target)) setDrop(d, false); });
+  d.el.addEventListener('focusout', e=>{ if(!d.el.contains(e.relatedTarget)) setDrop(d, false); });
+});
 
 document.addEventListener('keydown', e=>{
   if(e.key === 'Escape'){
-    if(drop.classList.contains('is-open') && drop.contains(document.activeElement)) dropBtn.focus();
-    setDrop(false); setMenu(false); return;
+    drops.forEach(d=>{
+      if(d.el.classList.contains('is-open') && d.el.contains(document.activeElement)) d.btn.focus();
+      setDrop(d, false);
+    });
+    setMenu(false); return;
   }
   if(menu.classList.contains('is-open')) return;
   if(e.key === 'ArrowRight'){ go((index+1)%SLIDES.length, true); }

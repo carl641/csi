@@ -45,7 +45,7 @@ body:not(.is-stuck):not(.menu-open) .burger{
   color-scheme:dark;
 }
 /* the desktop links sit over the hero photo until the header bar shows */
-@media (min-width:1281px){
+@media (min-width:1181px){
   body:not(.is-stuck) .menu{
     --ink:#0C1116;
     --paper:#F2EFE9;
@@ -96,8 +96,7 @@ body.is-stuck .masthead{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + 7px);right:var(--gutter);
   transition:top 320ms ease;
-  /* tighter between 1281px and ~1550px, so the full menu still clears the name */
-  display:flex;gap:clamp(18px,calc(4.4vw - 34px),34px);
+  display:flex;gap:clamp(14px,2.4vw,34px);
   /* 7px below the header's top padding centres the links on the two
      lines of the name */
   font-size:15px;font-weight:600;color:var(--mist);
@@ -131,8 +130,9 @@ body.is-stuck .masthead{
 .menu a.menu-cta::after{display:none}
 .menu a.menu-cta:hover,.menu a.menu-cta:focus-visible{background:var(--paper);color:var(--ink)}
 
-/* About Us sits last and drops down to Contact Us and Careers: a mouse
-   opens it by hovering, touch and keyboard by the arrow beside it */
+/* Products drops down to the five product pages, and About Us to Contact
+   Us and Careers: a mouse opens them by hovering, touch and keyboard by
+   the arrow beside each */
 .menu-drop{position:relative;display:flex;gap:3px}
 .drop-toggle{
   display:flex;align-items:center;justify-content:center;
@@ -143,7 +143,7 @@ body.is-stuck .masthead{
 .menu-drop:hover .drop-toggle,.menu-drop.is-open .drop-toggle{color:var(--paper)}
 .menu-drop.is-open .drop-toggle svg{transform:rotate(180deg)}
 .drop{display:flex;flex-direction:column;align-items:flex-start}
-@media (min-width:1281px){
+@media (min-width:1181px){
   .drop{
     position:absolute;top:calc(100% + 12px);left:-20px;
     min-width:calc(100% + 40px);width:max-content;
@@ -163,7 +163,7 @@ body.is-stuck .masthead{
   .menu-drop.is-open::after{display:block}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
-@media (min-width:1281px) and (hover:hover){
+@media (min-width:1181px) and (hover:hover){
   .menu-drop:hover .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
   .menu-drop:hover .drop-toggle svg{transform:rotate(180deg)}
   .menu-drop:hover::after{display:block}
@@ -192,8 +192,8 @@ body.is-stuck .masthead{
 .burger.is-open span:nth-child(2){opacity:0;transform:scaleX(.4)}
 .burger.is-open span:nth-child(3){transform:translateY(-9.25px) rotate(-45deg)}
 
-/* at 1280px and below the menu folds into the burger */
-@media (max-width:1280px){
+/* at 1180px and below the menu folds into the burger */
+@media (max-width:1180px){
   .burger{display:flex}
   .menu{
     position:fixed;inset:0;z-index:10;

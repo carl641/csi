@@ -144,12 +144,17 @@
 
   <nav class="menu" id="menu">
     <div class="menu-mark" aria-hidden="true">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
-    <a href="products.html">Products</a>
-    <a href="architectural-metalwork.html">Metalwork</a>
-    <a href="monumental-stairs.html">Stairs</a>
-    <a href="rail-systems.html">Railings</a>
-    <a href="canopies.html">Canopies</a>
-    <a href="laser.html">Laser</a>
+    <div class="menu-drop">
+      <a href="products.html">Products</a>
+      <button class="drop-toggle" type="button" aria-label="Products menu" aria-expanded="false" aria-controls="menu-products"><svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="drop" id="menu-products">
+        <a href="architectural-metalwork.html">Metalwork</a>
+        <a href="monumental-stairs.html">Stairs</a>
+        <a href="rail-systems.html">Railings</a>
+        <a href="canopies.html">Canopies</a>
+        <a href="laser.html">Laser</a>
+      </div>
+    </div>
     <a href="case-studies.html" aria-current="page">Case Studies</a>
     <div class="menu-drop">
       <a href="about.html">About Us</a>
