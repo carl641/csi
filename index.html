@@ -986,7 +986,9 @@ body.menu-open .masthead{border-bottom-color:transparent;background:transparent;
 }
 .title{
   margin:0;font-weight:800;text-transform:uppercase;
-  font-size:clamp(40px,7.6vw,118px);line-height:.86;letter-spacing:-.035em;
+  /* sized by the window's height as well as its width, so on a shorter
+     laptop screen the two-line titles stay well clear of the header */
+  font-size:clamp(40px,min(6.8vw,11vh),108px);line-height:.86;letter-spacing:-.035em;
 }
 .desc{
   font-family:var(--serif);font-weight:300;
