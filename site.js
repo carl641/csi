@@ -19,30 +19,33 @@ function setMenu(open){
 }
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 1280) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
 
-/* About Us drops down to Contact Us and Careers. Hovering opens it (in the
-   CSS); the arrow beside it opens it for touch and keyboard, and it closes
-   on a click elsewhere, on Escape, or when focus moves on past it */
-const drop    = menu.querySelector('.menu-drop');
-const dropBtn = drop && drop.querySelector('.drop-toggle');
-function setDrop(open){
-  if(!drop) return;
-  drop.classList.toggle('is-open', open);
-  dropBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+/* Products and About Us drop down to their pages. Hovering opens them (in
+   the CSS); the arrow beside each opens it for touch and keyboard, and it
+   closes on a click elsewhere, on Escape, or when focus moves on past it */
+const drops = [...menu.querySelectorAll('.menu-drop')].map(el=>({el, btn:el.querySelector('.drop-toggle')}));
+function setDrop(d, open){
+  d.el.classList.toggle('is-open', open);
+  d.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
-if(drop){
-  dropBtn.addEventListener('click', ()=>setDrop(!drop.classList.contains('is-open')));
-  document.addEventListener('click', e=>{ if(!drop.contains(e.target)) setDrop(false); });
-  drop.addEventListener('focusout', e=>{ if(!drop.contains(e.relatedTarget)) setDrop(false); });
-}
+drops.forEach(d=>{
+  d.btn.addEventListener('click', ()=>{
+    const open = !d.el.classList.contains('is-open');
+    drops.forEach(o=>{ if(o !== d) setDrop(o, false); });
+    setDrop(d, open);
+  });
+  document.addEventListener('click', e=>{ if(!d.el.contains(e.target)) setDrop(d, false); });
+  d.el.addEventListener('focusout', e=>{ if(!d.el.contains(e.relatedTarget)) setDrop(d, false); });
+});
 
 document.addEventListener('keydown', e=>{
   if(e.key !== 'Escape') return;
-  if(drop && drop.classList.contains('is-open')){
-    if(drop.contains(document.activeElement)) dropBtn.focus();
-    setDrop(false);
-  }
+  drops.forEach(d=>{
+    if(!d.el.classList.contains('is-open')) return;
+    if(d.el.contains(document.activeElement)) d.btn.focus();
+    setDrop(d, false);
+  });
   if(menu.classList.contains('is-open')) setMenu(false);
 });
 

@@ -26,11 +26,11 @@ The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
 
-The menu runs Products, the four sector pages and Laser, then Case Studies and About
-Us on the right. About Us drops down to Contact Us and Careers: a mouse
-opens it by hovering, and the arrow beside it opens it for touch and
-keyboard. At 1280px and below the menu folds into the burger, which lists
-Contact Us and Careers under About Us. A Get a quote button, to the Contact
+The menu runs Products, Case Studies and About Us. Products drops down to
+the four sector pages and Laser, and About Us to Contact Us and Careers: a
+mouse opens them by hovering, and the arrow beside each opens it for touch
+and keyboard. At 1180px and below the menu folds into the burger, which
+lists each dropdown's pages under it. A Get a quote button, to the Contact
 page, closes the menu on the right, and the burger menu's list. The footer
 still lists every page.
 
