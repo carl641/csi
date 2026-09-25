@@ -8,7 +8,7 @@ Construction Services, Inc. — Architectural Metal Products.
   photography from the Uploadcare CDN (`3unloi5wlp.ucarecd.net`), with
   styles and scripts inline, so it runs by opening the file in a browser
   with no build step or server.
-- `about.html`, `case-studies.html`, `architectural-metalwork.html`,
+- `about.html`, `products.html`, `case-studies.html`, `architectural-metalwork.html`,
   `monumental-stairs.html`, `rail-systems.html`, `canopies.html`,
   `laser.html`, `careers.html`, `contact.html` — the pages in the nav, in
   the home page's design. They share `site.css` and `site.js`; anything
@@ -26,7 +26,7 @@ The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
 
-The menu runs the four sector pages and Laser, then Case Studies and About
+The menu runs Products, the four sector pages and Laser, then Case Studies and About
 Us on the right. About Us drops down to Contact Us and Careers: a mouse
 opens it by hovering, and the arrow beside it opens it for touch and
 keyboard. At 1280px and below the menu folds into the burger, which lists
@@ -41,3 +41,7 @@ Leaders in architectural metalwork (S letterform) · One source for the
 ornamental package (I letterform) · Laser cutting carousel ·
 See our work on display (venue rail) · Employment · Case studies ·
 Get a quote · Footer.
+
+The Products page sums up the four product lines as large photo cards,
+each linking to its page, with laser cutting highlighted on a dark band
+of its own.
