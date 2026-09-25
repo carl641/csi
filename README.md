@@ -29,8 +29,10 @@ open them.
 The menu runs the four sector pages and Laser, then Case Studies and About
 Us on the right. About Us drops down to Contact Us and Careers: a mouse
 opens it by hovering, and the arrow beside it opens it for touch and
-keyboard. At 1180px and below the menu folds into the burger, which lists
-Contact Us and Careers under About Us. The footer still lists every page.
+keyboard. At 1280px and below the menu folds into the burger, which lists
+Contact Us and Careers under About Us. A Get a quote button, to the Contact
+page, closes the menu on the right, and the burger menu's list. The footer
+still lists every page.
 
 ### Home page sections
 

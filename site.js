@@ -19,7 +19,7 @@ function setMenu(open){
 }
 burger.addEventListener('click', ()=>setMenu(!menu.classList.contains('is-open')));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 1180) setMenu(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 1280) setMenu(false); });
 
 /* About Us drops down to Contact Us and Careers. Hovering opens it (in the
    CSS); the arrow beside it opens it for touch and keyboard, and it closes
