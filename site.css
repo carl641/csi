@@ -412,6 +412,14 @@ body.is-stuck .masthead{
   .svc-mat .kicker{padding-top:0}
 }
 
+/* on the sector pages, the location, scope and credits under a project's photos */
+.proj-place{margin:14px 0 8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.proj-text{margin:0;font-family:var(--serif);font-weight:300;font-size:15px;line-height:1.55;color:var(--mist)}
+.proj-credits{margin:14px 0 0;display:grid;gap:6px;font-size:13px;line-height:1.4}
+.proj-credits div{display:grid;grid-template-columns:100px 1fr;gap:10px}
+.proj-credits dt{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);padding-top:1px}
+.proj-credits dd{margin:0}
+
 /* numbered columns under a hairline, like the home page's venue cards */
 .cols{
   display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));
