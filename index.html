@@ -852,7 +852,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   text-stroke:1.5px rgba(242,239,233,.16);
   will-change:transform;
 }
-.fifth-word{transform:translate(-54%,-50%) rotate(6deg);-webkit-text-stroke-color:rgba(242,239,233,.16);text-stroke-color:rgba(242,239,233,.16)}
 @media (max-width:760px){
   .seventh-word{-webkit-text-stroke-width:1px;text-stroke-width:1px}
 }
@@ -1545,7 +1544,6 @@ body.is-stuck .masthead{
 
 <section class="fifth" aria-label="Get a quote">
   <div class="fifth-img" aria-hidden="true"></div>
-  <div class="seventh-word fifth-word" aria-hidden="true">CSI</div>
   <div class="fifth-inner">
     <h2>Get a quote</h2>
     <p class="fifth-lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
@@ -2217,10 +2215,9 @@ if(svcTrack){
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- the footer word drifts as the footer passes ---- */
+/* ---- the Employment outline drifts as its section passes ---- */
 const outlineWords = [
-  {section:document.querySelector('.fifth'),   word:document.querySelector('.fifth-word'),   x:'-54%', rot:'6deg'},
-  {section:document.querySelector('.seventh'), word:document.querySelector('.seventh-word:not(.fifth-word)'), x:'-46%', rot:'-7deg'}
+  {section:document.querySelector('.seventh'), word:document.querySelector('.seventh-word'), x:'-46%', rot:'-7deg'}
 ].filter(o=>o.section && o.word);
 
 if(outlineWords.length && !reduced){
