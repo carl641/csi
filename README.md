@@ -53,3 +53,7 @@ download files, lead times, EMR, awards, contact names) is set as a
 placeholder with suggested content, in a dashed outline with a
 Placeholder tag (`.ph` and `.ph-tag` in the page's styles), so it can be
 found and replaced.
+
+Every Get a quote section shares one background photo, set once as
+`--quote-photo` at the top of `site.css` (and in `index.html`'s own copy
+of the tokens). Change it there to swap the photo on every page.
