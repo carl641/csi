@@ -902,10 +902,12 @@ body.is-stuck .masthead{
 .menu a:hover::after{transform:scaleX(1)}
 
 /* Get a quote, last in the menu: a small filled button whose negative
-   margins keep the row, and so the links, where they were */
+   margins keep the row, and so the links, where they were. The capitals
+   sit low in their line, so 2px of padding under lifts them to centre */
 .menu a.menu-cta{
-  margin:-5px 0 -5px 6px;padding:9px 16px;border-radius:6px;
-  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;
+  height:36px;margin:-5px 0 -5px 6px;padding:0 16px 2px;border-radius:6px;
+  font-size:12px;line-height:1;letter-spacing:.06em;text-transform:uppercase;
   color:var(--on-fill);background:var(--fill);
   transition:background 180ms ease,color 180ms ease;
 }
@@ -1011,7 +1013,7 @@ body.is-stuck .masthead{
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
   /* in the burger menu the button closes the list */
-  .menu a.menu-cta{margin:clamp(6px,1.4vh,14px) 0 0;padding:14px 26px;font-size:13px}
+  .menu a.menu-cta{height:46px;margin:clamp(6px,1.4vh,14px) 0 0;padding:0 26px 2px;font-size:13px}
   /* the dropdown opens out into a list under About Us */
   .menu-drop{flex-direction:column;align-items:flex-start;gap:clamp(12px,2.2vh,18px)}
   .drop-toggle{display:none}
