@@ -209,7 +209,8 @@ body.is-stuck .masthead{
     font-family:var(--serif);font-style:italic;font-weight:300;
     font-size:14px;color:var(--mist);letter-spacing:0;
   }
-  .menu{padding-top:clamp(116px,18vh,150px)}
+  /* the list starts a short step under the menu's copy of the name */
+  .menu{padding-top:calc(var(--head-top) + 68px)}
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
   .menu a[aria-current="page"]{color:var(--accent)}
