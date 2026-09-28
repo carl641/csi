@@ -94,6 +94,10 @@ body.is-stuck .masthead{
   backdrop-filter:blur(12px);
 }
 .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);letter-spacing:0}
+/* the logo in the header, and in the burger menu's copy of it, stands as
+   tall as the two lines of the name it replaced, so the links, burger and
+   dropdown still line up with it */
+.masthead .logo,.menu-mark .logo{display:block;height:38px;width:auto;max-width:min(60vw,320px);object-fit:contain;object-position:left center}
 .menu{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + 7px);right:var(--gutter);
@@ -252,6 +256,7 @@ body.is-stuck .masthead{
   .burger{top:calc(var(--head-top) + 6.5px)}
   .menu-mark{font-size:15px}
   .menu-mark span{font-size:12px}
+  .masthead .logo,.menu-mark .logo{height:32px}
   :root{--head-top:26px;--head-bottom:20px}
   body.is-stuck{--head-top:13px;--head-bottom:13px}
 }

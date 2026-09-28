@@ -26,6 +26,9 @@ The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
 
+The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
+and in the burger menu's copy of it; the footer keeps the name in type.
+
 The menu runs Products, Case Studies, Resources and About Us. Products drops down to
 the four sector pages and Laser, and About Us to Contact Us and Careers: a
 mouse opens them by hovering, and the arrow beside each opens it for touch
