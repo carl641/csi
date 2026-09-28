@@ -384,7 +384,7 @@
 try {
 /* ---- the Laser-cut parts photos move with the scroll: as the section
    passes, each photo travels clockwise round the mosaic (top, to bottom
-   right, to bottom left, back to the top), growing or shrinking into each
+   right, to bottom left, to the top) until each has had the big place, growing or shrinking into each
    place and pausing there a moment before moving on. It follows the
    scroll with a slight lag, like the site's other parallax, settles into
    the nearest places when scrolling stops, runs back the other way when
@@ -394,7 +394,7 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   const section = mosaic.closest('section');
   const figs = [...mosaic.children];
   const PATH = [0, 2, 1];        // the grid places in clockwise order: top, bottom right, bottom left
-  const TURNS = 3;               // places travelled over the whole pass: one full circle
+  const TURNS = 2;               // places travelled: each photo gets its turn in the big place
   let slots = [], now = null, goal = 0, running = false;
 
   // the places are read from the grid itself, then the photos are lifted
@@ -421,9 +421,14 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       f.style.height = mix(a.h, b.h, e) + 'px';
     });
   }
+  // the moves happen while the mosaic is well in view: from when its
+  // middle is 80% of the way down the screen to when it's halfway, so
+  // the last photo reaches the big place while all three can be seen
+  const FROM = .8, TO = .5;
   function target(){
-    const r = section.getBoundingClientRect(), vh = window.innerHeight;
-    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+    const r = mosaic.getBoundingClientRect(), vh = window.innerHeight;
+    const mid = (r.top + r.height / 2) / vh;
+    const p = Math.min(1, Math.max(0, (FROM - mid) / (FROM - TO)));
     goal = p * TURNS;
   }
   function frame(){
