@@ -445,9 +445,20 @@ body.is-stuck .masthead{
 }
 
 /* a sector page's overview: the intro, three columns, then its materials */
-/* its intro: a short title on the left, and the opening statement and
-   the detail beside it on the right */
-.svc-intro .h2{margin:0;text-wrap:balance}
+/* its intro: a photo on the left that drifts against the scroll, like
+   the home page's, and the title, opening statement and detail beside it */
+.svc-intro{align-items:center}
+.svc-photo{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--mat)}
+.svc-photo-img{
+  position:absolute;inset:-16% 0;
+  background:var(--photo) center/cover no-repeat;
+  translate:0 var(--py,0px);will-change:translate;
+}
+.svc-intro .h2{margin:0 0 clamp(18px,3vh,28px)}
+@media (max-width:860px){
+  /* on a narrow screen the text comes first and the photo follows */
+  .svc-photo{order:2;aspect-ratio:16/10}
+}
 .svc-intro .intro-text{font-size:clamp(19px,1.9vw,27px);line-height:1.4}
 .svc-lede{margin:clamp(18px,3vh,28px) 0 0}
 /* a section set on a slightly deeper tone, to part it from its neighbours */
