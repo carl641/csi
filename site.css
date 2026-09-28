@@ -445,6 +445,10 @@ body.is-stuck .masthead{
 }
 
 /* a sector page's overview: the intro, three columns, then its materials */
+/* its intro: a short title on the left, and the opening statement and
+   the detail beside it on the right */
+.svc-intro .h2{margin:0;text-wrap:balance}
+.svc-intro .intro-text{font-size:clamp(19px,1.9vw,27px);line-height:1.4}
 .svc-lede{margin:clamp(18px,3vh,28px) 0 0}
 /* a section set on a slightly deeper tone, to part it from its neighbours */
 .sec--tint{background:var(--tint)}
