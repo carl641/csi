@@ -600,7 +600,7 @@ body.is-stuck .masthead{
    steps keep a number (.col-num) since their order matters */
 .cols{
   display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));
-  gap:clamp(14px,1.8vw,26px);
+  gap:clamp(30px,5vh,44px) clamp(28px,4vw,64px);
 }
 .col{border-top:1px solid var(--hair);padding-top:clamp(22px,3vh,30px)}
 .col-num{
