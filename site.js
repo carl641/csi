@@ -120,9 +120,7 @@ try {
    slides the row on by one tile and moves the first to the back, previous
    brings the last to the front and slides it in. With only a few tiles
    the set is repeated (hidden from screen readers and the tab order) until
-   the row is twice as wide as the screen, so no gap ever opens at its end.
-   This runs before the page's own gallery script, so the copies' photo
-   controls work too ---- */
+   the row is twice as wide as the screen, so no gap ever opens at its end ---- */
 document.querySelectorAll('[data-carousel]').forEach(strip=>{
   const track = strip.querySelector('.more-grid');
   const section = strip.closest('section');
@@ -176,29 +174,46 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
   const nextBtn = section.querySelector('.more-next');
   if(prevBtn) prevBtn.addEventListener('click', prev);
   if(nextBtn) nextBtn.addEventListener('click', next);
-  // a sideways swipe steps it too, except on a tile's own photos when it has
-  // several, where the swipe goes through that project's photos instead
+  // a sideways swipe steps it too
   let x0 = null;
-  strip.addEventListener('pointerdown', e=>{
-    x0 = e.target.closest('.gal:not([data-photos="1"]) .gal-stage, .gal-bar') ? null : e.clientX;
-  });
+  strip.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
   strip.addEventListener('pointerup', e=>{
     if(x0 === null) return;
     const dx = e.clientX - x0; x0 = null;
-    if(Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    if(Math.abs(dx) > 40){ swiped = Date.now(); (dx < 0 ? next : prev)(); }
   });
   strip.addEventListener('pointercancel', ()=>{ x0 = null; });
+
+  /* on touch screens a tap shows a tile's name over it, and a second tap
+     (or a tap on another tile, or anywhere else) hides it again; the
+     carousel holds still while a name is showing. A mouse shows it on
+     hover instead, in the CSS */
+  const touchy = !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  let swiped = 0;
+  const closeAll = ()=>track.querySelectorAll('.mp.is-open').forEach(t=>t.classList.remove('is-open'));
+  track.addEventListener('click', e=>{
+    const tile = e.target.closest('.mp');
+    if(!tile || !touchy || Date.now() - swiped < 400) return;
+    const open = !tile.classList.contains('is-open');
+    closeAll();
+    tile.classList.toggle('is-open', open);
+    showing = open;
+    open ? stop() : start();
+  });
+  document.addEventListener('click', e=>{
+    if(showing && !track.contains(e.target)){ closeAll(); showing = false; start(); }
+  });
 
   /* it turns on its own: one tile every few seconds, paused while someone
      is pointing at it or using it, while it's off screen or the tab is
      hidden, and never with reduced motion. A click or swipe restarts the
      wait, so it doesn't move again straight after */
   const EVERY = 3500;
-  let timer = null, hovering = false, focused = false, onScreen = false;
+  let timer = null, hovering = false, focused = false, onScreen = false, showing = false;
   const stop = ()=>{ clearInterval(timer); timer = null; };
   const start = ()=>{
     stop();
-    if(reduced || hovering || focused || !onScreen || document.hidden) return;
+    if(reduced || hovering || focused || showing || !onScreen || document.hidden) return;
     timer = setInterval(next, EVERY);
   };
   section.addEventListener('pointerenter', e=>{ if(e.pointerType === 'mouse'){ hovering = true; stop(); } });

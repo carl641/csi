@@ -497,10 +497,42 @@ body.is-stuck .masthead{
   margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);
 }
 .more-grid{display:flex;align-items:flex-start;gap:clamp(14px,1.6vw,22px);will-change:transform}
-.more-grid > .proj{flex:0 0 clamp(250px,23vw,340px);min-width:0}
-.more-grid .proj-title{font-size:clamp(15px,1.1vw,17px)}
+/* one photo per tile; the project's name lies over it, shown on hover
+   with a mouse, on keyboard focus, and on a tap on touch screens */
+.mp{
+  position:relative;margin:0;flex:0 0 clamp(250px,23vw,340px);min-width:0;
+  aspect-ratio:4/3;overflow:hidden;background:var(--mat);cursor:pointer;
+}
+.mp img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  -webkit-user-drag:none;user-select:none;
+  transition:transform 900ms cubic-bezier(.2,.7,.25,1);
+}
+.mp-cap{
+  position:absolute;inset:0;display:flex;align-items:flex-end;
+  padding:clamp(14px,1.6vw,20px);
+  background:linear-gradient(180deg,rgba(8,12,16,0) 35%,rgba(8,12,16,.82) 100%);
+  color:#F2EFE9;pointer-events:none;
+  opacity:0;transition:opacity 260ms ease;
+}
+.mp-title{
+  font-size:clamp(15px,1.2vw,18px);font-weight:600;letter-spacing:-.01em;line-height:1.25;
+  transform:translateY(8px);transition:transform 320ms cubic-bezier(.3,0,.2,1);
+}
+.mp.is-open .mp-cap,.mp:focus-visible .mp-cap{opacity:1}
+.mp.is-open .mp-title,.mp:focus-visible .mp-title{transform:none}
+.mp.is-open img{transform:scale(1.04)}
+.mp:focus-visible{outline-offset:-2px}
+@media (hover:hover) and (pointer:fine){
+  .mp:hover .mp-cap{opacity:1}
+  .mp:hover .mp-title{transform:none}
+  .mp:hover img{transform:scale(1.04)}
+}
 @media (max-width:560px){
-  .more-grid > .proj{flex-basis:72vw}
+  .mp{flex-basis:72vw}
+}
+@media (prefers-reduced-motion:reduce){
+  .mp img,.mp-title{transition:none}
 }
 
 /* numbered columns under a hairline, like the home page's venue cards */

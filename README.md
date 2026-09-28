@@ -28,7 +28,9 @@ open them.
 On Metalwork and Stairs the More projects tiles run as an endless
 carousel (`[data-carousel]` in `site.js`), stepping on its own like the
 Laser page's photo strip and repeating the tiles when there are too few
-to fill a wide screen.
+to fill a wide screen. Each tile is one photo; a project with several
+photos has a tile for each. The project's name lies over its photo,
+shown on hover with a mouse and on a tap on touch screens.
 
 The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
 and in the burger menu's copy of it; the footer keeps the name in type. Its
