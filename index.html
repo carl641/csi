@@ -779,8 +779,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .foot-word{
   position:absolute;z-index:0;
   left:50%;right:auto;top:50%;bottom:auto;
-  transform:translate(-46%,-50%) rotate(-7deg);
-  transform-origin:60% 50%;
+  /* centred on the footer: the same space before the C as the letter
+     spacing leaves after the I, so the letters, not the box, sit on the
+     middle, and it turns about its own centre */
+  transform:translate(-50%,-50%) rotate(-7deg);
+  transform-origin:50% 50%;
+  padding-left:.06em;
+  translate:0 var(--py,0px);
   font-family:'BBH Hegarty',Impact,sans-serif;
   /* Hegarty sets CSI about twice as wide as Anton did, so the word is sized
      to span the page rather than by the old cap height */
@@ -795,7 +800,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   opacity:.9;
 }
 @media (max-width:760px){
-  .foot-word{transform:translate(-48%,-50%) rotate(-9deg)}
+  .foot-word{transform:translate(-50%,-50%) rotate(-9deg)}
 }
 .foot-top,.foot-bottom{position:relative;z-index:1}
 .foot-top{
@@ -2312,8 +2317,7 @@ function paintFoot(){
   footNow += (footGoal - footNow) * FOOT_EASE;
   const moving = Math.abs(footGoal - footNow) > 0.1;
   if(!moving) footNow = footGoal;
-  footWord.style.transform =
-    'translate(-46%, calc(-50% + ' + footNow.toFixed(1) + 'px)) rotate(-7deg)';
+  footWord.style.setProperty('--py', footNow.toFixed(1) + 'px');
   if(moving) requestAnimationFrame(paintFoot); else footRunning = false;
 }
 function queueFoot(){
