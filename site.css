@@ -73,8 +73,8 @@ img{display:block;max-width:100%}
 /* ---------- masthead ---------- */
 /* the header's space above and below the name, at the top of the page and
    in the stuck bar; the menu and its dropdown line up from these */
-:root{--head-top:24px;--head-bottom:18px;--logo-h:84px}
-body.is-stuck{--head-top:10px;--head-bottom:10px;--logo-h:60px}
+:root{--head-top:32px;--head-bottom:26px;--logo-h:84px}
+body.is-stuck{--head-top:18px;--head-bottom:18px;--logo-h:60px}
 .masthead{
   position:fixed;top:0;left:0;right:0;z-index:9;
   display:flex;align-items:center;justify-content:space-between;
@@ -256,8 +256,8 @@ body.is-stuck .masthead{
   .masthead .mark span{display:block;font-size:12px}
   .menu-mark{font-size:15px}
   .menu-mark span{font-size:12px}
-  :root{--head-top:16px;--head-bottom:14px;--logo-h:58px}
-  body.is-stuck{--head-top:8px;--head-bottom:8px;--logo-h:46px}
+  :root{--head-top:22px;--head-bottom:20px;--logo-h:58px}
+  body.is-stuck{--head-top:14px;--head-bottom:14px;--logo-h:46px}
 }
 
 /* ---------- buttons ---------- */
