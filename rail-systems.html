@@ -13,14 +13,14 @@
 <script>document.documentElement.classList.add('js')</script>
 <style>
 /* ---------- the photos ---------- */
-/* each photo is shown whole on a mat rather than cropped to the frame */
+/* each photo zooms to fill its frame, cropping whatever runs past the edges */
 .gal-stage{
   position:relative;aspect-ratio:4/3;overflow:hidden;
   background:var(--mat);touch-action:pan-y;
 }
 .gal-img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;
+  object-fit:cover;object-position:center;
   transition:opacity 260ms ease;
   /* a drag would start the browser's own image drag and swallow the swipe */
   -webkit-user-drag:none;user-select:none;
