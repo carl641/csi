@@ -495,30 +495,40 @@ body.is-stuck .masthead{
 .more-head .h2{margin:0}
 .more-link{flex:0 0 auto}
 /* the row keeps within the page's margins and always shows whole tiles:
-   four across, three on a laptop, two on a tablet, one on a phone */
-.more-strip{position:relative;overflow:hidden;touch-action:pan-y;--per:4;--gap:clamp(14px,1.6vw,22px)}
-/* arrows over the left and right edges, centred on the photos; they fade
-   in while the pointer is over the carousel or a key has focused one. On
-   touch screens, with no hover, they stay hidden and a swipe steps it */
+   four across, three on a laptop, two on a tablet, one on a phone. It
+   scrolls natively, so a finger or trackpad moves it smoothly with
+   momentum, and it snaps to whole tiles when it stops */
+.more-wrap{position:relative;--per:4;--gap:clamp(14px,1.6vw,22px)}
+@media (max-width:1100px){.more-wrap{--per:3}}
+@media (max-width:760px){.more-wrap{--per:2}}
+@media (max-width:480px){.more-wrap{--per:1}}
+.more-strip{
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.more-strip::-webkit-scrollbar{display:none}
+.more-grid{display:flex;align-items:flex-start;gap:var(--gap)}
+.more-grid > .mp{scroll-snap-align:start}
+/* arrows in the page margins either side of the photos, centred on their
+   height; they show only while the pointer is over the photos or on an
+   arrow, or a key has focused one. Touch screens and narrow windows have
+   none: the row is scrolled by hand there */
 .more-arrow{
   position:absolute;z-index:2;top:50%;
-  width:48px;height:48px;
-  background:rgba(244,241,234,.92);border-color:transparent;color:#15191D;
-  box-shadow:0 4px 18px rgba(8,12,16,.18);
+  width:44px;height:44px;
   opacity:0;visibility:hidden;
-  transform:translateY(-50%) scale(.92);
-  transition:opacity 220ms ease,transform 260ms cubic-bezier(.3,0,.2,1),visibility 0s linear 260ms,background 200ms ease,color 200ms ease;
+  transition:opacity 220ms ease,visibility 0s linear 220ms,background 200ms ease,border-color 200ms ease,color 200ms ease;
 }
-.more-prev{left:14px}
-.more-next{right:14px}
-.more-strip:focus-within .more-arrow{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+.more-prev{left:calc(var(--gutter) / -2);transform:translate(-50%,-50%)}
+.more-next{right:calc(var(--gutter) / -2);transform:translate(50%,-50%)}
+.more-wrap:focus-within .more-arrow{opacity:1;visibility:visible;transition-delay:0s}
 @media (hover:hover) and (pointer:fine){
-  .more-strip:hover .more-arrow{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+  .more-wrap:hover .more-arrow{opacity:1;visibility:visible;transition-delay:0s}
 }
-@media (max-width:1100px){.more-strip{--per:3}}
-@media (max-width:760px){.more-strip{--per:2}}
-@media (max-width:480px){.more-strip{--per:1}}
-.more-grid{display:flex;align-items:flex-start;gap:var(--gap);will-change:transform}
+@media (hover:none),(pointer:coarse),(max-width:1024px){
+  .more-arrow{display:none}
+}
 /* one photo per tile; the project's name lies over it, shown on hover
    with a mouse, on keyboard focus, and on a tap on touch screens */
 .mp{

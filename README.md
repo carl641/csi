@@ -29,14 +29,15 @@ gallery; the home page's hero buttons and the About page's product list
 open them.
 On Metalwork and Stairs the More projects tiles run as an endless
 carousel (`[data-carousel]` in `site.js`) that keeps within the page
-margins, showing whole tiles only (four, three, two or one across), and
-steps on a swipe, a sideways trackpad or mouse scroll, the arrows that
-appear over its edges on hover, or on its own like
-the Laser page's photo strip. A View case studies button sits in its top
-right corner and repeating the tiles when there are too few
-to fill a wide screen. Each tile is one photo; a project with several
-photos has a tile for each. The project's name lies over its photo,
-shown on hover with a mouse and on a tap on touch screens.
+margins and shows whole tiles only (four, three, two or one across). It
+scrolls natively, so a finger or trackpad moves it smoothly and it snaps
+to whole tiles; the tiles are repeated and the scroll position quietly
+jumps back a set when it stops near either end, so it never runs out. On
+desktop, arrows in the margins either side appear while the pointer is
+over the photos; touch screens have none. It also turns on its own every
+3.5 seconds. Each tile is one photo; named projects show their name over
+the photo on hover or tap. A View case studies button sits in the
+section's top right corner.
 
 The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
 and in the burger menu's copy of it; the footer keeps the name in type. Its
