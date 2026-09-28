@@ -30,7 +30,8 @@ open them.
 On Metalwork and Stairs the More projects tiles run as an endless
 carousel (`[data-carousel]` in `site.js`) that keeps within the page
 margins, showing whole tiles only (four, three, two or one across), and
-steps on a swipe, a sideways trackpad or mouse scroll, or on its own like
+steps on a swipe, a sideways trackpad or mouse scroll, the arrows that
+appear over its edges on hover, or on its own like
 the Laser page's photo strip. A View case studies button sits in its top
 right corner and repeating the tiles when there are too few
 to fill a wide screen. Each tile is one photo; a project with several

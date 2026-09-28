@@ -109,6 +109,11 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
     track.style.transform = 'translateX(0)';
     settle(()=>{});
   }
+  // the arrows over its edges step it too
+  const prevBtn = strip.querySelector('.more-prev');
+  const nextBtn = strip.querySelector('.more-next');
+  if(prevBtn) prevBtn.addEventListener('click', ()=>{ prev(); start(); });
+  if(nextBtn) nextBtn.addEventListener('click', ()=>{ next(); start(); });
   // a sideways scroll on a trackpad or mouse steps it one tile at a time;
   // up-and-down scrolling is left to the page
   let wheelSum = 0, wheelAt = 0;
