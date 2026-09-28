@@ -30,6 +30,10 @@ The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
 and in the burger menu's copy of it; the footer keeps the name in type. Its
 height is `--logo-h` (with the header padding, in `site.css` and
 `index.html`), and the menu links, burger and dropdowns centre on it.
+The header is dark at the top of the page and light once scrolled or in
+the burger menu, so a script checks whether the logo is drawn dark or
+light and the CSS inverts it (`invert(1) hue-rotate(180deg)`, which keeps
+its hues) only on the background that would hide it.
 
 The menu runs Products, Case Studies, Resources and About Us. Products drops down to
 the four sector pages and Laser, and About Us to Contact Us and Careers: a

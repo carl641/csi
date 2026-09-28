@@ -143,4 +143,37 @@ if(drifters.length && !reduced){
   kick();
 }
 } catch (err) { console.error("feature failed:", err); }
+try {
+/* ---- logo: is it drawn dark or light? ----
+   a CORS copy of the header logo is shrunk onto a canvas and the brightness
+   of its solid pixels averaged; the CSS then inverts it on whichever
+   background would hide it. If the check can't run, it's taken as dark,
+   as logos drawn for a white page are */
+const logoImg = document.querySelector('.masthead .logo');
+if(logoImg){
+  const root = document.documentElement;
+  const mark = dark=>root.classList.add(dark ? 'logo-dark' : 'logo-light');
+  const probe = new Image();
+  probe.crossOrigin = 'anonymous';
+  probe.onload = ()=>{
+    try {
+      const w = 64, h = Math.max(1, Math.round(w * probe.naturalHeight / probe.naturalWidth));
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const x = c.getContext('2d');
+      x.drawImage(probe, 0, 0, w, h);
+      const d = x.getImageData(0, 0, w, h).data;
+      let sum = 0, n = 0;
+      for(let i = 0; i < d.length; i += 4){
+        if(d[i+3] < 128) continue;
+        sum += (.2126*d[i] + .7152*d[i+1] + .0722*d[i+2]) / 255;
+        n++;
+      }
+      mark(n ? sum / n < .5 : true);
+    } catch (e) { mark(true); }
+  };
+  probe.onerror = ()=>mark(true);
+  probe.src = logoImg.currentSrc || logoImg.src;
+}
+} catch (err) { console.error("feature failed:", err); }
 })();

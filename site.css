@@ -97,7 +97,15 @@ body.is-stuck .masthead{
 /* the logo in the header, and in the burger menu's copy of it; its height
    is --logo-h, and the links, burger and dropdown centre on it from that.
    It shrinks a little in the stuck bar */
-.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(66vw,520px);object-fit:contain;object-position:left center;transition:height 320ms ease}
+.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(66vw,520px);object-fit:contain;object-position:left center;transition:height 320ms ease,filter 320ms ease}
+/* the header sits over a dark photo at the top of the page, and on a light
+   bar once scrolled or with the burger menu open. The script marks <html>
+   .logo-dark or .logo-light for how the logo itself is drawn, and it's
+   inverted only where the background would hide it; the hue-rotate puts
+   its colours back after the invert, so only light and dark swap */
+.logo-dark body:not(.is-stuck) .masthead .logo,
+.logo-light body.is-stuck .masthead .logo,
+.logo-light .menu-mark .logo{filter:invert(1) hue-rotate(180deg)}
 .menu{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + var(--logo-h) / 2 - 13px);right:var(--gutter);
