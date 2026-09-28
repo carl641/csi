@@ -14,7 +14,9 @@ Construction Services, Inc. — Architectural Metal Products.
   the home page's design. They share `site.css` and `site.js`; anything
   only one page uses sits in that page's own `<style>` or `<script>`. The
   masthead, menu, buttons and footer in `site.css` copy the ones inline in
-  `index.html`, so change both together.
+  `index.html`, so change both together. Each page links them as `site.css?v=…` and
+  `site.js?v=…`; bump that number on every page whenever either file
+  changes, so browsers fetch the new copy instead of reusing a stale one.
 
 Photos come in two batches on the CDN. The first (`hq-…` JPEGs and PNGs) is
 asked for as resized copies. The second (AVIF files named for their page or
