@@ -890,7 +890,15 @@ body.is-stuck .masthead{
 /* the logo in the header, and in the burger menu's copy of it; its height
    is --logo-h, and the links, burger and dropdown centre on it from that.
    It shrinks a little in the stuck bar */
-.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(66vw,520px);object-fit:contain;object-position:left center;transition:height 320ms ease}
+.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(66vw,520px);object-fit:contain;object-position:left center;transition:height 320ms ease,filter 320ms ease}
+/* the header sits over a dark photo at the top of the page, and on a light
+   bar once scrolled or with the burger menu open. The script marks <html>
+   .logo-dark or .logo-light for how the logo itself is drawn, and it's
+   inverted only where the background would hide it; the hue-rotate puts
+   its colours back after the invert, so only light and dark swap */
+.logo-dark body:not(.is-stuck) .masthead .logo,
+.logo-light body.is-stuck .masthead .logo,
+.logo-light .menu-mark .logo{filter:invert(1) hue-rotate(180deg)}
 .menu{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + var(--logo-h) / 2 - 13px);right:clamp(20px,5vw,72px);
@@ -2392,6 +2400,39 @@ if(workSection && !reduced){
   window.addEventListener('scroll', wKick, {passive:true});
   window.addEventListener('resize', wKick);
   wKick();
+}
+} catch (err) { console.error("feature failed:", err); }
+try {
+/* ---- logo: is it drawn dark or light? ----
+   a CORS copy of the header logo is shrunk onto a canvas and the brightness
+   of its solid pixels averaged; the CSS then inverts it on whichever
+   background would hide it. If the check can't run, it's taken as dark,
+   as logos drawn for a white page are */
+const logoImg = document.querySelector('.masthead .logo');
+if(logoImg){
+  const root = document.documentElement;
+  const mark = dark=>root.classList.add(dark ? 'logo-dark' : 'logo-light');
+  const probe = new Image();
+  probe.crossOrigin = 'anonymous';
+  probe.onload = ()=>{
+    try {
+      const w = 64, h = Math.max(1, Math.round(w * probe.naturalHeight / probe.naturalWidth));
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const x = c.getContext('2d');
+      x.drawImage(probe, 0, 0, w, h);
+      const d = x.getImageData(0, 0, w, h).data;
+      let sum = 0, n = 0;
+      for(let i = 0; i < d.length; i += 4){
+        if(d[i+3] < 128) continue;
+        sum += (.2126*d[i] + .7152*d[i+1] + .0722*d[i+2]) / 255;
+        n++;
+      }
+      mark(n ? sum / n < .5 : true);
+    } catch (e) { mark(true); }
+  };
+  probe.onerror = ()=>mark(true);
+  probe.src = logoImg.currentSrc || logoImg.src;
 }
 } catch (err) { console.error("feature failed:", err); }
 
