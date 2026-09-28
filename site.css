@@ -73,8 +73,8 @@ img{display:block;max-width:100%}
 /* ---------- masthead ---------- */
 /* the header's space above and below the name, at the top of the page and
    in the stuck bar; the menu and its dropdown line up from these */
-:root{--head-top:28px;--head-bottom:20px;--logo-h:60px}
-body.is-stuck{--head-top:12px;--head-bottom:12px;--logo-h:46px}
+:root{--head-top:24px;--head-bottom:18px;--logo-h:84px}
+body.is-stuck{--head-top:10px;--head-bottom:10px;--logo-h:60px}
 .masthead{
   position:fixed;top:0;left:0;right:0;z-index:9;
   display:flex;align-items:center;justify-content:space-between;
@@ -97,7 +97,7 @@ body.is-stuck .masthead{
 /* the logo in the header, and in the burger menu's copy of it; its height
    is --logo-h, and the links, burger and dropdown centre on it from that.
    It shrinks a little in the stuck bar */
-.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(62vw,420px);object-fit:contain;object-position:left center;transition:height 320ms ease}
+.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(66vw,520px);object-fit:contain;object-position:left center;transition:height 320ms ease}
 .menu{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + var(--logo-h) / 2 - 13px);right:var(--gutter);
@@ -256,8 +256,8 @@ body.is-stuck .masthead{
   .masthead .mark span{display:block;font-size:12px}
   .menu-mark{font-size:15px}
   .menu-mark span{font-size:12px}
-  :root{--head-top:20px;--head-bottom:16px;--logo-h:46px}
-  body.is-stuck{--head-top:10px;--head-bottom:10px;--logo-h:38px}
+  :root{--head-top:16px;--head-bottom:14px;--logo-h:58px}
+  body.is-stuck{--head-top:8px;--head-bottom:8px;--logo-h:46px}
 }
 
 /* ---------- buttons ---------- */
