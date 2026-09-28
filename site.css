@@ -161,18 +161,32 @@ body.is-stuck .masthead{
   .drop{
     /* it hangs just under its own link, at the top of the page and in the
        stuck bar alike, lined up with the link's text */
-    position:absolute;top:calc(100% + 12px);left:-20px;
-    min-width:calc(100% + 40px);width:max-content;
-    gap:8px;padding:14px 20px 16px;
+    position:absolute;top:calc(100% + 12px);left:-18px;
+    min-width:calc(100% + 36px);width:max-content;
+    gap:2px;padding:8px;
+    /* the same frosted colour as the header bar, so once the bar shows the
+       panel reads as part of it; a soft shadow and a faint edge instead of
+       a hard border */
     background:var(--bar);
-    border:1px solid var(--hair-soft);
-    backdrop-filter:blur(12px);
-    opacity:0;visibility:hidden;transform:translateY(-6px);
+    -webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15);
+    border-radius:10px;
+    box-shadow:0 0 0 1px var(--hair-soft),0 18px 40px -18px rgba(8,12,16,.45);
+    opacity:0;visibility:hidden;transform:translateY(-4px);
     transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),visibility 0s linear 260ms;
   }
+  /* over the photo at the top of the page it's a lighter smoked glass */
+  body:not(.is-stuck) .drop{background:rgba(8,12,16,.55)}
+  /* its links get a soft highlight rather than the menu's underline */
+  .drop a{
+    align-self:stretch;padding:9px 12px;border-radius:6px;
+    font-size:15px;color:var(--mist);
+    transition:background 160ms ease,color 160ms ease;
+  }
+  .drop a::after{display:none}
+  .drop a:hover,.drop a:focus-visible,.drop a[aria-current="page"]{background:var(--hair-soft);color:var(--paper)}
   /* while it's open, an unseen strip under About Us carries the pointer
      down to the panel; it sits beneath the links and the panel */
-  .menu-drop::after{content:"";position:absolute;z-index:-1;left:-20px;right:-20px;top:100%;height:40px;display:none}
+  .menu-drop::after{content:"";position:absolute;z-index:-1;left:-18px;right:-18px;top:100%;height:40px;display:none}
   .menu-drop.is-open::after{display:block}
   .menu-drop.is-open .drop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
