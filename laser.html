@@ -102,21 +102,32 @@
 .parts-imgs{position:sticky;top:120px}
 /* room under the text so the pinned stretch is long enough for the moves */
 .parts-info{padding-bottom:clamp(0px,30vh,300px)}
-.parts-more{display:grid;gap:clamp(40px,8vh,80px);margin:clamp(48px,9vh,88px) 0 clamp(40px,7vh,64px)}
-.parts-more > div{border-top:1px solid var(--hair);padding-top:clamp(20px,3vh,28px)}
 .parts-info .lede{margin-bottom:0}
-.parts-facts{margin:clamp(24px,4vh,36px) 0 clamp(26px,4vh,36px);border-top:1px solid var(--hair)}
-.parts-facts > div{
-  display:grid;grid-template-columns:minmax(96px,.4fr) 1fr;gap:16px;
-  padding:12px 0;border-bottom:1px solid var(--hair);
-}
-.parts-facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:3px}
-.parts-facts dd{margin:0;font-size:15px;line-height:1.45}
+/* the facts as taller rows, with a line down the side that fills in step
+   with the photos as they change places */
+.spec{position:relative;margin:clamp(32px,5vh,44px) 0 clamp(32px,5vh,44px);padding-left:22px}
+.spec::before,.spec::after{content:"";position:absolute;left:0;top:0;width:2px}
+.spec::before{bottom:0;background:var(--hair)}
+.spec::after{height:calc(var(--prog,0) * 100%);background:var(--accent)}
+.spec-row{padding:clamp(22px,3.4vh,30px) 0;border-bottom:1px solid var(--hair)}
+.spec-row:first-child{padding-top:4px}
+.spec-lab{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.spec-val{margin:0;font-size:clamp(20px,2.1vw,28px);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.spec-sub{margin:6px 0 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
 @media (max-width:860px){
   .parts{grid-template-columns:1fr}
   .parts-info{order:-1;padding-bottom:0}
   .parts-imgs{position:relative;top:auto}
+  /* nothing moves beside the text here, so the line stays plain */
+  .spec::after{display:none}
 }
+/* on a narrow screen the photos sit under the text as an endless
+   carousel that turns on its own; the next photo peeks in at the edge */
+.parts-imgs.is-carousel{display:flex;gap:12px;overflow:hidden;touch-action:pan-y}
+.parts-imgs.is-carousel figure,
+.parts-imgs.is-carousel figure:first-child{flex:0 0 86%;aspect-ratio:4/3;grid-column:auto;
+  transform:translateX(var(--x,0px));transition:transform 620ms cubic-bezier(.3,0,.2,1)}
+.parts-imgs.is-carousel.no-anim figure{transition:none}
 
 </style>
 </head>
@@ -183,19 +194,32 @@
     <div class="parts-info reveal">
       <h2 class="h2">Laser-cut parts</h2>
       <p class="lede">From a single custom profile to a run of identical parts, cut in house on our TruLaser 3040 from sheet, plate, perforated stock and tube.</p>
-      <dl class="parts-facts">
-        <div><dt>Machine</dt><dd>TruLaser 3040, up to 10kW</dd></div>
-        <div><dt>Materials</dt><dd>Mild steel, stainless, aluminum, titanium and brass</dd></div>
-        <div><dt>Thickness</dt><dd>Mild steel up to 28mm</dd></div>
-        <div><dt>Sheet size</dt><dd>Up to 6.6 &times; 13 ft</dd></div>
-        <div><dt>What we cut</dt><dd>Perforated panels, screens and custom profiles</dd></div>
-      </dl>
-      <div class="parts-more">
-        <div><h3 class="col-title">Panels &amp; screens</h3><p class="col-text">Perforated panels and screens, including decorative laser-cut Cor-ten panels with each one cut to its own pattern.</p></div>
-        <div><h3 class="col-title">Custom profiles</h3><p class="col-text">A single one-off profile or a run of identical parts, cut from sheet, plate, perforated stock or tube.</p></div>
-        <div><h3 class="col-title">In our own shop</h3><p class="col-text">Our engineering department works in CAD and MicroStation alongside the designer, and the parts are cut, fabricated and finished in house.</p></div>
+      <div class="spec" id="parts-spec">
+        <div class="spec-row"><p class="spec-lab">Machine</p><p class="spec-val">TruLaser 3040, up to 10kW</p><p class="spec-sub">Clean edges and fast cycle times on every cut.</p></div>
+        <div class="spec-row"><p class="spec-lab">Materials</p><p class="spec-val">Mild steel, stainless, aluminum, titanium and brass</p><p class="spec-sub">Five metals, cut in house.</p></div>
+        <div class="spec-row"><p class="spec-lab">Thickness</p><p class="spec-val">Mild steel up to 28mm</p><p class="spec-sub">Cut from sheet, plate, perforated stock and tube.</p></div>
+        <div class="spec-row"><p class="spec-lab">Sheet size</p><p class="spec-val">Up to 6.6 &times; 13 ft</p></div>
+        <div class="spec-row"><p class="spec-lab">What we cut</p><p class="spec-val">Perforated panels, screens and custom profiles</p><p class="spec-sub">From a single custom profile to a run of identical parts.</p></div>
       </div>
       <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-tight" aria-label="What we make">
+  <h2 class="h2 sec-title reveal">What we make</h2>
+  <div class="cols">
+    <div class="col reveal" style="--d:0ms">
+      <h3 class="col-title">Panels &amp; screens</h3>
+      <p class="col-text">Perforated panels and screens, including decorative laser-cut Cor-ten panels with each one cut to its own pattern.</p>
+    </div>
+    <div class="col reveal" style="--d:70ms">
+      <h3 class="col-title">Custom profiles</h3>
+      <p class="col-text">A single one-off profile or a run of identical parts, cut from sheet, plate, perforated stock or tube.</p>
+    </div>
+    <div class="col reveal" style="--d:140ms">
+      <h3 class="col-title">In our own shop</h3>
+      <p class="col-text">Our engineering department works in CAD and MicroStation alongside the designer, and the parts are cut, fabricated and finished in house.</p>
     </div>
   </div>
 </section>
@@ -394,39 +418,42 @@
 <script src="site.js?v=202609281949"></script>
 <script>
 try {
-/* ---- the Laser-cut parts photos move with the scroll: as the section
-   passes, each photo travels clockwise round the mosaic (top, to bottom
-   right, to bottom left, to the top) until each has had the big place, growing or shrinking into each
-   place and pausing there a moment before moving on. It follows the
-   scroll with a slight lag, like the site's other parallax, settles into
-   the nearest places when scrolling stops, runs back the other way when
-   scrolling up, and stays still with reduced motion ---- */
+/* ---- the Laser-cut parts photos. On a wide screen they sit pinned beside
+   the facts and move with the scroll: each photo travels clockwise round
+   the mosaic (top, to bottom right, to bottom left) until each has had
+   the big place, trailing the scroll slightly and settling into place
+   when scrolling stops, while the line beside the facts fills in step.
+   On a narrow screen, where they sit under the text, they become an
+   endless carousel that turns on its own and can be swiped. Reduced
+   motion leaves them still in either case ---- */
 const mosaic = document.querySelector('.parts-imgs');
-if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const section = mosaic.closest('section');
-  const figs = [...mosaic.children];
-  const PATH = [0, 2, 1];        // the grid places in clockwise order: top, bottom right, bottom left
-  const TURNS = 2;               // places travelled: each photo gets its turn in the big place
-  let slots = [], now = null, goal = 0, running = false;
+const spec = document.getElementById('parts-spec');
+if(mosaic){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const narrow = window.matchMedia('(max-width:860px)');
+  const grid = mosaic.parentElement;
+  const home = [...mosaic.children];          // the photos in their first order
+  const PATH = [0, 2, 1], TURNS = 2;
+  let mode = null;
 
-  // the places are read from the grid itself, then the photos are lifted
-  // out of it to move freely over the same space
-  function measure(){
+  /* -- wide: the mosaic that moves with the scroll -- */
+  let slots = [], now = null, goal = 0, running = false, last = 0, snapTimer = null;
+  const ease = f=>{ const g = Math.min(1, Math.max(0, (f - .08) / .84)); return g * g * g * (g * (g * 6 - 15) + 10); };
+  const mix = (a, b, f)=>a + (b - a) * f;
+  function clearMosaic(){
     mosaic.classList.remove('is-moving');
     mosaic.style.height = '';
-    figs.forEach(f=>{ f.style.transform = f.style.width = f.style.height = f.style.zIndex = ''; });
+    home.forEach(f=>{ f.style.transform = f.style.width = f.style.height = f.style.zIndex = ''; });
+  }
+  function measure(){
+    clearMosaic();
     const box = mosaic.getBoundingClientRect();
-    slots = figs.map(f=>{ const r = f.getBoundingClientRect(); return {x:r.left - box.left, y:r.top - box.top, w:r.width, h:r.height}; });
+    slots = home.map(f=>{ const r = f.getBoundingClientRect(); return {x:r.left - box.left, y:r.top - box.top, w:r.width, h:r.height}; });
     mosaic.style.height = box.height + 'px';
     mosaic.classList.add('is-moving');
   }
-  // each move uses most of its stretch of scroll, easing gently in and out
-  const ease = f=>{ const g = Math.min(1, Math.max(0, (f - .08) / .84)); return g * g * g * (g * (g * 6 - 15) + 10); };
-  const mix = (a, b, f)=>a + (b - a) * f;
-  // positions move on the GPU; the size changes too, and whichever photo
-  // is larger at the moment sits on top as they pass
   function place(t){
-    figs.forEach((f, i)=>{
+    home.forEach((f, i)=>{
       const pos = PATH.indexOf(i) + t;
       const k = Math.floor(pos), e = ease(pos - k);
       const a = slots[PATH[((k % 3) + 3) % 3]], b = slots[PATH[(((k + 1) % 3) + 3) % 3]];
@@ -436,32 +463,18 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       f.style.height = mix(a.h, b.h, e).toFixed(2) + 'px';
       f.style.zIndex = Math.round(w);
     });
+    if(spec) spec.style.setProperty('--prog', (t / TURNS).toFixed(3));
   }
-  // the moves happen while the mosaic is well in view: from when its
-  // middle is 82% of the way down the screen to when it's 56% down, so
-  // the last photo reaches the big place while all three can be seen
-  const FROM = .82, TO = .56;
-  // on a wide screen the mosaic is pinned while the text scrolls past, and
-  // the moves are spread over that whole pinned stretch; stacked on a
-  // narrow screen, they run while the mosaic is well in view
-  const wide = window.matchMedia('(min-width:861px)');
-  const grid = mosaic.parentElement;
+  // the moves are spread over the stretch where the mosaic is pinned,
+  // finishing a little before it lets go
   function target(){
-    const vh = window.innerHeight;
-    let p;
-    if(wide.matches){
-      const g = grid.getBoundingClientRect(), pin = parseFloat(getComputedStyle(mosaic).top) || 0;
-      const travel = g.height - mosaic.offsetHeight;
-      p = travel > 40 ? (pin - g.top) / travel : 0;
-    } else {
-      const r = mosaic.getBoundingClientRect(), mid = (r.top + r.height / 2) / vh;
-      p = (FROM - mid) / (FROM - TO);
-    }
+    const g = grid.getBoundingClientRect(), pin = parseFloat(getComputedStyle(mosaic).top) || 0;
+    const travel = g.height - mosaic.offsetHeight;
+    const p = travel > 40 ? (pin - g.top) / (travel * .85) : 0;
     goal = Math.min(1, Math.max(0, p)) * TURNS;
   }
-  // it trails the scroll softly, at the same pace on any screen's frame rate
-  let last = 0;
   function frame(ts){
+    if(mode !== 'wide'){ running = false; return; }
     if(now === null) now = goal;
     const dt = last ? Math.min(64, ts - last) : 16;
     last = ts;
@@ -471,17 +484,82 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     if(now !== goal) requestAnimationFrame(frame); else { running = false; last = 0; }
   }
   function run(){ if(!running){ running = true; requestAnimationFrame(frame); } }
-  // once scrolling stops, the photos settle into the nearest places
-  let snapTimer = null;
-  function kick(){
+  function onScroll(){
+    if(mode !== 'wide') return;
     target(); run();
     clearTimeout(snapTimer);
     snapTimer = setTimeout(()=>{ goal = Math.round(goal); run(); }, 320);
   }
-  measure();
-  target(); now = goal; place(now);
-  window.addEventListener('scroll', kick, {passive:true});
-  window.addEventListener('resize', ()=>{ measure(); target(); now = goal; place(now); });
+
+  /* -- narrow: the endless carousel -- */
+  let timer = null, busy = false, onScreen = false, touching = false;
+  const step = ()=>{ const f = mosaic.firstElementChild; return f.getBoundingClientRect().width + (parseFloat(getComputedStyle(mosaic).columnGap) || 0); };
+  function slide(dir){
+    if(busy || mode !== 'narrow') return;
+    busy = true;
+    if(dir > 0){
+      mosaic.style.setProperty('--x', -step() + 'px');
+      setTimeout(()=>{
+        mosaic.classList.add('no-anim');
+        mosaic.appendChild(mosaic.firstElementChild);
+        mosaic.style.setProperty('--x', '0px');
+        void mosaic.offsetWidth;
+        mosaic.classList.remove('no-anim');
+        busy = false;
+      }, 640);
+    } else {
+      mosaic.classList.add('no-anim');
+      mosaic.prepend(mosaic.lastElementChild);
+      mosaic.style.setProperty('--x', -step() + 'px');
+      void mosaic.offsetWidth;
+      mosaic.classList.remove('no-anim');
+      mosaic.style.setProperty('--x', '0px');
+      setTimeout(()=>{ busy = false; }, 640);
+    }
+  }
+  const stop = ()=>{ clearInterval(timer); timer = null; };
+  function start(){
+    stop();
+    if(mode !== 'narrow' || reduce || touching || !onScreen || document.hidden) return;
+    timer = setInterval(()=>slide(1), 3500);
+  }
+  let x0 = null;
+  mosaic.addEventListener('pointerdown', e=>{ if(mode !== 'narrow') return; x0 = e.clientX; touching = true; stop(); });
+  const letGo = e=>{
+    if(x0 !== null && e && e.clientX !== undefined){
+      const dx = e.clientX - x0;
+      if(Math.abs(dx) > 40) slide(dx < 0 ? 1 : -1);
+    }
+    x0 = null; touching = false; start();
+  };
+  mosaic.addEventListener('pointerup', letGo);
+  mosaic.addEventListener('pointercancel', ()=>letGo());
+  document.addEventListener('visibilitychange', start);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.3}).observe(mosaic);
+  } else onScreen = true;
+
+  /* -- switching between the two as the screen changes width -- */
+  function setMode(){
+    const want = narrow.matches ? 'narrow' : 'wide';
+    if(want === mode){ if(mode === 'wide' && !reduce){ measure(); target(); now = goal; place(now); } return; }
+    mode = want;
+    stop(); busy = false;
+    home.forEach(f=>mosaic.appendChild(f));      // back to the first order
+    mosaic.style.removeProperty('--x');
+    if(mode === 'wide'){
+      mosaic.classList.remove('is-carousel');
+      if(reduce){ clearMosaic(); if(spec) spec.style.setProperty('--prog', 1); return; }
+      measure(); target(); now = goal; place(now);
+    } else {
+      clearMosaic();
+      mosaic.classList.add('is-carousel');
+      start();
+    }
+  }
+  setMode();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', setMode);
 }
 } catch (err) { console.error("feature failed:", err); }
 </script>
