@@ -67,6 +67,13 @@ placeholder with suggested content, in a dashed outline with a
 Placeholder tag (`.ph` and `.ph-tag` in the page's styles), so it can be
 found and replaced.
 
+A photo with black borders baked into the file can be marked `data-trim`
+(on its `<img>`, gallery button or `--photo` element): `site.js` reads it
+onto a canvas, cuts the near-black edge rows and columns away and swaps in
+the trimmed copy. Used for the Sonnie Hereford photo (Metalwork hero and
+gallery, Products, About) and the third Blue Cross & Blue Shield photo on
+Rail Systems.
+
 Every Get a quote section shares one background photo, set once as
 `--quote-photo` at the top of `site.css` (and in `index.html`'s own copy
 of the tokens). Change it there to swap the photo on every page.
