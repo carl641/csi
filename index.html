@@ -948,6 +948,8 @@ body.is-stuck .masthead{
 .drop{display:flex;flex-direction:column;align-items:flex-start}
 @media (min-width:1181px){
   .drop{
+    /* it hangs just under its own link, at the top of the page and in the
+       stuck bar alike, lined up with the link's text */
     position:absolute;top:calc(100% + 12px);left:-20px;
     min-width:calc(100% + 40px);width:max-content;
     gap:8px;padding:14px 20px 16px;
@@ -955,12 +957,8 @@ body.is-stuck .masthead{
     border:1px solid var(--hair-soft);
     backdrop-filter:blur(12px);
     opacity:0;visibility:hidden;transform:translateY(-6px);
-    transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
+    transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),visibility 0s linear 260ms;
   }
-  /* once the header bar shows, the panel hangs from its lower edge: the
-     logo runs half its height and 13px below the menu's top, then comes
-     the bar's padding */
-  body.is-stuck .drop{top:calc(var(--head-bottom) + var(--logo-h) / 2 + 13px)}
   /* while it's open, an unseen strip under About Us carries the pointer
      down to the panel; it sits beneath the links and the panel */
   .menu-drop::after{content:"";position:absolute;z-index:-1;left:-20px;right:-20px;top:100%;height:40px;display:none}
