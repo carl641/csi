@@ -73,8 +73,8 @@ img{display:block;max-width:100%}
 /* ---------- masthead ---------- */
 /* the header's space above and below the name, at the top of the page and
    in the stuck bar; the menu and its dropdown line up from these */
-:root{--head-top:34px;--head-bottom:24px}
-body.is-stuck{--head-top:16px;--head-bottom:16px}
+:root{--head-top:28px;--head-bottom:20px;--logo-h:60px}
+body.is-stuck{--head-top:12px;--head-bottom:12px;--logo-h:46px}
 .masthead{
   position:fixed;top:0;left:0;right:0;z-index:9;
   display:flex;align-items:center;justify-content:space-between;
@@ -94,18 +94,18 @@ body.is-stuck .masthead{
   backdrop-filter:blur(12px);
 }
 .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);letter-spacing:0}
-/* the logo in the header, and in the burger menu's copy of it, stands as
-   tall as the two lines of the name it replaced, so the links, burger and
-   dropdown still line up with it */
-.masthead .logo,.menu-mark .logo{display:block;height:38px;width:auto;max-width:min(60vw,320px);object-fit:contain;object-position:left center}
+/* the logo in the header, and in the burger menu's copy of it; its height
+   is --logo-h, and the links, burger and dropdown centre on it from that.
+   It shrinks a little in the stuck bar */
+.masthead .logo,.menu-mark .logo{display:block;height:var(--logo-h);width:auto;max-width:min(62vw,420px);object-fit:contain;object-position:left center;transition:height 320ms ease}
 .menu{
   position:fixed;z-index:10;
-  top:calc(var(--head-top) + 7px);right:var(--gutter);
+  top:calc(var(--head-top) + var(--logo-h) / 2 - 13px);right:var(--gutter);
   transition:top 320ms ease;
   display:flex;gap:clamp(14px,2.4vw,34px);
-  /* 7px below the header's top padding centres the links on the two
-     lines of the name */
-  font-size:15px;font-weight:600;color:var(--mist);
+  /* half the logo, less half a link's height, below the header's top
+     padding centres the links on the logo */
+  font-size:16px;font-weight:600;color:var(--mist);
 }
 .menu-mark{display:none}
 .menu a{
@@ -161,8 +161,9 @@ body.is-stuck .masthead{
     transition:opacity 200ms ease,transform 260ms cubic-bezier(.3,0,.2,1),top 320ms ease,visibility 0s linear 260ms;
   }
   /* once the header bar shows, the panel hangs from its lower edge: the
-     name runs 31px below the menu's top, then comes the bar's padding */
-  body.is-stuck .drop{top:calc(var(--head-bottom) + 31px)}
+     logo runs half its height and 13px below the menu's top, then comes
+     the bar's padding */
+  body.is-stuck .drop{top:calc(var(--head-bottom) + var(--logo-h) / 2 + 13px)}
   /* while it's open, an unseen strip under About Us carries the pointer
      down to the panel; it sits beneath the links and the panel */
   .menu-drop::after{content:"";position:absolute;z-index:-1;left:-20px;right:-20px;top:100%;height:40px;display:none}
@@ -181,7 +182,7 @@ body.is-stuck .masthead{
    own layout used to centre it against the name */
 .burger{
   display:none;position:fixed;z-index:11;
-  top:calc(var(--head-top) + 9px);right:var(--gutter);
+  top:calc(var(--head-top) + var(--logo-h) / 2 - 10px);right:var(--gutter);
   width:30px;height:20px;
   transition:top 320ms ease;
 }
@@ -231,8 +232,8 @@ body.is-stuck .masthead{
     font-family:var(--serif);font-style:italic;font-weight:300;
     font-size:14px;color:var(--mist);letter-spacing:0;
   }
-  /* the list starts a short step under the menu's copy of the name */
-  .menu{padding-top:calc(var(--head-top) + 68px)}
+  /* the list starts a short step under the menu's copy of the logo */
+  .menu{padding-top:calc(var(--head-top) + var(--logo-h) + 30px)}
   .menu a{opacity:1;transform:none;transition:color 200ms ease}
   .menu a::after{height:2px}
   /* in the burger menu the button closes the list */
@@ -253,12 +254,10 @@ body.is-stuck .masthead{
   .mark{font-size:15px}
   /* phones keep the subtitle under the name too, with a little less room */
   .masthead .mark span{display:block;font-size:12px}
-  .burger{top:calc(var(--head-top) + 6.5px)}
   .menu-mark{font-size:15px}
   .menu-mark span{font-size:12px}
-  .masthead .logo,.menu-mark .logo{height:32px}
-  :root{--head-top:26px;--head-bottom:20px}
-  body.is-stuck{--head-top:13px;--head-bottom:13px}
+  :root{--head-top:20px;--head-bottom:16px;--logo-h:46px}
+  body.is-stuck{--head-top:10px;--head-bottom:10px;--logo-h:38px}
 }
 
 /* ---------- buttons ---------- */
