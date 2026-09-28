@@ -882,6 +882,10 @@ body.is-stuck .masthead{
   backdrop-filter:blur(12px);
 }
 .mark span{font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);letter-spacing:0}
+/* the logo in the header, and in the burger menu's copy of it, stands as
+   tall as the two lines of the name it replaced, so the links, burger and
+   dropdown still line up with it */
+.masthead .logo,.menu-mark .logo{display:block;height:38px;width:auto;max-width:min(60vw,320px);object-fit:contain;object-position:left center}
 .menu{
   position:fixed;z-index:10;
   top:calc(var(--head-top) + 7px);right:clamp(20px,5vw,72px);
@@ -1160,6 +1164,7 @@ body.is-stuck .masthead{
   .burger{top:calc(var(--head-top) + 6.5px)}
   .menu-mark{font-size:15px}
   .menu-mark span{font-size:12px}
+  .masthead .logo,.menu-mark .logo{height:32px}
   :root{--head-top:26px;--head-bottom:20px}
   body.is-stuck{--head-top:13px;--head-bottom:13px}
   .stage{bottom:104px}
@@ -1178,14 +1183,14 @@ body.is-stuck .masthead{
 <body>
 
   <header class="masthead">
-    <div class="mark">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+    <div class="mark"><img class="logo" src="https://3unloi5wlp.ucarecd.net/c86b1e5b-16b8-4c57-a75f-1d99e0e499af/CSI%20Logo.avif" alt="Construction Services, Inc., Architectural Metal Products" decoding="async"></div>
   </header>
   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
     <span></span><span></span><span></span>
   </button>
 
     <nav class="menu" id="menu">
-      <div class="menu-mark" aria-hidden="true">CONSTRUCTION SERVICES, INC. <span>Architectural Metal Products</span></div>
+      <div class="menu-mark" aria-hidden="true"><img class="logo" src="https://3unloi5wlp.ucarecd.net/c86b1e5b-16b8-4c57-a75f-1d99e0e499af/CSI%20Logo.avif" alt="" decoding="async"></div>
       <div class="menu-drop">
         <a href="products.html">Products</a>
         <button class="drop-toggle" type="button" aria-label="Products menu" aria-expanded="false" aria-controls="menu-products"><svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
