@@ -496,7 +496,25 @@ body.is-stuck .masthead{
 .more-link{flex:0 0 auto}
 /* the row keeps within the page's margins and always shows whole tiles:
    four across, three on a laptop, two on a tablet, one on a phone */
-.more-strip{overflow:hidden;touch-action:pan-y;--per:4;--gap:clamp(14px,1.6vw,22px)}
+.more-strip{position:relative;overflow:hidden;touch-action:pan-y;--per:4;--gap:clamp(14px,1.6vw,22px)}
+/* arrows over the left and right edges, centred on the photos; they fade
+   in while the pointer is over the carousel or a key has focused one. On
+   touch screens, with no hover, they stay hidden and a swipe steps it */
+.more-arrow{
+  position:absolute;z-index:2;top:50%;
+  width:48px;height:48px;
+  background:rgba(244,241,234,.92);border-color:transparent;color:#15191D;
+  box-shadow:0 4px 18px rgba(8,12,16,.18);
+  opacity:0;visibility:hidden;
+  transform:translateY(-50%) scale(.92);
+  transition:opacity 220ms ease,transform 260ms cubic-bezier(.3,0,.2,1),visibility 0s linear 260ms,background 200ms ease,color 200ms ease;
+}
+.more-prev{left:14px}
+.more-next{right:14px}
+.more-strip:focus-within .more-arrow{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+@media (hover:hover) and (pointer:fine){
+  .more-strip:hover .more-arrow{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+}
 @media (max-width:1100px){.more-strip{--per:3}}
 @media (max-width:760px){.more-strip{--per:2}}
 @media (max-width:480px){.more-strip{--per:1}}
