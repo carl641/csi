@@ -55,74 +55,11 @@ onScroll();
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- trim black borders baked into a photo ----
-   anything marked data-trim (an <img>, a gallery button's photo, or a
-   background set as --photo) has its photo read onto a canvas, and rows
-   and columns along the edges that are almost all black are cut away; the
-   trimmed copy then replaces the original, so it fills its frame like any
-   other photo. If the photo can't be read, it's left as it is */
-const trimCache = new Map();
-function trimmed(url){
-  if(trimCache.has(url)) return trimCache.get(url);
-  const job = new Promise((done, fail)=>{
-    const im = new Image();
-    im.crossOrigin = 'anonymous';
-    im.onerror = fail;
-    im.onload = ()=>{
-      try {
-        const nw = im.naturalWidth, nh = im.naturalHeight;
-        const k = Math.min(1, 480 / Math.max(nw, nh));
-        const w = Math.max(1, Math.round(nw * k)), h = Math.max(1, Math.round(nh * k));
-        const c = document.createElement('canvas');
-        c.width = w; c.height = h;
-        const x = c.getContext('2d');
-        x.drawImage(im, 0, 0, w, h);
-        const d = x.getImageData(0, 0, w, h).data;
-        const dark = (px, py)=>{ const i = (py * w + px) * 4; return d[i] + d[i+1] + d[i+2] < 84; };
-        const col = (px, y0, y1)=>{ let n = 0; for(let y = y0; y <= y1; y++) n += dark(px, y); return n / (y1 - y0 + 1); };
-        const row = (py, x0, x1)=>{ let n = 0; for(let q = x0; q <= x1; q++) n += dark(q, py); return n / (x1 - x0 + 1); };
-        let l = 0, r = w - 1, t = 0, b = h - 1;
-        while(l < r && col(l, 0, h - 1) > .96) l++;
-        while(r > l && col(r, 0, h - 1) > .96) r--;
-        while(t < b && row(t, l, r) > .96) t++;
-        while(b > t && row(b, l, r) > .96) b--;
-        // a pixel more on any side that had a border, for the soft edge
-        if(l) l++; if(r < w - 1) r--; if(t) t++; if(b < h - 1) b--;
-        const cw = r - l + 1, ch = b - t + 1;
-        // nothing worth trimming, or so much that it's not a border at all
-        if((cw > w * .98 && ch > h * .98) || cw < w * .3 || ch < h * .3) return fail();
-        const out = document.createElement('canvas');
-        out.width = Math.round(cw / k); out.height = Math.round(ch / k);
-        out.getContext('2d').drawImage(im, l / k, t / k, cw / k, ch / k, 0, 0, out.width, out.height);
-        out.toBlob(blob=>blob ? done(URL.createObjectURL(blob)) : fail(), 'image/jpeg', .92);
-      } catch (e) { fail(e); }
-    };
-    im.src = url;
-  });
-  trimCache.set(url, job);
-  return job;
-}
-document.querySelectorAll('[data-trim]').forEach(el=>{
-  if(el.tagName === 'IMG'){
-    trimmed(el.currentSrc || el.src).then(u=>{ el.src = u; el.dataset.raw = u; }, ()=>{});
-  } else if(el.dataset.src){
-    // a gallery button: the gallery shows whatever its data-src holds
-    trimmed(el.dataset.src).then(u=>{ el.dataset.src = u; el.dataset.raw = u; }, ()=>{});
-  } else {
-    const m = (el.getAttribute('style') || '').match(/--photo:\s*url\((['"]?)(.*?)\1\)/);
-    if(m) trimmed(m[2]).then(u=>el.style.setProperty('--photo', 'url("' + u + '")'), ()=>{});
-  }
-});
-} catch (err) { console.error("feature failed:", err); }
-
-try {
 /* ---- More projects: an endless carousel, as on the Laser page. Next
    slides the row on by one tile and moves the first to the back, previous
    brings the last to the front and slides it in. With only a few tiles
    the set is repeated (hidden from screen readers and the tab order) until
-   the row is twice as wide as the screen, so no gap ever opens at its end.
-   This runs before the page's own gallery script, so the copies' photo
-   controls work too ---- */
+   the row is twice as wide as the screen, so no gap ever opens at its end ---- */
 document.querySelectorAll('[data-carousel]').forEach(strip=>{
   const track = strip.querySelector('.more-grid');
   const section = strip.closest('section');
@@ -176,29 +113,46 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
   const nextBtn = section.querySelector('.more-next');
   if(prevBtn) prevBtn.addEventListener('click', prev);
   if(nextBtn) nextBtn.addEventListener('click', next);
-  // a sideways swipe steps it too, except on a tile's own photos when it has
-  // several, where the swipe goes through that project's photos instead
+  // a sideways swipe steps it too
   let x0 = null;
-  strip.addEventListener('pointerdown', e=>{
-    x0 = e.target.closest('.gal:not([data-photos="1"]) .gal-stage, .gal-bar') ? null : e.clientX;
-  });
+  strip.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
   strip.addEventListener('pointerup', e=>{
     if(x0 === null) return;
     const dx = e.clientX - x0; x0 = null;
-    if(Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    if(Math.abs(dx) > 40){ swiped = Date.now(); (dx < 0 ? next : prev)(); }
   });
   strip.addEventListener('pointercancel', ()=>{ x0 = null; });
+
+  /* on touch screens a tap shows a tile's name over it, and a second tap
+     (or a tap on another tile, or anywhere else) hides it again; the
+     carousel holds still while a name is showing. A mouse shows it on
+     hover instead, in the CSS */
+  const touchy = !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  let swiped = 0;
+  const closeAll = ()=>track.querySelectorAll('.mp.is-open').forEach(t=>t.classList.remove('is-open'));
+  track.addEventListener('click', e=>{
+    const tile = e.target.closest('.mp');
+    if(!tile || !touchy || Date.now() - swiped < 400) return;
+    const open = !tile.classList.contains('is-open');
+    closeAll();
+    tile.classList.toggle('is-open', open);
+    showing = open;
+    open ? stop() : start();
+  });
+  document.addEventListener('click', e=>{
+    if(showing && !track.contains(e.target)){ closeAll(); showing = false; start(); }
+  });
 
   /* it turns on its own: one tile every few seconds, paused while someone
      is pointing at it or using it, while it's off screen or the tab is
      hidden, and never with reduced motion. A click or swipe restarts the
      wait, so it doesn't move again straight after */
   const EVERY = 3500;
-  let timer = null, hovering = false, focused = false, onScreen = false;
+  let timer = null, hovering = false, focused = false, onScreen = false, showing = false;
   const stop = ()=>{ clearInterval(timer); timer = null; };
   const start = ()=>{
     stop();
-    if(reduced || hovering || focused || !onScreen || document.hidden) return;
+    if(reduced || hovering || focused || showing || !onScreen || document.hidden) return;
     timer = setInterval(next, EVERY);
   };
   section.addEventListener('pointerenter', e=>{ if(e.pointerType === 'mouse'){ hovering = true; stop(); } });
