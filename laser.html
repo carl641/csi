@@ -386,8 +386,9 @@ try {
    passes, each photo travels clockwise round the mosaic (top, to bottom
    right, to bottom left, back to the top), growing or shrinking into each
    place and pausing there a moment before moving on. It follows the
-   scroll with a slight lag, like the site's other parallax, runs back
-   the other way when scrolling up, and stays still with reduced motion ---- */
+   scroll with a slight lag, like the site's other parallax, settles into
+   the nearest places when scrolling stops, runs back the other way when
+   scrolling up, and stays still with reduced motion ---- */
 const mosaic = document.querySelector('.parts-imgs');
 if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   const section = mosaic.closest('section');
@@ -432,7 +433,14 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     place(now);
     if(now !== goal) requestAnimationFrame(frame); else running = false;
   }
-  function kick(){ target(); if(!running){ running = true; requestAnimationFrame(frame); } }
+  function run(){ if(!running){ running = true; requestAnimationFrame(frame); } }
+  // once scrolling stops, the photos settle into the nearest places
+  let snapTimer = null;
+  function kick(){
+    target(); run();
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(()=>{ goal = Math.round(goal); run(); }, 160);
+  }
   measure();
   target(); now = goal; place(now);
   window.addEventListener('scroll', kick, {passive:true});
