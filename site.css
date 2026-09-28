@@ -512,7 +512,7 @@ body.is-stuck .masthead{
 .more-grid > .mp{scroll-snap-align:start}
 /* arrows in the page margins either side of the photos, centred on their
    height; they show only while the pointer is over the photos or on an
-   arrow, or a key has focused one. Touch screens and narrow windows have
+   arrow, or while one has keyboard focus. Touch screens and narrow windows have
    none: the row is scrolled by hand there */
 .more-arrow{
   position:absolute;z-index:2;top:50%;
@@ -522,7 +522,7 @@ body.is-stuck .masthead{
 }
 .more-prev{left:calc(var(--gutter) / -2);transform:translate(-50%,-50%)}
 .more-next{right:calc(var(--gutter) / -2);transform:translate(50%,-50%)}
-.more-wrap:focus-within .more-arrow{opacity:1;visibility:visible;transition-delay:0s}
+.more-wrap:has(.more-arrow:focus-visible) .more-arrow{opacity:1;visibility:visible;transition-delay:0s}
 @media (hover:hover) and (pointer:fine){
   .more-wrap:hover .more-arrow{opacity:1;visibility:visible;transition-delay:0s}
 }

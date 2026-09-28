@@ -95,12 +95,35 @@ document.querySelectorAll('[data-carousel]').forEach(wrap=>{
     if(x < w * .5) jumpTo(x + w);
     else if(x > w * (sets - 1.5)) jumpTo(x - w);
   }
-  let lastScroll = 0, settleTimer = null, touching = false;
+  let lastScroll = 0, settleTimer = null, touching = false, wheeling = false;
   strip.addEventListener('scroll', ()=>{
     lastScroll = Date.now();
     clearTimeout(settleTimer);
-    settleTimer = setTimeout(()=>{ if(!touching){ recentre(); start(); } }, 160);
+    settleTimer = setTimeout(()=>{ if(!touching && !wheeling){ recentre(); start(); } }, 160);
   }, {passive:true});
+
+  /* a sideways scroll on a trackpad or mouse (or shift and the wheel)
+     moves the row with the gesture; snapping is held off while it's
+     moving, since it would catch each small step and pull it back, and
+     when the gesture ends the row glides to the nearest whole tile.
+     Plain up-and-down scrolling is left to the page */
+  let wheelEnd = null;
+  strip.addEventListener('wheel', e=>{
+    let dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+    if(!dx) return;
+    e.preventDefault();
+    if(e.deltaMode === 1) dx *= 16;
+    wheeling = true;
+    stop();
+    strip.style.scrollSnapType = 'none';
+    strip.scrollLeft += dx;
+    clearTimeout(wheelEnd);
+    wheelEnd = setTimeout(()=>{
+      const s = step();
+      strip.scrollTo({left: Math.round(strip.scrollLeft / s) * s, behavior: reduced ? 'auto' : 'smooth'});
+      setTimeout(()=>{ wheeling = false; strip.style.scrollSnapType = ''; recentre(); start(); }, reduced ? 0 : 450);
+    }, 140);
+  }, {passive:false});
   strip.addEventListener('pointerdown', ()=>{ touching = true; stop(); });
   const letGo = ()=>{ touching = false; clearTimeout(settleTimer); settleTimer = setTimeout(()=>{ recentre(); start(); }, 160); };
   strip.addEventListener('pointerup', letGo);
@@ -112,8 +135,11 @@ document.querySelectorAll('[data-carousel]').forEach(wrap=>{
   const next = ()=>go(1), prev = ()=>go(-1);
   const prevBtn = wrap.querySelector('.more-prev');
   const nextBtn = wrap.querySelector('.more-next');
-  if(prevBtn) prevBtn.addEventListener('click', ()=>{ prev(); start(); });
-  if(nextBtn) nextBtn.addEventListener('click', ()=>{ next(); start(); });
+  // a mouse click shouldn't leave the arrow focused, or it would stay in
+  // view after the pointer moves away; from the keyboard it keeps focus
+  [[prevBtn, prev], [nextBtn, next]].forEach(([btn, fn])=>{
+    if(btn) btn.addEventListener('click', e=>{ fn(); if(e.detail) btn.blur(); start(); });
+  });
 
   /* on touch screens a tap shows a tile's name over it, and a second tap
      (or a tap on another tile, or anywhere else) hides it again; the
