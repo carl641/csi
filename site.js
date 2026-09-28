@@ -55,6 +55,106 @@ onScroll();
 } catch (err) { console.error("feature failed:", err); }
 
 try {
+/* ---- More projects: an endless carousel, as on the Laser page. Next
+   slides the row on by one tile and moves the first to the back, previous
+   brings the last to the front and slides it in. With only a few tiles
+   the set is repeated (hidden from screen readers and the tab order) until
+   the row is twice as wide as the screen, so no gap ever opens at its end.
+   This runs before the page's own gallery script, so the copies' photo
+   controls work too ---- */
+document.querySelectorAll('[data-carousel]').forEach(strip=>{
+  const track = strip.querySelector('.more-grid');
+  const section = strip.closest('section');
+  const originals = [...track.children];
+  if(!originals.length) return;
+  const wide = Math.max(window.innerWidth, (window.screen && screen.width) || 0) * 2;
+  for(let i = 0; i < 8 && track.scrollWidth < wide; i++){
+    originals.forEach(o=>{
+      const c = o.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.querySelectorAll('a,button,[tabindex]').forEach(el=>el.setAttribute('tabindex', '-1'));
+      track.appendChild(c);
+    });
+  }
+
+  const EASE = 'transform 620ms cubic-bezier(.3,0,.2,1)';
+  let busy = false;
+  const step = ()=>track.firstElementChild.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
+  // finish once the slide ends, or after a moment if the transition never reports back
+  function settle(done){
+    let over = false;
+    const end = ()=>{ if(over) return; over = true; track.removeEventListener('transitionend', end); done(); busy = false; };
+    track.addEventListener('transitionend', end);
+    setTimeout(end, 800);
+  }
+  function next(){
+    if(busy) return;
+    if(reduced){ track.appendChild(track.firstElementChild); return; }
+    busy = true;
+    track.style.transition = EASE;
+    track.style.transform = 'translateX(' + (-step()) + 'px)';
+    settle(()=>{
+      track.style.transition = 'none';
+      track.appendChild(track.firstElementChild);
+      track.style.transform = 'translateX(0)';
+    });
+  }
+  function prev(){
+    if(busy) return;
+    if(reduced){ track.prepend(track.lastElementChild); return; }
+    busy = true;
+    track.style.transition = 'none';
+    track.prepend(track.lastElementChild);
+    track.style.transform = 'translateX(' + (-step()) + 'px)';
+    void track.offsetWidth;   // lock that position in before sliding back
+    track.style.transition = EASE;
+    track.style.transform = 'translateX(0)';
+    settle(()=>{});
+  }
+  const prevBtn = section.querySelector('.more-prev');
+  const nextBtn = section.querySelector('.more-next');
+  if(prevBtn) prevBtn.addEventListener('click', prev);
+  if(nextBtn) nextBtn.addEventListener('click', next);
+  // a sideways swipe steps it too, except on a tile's own photos when it has
+  // several, where the swipe goes through that project's photos instead
+  let x0 = null;
+  strip.addEventListener('pointerdown', e=>{
+    x0 = e.target.closest('.gal:not([data-photos="1"]) .gal-stage, .gal-bar') ? null : e.clientX;
+  });
+  strip.addEventListener('pointerup', e=>{
+    if(x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+  });
+  strip.addEventListener('pointercancel', ()=>{ x0 = null; });
+
+  /* it turns on its own: one tile every few seconds, paused while someone
+     is pointing at it or using it, while it's off screen or the tab is
+     hidden, and never with reduced motion. A click or swipe restarts the
+     wait, so it doesn't move again straight after */
+  const EVERY = 3500;
+  let timer = null, hovering = false, focused = false, onScreen = false;
+  const stop = ()=>{ clearInterval(timer); timer = null; };
+  const start = ()=>{
+    stop();
+    if(reduced || hovering || focused || !onScreen || document.hidden) return;
+    timer = setInterval(next, EVERY);
+  };
+  section.addEventListener('pointerenter', e=>{ if(e.pointerType === 'mouse'){ hovering = true; stop(); } });
+  section.addEventListener('pointerleave', e=>{ if(e.pointerType === 'mouse'){ hovering = false; start(); } });
+  // only keyboard focus pauses it; a mouse click on an arrow also focuses it
+  section.addEventListener('focusin', e=>{ if(e.target.matches(':focus-visible')){ focused = true; stop(); } });
+  section.addEventListener('focusout', e=>{ if(!section.contains(e.relatedTarget)){ focused = false; start(); } });
+  [prevBtn, nextBtn].forEach(b=>b && b.addEventListener('click', start));
+  strip.addEventListener('pointerup', start);
+  document.addEventListener('visibilitychange', start);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.25}).observe(strip);
+  } else { onScreen = true; start(); }
+});
+} catch (err) { console.error("feature failed:", err); }
+
+try {
 /* ---- blocks rise into place the first time they reach the screen ---- */
 const items = [...document.querySelectorAll('.reveal')];
 if(reduced || !('IntersectionObserver' in window)){

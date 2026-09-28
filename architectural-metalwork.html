@@ -58,10 +58,6 @@
 /* ---------- the project tiles: each one's photos in a small gallery ---------- */
 .proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
 .proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
-.proj-count{
-  margin:0;flex:0 0 auto;
-  font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);
-}
 /* the gallery's own bar sits under the photo; with a caption below it, keep it tight */
 .proj .gal-bar{margin-top:8px}
 .proj .gal-nav .round-btn{width:36px;height:36px}
@@ -184,14 +180,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">Huntsville, AL</p>
         <h3 class="feat-title">Sonnie Hereford Middle School</h3>
+        <p class="proj-place">Huntsville, AL</p>
         <p class="proj-text">CSI custom fabricated the bronze powder-coated aluminum benches for the outdoor classroom.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>Woodward Construction</dd></div>
           <div><dt>Architect</dt><dd>Ellis Architects</dd></div>
         </dl>
-        <p class="feat-count">5 photos</p>
       </div>
     </article>
     <article class="feat reveal">
@@ -211,14 +206,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">Birmingham, AL</p>
         <h3 class="feat-title">Colonnade Office Park</h3>
+        <p class="proj-place">Birmingham, AL</p>
         <p class="proj-text">A structural sign, with decorative 6″ diameter stainless steel support columns topped by machined stainless steel balls.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>Brasfield &amp; Gorrie</dd></div>
           <div><dt>Architect</dt><dd>Cooper-Carry &amp; Associates</dd></div>
         </dl>
-        <p class="feat-count">1 photo</p>
       </div>
     </article>
     <article class="feat reveal">
@@ -239,14 +233,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">Nashville, TN</p>
         <h3 class="feat-title">Lifeway</h3>
+        <p class="proj-place">Nashville, TN</p>
         <p class="proj-text">CSI provided the decorative laser-cut Cor-ten panels. The panels are 60″ wide × 80″ tall, and each was cut to its own unique pattern.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>Skanska</dd></div>
           <div><dt>Architect</dt><dd>GS&amp;P</dd></div>
         </dl>
-        <p class="feat-count">2 photos</p>
       </div>
     </article>
     <article class="feat reveal">
@@ -266,14 +259,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">San Antonio, TX</p>
         <h3 class="feat-title">USAA Insurance Company</h3>
+        <p class="proj-place">San Antonio, TX</p>
         <p class="proj-text">Seven custom fabricated gazebos, glass guard railings with wood caps, a terrazzo world map with bronze accent dividers, decorative steel railings and a painted steel trellis system.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>HCB Contractors</dd></div>
           <div><dt>Architect</dt><dd>The Whitney Group</dd></div>
         </dl>
-        <p class="feat-count">1 photo</p>
       </div>
     </article>
   </div>
@@ -282,9 +274,14 @@
 <section class="sec sec-tight" aria-label="More projects">
   <div class="more-head reveal">
     <h2 class="h2">More projects</h2>
+    <div class="more-nav">
+      <button class="round-btn more-prev" type="button" aria-label="Previous projects"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="round-btn more-next" type="button" aria-label="Next projects"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
   </div>
+  <div class="more-strip reveal" data-carousel>
   <div class="more-grid">
-    <article class="proj reveal" style="--d:0ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/44ae07ef-e343-4873-9f74-15c3ffe8fbac/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20NLEO%20Memorial1.avif" data-raw="https://3unloi5wlp.ucarecd.net/44ae07ef-e343-4873-9f74-15c3ffe8fbac/Architectural%20Metalwork%20-%20NLEO%20Memorial1.avif" alt="National Law Enforcement Officers Memorial, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -302,10 +299,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">National Law Enforcement Officers Memorial</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:60ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/78ea583c-25fa-4d19-bcf9-0db6f72b3213/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Peachtree(Other%20Projects)2.avif" data-raw="https://3unloi5wlp.ucarecd.net/78ea583c-25fa-4d19-bcf9-0db6f72b3213/Architectural%20Metalwork%20-%20Peachtree(Other%20Projects)2.avif" alt="Peachtree, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -323,10 +319,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Peachtree</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:120ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/dd946a86-2c25-4828-b0db-d735871752f5/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Wildwood(Other%20Projects)3.avif" data-raw="https://3unloi5wlp.ucarecd.net/dd946a86-2c25-4828-b0db-d735871752f5/Architectural%20Metalwork%20-%20Wildwood(Other%20Projects)3.avif" alt="Wildwood, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -344,10 +339,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Wildwood</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:180ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/2a298941-942e-47dd-a070-ec75dc4ff4b2/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Ed%20Terminal(Other%20Projects)4.avif" data-raw="https://3unloi5wlp.ucarecd.net/2a298941-942e-47dd-a070-ec75dc4ff4b2/Architectural%20Metalwork%20-%20Ed%20Terminal(Other%20Projects)4.avif" alt="Edward H. McNamara Terminal, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -365,10 +359,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Edward H. McNamara Terminal</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:0ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/68bb3a79-5d7c-4c6f-a28a-c8155427c98d/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20River%20Center(Other%20Projects)5.avif" data-raw="https://3unloi5wlp.ucarecd.net/68bb3a79-5d7c-4c6f-a28a-c8155427c98d/Architectural%20Metalwork%20-%20River%20Center(Other%20Projects)5.avif" alt="River Center Performing Arts, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -386,10 +379,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">River Center Performing Arts</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:60ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/ed33bbb6-bfd9-4bc3-8ccd-205549198572/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Steamboat%20Monument(Other%20Projects)6.avif" data-raw="https://3unloi5wlp.ucarecd.net/ed33bbb6-bfd9-4bc3-8ccd-205549198572/Architectural%20Metalwork%20-%20Steamboat%20Monument(Other%20Projects)6.avif" alt="Steamboat Monument, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -407,10 +399,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Steamboat Monument</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:120ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/e47f999c-d4b9-4cee-87d6-8883fc6a72f8/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Courhouse(Other%20Projects)7.avif" data-raw="https://3unloi5wlp.ucarecd.net/e47f999c-d4b9-4cee-87d6-8883fc6a72f8/Architectural%20Metalwork%20-%20Courhouse(Other%20Projects)7.avif" alt="Courthouse, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -428,10 +419,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Courthouse</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:180ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/8dd80e44-b42e-4010-bd4c-117b64e69117/-/preview/1200x1200/-/format/auto/Architectural%20Metalwork%20-%20Raymond%20Center(Other%20Projects)8.avif" data-raw="https://3unloi5wlp.ucarecd.net/8dd80e44-b42e-4010-bd4c-117b64e69117/Architectural%20Metalwork%20-%20Raymond%20Center(Other%20Projects)8.avif" alt="Raymond Center, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -449,10 +439,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Raymond Center</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj proj--all reveal" style="--d:0ms">
+    <article class="proj proj--all">
       <div class="gal" data-gal data-photos="4">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/1200x1200/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg" data-raw="https://3unloi5wlp.ucarecd.net/f90aa92e-19c1-495c-9b77-23d0b2ee29fe/-/preview/1200x1200/-/format/auto/hq-Architectural%20Metalwork-%20Ceiling%20Panels.jpg" alt="More architectural metalwork, photo 1 of 4" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -473,9 +462,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">More architectural metalwork</h3>
-        <p class="proj-count">4 photos</p>
       </div>
     </article>
+  </div>
   </div>
 </section>
 
