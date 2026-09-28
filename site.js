@@ -109,10 +109,22 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
     track.style.transform = 'translateX(0)';
     settle(()=>{});
   }
-  const prevBtn = section.querySelector('.more-prev');
-  const nextBtn = section.querySelector('.more-next');
-  if(prevBtn) prevBtn.addEventListener('click', prev);
-  if(nextBtn) nextBtn.addEventListener('click', next);
+  // a sideways scroll on a trackpad or mouse steps it one tile at a time;
+  // up-and-down scrolling is left to the page
+  let wheelSum = 0, wheelAt = 0;
+  strip.addEventListener('wheel', e=>{
+    if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    const now = Date.now();
+    if(now - wheelAt > 250) wheelSum = 0;
+    wheelAt = now;
+    wheelSum += e.deltaX;
+    if(busy || Math.abs(wheelSum) < 30) return;
+    (wheelSum > 0 ? next : prev)();
+    wheelSum = 0;
+    swiped = now;
+    start();
+  }, {passive:false});
   // a sideways swipe steps it too
   let x0 = null;
   strip.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
@@ -160,7 +172,6 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
   // only keyboard focus pauses it; a mouse click on an arrow also focuses it
   section.addEventListener('focusin', e=>{ if(e.target.matches(':focus-visible')){ focused = true; stop(); } });
   section.addEventListener('focusout', e=>{ if(!section.contains(e.relatedTarget)){ focused = false; start(); } });
-  [prevBtn, nextBtn].forEach(b=>b && b.addEventListener('click', start));
   strip.addEventListener('pointerup', start);
   document.addEventListener('visibilitychange', start);
   if('IntersectionObserver' in window){
