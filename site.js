@@ -55,101 +55,75 @@ onScroll();
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- More projects: an endless carousel, as on the Laser page. Next
-   slides the row on by one tile and moves the first to the back, previous
-   brings the last to the front and slides it in. With only a few tiles
-   the set is repeated (hidden from screen readers and the tab order) until
-   the row is twice as wide as the screen, so no gap ever opens at its end ---- */
-document.querySelectorAll('[data-carousel]').forEach(strip=>{
-  const track = strip.querySelector('.more-grid');
-  const section = strip.closest('section');
+/* ---- More projects: an endless carousel. The row scrolls natively, so a
+   finger or trackpad moves it smoothly and it snaps to whole tiles. The
+   set of tiles is repeated (the copies hidden from screen readers and the
+   tab order) so there's always more either side: it starts on the second
+   copy, and whenever scrolling stops more than half a set from there it
+   jumps back by a whole set, which shows exactly the same tiles, so the
+   jump can't be seen. The arrows and the automatic turn scroll it one
+   tile at a time ---- */
+document.querySelectorAll('[data-carousel]').forEach(wrap=>{
+  const strip = wrap.querySelector('.more-strip');
+  const track = wrap.querySelector('.more-grid');
+  const section = wrap.closest('section');
   const originals = [...track.children];
-  if(!originals.length) return;
-  const wide = Math.max(window.innerWidth, (window.screen && screen.width) || 0) * 2;
-  for(let i = 0; i < 8 && track.scrollWidth < wide; i++){
+  const n = originals.length;
+  if(!n) return;
+  const wide = Math.max(window.innerWidth, (window.screen && screen.width) || 0) * 3;
+  for(let i = 0; i < 12 && (track.children.length < n * 3 || track.scrollWidth < wide); i++){
     originals.forEach(o=>{
       const c = o.cloneNode(true);
       c.setAttribute('aria-hidden', 'true');
       c.querySelectorAll('a,button,[tabindex]').forEach(el=>el.setAttribute('tabindex', '-1'));
+      c.setAttribute('tabindex', '-1');
       track.appendChild(c);
     });
   }
-
-  const EASE = 'transform 620ms cubic-bezier(.3,0,.2,1)';
-  let busy = false;
+  const sets = track.children.length / n;
   const step = ()=>track.firstElementChild.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
-  // finish once the slide ends, or after a moment if the transition never reports back
-  function settle(done){
-    let over = false;
-    const end = ()=>{ if(over) return; over = true; track.removeEventListener('transitionend', end); done(); busy = false; };
-    track.addEventListener('transitionend', end);
-    setTimeout(end, 800);
+  const setW = ()=>step() * n;
+  function jumpTo(x){
+    strip.style.scrollSnapType = 'none';
+    strip.scrollLeft = x;
+    void strip.offsetWidth;
+    strip.style.scrollSnapType = '';
   }
-  function next(){
-    if(busy) return;
-    if(reduced){ track.appendChild(track.firstElementChild); return; }
-    busy = true;
-    track.style.transition = EASE;
-    track.style.transform = 'translateX(' + (-step()) + 'px)';
-    settle(()=>{
-      track.style.transition = 'none';
-      track.appendChild(track.firstElementChild);
-      track.style.transform = 'translateX(0)';
-    });
+  jumpTo(setW());
+  function recentre(){
+    const w = setW(), x = strip.scrollLeft;
+    if(x < w * .5) jumpTo(x + w);
+    else if(x > w * (sets - 1.5)) jumpTo(x - w);
   }
-  function prev(){
-    if(busy) return;
-    if(reduced){ track.prepend(track.lastElementChild); return; }
-    busy = true;
-    track.style.transition = 'none';
-    track.prepend(track.lastElementChild);
-    track.style.transform = 'translateX(' + (-step()) + 'px)';
-    void track.offsetWidth;   // lock that position in before sliding back
-    track.style.transition = EASE;
-    track.style.transform = 'translateX(0)';
-    settle(()=>{});
-  }
-  // the arrows over its edges step it too
-  const prevBtn = strip.querySelector('.more-prev');
-  const nextBtn = strip.querySelector('.more-next');
+  let lastScroll = 0, settleTimer = null, touching = false;
+  strip.addEventListener('scroll', ()=>{
+    lastScroll = Date.now();
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(()=>{ if(!touching){ recentre(); start(); } }, 160);
+  }, {passive:true});
+  strip.addEventListener('pointerdown', ()=>{ touching = true; stop(); });
+  const letGo = ()=>{ touching = false; clearTimeout(settleTimer); settleTimer = setTimeout(()=>{ recentre(); start(); }, 160); };
+  strip.addEventListener('pointerup', letGo);
+  strip.addEventListener('pointercancel', letGo);
+  strip.addEventListener('touchend', letGo, {passive:true});
+  window.addEventListener('resize', ()=>jumpTo(Math.round(strip.scrollLeft / step()) * step()));
+
+  const go = dir=>strip.scrollBy({left: dir * step(), behavior: reduced ? 'auto' : 'smooth'});
+  const next = ()=>go(1), prev = ()=>go(-1);
+  const prevBtn = wrap.querySelector('.more-prev');
+  const nextBtn = wrap.querySelector('.more-next');
   if(prevBtn) prevBtn.addEventListener('click', ()=>{ prev(); start(); });
   if(nextBtn) nextBtn.addEventListener('click', ()=>{ next(); start(); });
-  // a sideways scroll on a trackpad or mouse steps it one tile at a time;
-  // up-and-down scrolling is left to the page
-  let wheelSum = 0, wheelAt = 0;
-  strip.addEventListener('wheel', e=>{
-    if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-    e.preventDefault();
-    const now = Date.now();
-    if(now - wheelAt > 250) wheelSum = 0;
-    wheelAt = now;
-    wheelSum += e.deltaX;
-    if(busy || Math.abs(wheelSum) < 30) return;
-    (wheelSum > 0 ? next : prev)();
-    wheelSum = 0;
-    swiped = now;
-    start();
-  }, {passive:false});
-  // a sideways swipe steps it too
-  let x0 = null;
-  strip.addEventListener('pointerdown', e=>{ x0 = e.clientX; });
-  strip.addEventListener('pointerup', e=>{
-    if(x0 === null) return;
-    const dx = e.clientX - x0; x0 = null;
-    if(Math.abs(dx) > 40){ swiped = Date.now(); (dx < 0 ? next : prev)(); }
-  });
-  strip.addEventListener('pointercancel', ()=>{ x0 = null; });
 
   /* on touch screens a tap shows a tile's name over it, and a second tap
      (or a tap on another tile, or anywhere else) hides it again; the
      carousel holds still while a name is showing. A mouse shows it on
      hover instead, in the CSS */
   const touchy = !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  let swiped = 0;
   const closeAll = ()=>track.querySelectorAll('.mp.is-open').forEach(t=>t.classList.remove('is-open'));
   track.addEventListener('click', e=>{
     const tile = e.target.closest('.mp');
-    if(!tile || !touchy || Date.now() - swiped < 400) return;
+    if(!tile || !touchy || Date.now() - lastScroll < 250) return;
     const open = !tile.classList.contains('is-open');
     closeAll();
     tile.classList.toggle('is-open', open);
@@ -162,25 +136,24 @@ document.querySelectorAll('[data-carousel]').forEach(strip=>{
 
   /* it turns on its own: one tile every few seconds, paused while someone
      is pointing at it or using it, while it's off screen or the tab is
-     hidden, and never with reduced motion. A click or swipe restarts the
-     wait, so it doesn't move again straight after */
+     hidden, and never with reduced motion. Any scroll or click restarts
+     the wait, so it doesn't move again straight after */
   const EVERY = 3500;
   let timer = null, hovering = false, focused = false, onScreen = false, showing = false;
-  const stop = ()=>{ clearInterval(timer); timer = null; };
-  const start = ()=>{
+  function stop(){ clearInterval(timer); timer = null; }
+  function start(){
     stop();
-    if(reduced || hovering || focused || showing || !onScreen || document.hidden) return;
+    if(reduced || hovering || focused || showing || touching || !onScreen || document.hidden) return;
     timer = setInterval(next, EVERY);
-  };
+  }
   section.addEventListener('pointerenter', e=>{ if(e.pointerType === 'mouse'){ hovering = true; stop(); } });
   section.addEventListener('pointerleave', e=>{ if(e.pointerType === 'mouse'){ hovering = false; start(); } });
   // only keyboard focus pauses it; a mouse click on an arrow also focuses it
   section.addEventListener('focusin', e=>{ if(e.target.matches(':focus-visible')){ focused = true; stop(); } });
   section.addEventListener('focusout', e=>{ if(!section.contains(e.relatedTarget)){ focused = false; start(); } });
-  strip.addEventListener('pointerup', start);
   document.addEventListener('visibilitychange', start);
   if('IntersectionObserver' in window){
-    new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.25}).observe(strip);
+    new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.25}).observe(wrap);
   } else { onScreen = true; start(); }
 });
 } catch (err) { console.error("feature failed:", err); }
