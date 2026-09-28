@@ -82,16 +82,17 @@
 }
 
 
-/* ---------- laser-cut parts: the photos large on the left, the facts
+/* ---------- laser-cut parts: the photos on the left, the facts
    staying in view beside them ---------- */
 .parts{
-  display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:clamp(32px,5vw,88px);align-items:start;
 }
-.parts-imgs{display:grid;gap:clamp(24px,4vh,40px)}
-.parts-imgs figure{margin:0}
-.parts-imgs img{display:block;width:100%;height:auto;background:var(--mat)}
-.parts-imgs figcaption{margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+/* the three photos as a compact mosaic: one wide above, two below */
+.parts-imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.parts-imgs figure{margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--mat)}
+.parts-imgs figure:first-child{grid-column:1 / -1;aspect-ratio:16/10}
+.parts-imgs img{display:block;width:100%;height:100%;object-fit:cover}
 .parts-info{position:sticky;top:110px}
 .parts-info .lede{margin-bottom:0}
 .parts-facts{margin:clamp(24px,4vh,36px) 0 clamp(26px,4vh,36px);border-top:1px solid var(--hair)}
@@ -159,16 +160,13 @@
   <div class="parts">
     <div class="parts-imgs">
       <figure class="reveal">
-        <img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
-        <figcaption>Laser-cut S</figcaption>
+        <img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
       <figure class="reveal">
-        <img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
-        <figcaption>Laser-cut gear</figcaption>
+        <img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
       <figure class="reveal">
-        <img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 58vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
-        <figcaption>Laser-cut grid</figcaption>
+        <img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
     </div>
     <div class="parts-info reveal">
