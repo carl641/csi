@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
-<link rel="stylesheet" href="site.css?v=202609281903">
+<link rel="stylesheet" href="site.css?v=202609281916">
 <script>document.documentElement.classList.add('js')</script>
 <style>
 /* ---------- history ---------- */
@@ -35,25 +35,24 @@
 .rows{border-top:1px solid var(--hair)}
 .row{
   position:relative;display:grid;
-  grid-template-columns:60px minmax(0,1.15fr) minmax(0,1fr) 48px;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 48px;
   align-items:center;gap:clamp(16px,2.4vw,40px);
   padding:clamp(24px,3.6vh,38px) 0;
   border-bottom:1px solid var(--hair);
   color:inherit;text-decoration:none;
 }
-.row-num{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--accent)}
 .row-title{
-  grid-column:2;
+  grid-column:1;
   font-size:clamp(26px,3.4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:.95;
   text-transform:uppercase;
   transition:color 220ms ease,transform 420ms cubic-bezier(.2,.7,.25,1);
 }
 .row-text{
-  grid-column:3;
+  grid-column:2;
   font-family:var(--serif);font-weight:300;
   font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:var(--mist);max-width:44ch;
 }
-.row .round-btn{grid-column:4;justify-self:end}
+.row .round-btn{grid-column:3;justify-self:end}
 .row:hover .row-title,.row:focus-visible .row-title{color:var(--accent);transform:translateX(12px)}
 .row:hover .round-btn,.row:focus-visible .round-btn{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
 /* the product's photo lifts out over the row while it's hovered */
@@ -71,12 +70,12 @@
   opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1);clip-path:inset(0);
 }
 /* no hover to reveal it: the photo sits in the row instead, and the title
-   takes the full width under its number so ARCHITECTURAL fits a small phone */
+   runs beside its arrow, with the text and photo full width under it */
 @media (hover:none),(max-width:860px){
   .row{grid-template-columns:minmax(0,1fr) 44px;row-gap:14px}
-  .row-num{grid-column:1;grid-row:1}
   .row .round-btn{grid-column:2;grid-row:1;width:44px;height:44px}
-  .row-title,.row-text{grid-column:1 / -1}
+  .row-title{grid-column:1;grid-row:1;align-self:center}
+  .row-text{grid-column:1 / -1}
   .row-img{
     position:relative;right:auto;top:auto;grid-column:1 / -1;
     width:100%;aspect-ratio:16/9;opacity:1;transform:none;clip-path:none;box-shadow:none;
@@ -159,7 +158,6 @@
 }
 .eng-items{display:grid;gap:clamp(30px,5vh,48px)}
 .eng-item{border-top:1px solid var(--hair);padding-top:22px}
-.eng-item .col-num{margin-bottom:clamp(16px,3vh,28px)}
 .eng-item .col-text{font-size:clamp(15px,1.25vw,17px)}
 @media (max-width:860px){
   .eng{grid-template-columns:1fr}
@@ -226,19 +224,16 @@
   <p class="kicker reveal" id="products-h" style="margin-bottom:clamp(18px,3vh,28px)">Our products include</p>
   <div class="rows">
     <a class="row reveal" href="rail-systems.html" style="--d:0ms">
-      <span class="row-num">01</span>
       <span class="row-title">Rail systems</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="monumental-stairs.html" style="--d:60ms">
-      <span class="row-num">02</span>
       <span class="row-title">Monumental and radiused/<wbr>spiral stairs</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="architectural-metalwork.html" style="--d:120ms">
-      <span class="row-num">03</span>
       <span class="row-title">Architectural metalwork</span>
       <span class="row-text">A wide variety, including, but not limited to, wall panels, torcheres, gazebos, column covers and decorative art designs.</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></span>
@@ -290,12 +285,10 @@
     </div>
     <div class="eng-items">
       <div class="eng-item reveal">
-        <p class="col-num">01</p>
         <h3 class="col-title">Structural computations</h3>
         <p class="col-text">CSI offers structural computations of a design project by using COSMOS/M finite element analysis software. Monumental stairs, canopies and guard railings, to name a few, are analyzed for material sizes and connection details required to meet loading criteria and code requirements.</p>
       </div>
       <div class="eng-item reveal" style="--d:100ms">
-        <p class="col-num">02</p>
         <h3 class="col-title">Preliminary design assistance</h3>
         <p class="col-text">The preliminary design assistance can save the designer time and money in the development process. Our engineering department uses CAD and MicroStation systems that are compatible with most designers&rsquo; systems.</p>
       </div>
@@ -359,7 +352,7 @@
   </div>
 </footer>
 
-<script src="site.js?v=202609281903"></script>
+<script src="site.js?v=202609281916"></script>
 
 </body>
 </html>
