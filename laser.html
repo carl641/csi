@@ -376,5 +376,57 @@
 </footer>
 
 <script src="site.js?v=202609281949"></script>
+<script>
+try {
+/* ---- the Laser-cut parts photos turn clockwise as the section scrolls
+   past: top to bottom right, bottom right to bottom left, bottom left to
+   the top; scrolling back turns them the other way. Each move slides the
+   photos from where they were to their new places (measured before and
+   after the swap), and reduced motion leaves them still ---- */
+const mosaic = document.querySelector('.parts-imgs');
+if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const section = mosaic.closest('section');
+  const STEPS = 3;          // turns over the whole pass, one full circle
+  let turned = 0, busy = false;
+  function turn(dir){
+    const figs = [...mosaic.children];
+    const before = new Map(figs.map(f=>[f, f.getBoundingClientRect()]));
+    if(dir > 0) mosaic.appendChild(mosaic.firstElementChild);
+    else mosaic.prepend(mosaic.lastElementChild);
+    busy = true;
+    figs.forEach(f=>{
+      const a = before.get(f), b = f.getBoundingClientRect();
+      f.style.transition = 'none';
+      f.style.transformOrigin = '0 0';
+      f.style.transform = `translate(${a.left - b.left}px,${a.top - b.top}px) scale(${a.width / b.width},${a.height / b.height})`;
+    });
+    void mosaic.offsetWidth;
+    figs.forEach(f=>{
+      f.style.transition = 'transform 900ms cubic-bezier(.65,0,.25,1)';
+      f.style.transform = 'none';
+    });
+    setTimeout(()=>{
+      figs.forEach(f=>{ f.style.transition = ''; f.style.transform = ''; f.style.transformOrigin = ''; });
+      busy = false;
+      check();
+    }, 950);
+  }
+  function check(){
+    if(busy) return;
+    const r = section.getBoundingClientRect(), vh = window.innerHeight;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+    const want = Math.min(STEPS, Math.floor(p * (STEPS + 1)));
+    if(want > turned){ turned++; turn(1); }
+    else if(want < turned){ turned--; turn(-1); }
+  }
+  let queued = false;
+  window.addEventListener('scroll', ()=>{
+    if(queued) return; queued = true;
+    requestAnimationFrame(()=>{ queued = false; check(); });
+  }, {passive:true});
+  window.addEventListener('resize', check);
+}
+} catch (err) { console.error("feature failed:", err); }
+</script>
 </body>
 </html>
