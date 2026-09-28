@@ -55,67 +55,6 @@ onScroll();
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- trim black borders baked into a photo ----
-   anything marked data-trim (an <img>, a gallery button's photo, or a
-   background set as --photo) has its photo read onto a canvas, and rows
-   and columns along the edges that are almost all black are cut away; the
-   trimmed copy then replaces the original, so it fills its frame like any
-   other photo. If the photo can't be read, it's left as it is */
-const trimCache = new Map();
-function trimmed(url){
-  if(trimCache.has(url)) return trimCache.get(url);
-  const job = new Promise((done, fail)=>{
-    const im = new Image();
-    im.crossOrigin = 'anonymous';
-    im.onerror = fail;
-    im.onload = ()=>{
-      try {
-        const nw = im.naturalWidth, nh = im.naturalHeight;
-        const k = Math.min(1, 480 / Math.max(nw, nh));
-        const w = Math.max(1, Math.round(nw * k)), h = Math.max(1, Math.round(nh * k));
-        const c = document.createElement('canvas');
-        c.width = w; c.height = h;
-        const x = c.getContext('2d');
-        x.drawImage(im, 0, 0, w, h);
-        const d = x.getImageData(0, 0, w, h).data;
-        const dark = (px, py)=>{ const i = (py * w + px) * 4; return d[i] + d[i+1] + d[i+2] < 84; };
-        const col = (px, y0, y1)=>{ let n = 0; for(let y = y0; y <= y1; y++) n += dark(px, y); return n / (y1 - y0 + 1); };
-        const row = (py, x0, x1)=>{ let n = 0; for(let q = x0; q <= x1; q++) n += dark(q, py); return n / (x1 - x0 + 1); };
-        let l = 0, r = w - 1, t = 0, b = h - 1;
-        while(l < r && col(l, 0, h - 1) > .96) l++;
-        while(r > l && col(r, 0, h - 1) > .96) r--;
-        while(t < b && row(t, l, r) > .96) t++;
-        while(b > t && row(b, l, r) > .96) b--;
-        // a pixel more on any side that had a border, for the soft edge
-        if(l) l++; if(r < w - 1) r--; if(t) t++; if(b < h - 1) b--;
-        const cw = r - l + 1, ch = b - t + 1;
-        // nothing worth trimming, or so much that it's not a border at all
-        if((cw > w * .98 && ch > h * .98) || cw < w * .3 || ch < h * .3) return fail();
-        const out = document.createElement('canvas');
-        out.width = Math.round(cw / k); out.height = Math.round(ch / k);
-        out.getContext('2d').drawImage(im, l / k, t / k, cw / k, ch / k, 0, 0, out.width, out.height);
-        out.toBlob(blob=>blob ? done(URL.createObjectURL(blob)) : fail(), 'image/jpeg', .92);
-      } catch (e) { fail(e); }
-    };
-    im.src = url;
-  });
-  trimCache.set(url, job);
-  return job;
-}
-document.querySelectorAll('[data-trim]').forEach(el=>{
-  if(el.tagName === 'IMG'){
-    trimmed(el.currentSrc || el.src).then(u=>{ el.src = u; el.dataset.raw = u; }, ()=>{});
-  } else if(el.dataset.src){
-    // a gallery button: the gallery shows whatever its data-src holds
-    trimmed(el.dataset.src).then(u=>{ el.dataset.src = u; el.dataset.raw = u; }, ()=>{});
-  } else {
-    const m = (el.getAttribute('style') || '').match(/--photo:\s*url\((['"]?)(.*?)\1\)/);
-    if(m) trimmed(m[2]).then(u=>el.style.setProperty('--photo', 'url("' + u + '")'), ()=>{});
-  }
-});
-} catch (err) { console.error("feature failed:", err); }
-
-try {
 /* ---- More projects: an endless carousel, as on the Laser page. Next
    slides the row on by one tile and moves the first to the back, previous
    brings the last to the front and slides it in. With only a few tiles
