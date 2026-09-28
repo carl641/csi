@@ -95,9 +95,15 @@
 .parts-imgs img{display:block;width:100%;height:100%;object-fit:cover}
 /* while they move with the scroll the photos are lifted out of the grid
    and placed by the script over the same space */
-.parts-imgs.is-moving{position:relative;display:block}
+.parts-imgs.is-moving{display:block}
 .parts-imgs.is-moving figure{position:absolute;left:0;top:0;aspect-ratio:auto;will-change:transform,width,height}
-.parts-info{position:sticky;top:110px}
+/* on a wide screen the photos stay pinned in view while the text beside
+   them scrolls past, and they change places over that stretch */
+.parts-imgs{position:sticky;top:120px}
+/* room under the text so the pinned stretch is long enough for the moves */
+.parts-info{padding-bottom:clamp(0px,30vh,300px)}
+.parts-more{display:grid;gap:clamp(40px,8vh,80px);margin:clamp(48px,9vh,88px) 0 clamp(40px,7vh,64px)}
+.parts-more > div{border-top:1px solid var(--hair);padding-top:clamp(20px,3vh,28px)}
 .parts-info .lede{margin-bottom:0}
 .parts-facts{margin:clamp(24px,4vh,36px) 0 clamp(26px,4vh,36px);border-top:1px solid var(--hair)}
 .parts-facts > div{
@@ -108,7 +114,8 @@
 .parts-facts dd{margin:0;font-size:15px;line-height:1.45}
 @media (max-width:860px){
   .parts{grid-template-columns:1fr}
-  .parts-info{position:static;order:-1}
+  .parts-info{order:-1;padding-bottom:0}
+  .parts-imgs{position:relative;top:auto}
 }
 
 </style>
@@ -162,14 +169,14 @@
 
 <section class="sec" aria-label="Laser-cut parts">
   <div class="parts">
-    <div class="parts-imgs">
-      <figure class="reveal">
+    <div class="parts-imgs reveal">
+      <figure>
         <img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
-      <figure class="reveal">
+      <figure>
         <img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
-      <figure class="reveal">
+      <figure>
         <img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
     </div>
@@ -183,6 +190,11 @@
         <div><dt>Sheet size</dt><dd>Up to 6.6 &times; 13 ft</dd></div>
         <div><dt>What we cut</dt><dd>Perforated panels, screens and custom profiles</dd></div>
       </dl>
+      <div class="parts-more">
+        <div><h3 class="col-title">Panels &amp; screens</h3><p class="col-text">Perforated panels and screens, including decorative laser-cut Cor-ten panels with each one cut to its own pattern.</p></div>
+        <div><h3 class="col-title">Custom profiles</h3><p class="col-text">A single one-off profile or a run of identical parts, cut from sheet, plate, perforated stock or tube.</p></div>
+        <div><h3 class="col-title">In our own shop</h3><p class="col-text">Our engineering department works in CAD and MicroStation alongside the designer, and the parts are cut, fabricated and finished in house.</p></div>
+      </div>
       <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
     </div>
   </div>
@@ -429,11 +441,23 @@ if(mosaic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   // middle is 82% of the way down the screen to when it's 56% down, so
   // the last photo reaches the big place while all three can be seen
   const FROM = .82, TO = .56;
+  // on a wide screen the mosaic is pinned while the text scrolls past, and
+  // the moves are spread over that whole pinned stretch; stacked on a
+  // narrow screen, they run while the mosaic is well in view
+  const wide = window.matchMedia('(min-width:861px)');
+  const grid = mosaic.parentElement;
   function target(){
-    const r = mosaic.getBoundingClientRect(), vh = window.innerHeight;
-    const mid = (r.top + r.height / 2) / vh;
-    const p = Math.min(1, Math.max(0, (FROM - mid) / (FROM - TO)));
-    goal = p * TURNS;
+    const vh = window.innerHeight;
+    let p;
+    if(wide.matches){
+      const g = grid.getBoundingClientRect(), pin = parseFloat(getComputedStyle(mosaic).top) || 0;
+      const travel = g.height - mosaic.offsetHeight;
+      p = travel > 40 ? (pin - g.top) / travel : 0;
+    } else {
+      const r = mosaic.getBoundingClientRect(), mid = (r.top + r.height / 2) / vh;
+      p = (FROM - mid) / (FROM - TO);
+    }
+    goal = Math.min(1, Math.max(0, p)) * TURNS;
   }
   // it trails the scroll softly, at the same pace on any screen's frame rate
   let last = 0;
