@@ -27,7 +27,8 @@ original file (`data-raw`), and a CSS background links the original.
 The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
-On Metalwork and Stairs the More projects tiles run as an endless
+On Metalwork and Stairs the More projects tiles, and the Laser page's
+Laser work photos, run as an endless
 carousel (`[data-carousel]` in `site.js`) that keeps within the page
 margins and shows whole tiles only (four, three, two or one across). It
 scrolls natively, so a finger or trackpad moves it smoothly and it snaps
