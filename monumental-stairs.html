@@ -58,10 +58,6 @@
 /* ---------- the project tiles: each one's photos in a small gallery ---------- */
 .proj-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:10px}
 .proj-title{margin:0;font-size:clamp(16px,1.3vw,19px);font-weight:600;letter-spacing:-.01em;line-height:1.25}
-.proj-count{
-  margin:0;flex:0 0 auto;
-  font-family:var(--serif);font-style:italic;font-weight:300;font-size:14px;color:var(--mist);
-}
 /* the gallery's own bar sits under the photo; with a caption below it, keep it tight */
 .proj .gal-bar{margin-top:8px}
 .proj .gal-nav .round-btn{width:36px;height:36px}
@@ -188,14 +184,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">Huntsville, AL</p>
         <h3 class="feat-title">Martin Road Apartments</h3>
+        <p class="proj-place">Huntsville, AL</p>
         <p class="proj-text">The monumental stair has a single stringer at its centerline with ash wood treads. Its glass guardrail is 13/16″ low-iron glass on a button rail system, with a 1″ × 2″ ash wood handrail and wall rail. At the balcony, 9/16″ low-iron glass sits in an aluminum shoe system wrapped in non-directional stainless steel cladding. The ash has a natural finish with a clear top coat.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>Doster Construction</dd></div>
           <div><dt>Architect</dt><dd>J. Price Architecture</dd></div>
         </dl>
-        <p class="feat-count">9 photos</p>
       </div>
     </article>
     <article class="feat reveal">
@@ -215,14 +210,13 @@
         </div>
       </div>
       <div class="feat-body">
-        <p class="proj-place">Moscow, Russia</p>
         <h3 class="feat-title">United States Embassy</h3>
+        <p class="proj-place">Moscow, Russia</p>
         <p class="proj-text">An elliptical stainless steel monumental stair on a center stringer, with glass treads and perforated risers, and stainless steel and glass guard railings.</p>
         <dl class="proj-credits">
           <div><dt>Contractor</dt><dd>H.B. Zachry</dd></div>
           <div><dt>Architect</dt><dd>General Services Administration</dd></div>
         </dl>
-        <p class="feat-count">1 photo</p>
       </div>
     </article>
   </div>
@@ -231,9 +225,14 @@
 <section class="sec sec-tight" aria-label="More projects">
   <div class="more-head reveal">
     <h2 class="h2">More projects</h2>
+    <div class="more-nav">
+      <button class="round-btn more-prev" type="button" aria-label="Previous projects"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M17 6H2M6.5 1L1.5 6l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="round-btn more-next" type="button" aria-label="Next projects"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
   </div>
+  <div class="more-strip reveal" data-carousel>
   <div class="more-grid">
-    <article class="proj reveal" style="--d:0ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20GA%20Tech1.avif" data-raw="https://3unloi5wlp.ucarecd.net/3d00fe32-c0bd-4081-817d-85066348e8a9/Monumental%20Stairs%20-%20GA%20Tech1.avif" alt="Georgia Tech, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -251,10 +250,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Georgia Tech</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:60ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" data-raw="https://3unloi5wlp.ucarecd.net/f58f03ec-80f3-44d2-b883-121270329eea/Monumental%20Stairs%20-%20University%20of%20Michigan1.avif" alt="University of Michigan, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -272,10 +270,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">University of Michigan</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:120ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Schuster1.avif" data-raw="https://3unloi5wlp.ucarecd.net/6a784b3e-a9b2-483c-b84c-7f89a910626c/Monumental%20Stairs%20-%20Schuster1.avif" alt="Schuster Performing Arts Center, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -293,10 +290,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">Schuster Performing Arts Center</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj reveal" style="--d:180ms">
+    <article class="proj">
       <div class="gal" data-gal data-photos="1">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Galxo1.avif" data-raw="https://3unloi5wlp.ucarecd.net/4e18e89f-3dfd-4af4-9b8f-18eff19ba1dd/Monumental%20Stairs%20-%20Galxo1.avif" alt="GlaxoSmithKline, photo 1 of 1" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -314,10 +310,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">GlaxoSmithKline</h3>
-        <p class="proj-count">1 photo</p>
       </div>
     </article>
-    <article class="proj proj--all reveal" style="--d:0ms">
+    <article class="proj proj--all">
       <div class="gal" data-gal data-photos="6">
         <div class="gal-stage">
           <img class="gal-img" src="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/-/preview/1200x1200/-/format/auto/Monumental%20Stairs%20-%20Hero1.avif" data-raw="https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif" alt="More monumental stairs, photo 1 of 6" loading="lazy" decoding="async" draggable="false" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}">
@@ -340,9 +335,9 @@
       </div>
       <div class="proj-cap">
         <h3 class="proj-title">More monumental stairs</h3>
-        <p class="proj-count">6 photos</p>
       </div>
     </article>
+  </div>
   </div>
 </section>
 

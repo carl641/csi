@@ -25,6 +25,10 @@ original file (`data-raw`), and a CSS background links the original.
 The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
+On Metalwork and Stairs the More projects tiles run as an endless
+carousel (`[data-carousel]` in `site.js`), stepping on its own like the
+Laser page's photo strip and repeating the tiles when there are too few
+to fill a wide screen.
 
 The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
 and in the burger menu's copy of it; the footer keeps the name in type. Its
