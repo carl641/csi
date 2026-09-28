@@ -122,10 +122,10 @@
   .spec::after{display:none}
 }
 /* on a narrow screen the photos sit under the text as an endless
-   carousel that turns on its own; the next photo peeks in at the edge */
+   carousel that turns on its own, one whole photo at a time */
 .parts-imgs.is-carousel{display:flex;gap:12px;overflow:hidden;touch-action:pan-y}
 .parts-imgs.is-carousel figure,
-.parts-imgs.is-carousel figure:first-child{flex:0 0 86%;aspect-ratio:4/3;grid-column:auto;
+.parts-imgs.is-carousel figure:first-child{flex:0 0 100%;aspect-ratio:4/3;grid-column:auto;
   transform:translateX(var(--x,0px));transition:transform 620ms cubic-bezier(.3,0,.2,1)}
 .parts-imgs.is-carousel.no-anim figure{transition:none}
 
