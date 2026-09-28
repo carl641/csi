@@ -27,7 +27,9 @@ gallery; the home page's hero buttons and the About page's product list
 open them.
 
 The CSI logo (`CSI Logo.avif` on the CDN) sits in the header's left corner
-and in the burger menu's copy of it; the footer keeps the name in type.
+and in the burger menu's copy of it; the footer keeps the name in type. Its
+height is `--logo-h` (with the header padding, in `site.css` and
+`index.html`), and the menu links, burger and dropdowns centre on it.
 
 The menu runs Products, Case Studies, Resources and About Us. Products drops down to
 the four sector pages and Laser, and About Us to Contact Us and Careers: a
