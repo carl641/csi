@@ -28,8 +28,11 @@ The four sector pages show each project as a card with its own small
 gallery; the home page's hero buttons and the About page's product list
 open them.
 On Metalwork and Stairs the More projects tiles run as an endless
-carousel (`[data-carousel]` in `site.js`), stepping on its own like the
-Laser page's photo strip and repeating the tiles when there are too few
+carousel (`[data-carousel]` in `site.js`) that keeps within the page
+margins, showing whole tiles only (four, three, two or one across), and
+steps on a swipe, a sideways trackpad or mouse scroll, or on its own like
+the Laser page's photo strip. A View case studies button sits in its top
+right corner and repeating the tiles when there are too few
 to fill a wide screen. Each tile is one photo; a project with several
 photos has a tile for each. The project's name lies over its photo,
 shown on hover with a mouse and on a tap on touch screens.
