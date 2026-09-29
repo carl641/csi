@@ -100,6 +100,12 @@
 @media (max-width:960px){
   .lz{grid-template-columns:1fr}
 }
+/* once the photos sit under the text they become an endless carousel that
+   turns on its own, one whole photo at a time, as on the Laser page */
+.lz-imgs.is-carousel{display:flex;gap:12px;overflow:hidden;touch-action:pan-y}
+.lz-imgs.is-carousel figure{flex:0 0 100%;aspect-ratio:4/3;grid-column:auto;
+  transform:translateX(var(--x,0px));transition:transform 620ms cubic-bezier(.3,0,.2,1)}
+.lz-imgs.is-carousel.no-anim figure{transition:none}
 </style>
 </head>
 <body>
@@ -297,6 +303,77 @@
 </footer>
 
 <script src="site.js?v=202609291505"></script>
+<script>
+try {
+/* ---- the laser photos: on a narrow screen, where they sit under the
+   text, an endless carousel that turns on its own and can be swiped,
+   as on the Laser page. Reduced motion leaves it still ---- */
+const reel = document.querySelector('.lz-imgs');
+if(reel){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const narrow = window.matchMedia('(max-width:960px)');
+  const home = [...reel.children];
+  let mode = null, timer = null, busy = false, onScreen = false, touching = false;
+  const step = ()=>{ const f = reel.firstElementChild; return f.getBoundingClientRect().width + (parseFloat(getComputedStyle(reel).columnGap) || 0); };
+  function slide(dir){
+    if(busy || mode !== 'narrow') return;
+    busy = true;
+    if(dir > 0){
+      reel.style.setProperty('--x', -step() + 'px');
+      setTimeout(()=>{
+        reel.classList.add('no-anim');
+        reel.appendChild(reel.firstElementChild);
+        reel.style.setProperty('--x', '0px');
+        void reel.offsetWidth;
+        reel.classList.remove('no-anim');
+        busy = false;
+      }, 640);
+    } else {
+      reel.classList.add('no-anim');
+      reel.prepend(reel.lastElementChild);
+      reel.style.setProperty('--x', -step() + 'px');
+      void reel.offsetWidth;
+      reel.classList.remove('no-anim');
+      reel.style.setProperty('--x', '0px');
+      setTimeout(()=>{ busy = false; }, 640);
+    }
+  }
+  const stop = ()=>{ clearInterval(timer); timer = null; };
+  function start(){
+    stop();
+    if(mode !== 'narrow' || reduce || touching || !onScreen || document.hidden) return;
+    timer = setInterval(()=>slide(1), 3500);
+  }
+  let x0 = null;
+  reel.addEventListener('pointerdown', e=>{ if(mode !== 'narrow') return; x0 = e.clientX; touching = true; stop(); });
+  const letGo = e=>{
+    if(x0 !== null && e && e.clientX !== undefined){
+      const dx = e.clientX - x0;
+      if(Math.abs(dx) > 40) slide(dx < 0 ? 1 : -1);
+    }
+    x0 = null; touching = false; start();
+  };
+  reel.addEventListener('pointerup', letGo);
+  reel.addEventListener('pointercancel', ()=>letGo());
+  document.addEventListener('visibilitychange', start);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.3}).observe(reel);
+  } else onScreen = true;
+  function setMode(){
+    const want = narrow.matches ? 'narrow' : 'wide';
+    if(want === mode) return;
+    mode = want;
+    stop(); busy = false;
+    home.forEach(f=>reel.appendChild(f));      // back to the first order
+    reel.style.removeProperty('--x');
+    reel.classList.toggle('is-carousel', mode === 'narrow');
+    start();
+  }
+  setMode();
+  window.addEventListener('resize', setMode);
+}
+} catch (err) { console.error("feature failed:", err); }
+</script>
 
 </body>
 </html>
