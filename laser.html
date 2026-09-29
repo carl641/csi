@@ -465,12 +465,13 @@ if(mosaic){
     });
     if(spec) spec.style.setProperty('--prog', (t / TURNS).toFixed(3));
   }
-  // the moves are spread over the stretch where the mosaic is pinned,
-  // finishing a little before it lets go
+  // the moves are spread over the whole stretch where the mosaic is
+  // pinned, finishing just ahead of the end so the last one has settled
+  // (it trails the scroll slightly) right as the mosaic lets go
   function target(){
     const g = grid.getBoundingClientRect(), pin = parseFloat(getComputedStyle(mosaic).top) || 0;
     const travel = g.height - mosaic.offsetHeight;
-    const p = travel > 40 ? (pin - g.top) / (travel * .85) : 0;
+    const p = travel > 40 ? (pin - g.top) / (travel * .87) : 0;
     goal = Math.min(1, Math.max(0, p)) * TURNS;
   }
   function frame(ts){
