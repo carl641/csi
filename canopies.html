@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=BBH+Hegarty&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://3unloi5wlp.ucarecd.net">
-<link rel="stylesheet" href="site.css?v=202609282006">
+<link rel="stylesheet" href="site.css?v=202609291459">
 <script>document.documentElement.classList.add('js')</script>
 <style>
 /* ---------- the photos ---------- */
@@ -55,11 +55,6 @@
   .gal-img{transition:none}
 }
 
-.more{
-  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
-  padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair);
-}
-.more .h2{margin:0}
 </style>
 </head>
 <body>
@@ -248,9 +243,26 @@
 </section>
 
 <section class="sec sec-tight" aria-label="More of our work">
-  <div class="more reveal">
+  <div class="more-work reveal">
     <h2 class="h2">More of our work</h2>
-    <div class="actions"><a class="cta cta-ghost" href="architectural-metalwork.html"><span class="cta-label">Architectural Metalwork</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="monumental-stairs.html"><span class="cta-label">Monumental Stairs</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="rail-systems.html"><span class="cta-label">Rail Systems</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="laser.html"><span class="cta-label">Laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+    <div class="work-cards" style="--n:4">
+      <a class="work-card" href="architectural-metalwork.html">
+        <span class="work-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></span>
+        <span class="work-name">Architectural Metalwork<span class="round-btn work-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
+      </a>
+      <a class="work-card" href="monumental-stairs.html">
+        <span class="work-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></span>
+        <span class="work-name">Monumental Stairs<span class="round-btn work-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
+      </a>
+      <a class="work-card" href="rail-systems.html">
+        <span class="work-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></span>
+        <span class="work-name">Rail Systems<span class="round-btn work-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
+      </a>
+      <a class="work-card" href="laser.html">
+        <span class="work-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/6627d6d4-db24-49ed-a18b-3699bfaf738b/TruLaser%203040%20-%20Hero1.avif')" aria-hidden="true"></span>
+        <span class="work-name">Laser cutting<span class="round-btn work-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -310,7 +322,7 @@
   </div>
 </footer>
 
-<script src="site.js?v=202609281949"></script>
+<script src="site.js?v=202609291459"></script>
 <script>
 try {
 /* ---- case study galleries: step through each project's photos ---- */
