@@ -17,7 +17,10 @@
 /* ---------- the product lines: a large photo card each ---------- */
 .prod-grid{display:flex;flex-direction:column;gap:clamp(14px,1.6vw,22px)}
 /* two panels a row; the hovered one widens, like "More of our work" */
-.prod-row{display:flex;gap:clamp(14px,1.6vw,22px)}
+.prod-row{display:flex;gap:clamp(14px,1.6vw,22px);container-type:inline-size}
+/* the text keeps the width it has in a panel at its narrowest (while its
+   neighbour is widened), so its lines never re-break as panels resize */
+.prod-head,.prod-text,.prod-card .chips{width:calc((100cqi - clamp(14px,1.6vw,22px)) / 2.45 - 2 * clamp(22px,2.4vw,34px))}
 .prod-card{
   position:relative;flex:1 1 0;min-width:0;isolation:isolate;overflow:hidden;
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -43,15 +46,17 @@
 }
 .prod-card:hover .prod-go,.prod-card:focus-visible .prod-go{background:var(--fill);border-color:var(--fill);color:#15191D}
 .prod-text{
-  margin:14px 0 18px;max-width:52ch;
+  margin:14px 0 18px;
   font-family:var(--serif);font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.55;color:rgba(242,239,233,.84);
 }
 .prod-card .chips li{border-color:rgba(242,239,233,.32);background:rgba(8,11,14,.28);color:#F2EFE9}
-@media (max-width:860px){
+@media (max-width:1000px){
   .prod-row{flex-direction:column}
   .prod-card{min-height:clamp(420px,110vw,560px)}
   .prod-row:hover .prod-card:hover,.prod-card:focus-visible{flex-grow:1}
   .prod-title{white-space:normal}
+  .prod-head,.prod-text,.prod-card .chips{width:auto}
+  .prod-text{max-width:60ch}
 }
 @media (prefers-reduced-motion:reduce){.prod-card,.prod-img::before,.prod-title::before{transition:none}}
 
