@@ -789,39 +789,37 @@ body.is-stuck .masthead{
   .menu,.burger span,.drop,.drop-toggle svg{transition-duration:1ms}
 }
 
-/* ---------- more of our work: the other product pages as photo cards ---------- */
-.more-work{padding-top:clamp(28px,4vh,40px);border-top:1px solid var(--hair)}
-.more-work .h2{margin:0 0 clamp(24px,4vh,36px)}
-.work-cards{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:clamp(14px,1.6vw,22px)}
-.work-card{display:block;color:inherit;text-decoration:none}
-.work-img{
-  position:relative;display:block;aspect-ratio:4/3;overflow:hidden;
-  border-radius:6px;background:var(--mat);
+/* ---------- more of our work: the other product pages as tall photo panels
+   on the tinted background, so it reads apart from the "More projects" strip.
+   The hovered panel widens; the name sits on the photo. ---------- */
+.more-work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 40px;flex-wrap:wrap;margin:0 0 clamp(24px,4vh,40px)}
+.more-work-head .h2{margin:0}
+.more-work-head p{margin:0;max-width:36ch;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(16px,1.3vw,19px);line-height:1.45;color:var(--mist)}
+.work-cards{display:flex;gap:clamp(10px,1.2vw,16px);height:clamp(340px,56vh,540px)}
+.work-card{
+  position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;overflow:hidden;
+  border-radius:8px;background:var(--mat);color:#F2EFE9;text-decoration:none;isolation:isolate;
+  transition:flex-grow 700ms cubic-bezier(.2,.7,.25,1);
 }
-.work-img::before{
-  content:"";position:absolute;inset:0;
-  background:var(--photo) center/cover no-repeat;
-  transition:transform 900ms cubic-bezier(.2,.7,.25,1);
-}
+.work-cards:hover .work-card:hover,.work-card:focus-visible{flex-grow:2.2}
+.work-img{position:absolute;inset:0;z-index:-1}
+.work-img::before,.work-img::after{content:"";position:absolute;inset:0}
+.work-img::before{background:var(--photo) center/cover no-repeat;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
+.work-img::after{background:linear-gradient(to top,rgba(8,11,14,.86) 0%,rgba(8,11,14,.35) 45%,rgba(8,11,14,0) 70%)}
 .work-name{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:14px;padding-bottom:12px;border-bottom:1px solid var(--hair);
-  font-size:clamp(17px,1.4vw,21px);font-weight:700;letter-spacing:-.015em;line-height:1.2;
-  transition:color 220ms ease;
+  display:block;margin-top:auto;
+  padding:clamp(18px,2vw,28px);padding-top:20px;
+  font-size:clamp(18px,1.55vw,25px);font-weight:800;letter-spacing:-.02em;line-height:1.1;text-transform:uppercase;
 }
-.work-go{flex:0 0 auto;width:40px;height:40px}
-.work-card:hover .work-img::before,.work-card:focus-visible .work-img::before{transform:scale(1.05)}
-.work-card:hover .work-name,.work-card:focus-visible .work-name{color:var(--accent)}
-.work-card:hover .work-go,.work-card:focus-visible .work-go{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
-/* two across on a tablet, with an odd last card taking the full row;
-   stacked on a phone */
+.work-name::before{content:"";display:block;margin-bottom:14px;width:36px;height:3px;background:var(--fill);transition:width 500ms ease}
+.work-go{position:absolute;top:clamp(16px,1.8vw,24px);right:clamp(16px,1.8vw,24px);width:44px;height:44px;color:#F2EFE9;border-color:rgba(242,239,233,.55);background:rgba(8,11,14,.25)}
+.work-card:hover .work-img::before,.work-card:focus-visible .work-img::before{transform:scale(1.06)}
+.work-card:hover .work-name::before,.work-card:focus-visible .work-name::before{width:72px}
+.work-card:hover .work-go,.work-card:focus-visible .work-go{background:var(--fill);border-color:var(--fill);color:#15191D}
+/* tablet and phone: full-width photo rows, no widening */
 @media (max-width:1100px){
-  .work-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .work-cards > .work-card:last-child:nth-child(odd){grid-column:1 / -1}
-  .work-cards > .work-card:last-child:nth-child(odd) .work-img{aspect-ratio:16/7}
+  .work-cards{flex-direction:column;height:auto}
+  .work-card{flex:none;height:clamp(150px,26vw,210px)}
+  .work-cards:hover .work-card:hover,.work-card:focus-visible{flex-grow:0}
 }
-@media (max-width:560px){
-  .work-cards{grid-template-columns:1fr}
-  .work-cards > .work-card:last-child:nth-child(odd) .work-img{aspect-ratio:4/3}
-}
-@media (prefers-reduced-motion:reduce){.work-img::before{transition:none}}
+@media (prefers-reduced-motion:reduce){.work-card,.work-img::before,.work-name::before{transition:none}}
