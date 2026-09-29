@@ -15,38 +15,45 @@
 .phero--short{min-height:72vh;min-height:72svh}
 
 /* ---------- the product lines: a large photo card each ---------- */
-.prod-grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(48px,8vh,80px) clamp(18px,2.4vw,36px);
+.prod-grid{display:flex;flex-direction:column;gap:clamp(14px,1.6vw,22px)}
+/* two panels a row; the hovered one widens, like "More of our work" */
+.prod-row{display:flex;gap:clamp(14px,1.6vw,22px)}
+.prod-card{
+  position:relative;flex:1 1 0;min-width:0;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:clamp(440px,66vh,620px);padding:clamp(22px,2.4vw,34px);
+  border-radius:8px;background:var(--mat);color:#F2EFE9;text-decoration:none;
+  transition:flex-grow 700ms cubic-bezier(.2,.7,.25,1);
 }
-.prod-card{display:block;color:inherit;text-decoration:none}
-.prod-img{
-  position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--mat);border-radius:6px;
-}
-.prod-img::before{
-  content:"";position:absolute;inset:0;
-  background:var(--photo) center/cover no-repeat;
-  transition:transform 900ms cubic-bezier(.2,.7,.25,1);
-}
-.prod-card:hover .prod-img::before,.prod-card:focus-visible .prod-img::before{transform:scale(1.04)}
-.prod-head{
-  display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;
-  margin-top:22px;padding-bottom:14px;border-bottom:1px solid var(--hair);
-}
+.prod-row:hover .prod-card:hover,.prod-card:focus-visible{flex-grow:1.45}
+.prod-img{position:absolute;inset:0;z-index:-1}
+.prod-img::before,.prod-img::after{content:"";position:absolute;inset:0}
+.prod-img::before{background:var(--photo) center/cover no-repeat;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
+.prod-img::after{background:linear-gradient(to top,rgba(8,11,14,.9) 0%,rgba(8,11,14,.62) 40%,rgba(8,11,14,0) 72%)}
+.prod-card:hover .prod-img::before,.prod-card:focus-visible .prod-img::before{transform:scale(1.05)}
 .prod-title{
-  margin:0;font-size:clamp(24px,2.4vw,36px);font-weight:800;
-  letter-spacing:-.03em;line-height:1.05;transition:color 220ms ease;
+  margin:0;font-size:clamp(24px,2.4vw,36px);font-weight:800;text-transform:uppercase;
+  letter-spacing:-.03em;line-height:1.05;white-space:nowrap;
 }
-.prod-card:hover .prod-title,.prod-card:focus-visible .prod-title{color:var(--accent)}
-.prod-go{width:44px;height:44px}
-.prod-card:hover .prod-go,.prod-card:focus-visible .prod-go{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
+.prod-title::before{content:"";display:block;width:40px;height:3px;margin-bottom:16px;background:var(--fill);transition:width 500ms ease}
+.prod-card:hover .prod-title::before,.prod-card:focus-visible .prod-title::before{width:84px}
+.prod-go{
+  position:absolute;top:clamp(18px,2vw,26px);right:clamp(18px,2vw,26px);width:48px;height:48px;
+  color:#F2EFE9;border-color:rgba(242,239,233,.55);background:rgba(8,11,14,.25);
+}
+.prod-card:hover .prod-go,.prod-card:focus-visible .prod-go{background:var(--fill);border-color:var(--fill);color:#15191D}
 .prod-text{
-  margin:16px 0 18px;max-width:52ch;
-  font-family:var(--serif);font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.55;color:var(--mist);
+  margin:14px 0 18px;max-width:52ch;
+  font-family:var(--serif);font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.55;color:rgba(242,239,233,.84);
 }
-@media (max-width:760px){
-  .prod-grid{grid-template-columns:1fr}
+.prod-card .chips li{border-color:rgba(242,239,233,.32);background:rgba(8,11,14,.28);color:#F2EFE9}
+@media (max-width:860px){
+  .prod-row{flex-direction:column}
+  .prod-card{min-height:clamp(420px,110vw,560px)}
+  .prod-row:hover .prod-card:hover,.prod-card:focus-visible{flex-grow:1}
+  .prod-title{white-space:normal}
 }
+@media (prefers-reduced-motion:reduce){.prod-card,.prod-img::before,.prod-title::before{transition:none}}
 
 .intro + .cols{margin-top:clamp(48px,8vh,88px)}
 
@@ -133,42 +140,46 @@
     </div>
   </div>
   <div class="prod-grid">
-    <a class="prod-card reveal" href="rail-systems.html" style="--d:0ms">
-      <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></div>
-      <div class="prod-head">
-        <h3 class="prod-title">Rail systems</h3>
-        <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-      </div>
-      <p class="prod-text">Ornamental railing systems, functional as well as decorative — custom designs or stock component systems, from a single run of guard to a whole building complex.</p>
-      <ul class="chips"><li>Glass railings</li><li>Stainless steel railings</li><li>Cable railings</li><li>Ornamental balustrades</li><li>Handrails</li></ul>
-    </a>
-    <a class="prod-card reveal" href="monumental-stairs.html" style="--d:80ms">
-      <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></div>
-      <div class="prod-head">
-        <h3 class="prod-title">Stair systems</h3>
-        <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-      </div>
-      <p class="prod-text">Feature stairs built as a single assembly, with the structure, treads and railings detailed together, in carbon or stainless steel and any finish.</p>
-      <ul class="chips"><li>Straight-run</li><li>Curved</li><li>Spiral</li><li>Elliptical</li><li>Center stringer</li></ul>
-    </a>
-    <a class="prod-card reveal" href="architectural-metalwork.html" style="--d:0ms">
-      <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></div>
-      <div class="prod-head">
-        <h3 class="prod-title">Metalwork</h3>
-        <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-      </div>
-      <p class="prod-text">The ornamental metal on a building, large or small, straight or curved — from a single column cover to every decorative element on the job.</p>
-      <ul class="chips"><li>Column covers</li><li>Wall panels</li><li>Light fixtures</li><li>Torchères</li><li>Gazebos</li><li>Trellises</li><li>Sunshades</li></ul>
-    </a>
-    <a class="prod-card reveal" href="canopies.html" style="--d:80ms">
-      <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif')" aria-hidden="true"></div>
-      <div class="prod-head">
-        <h3 class="prod-title">Canopies</h3>
-        <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
-      </div>
-      <p class="prod-text">Entrance and walkway canopies engineered for their loads, fabricated to the architect’s intent and installed by our own crews.</p>
-      <ul class="chips"><li>Glass canopies</li><li>Aluminum canopies</li><li>Walkway canopies</li></ul>
-    </a>
+    <div class="prod-row reveal">
+      <a class="prod-card" href="rail-systems.html">
+        <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></div>
+        <div class="prod-head">
+          <h3 class="prod-title">Rail systems</h3>
+          <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <p class="prod-text">Ornamental railing systems, functional as well as decorative — custom designs or stock component systems, from a single run of guard to a whole building complex.</p>
+        <ul class="chips"><li>Glass railings</li><li>Stainless steel railings</li><li>Cable railings</li><li>Ornamental balustrades</li><li>Handrails</li></ul>
+      </a>
+      <a class="prod-card" href="monumental-stairs.html">
+        <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></div>
+        <div class="prod-head">
+          <h3 class="prod-title">Stair systems</h3>
+          <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <p class="prod-text">Feature stairs built as a single assembly, with the structure, treads and railings detailed together, in carbon or stainless steel and any finish.</p>
+        <ul class="chips"><li>Straight-run</li><li>Curved</li><li>Spiral</li><li>Elliptical</li><li>Center stringer</li></ul>
+      </a>
+    </div>
+    <div class="prod-row reveal" style="--d:80ms">
+      <a class="prod-card" href="architectural-metalwork.html">
+        <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></div>
+        <div class="prod-head">
+          <h3 class="prod-title">Metalwork</h3>
+          <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <p class="prod-text">The ornamental metal on a building, large or small, straight or curved — from a single column cover to every decorative element on the job.</p>
+        <ul class="chips"><li>Column covers</li><li>Wall panels</li><li>Light fixtures</li><li>Torchères</li><li>Gazebos</li><li>Trellises</li><li>Sunshades</li></ul>
+      </a>
+      <a class="prod-card" href="canopies.html">
+        <div class="prod-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif')" aria-hidden="true"></div>
+        <div class="prod-head">
+          <h3 class="prod-title">Canopies</h3>
+          <span class="round-btn prod-go" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <p class="prod-text">Entrance and walkway canopies engineered for their loads, fabricated to the architect’s intent and installed by our own crews.</p>
+        <ul class="chips"><li>Glass canopies</li><li>Aluminum canopies</li><li>Walkway canopies</li></ul>
+      </a>
+    </div>
   </div>
 </section>
 
