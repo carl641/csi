@@ -92,11 +92,11 @@
 .parts-imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
 .parts-imgs figure{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--mat)}
 .parts-imgs figure:first-child{grid-column:1 / -1;aspect-ratio:16/10}
-/* each photo is a little taller than its frame and drifts inside it as
-   the section scrolls past (--pq runs from -1 to 1), never showing an edge */
+/* each photo drifts inside its frame the same way as the site's other
+   parallax photos: 18% taller at top and bottom, moved by the script */
 .parts-imgs img{
-  position:absolute;left:0;top:-25%;display:block;width:100%;height:150%;object-fit:cover;
-  transform:translate3d(0,calc(var(--pq,0) * -15%),0);will-change:transform;
+  position:absolute;left:0;top:-18%;display:block;width:100%;height:136%;object-fit:cover;
+  transform:translate3d(0,var(--py,0%),0);will-change:transform;
 }
 /* while they move with the scroll the photos are lifted out of the grid
    and placed by the script over the same space */
@@ -459,6 +459,7 @@ if(mosaic){
     mosaic.classList.add('is-moving');
   }
   function place(t){
+    queueMicrotask(drift);
     home.forEach((f, i)=>{
       const pos = PATH.indexOf(i) + t;
       const k = Math.floor(pos), e = ease(pos - k);
@@ -546,21 +547,48 @@ if(mosaic){
     new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.3}).observe(mosaic);
   } else onScreen = true;
 
-  /* -- in both: each photo drifts inside its frame as the section passes,
-     from the section coming into view to it leaving -- */
-  const section = mosaic.closest('section');
-  let driftQueued = false;
-  function drift(){
-    driftQueued = false;
-    if(reduce) return;
-    const r = section.getBoundingClientRect(), vh = window.innerHeight;
-    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-    mosaic.style.setProperty('--pq', (p * 2 - 1).toFixed(4));
+  /* -- in both: each photo drifts inside its frame exactly as the site's
+     other parallax photos do: a tenth of how far the frame sits from the
+     middle of the screen, up to 18% of the frame's height, trailing the
+     scroll slightly. While the mosaic is pinned it goes by where the
+     frames would be if they scrolled with the page, so the pace matches -- */
+  const DRIFT = .10, SLACK = .18, LAG = .12;
+  const drifts = home.map(f=>({img: f.querySelector('img'), fig: f, now: null, goal: 0}));
+  let driftRunning = false;
+  function driftGoals(){
+    const vh = window.innerHeight;
+    const g = grid.getBoundingClientRect();
+    drifts.forEach(d=>{
+      const r = d.fig.getBoundingClientRect();
+      let mid = r.top + r.height / 2;
+      if(mode === 'wide'){
+        // where this frame would be unpinned: its place in the mosaic, with the mosaic at the top of its column
+        const m = mosaic.getBoundingClientRect();
+        mid = g.top + (r.top - m.top) + r.height / 2;
+      }
+      // kept as a share of the frame's height, so it scales with the frame
+      // as it grows or shrinks between places and never shows an edge
+      d.goal = Math.max(-SLACK, Math.min(SLACK, (mid - vh / 2) * DRIFT / r.height));
+    });
   }
-  const queueDrift = ()=>{ if(!driftQueued){ driftQueued = true; requestAnimationFrame(drift); } };
-  window.addEventListener('scroll', queueDrift, {passive:true});
-  window.addEventListener('resize', queueDrift);
-  drift();
+  function driftFrame(){
+    let moving = false;
+    drifts.forEach(d=>{
+      if(d.now === null) d.now = d.goal;
+      d.now += (d.goal - d.now) * LAG;
+      if(Math.abs(d.goal - d.now) > .0003) moving = true; else d.now = d.goal;
+      // the photo is 136% of the frame, so a share of the frame is that over 1.36 of the photo
+      d.img.style.setProperty('--py', (d.now / 1.36 * 100).toFixed(3) + '%');
+    });
+    if(moving) requestAnimationFrame(driftFrame); else driftRunning = false;
+  }
+  function drift(){
+    if(reduce) return;
+    driftGoals();
+    if(!driftRunning){ driftRunning = true; requestAnimationFrame(driftFrame); }
+  }
+  window.addEventListener('scroll', drift, {passive:true});
+  window.addEventListener('resize', drift);
 
   /* -- switching between the two as the screen changes width -- */
   function setMode(){
@@ -581,6 +609,7 @@ if(mosaic){
     }
   }
   setMode();
+  drift();
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', setMode);
 }
