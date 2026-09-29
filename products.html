@@ -61,6 +61,12 @@
 @media (prefers-reduced-motion:reduce){.prod-card,.prod-img::before,.prod-title::before{transition:none}}
 
 .intro + .cols{margin-top:clamp(48px,8vh,88px)}
+/* the title over the first column and the statement over the other two,
+   on the same grid as the three columns below */
+.src-intro{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(28px,4vw,64px);align-items:baseline}
+.src-intro .h2{margin:0}
+.src-intro .intro-text{grid-column:2 / -1}
+@media (max-width:860px){.src-intro{grid-template-columns:1fr}.src-intro .intro-text{grid-column:auto}}
 
 /* ---------- laser cutting, set apart on the dark ---------- */
 .laser-hl{background:var(--ink)}
@@ -214,7 +220,8 @@
 </section>
 
 <section class="sec" aria-label="From one source">
-  <div class="intro reveal">
+  <div class="intro src-intro reveal">
+    <h2 class="h2">From one source</h2>
     <p class="intro-text">Engineering, fabrication and installation sit together, so every product on a job is detailed by the people who will build it.</p>
   </div>
   <div class="cols">
