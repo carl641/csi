@@ -83,10 +83,14 @@
 .lz-facts dd{margin:8px 0 0;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 /* the three parts: one large, two beneath it */
 .lz-imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
-.lz-imgs figure{margin:0;overflow:hidden;border-radius:6px;background:#1B2229}
+.lz-imgs figure{position:relative;margin:0;overflow:hidden;border-radius:6px;background:#1B2229}
 .lz-imgs .lz-1{grid-column:span 2;aspect-ratio:16/10}
 .lz-imgs .lz-2,.lz-imgs .lz-3{aspect-ratio:1}
-.lz-imgs img{display:block;width:100%;height:100%;object-fit:cover}
+/* each photo overhangs its frame and drifts inside it, like the rest of the site */
+.lz-imgs img{
+  position:absolute;left:0;top:-16%;display:block;width:100%;height:132%;object-fit:cover;
+  translate:0 var(--py,0px);will-change:translate;
+}
 @media (max-width:960px){
   .lz{grid-template-columns:1fr}
 }
@@ -202,9 +206,9 @@
       <div class="actions"><a class="cta" href="laser.html"><span class="cta-label">See laser cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
     </div>
     <div class="lz-imgs reveal" style="--d:120ms">
-        <figure class="lz-1"><img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1200x1200/-/format/auto/laser-cutting-S.jpg" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
-        <figure class="lz-2"><img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1200x1200/-/format/auto/laser-cutting-gear.jpg" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
-        <figure class="lz-3"><img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1200x1200/-/format/auto/laser-cutting-grid.jpg" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
+        <figure class="lz-1"><img data-drift="0.10" data-slack="0.16" src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1200x1200/-/format/auto/laser-cutting-S.jpg" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
+        <figure class="lz-2"><img data-drift="0.10" data-slack="0.16" src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1200x1200/-/format/auto/laser-cutting-gear.jpg" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
+        <figure class="lz-3"><img data-drift="0.10" data-slack="0.16" src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1200x1200/-/format/auto/laser-cutting-grid.jpg" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}"></figure>
     </div>
   </div>
 </section>
