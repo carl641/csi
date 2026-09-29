@@ -82,40 +82,32 @@
 }
 
 
-/* ---------- laser-cut parts: the photos on the left, the facts
-   staying in view beside them ---------- */
+/* ---------- laser-cut parts: the photos on the left fill the height of
+   the facts beside them; each photo drifts inside its own frame ---------- */
 .parts{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(32px,5vw,88px);align-items:start;
+  gap:clamp(32px,5vw,88px);align-items:stretch;
 }
-/* the three photos as a compact mosaic: one wide above, two below */
-.parts-imgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
-.parts-imgs figure{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--mat)}
-.parts-imgs figure:first-child{grid-column:1 / -1;aspect-ratio:16/10}
+/* the three photos as a mosaic: one wide above, two below, stretched to
+   the text's height */
+.parts-imgs{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1.25fr) minmax(0,1fr);
+  gap:clamp(10px,1.2vw,16px);min-height:520px;
+}
+.parts-imgs figure{position:relative;margin:0;overflow:hidden;background:var(--mat)}
+.parts-imgs figure:first-child{grid-column:1 / -1}
 /* each photo drifts inside its frame the same way as the site's other
-   parallax photos: 18% taller at top and bottom, moved by the script */
+   parallax photos: 18% taller at top and bottom, moved by site.js */
 .parts-imgs img{
   position:absolute;left:0;top:-18%;display:block;width:100%;height:136%;object-fit:cover;
-  transform:translate3d(0,var(--py,0%),0);will-change:transform;
+  translate:0 var(--py,0px);will-change:translate;
 }
-/* while they move with the scroll the photos are lifted out of the grid
-   and placed by the script over the same space */
-.parts-imgs.is-moving{display:block}
-.parts-imgs.is-moving figure{position:absolute;left:0;top:0;aspect-ratio:auto;will-change:transform,width,height}
-/* on a wide screen the photos stay pinned in view while the text beside
-   them scrolls past, and they change places over that stretch */
-.parts-imgs{position:sticky;top:120px}
-/* room above and below the text in equal parts, so the pinned stretch is
-   long enough for the moves and the text is centred on the photos
-   halfway through it, with even margins as it drifts */
-.parts-info{padding:clamp(120px,28vh,270px) 0}
+.parts-info{align-self:center}
 .parts-info .lede{margin-bottom:0}
 /* the facts as taller rows, with a line down the side that fills in step
    with the photos as they change places */
 .spec{position:relative;margin:clamp(32px,5vh,44px) 0 clamp(32px,5vh,44px);padding-left:22px}
-.spec::before,.spec::after{content:"";position:absolute;left:0;top:0;width:2px}
-.spec::before{bottom:0;background:var(--hair)}
-.spec::after{height:calc(var(--prog,0) * 100%);background:var(--accent)}
+.spec::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--hair)}
 .spec-row{padding:clamp(22px,3.4vh,30px) 0;border-bottom:1px solid var(--hair)}
 .spec-row:first-child{padding-top:4px}
 .spec-lab{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
@@ -123,14 +115,12 @@
 .spec-sub{margin:6px 0 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;line-height:1.5;color:var(--mist)}
 @media (max-width:860px){
   .parts{grid-template-columns:1fr}
-  .parts-info{order:-1;padding:0}
-  .parts-imgs{position:relative;top:auto}
-  /* nothing moves beside the text here, so the line stays plain */
-  .spec::after{display:none}
+  .parts-info{order:-1}
+  .parts-imgs{min-height:0}
 }
 /* on a narrow screen the photos sit under the text as an endless
    carousel that turns on its own, one whole photo at a time */
-.parts-imgs.is-carousel{display:flex;gap:12px;overflow:hidden;touch-action:pan-y}
+.parts-imgs.is-carousel{display:flex;min-height:0;gap:12px;overflow:hidden;touch-action:pan-y}
 .parts-imgs.is-carousel figure,
 .parts-imgs.is-carousel figure:first-child{flex:0 0 100%;aspect-ratio:4/3;grid-column:auto;
   transform:translateX(var(--x,0px));transition:transform 620ms cubic-bezier(.3,0,.2,1)}
@@ -193,13 +183,13 @@
   <div class="parts">
     <div class="parts-imgs reveal">
       <figure>
-        <img src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <img data-drift="0.10" data-slack="0.18" src="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg" srcset="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/900x900/-/format/auto/laser-cutting-S.jpg 900w, https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1600x1600/-/format/auto/laser-cutting-S.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/laser-cutting-S.jpg" alt="Laser-cut S" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
       <figure>
-        <img src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <img data-drift="0.10" data-slack="0.18" src="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg" srcset="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/900x900/-/format/auto/laser-cutting-gear.jpg 900w, https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/-/preview/1600x1600/-/format/auto/laser-cutting-gear.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/60d7b4b7-63f3-4cc0-98cd-16ad33fb49d6/laser-cutting-gear.jpg" alt="Laser-cut gear" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
       <figure>
-        <img src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
+        <img data-drift="0.10" data-slack="0.18" src="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg" srcset="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/900x900/-/format/auto/laser-cutting-grid.jpg 900w, https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/-/preview/1600x1600/-/format/auto/laser-cutting-grid.jpg 1600w" sizes="(max-width:860px) 92vw, 46vw" data-raw="https://3unloi5wlp.ucarecd.net/73ee2e96-e278-4ec4-842f-ce7922804421/laser-cutting-grid.jpg" alt="Laser-cut grid" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.removeAttribute('srcset');this.src=this.dataset.raw}">
       </figure>
     </div>
     <div class="parts-info reveal">
@@ -402,84 +392,18 @@
 <script src="site.js?v=202609291505"></script>
 <script>
 try {
-/* ---- the Laser-cut parts photos. On a wide screen they sit pinned beside
-   the facts and move with the scroll: each photo travels clockwise round
-   the mosaic (top, to bottom right, to bottom left) until each has had
-   the big place, trailing the scroll slightly and settling into place
-   when scrolling stops, while the line beside the facts fills in step.
-   On a narrow screen, where they sit under the text, they become an
-   endless carousel that turns on its own and can be swiped. In both,
-   each photo also drifts inside its frame as the section passes, and on a
-   wide screen the text beside the photos drifts gently too. Reduced
-   motion leaves them still in either case ---- */
+/* ---- the Laser-cut parts photos. On a wide screen they stand still
+   beside the facts (each drifting inside its own frame, via site.js). On
+   a narrow screen, where they sit under the text, they become an endless
+   carousel that turns on its own and can be swiped. Reduced motion
+   leaves the carousel still ---- */
 const mosaic = document.querySelector('.parts-imgs');
-const spec = document.getElementById('parts-spec');
 if(mosaic){
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const narrow = window.matchMedia('(max-width:860px)');
-  const grid = mosaic.parentElement;
   const home = [...mosaic.children];          // the photos in their first order
-  const PATH = [0, 2, 1], TURNS = 2;
   let mode = null;
 
-  /* -- wide: the mosaic that moves with the scroll -- */
-  let slots = [], now = null, goal = 0, running = false, last = 0, snapTimer = null;
-  const ease = f=>{ const g = Math.min(1, Math.max(0, (f - .08) / .84)); return g * g * g * (g * (g * 6 - 15) + 10); };
-  const mix = (a, b, f)=>a + (b - a) * f;
-  function clearMosaic(){
-    mosaic.classList.remove('is-moving');
-    mosaic.style.height = '';
-    home.forEach(f=>{ f.style.transform = f.style.width = f.style.height = f.style.zIndex = ''; });
-  }
-  function measure(){
-    clearMosaic();
-    const box = mosaic.getBoundingClientRect();
-    slots = home.map(f=>{ const r = f.getBoundingClientRect(); return {x:r.left - box.left, y:r.top - box.top, w:r.width, h:r.height}; });
-    mosaic.style.height = box.height + 'px';
-    mosaic.classList.add('is-moving');
-  }
-  function place(t){
-    queueMicrotask(drift);
-    home.forEach((f, i)=>{
-      const pos = PATH.indexOf(i) + t;
-      const k = Math.floor(pos), e = ease(pos - k);
-      const a = slots[PATH[((k % 3) + 3) % 3]], b = slots[PATH[(((k + 1) % 3) + 3) % 3]];
-      const w = mix(a.w, b.w, e);
-      f.style.transform = `translate3d(${mix(a.x, b.x, e).toFixed(2)}px,${mix(a.y, b.y, e).toFixed(2)}px,0)`;
-      f.style.width = w.toFixed(2) + 'px';
-      f.style.height = mix(a.h, b.h, e).toFixed(2) + 'px';
-      f.style.zIndex = Math.round(w);
-    });
-    if(spec) spec.style.setProperty('--prog', (t / TURNS).toFixed(3));
-  }
-  // the moves are spread over the whole stretch where the mosaic is
-  // pinned, finishing just ahead of the end so the last one has settled
-  // (it trails the scroll slightly) right as the mosaic lets go
-  function target(){
-    const g = grid.getBoundingClientRect(), pin = parseFloat(getComputedStyle(mosaic).top) || 0;
-    const travel = g.height - mosaic.offsetHeight;
-    const p = travel > 40 ? (pin - g.top) / (travel * .87) : 0;
-    goal = Math.min(1, Math.max(0, p)) * TURNS;
-  }
-  function frame(ts){
-    if(mode !== 'wide'){ running = false; return; }
-    if(now === null) now = goal;
-    const dt = last ? Math.min(64, ts - last) : 16;
-    last = ts;
-    now += (goal - now) * (1 - Math.pow(.92, dt / 16.7));
-    if(Math.abs(goal - now) < .0005) now = goal;
-    place(now);
-    if(now !== goal) requestAnimationFrame(frame); else { running = false; last = 0; }
-  }
-  function run(){ if(!running){ running = true; requestAnimationFrame(frame); } }
-  function onScroll(){
-    if(mode !== 'wide') return;
-    target(); run();
-    clearTimeout(snapTimer);
-    snapTimer = setTimeout(()=>{ goal = Math.round(goal); run(); }, 320);
-  }
-
-  /* -- narrow: the endless carousel -- */
   let timer = null, busy = false, onScreen = false, touching = false;
   const step = ()=>{ const f = mosaic.firstElementChild; return f.getBoundingClientRect().width + (parseFloat(getComputedStyle(mosaic).columnGap) || 0); };
   function slide(dir){
@@ -527,96 +451,18 @@ if(mosaic){
     new IntersectionObserver(es=>{ onScreen = es[0].isIntersecting; start(); }, {threshold:.3}).observe(mosaic);
   } else onScreen = true;
 
-  /* -- in both: each photo drifts inside its frame exactly as the site's
-     other parallax photos do: a tenth of how far the frame sits from the
-     middle of the screen, up to 18% of the frame's height, trailing the
-     scroll slightly. While the mosaic is pinned it goes by where the
-     frames would be if they scrolled with the page, so the pace matches -- */
-  const DRIFT = .10, SLACK = .18, LAG = .12;
-  const drifts = home.map(f=>({img: f.querySelector('img'), fig: f, now: null, goal: 0}));
-  let driftRunning = false;
-  function driftGoals(){
-    const vh = window.innerHeight;
-    const g = grid.getBoundingClientRect();
-    drifts.forEach(d=>{
-      const r = d.fig.getBoundingClientRect();
-      let mid = r.top + r.height / 2;
-      if(mode === 'wide'){
-        // where this frame would be unpinned: its place in the mosaic, with the mosaic at the top of its column
-        const m = mosaic.getBoundingClientRect();
-        mid = g.top + (r.top - m.top) + r.height / 2;
-      }
-      // kept as a share of the frame's height, so it scales with the frame
-      // as it grows or shrinks between places and never shows an edge
-      d.goal = Math.max(-SLACK, Math.min(SLACK, (mid - vh / 2) * DRIFT / r.height));
-    });
-  }
-  function driftFrame(){
-    let moving = false;
-    drifts.forEach(d=>{
-      if(d.now === null) d.now = d.goal;
-      d.now += (d.goal - d.now) * LAG;
-      if(Math.abs(d.goal - d.now) > .0003) moving = true; else d.now = d.goal;
-      // the photo is 136% of the frame, so a share of the frame is that over 1.36 of the photo
-      d.img.style.setProperty('--py', (d.now / 1.36 * 100).toFixed(3) + '%');
-    });
-    if(moving) requestAnimationFrame(driftFrame); else driftRunning = false;
-  }
-  function drift(){
-    if(reduce) return;
-    driftGoals();
-    if(!driftRunning){ driftRunning = true; requestAnimationFrame(driftFrame); }
-  }
-  window.addEventListener('scroll', drift, {passive:true});
-  window.addEventListener('resize', drift);
-
-  /* -- wide only: the text beside the pinned photos drifts too, the way
-     the copy over the home page's employment photo does: a tenth of how
-     far the section sits from the middle of the screen, the opposite way
-     to the photos, up to 80px, trailing the scroll slightly -- */
-  const info = grid.querySelector('.parts-copy');   // inside the column, clear of its fade-in
-  const COPY_DRIFT = -.10, COPY_MAX = 80;
-  let copyNow = null, copyGoal = 0, copyRunning = false;
-  function copyFrame(){
-    if(copyNow === null) copyNow = copyGoal;
-    copyNow += (copyGoal - copyNow) * LAG;
-    const moving = Math.abs(copyGoal - copyNow) > .1;
-    if(!moving) copyNow = copyGoal;
-    info.style.transform = copyNow ? `translate3d(0,${copyNow.toFixed(1)}px,0)` : '';
-    if(moving) requestAnimationFrame(copyFrame); else copyRunning = false;
-  }
-  function copyDrift(){
-    if(!info || reduce) return;
-    if(mode !== 'wide'){ copyGoal = 0; copyNow = 0; info.style.transform = ''; return; }
-    const g = grid.getBoundingClientRect(), vh = window.innerHeight;
-    copyGoal = Math.max(-COPY_MAX, Math.min(COPY_MAX, ((g.top + g.height / 2) - vh / 2) * COPY_DRIFT));
-    if(!copyRunning){ copyRunning = true; requestAnimationFrame(copyFrame); }
-  }
-  window.addEventListener('scroll', copyDrift, {passive:true});
-  window.addEventListener('resize', copyDrift);
-
   /* -- switching between the two as the screen changes width -- */
   function setMode(){
     const want = narrow.matches ? 'narrow' : 'wide';
-    if(want === mode){ if(mode === 'wide' && !reduce){ measure(); target(); now = goal; place(now); } return; }
+    if(want === mode) return;
     mode = want;
     stop(); busy = false;
     home.forEach(f=>mosaic.appendChild(f));      // back to the first order
     mosaic.style.removeProperty('--x');
-    if(mode === 'wide'){
-      mosaic.classList.remove('is-carousel');
-      if(reduce){ clearMosaic(); if(spec) spec.style.setProperty('--prog', 1); return; }
-      measure(); target(); now = goal; place(now);
-    } else {
-      clearMosaic();
-      mosaic.classList.add('is-carousel');
-      start();
-    }
+    mosaic.classList.toggle('is-carousel', mode === 'narrow');
+    start();
   }
   setMode();
-  drift();
-  copyDrift();
-  window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', setMode);
 }
 } catch (err) { console.error("feature failed:", err); }
