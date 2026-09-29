@@ -197,16 +197,18 @@
       </figure>
     </div>
     <div class="parts-info reveal">
-      <h2 class="h2">Laser-cut parts</h2>
-      <p class="lede">From a single custom profile to a run of identical parts, cut in house on our TruLaser 3040 from sheet, plate, perforated stock and tube.</p>
-      <div class="spec" id="parts-spec">
-        <div class="spec-row"><p class="spec-lab">Machine</p><p class="spec-val">TruLaser 3040, up to 10kW</p><p class="spec-sub">Clean edges and fast cycle times on every cut.</p></div>
-        <div class="spec-row"><p class="spec-lab">Materials</p><p class="spec-val">Mild steel, stainless, aluminum, titanium and brass</p><p class="spec-sub">Five metals, cut in house.</p></div>
-        <div class="spec-row"><p class="spec-lab">Thickness</p><p class="spec-val">Mild steel up to 28mm</p><p class="spec-sub">Cut from sheet, plate, perforated stock and tube.</p></div>
-        <div class="spec-row"><p class="spec-lab">Sheet size</p><p class="spec-val">Up to 6.6 &times; 13 ft</p></div>
-        <div class="spec-row"><p class="spec-lab">What we cut</p><p class="spec-val">Perforated panels, screens and custom profiles</p><p class="spec-sub">From a single custom profile to a run of identical parts.</p></div>
+      <div class="parts-copy">
+        <h2 class="h2">Laser-cut parts</h2>
+        <p class="lede">From a single custom profile to a run of identical parts, cut in house on our TruLaser 3040 from sheet, plate, perforated stock and tube.</p>
+        <div class="spec" id="parts-spec">
+          <div class="spec-row"><p class="spec-lab">Machine</p><p class="spec-val">TruLaser 3040, up to 10kW</p><p class="spec-sub">Clean edges and fast cycle times on every cut.</p></div>
+          <div class="spec-row"><p class="spec-lab">Materials</p><p class="spec-val">Mild steel, stainless, aluminum, titanium and brass</p><p class="spec-sub">Five metals, cut in house.</p></div>
+          <div class="spec-row"><p class="spec-lab">Thickness</p><p class="spec-val">Mild steel up to 28mm</p><p class="spec-sub">Cut from sheet, plate, perforated stock and tube.</p></div>
+          <div class="spec-row"><p class="spec-lab">Sheet size</p><p class="spec-val">Up to 6.6 &times; 13 ft</p></div>
+          <div class="spec-row"><p class="spec-lab">What we cut</p><p class="spec-val">Perforated panels, screens and custom profiles</p><p class="spec-sub">From a single custom profile to a run of identical parts.</p></div>
+        </div>
+        <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
       </div>
-      <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
     </div>
   </div>
 </section>
@@ -430,7 +432,8 @@ try {
    when scrolling stops, while the line beside the facts fills in step.
    On a narrow screen, where they sit under the text, they become an
    endless carousel that turns on its own and can be swiped. In both,
-   each photo also drifts inside its frame as the section passes. Reduced
+   each photo also drifts inside its frame as the section passes, and on a
+   wide screen the text beside the photos drifts gently too. Reduced
    motion leaves them still in either case ---- */
 const mosaic = document.querySelector('.parts-imgs');
 const spec = document.getElementById('parts-spec');
@@ -590,6 +593,31 @@ if(mosaic){
   window.addEventListener('scroll', drift, {passive:true});
   window.addEventListener('resize', drift);
 
+  /* -- wide only: the text beside the pinned photos drifts too, the way
+     the copy over the home page's employment photo does: a tenth of how
+     far the section sits from the middle of the screen, the opposite way
+     to the photos, up to 80px, trailing the scroll slightly -- */
+  const info = grid.querySelector('.parts-copy');   // inside the column, clear of its fade-in
+  const COPY_DRIFT = -.10, COPY_MAX = 80;
+  let copyNow = null, copyGoal = 0, copyRunning = false;
+  function copyFrame(){
+    if(copyNow === null) copyNow = copyGoal;
+    copyNow += (copyGoal - copyNow) * LAG;
+    const moving = Math.abs(copyGoal - copyNow) > .1;
+    if(!moving) copyNow = copyGoal;
+    info.style.transform = copyNow ? `translate3d(0,${copyNow.toFixed(1)}px,0)` : '';
+    if(moving) requestAnimationFrame(copyFrame); else copyRunning = false;
+  }
+  function copyDrift(){
+    if(!info || reduce) return;
+    if(mode !== 'wide'){ copyGoal = 0; copyNow = 0; info.style.transform = ''; return; }
+    const g = grid.getBoundingClientRect(), vh = window.innerHeight;
+    copyGoal = Math.max(-COPY_MAX, Math.min(COPY_MAX, ((g.top + g.height / 2) - vh / 2) * COPY_DRIFT));
+    if(!copyRunning){ copyRunning = true; requestAnimationFrame(copyFrame); }
+  }
+  window.addEventListener('scroll', copyDrift, {passive:true});
+  window.addEventListener('resize', copyDrift);
+
   /* -- switching between the two as the screen changes width -- */
   function setMode(){
     const want = narrow.matches ? 'narrow' : 'wide';
@@ -610,6 +638,7 @@ if(mosaic){
   }
   setMode();
   drift();
+  copyDrift();
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', setMode);
 }
