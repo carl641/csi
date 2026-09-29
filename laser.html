@@ -136,6 +136,10 @@
   transform:translateX(var(--x,0px));transition:transform 620ms cubic-bezier(.3,0,.2,1)}
 .parts-imgs.is-carousel.no-anim figure{transition:none}
 
+/* the sections alternate grounds so each reads as its own: light, the
+   warm tint, then the machine on the dark ground used for the laser band
+   on the Products page */
+.mach-dark{background:var(--ink)}
 </style>
 </head>
 <body>
@@ -214,7 +218,7 @@
   </div>
 </section>
 
-<section class="sec" aria-label="Flat and tube cutting capabilities">
+<section class="sec sec--tint" aria-label="Flat and tube cutting capabilities">
   <div class="sec-head reveal">
     <div>
       <h2 class="h2">Flat &amp; tube cutting capabilities</h2>
@@ -271,7 +275,7 @@
   </div>
 </section>
 
-<section class="sec sec--tint" aria-label="The machine">
+<section class="sec on-dark mach-dark" aria-label="The machine">
   <div class="mach">
     <div class="mach-copy reveal">
       <p class="plate"><img src="https://3unloi5wlp.ucarecd.net/4db9b660-0d77-4b53-bdf2-03cc6ba38992/-/preview/600x600/-/format/auto/TruLaser%203040%20-%20Logo.avif" data-raw="https://3unloi5wlp.ucarecd.net/4db9b660-0d77-4b53-bdf2-03cc6ba38992/TruLaser%203040%20-%20Logo.avif" alt="TruLaser 3040" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></p>
@@ -301,7 +305,7 @@
   </div>
 </section>
 
-<section class="sec sec-tight" aria-label="Laser work">
+<section class="sec" aria-label="Laser work">
   <div class="more-head reveal">
     <div>
       <h2 class="h2">Laser work</h2>
