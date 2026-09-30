@@ -63,12 +63,12 @@
 .lx-kind{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .lx-name{display:block;margin-top:4px;font-size:clamp(22px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .lx-fact{display:inline-block;margin-top:12px;padding:3px 10px;border:1px solid var(--hair);border-radius:999px;font-size:12px;font-weight:600}
-/* on a phone the panels are bars that slide open, one after another, as
-   they come up the screen, and stay open. Nothing above the reader
-   changes height, so the page never jumps */
+/* on a phone the panels are bars; the one reaching the middle of the
+   screen slides open as the one before it closes. The script animates the
+   heights (58px shut, 300px open) so it can hold the page still meanwhile */
 @media (max-width:760px){
   .lxs{flex-direction:column;height:auto}
-  .lx{flex:none;height:58px;transition:height 900ms cubic-bezier(.22,.8,.22,1)}
+  .lx{flex:none;height:58px;transition:none}
   .lx[aria-expanded="true"]{height:300px}
   /* the photo slides down into place as the bar opens */
   .lx img{transform:translateY(-14%) scale(1.12);transition:transform 1100ms cubic-bezier(.22,.8,.22,1)}
@@ -486,38 +486,78 @@ if(mosaic){
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- the cutting capabilities panels. On a wide screen one is open at
-   a time: hovering opens a panel where there's a mouse, a click opens it
-   anywhere. On a phone they start closed and slide open one by one as
-   they come up the screen (or when tapped), and stay open ---- */
+/* ---- the cutting capabilities panels: one open at a time. Hovering
+   opens a panel where there's a mouse; a click or tap opens it anywhere.
+   On a phone the panels also open one by one as they reach the middle of
+   the screen while scrolling. There the heights are animated here, frame
+   by frame, and each frame the page is scrolled by however much the
+   panels above the opening one changed, so the opening panel stays put
+   and nothing on screen jumps ---- */
 const strip = document.querySelector('.lxs');
 if(strip){
   const panels = [...strip.querySelectorAll('.lx')];
   const hover = window.matchMedia('(hover:hover) and (min-width:761px)');
   const phone = window.matchMedia('(max-width:760px)');
-  const only = p=>panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const SHUT = 58, OPEN = 300, TIME = 800;     // the heights match the CSS
+  const ease = t=>1 - Math.pow(1 - t, 3);
+  let run = 0;
+
+  function open(p){
+    if(p.getAttribute('aria-expanded') === 'true') return;
+    if(!phone.matches || reduce.matches){
+      const top = p.getBoundingClientRect().top;
+      panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
+      if(phone.matches) window.scrollBy({top:p.getBoundingClientRect().top - top, behavior:'instant'});
+      return;
+    }
+    const from = panels.map(x=>x.getBoundingClientRect().height);
+    const to = panels.map(x=>x === p ? OPEN : SHUT);
+    const above = panels.indexOf(p);
+    panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
+    const id = ++run, t0 = performance.now();
+    let last = from.slice(0, above).reduce((a,b)=>a + b, 0);
+    (function frame(now){
+      if(id !== run) return;                       // a newer opening took over
+      const k = ease(Math.min(1, (now - t0) / TIME));
+      let sum = 0;
+      panels.forEach((x,i)=>{
+        const h = from[i] + (to[i] - from[i]) * k;
+        x.style.height = h + 'px';
+        if(i < above) sum += h;
+      });
+      if(sum !== last){
+        window.scrollBy({top:sum - last, behavior:'instant'});
+        if(heldAt !== null) heldAt += sum - last;    // our own scrolling doesn't count
+        last = sum;
+      }
+      if(k < 1) requestAnimationFrame(frame);
+      else panels.forEach(x=>x.style.removeProperty('height'));
+    })(t0);
+  }
+
+  /* a tapped panel stays open until the page has scrolled on a good way */
+  let heldAt = null;
   panels.forEach(p=>{
-    p.addEventListener('click', ()=>{ if(phone.matches) p.setAttribute('aria-expanded', 'true'); else only(p); });
-    p.addEventListener('mouseenter', ()=>{ if(hover.matches) only(p); });
+    p.addEventListener('click', ()=>{ open(p); heldAt = window.scrollY; });
+    p.addEventListener('mouseenter', ()=>{ if(hover.matches) open(p); });
   });
 
-  let watch = null;
-  function setMode(){
-    if(watch){ watch.disconnect(); watch = null; }
-    if(!phone.matches){ only(panels.find(p=>p.getAttribute('aria-expanded') === 'true') || panels[0]); return; }
-    if(!('IntersectionObserver' in window)){ panels.forEach(p=>p.setAttribute('aria-expanded', 'true')); return; }
-    // a bar opens once it is a third of the way up the screen, only coming
-    // up from below: one opening above the reader would push the page down
-    watch = new IntersectionObserver(es=>es.forEach(e=>{
-      if(e.isIntersecting && e.boundingClientRect.top > 0){
-        e.target.setAttribute('aria-expanded', 'true');
-        watch.unobserve(e.target);
-      }
-    }), {rootMargin:'0px 0px -33% 0px'});
-    panels.forEach(p=>{ p.setAttribute('aria-expanded', 'false'); watch.observe(p); });
+  /* the panel under a line just above the middle of the screen is the one open */
+  let ticking = false;
+  function follow(){
+    ticking = false;
+    if(!phone.matches) return;
+    if(heldAt !== null){
+      if(Math.abs(window.scrollY - heldAt) < 150) return;
+      heldAt = null;
+    }
+    const line = window.innerHeight * .45;
+    const hit = panels.find(p=>{ const r = p.getBoundingClientRect(); return r.top <= line && r.bottom > line; });
+    if(hit) open(hit);
   }
-  setMode();
-  phone.addEventListener('change', setMode);
+  window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(follow); } }, {passive:true});
+  phone.addEventListener('change', ()=>{ run++; panels.forEach(x=>x.style.removeProperty('height')); });
 }
 } catch (err) { console.error("feature failed:", err); }
 </script>
