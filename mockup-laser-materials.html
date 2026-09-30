@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laser — Construction Services, Inc.</title>
+<title>MOCKUP Laser — Construction Services, Inc.</title>
 <meta name="description" content="In-house laser cutting on a TruLaser 3040 — up to 10kW, mild steel up to 28mm thick on sheets up to 6.6 × 13 ft, in mild steel, stainless, aluminum, titanium and brass.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +13,7 @@
 <link rel="stylesheet" href="site.css?v=202609291519">
 <script>document.documentElement.classList.add('js')</script>
 <style>
+.ph-tag{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;background:#FFE7B0;color:#5A4100;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;vertical-align:middle;white-space:nowrap;font-style:normal}
 /* a line of light runs down the photo once as the page opens */
 .phero-scan{
   position:absolute;left:0;right:0;top:0;z-index:-2;height:2px;
@@ -35,42 +37,52 @@
 /* the machine's own logotype, on a light plate since it was drawn for a white page */
 .plate{display:inline-flex;align-items:center;margin:0 0 18px;padding:10px 16px;background:#fff;border-radius:2px}
 .plate img{display:block;height:clamp(24px,2.2vw,32px);width:auto}
-/* flat & tube cutting capabilities: the materials as tall photo panels
-   side by side; the one chosen (hovered, or tapped) opens wide with its
-   name. On a phone they stack as bars and the chosen one opens tall */
-.lxs{display:flex;gap:8px;height:clamp(380px,56vh,520px)}
-.lx{
-  position:relative;flex:1 1 0;min-width:0;overflow:hidden;padding:0;
-  border-radius:6px;background:var(--mat);text-align:left;
-  transition:flex-grow 550ms cubic-bezier(.2,.7,.25,1);
+/* ---------- MOCKUP: flat & tube cutting capabilities as a picker, after
+   the color tool on the Flotation Systems site. Choices on the left, the
+   chosen one large on the right with its facts ---------- */
+.mcp{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(28px,4.5vw,72px);align-items:start;
 }
-.lx[aria-expanded="true"]{flex-grow:5.5}
-.lx img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;color:transparent;transition:transform 900ms cubic-bezier(.2,.7,.25,1)}
-.lx[aria-expanded="true"] img{transform:scale(1.03)}
-.lx::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,11,14,.82) 0%,rgba(8,11,14,.2) 50%,rgba(8,11,14,0) 70%)}
-/* a closed panel shows its name running up the side */
-.lx-tab{
-  position:absolute;left:50%;bottom:18px;z-index:1;
-  font-size:13px;font-weight:600;color:#F2EFE9;white-space:nowrap;
-  writing-mode:vertical-rl;transform:translateX(-50%) rotate(180deg);transition:opacity 250ms;
+.mcp-label{margin:0 0 14px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.mcp-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:clamp(28px,4.5vh,40px)}
+.mcp-opt{
+  display:flex;flex-direction:column;gap:8px;padding:8px 8px 10px;margin:0;
+  font:600 12.5px/1.25 var(--sans);color:var(--paper);text-align:left;
+  background:#FBF9F5;border:1px solid var(--hair);border-radius:6px;cursor:pointer;
+  transition:border-color .2s,box-shadow .2s,transform .2s;
 }
-.lx[aria-expanded="true"] .lx-tab{opacity:0}
-.lx-info{
-  position:absolute;left:0;bottom:0;z-index:1;min-width:260px;padding:clamp(18px,2.4vw,30px);
-  background:none;opacity:0;transform:translateY(8px);transition:opacity 350ms 150ms,transform 350ms 150ms;
+.mcp-opt img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;background:var(--mat)}
+.mcp-opt:hover{border-color:var(--paper);transform:translateY(-2px)}
+.mcp-opt.is-on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.mcp-hint{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;line-height:1.5;color:var(--mist);max-width:44ch}
+.mcp-preview{position:sticky;top:96px;background:#FBF9F5;border:1px solid var(--hair);border-radius:8px;overflow:hidden}
+.mcp-plate{margin:0;background:var(--mat)}
+.mcp-plate img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:opacity .25s}
+.mcp-plate img.is-fading{opacity:0}
+.mcp-body{padding:clamp(22px,3vw,36px)}
+.mcp-kind{margin:0 0 6px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.mcp-name{margin:0;font-size:clamp(24px,2.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.mcp-blurb{margin:10px 0 0;font-family:var(--serif);font-weight:300;font-size:17px;line-height:1.5;color:var(--mist);max-width:52ch}
+.mcp-specs{margin:clamp(20px,3vh,28px) 0;border-top:1px solid var(--hair)}
+.mcp-specs div{display:grid;grid-template-columns:9.5em 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.mcp-specs dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);padding-top:3px}
+.mcp-specs dd{margin:0;font-size:15px;font-weight:600}
+.mcp-specs .ph{outline:1.5px dashed #B98A1E;outline-offset:3px}
+.mcp-body .actions{margin-top:0}
+@media (max-width:900px){
+  .mcp{grid-template-columns:minmax(0,1fr)}
+  .mcp-preview{position:static}
+  /* on a phone the choices swipe sideways above the preview */
+  .mcp-grid{
+    grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:112px;
+    overflow-x:auto;scrollbar-width:none;margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));
+    padding:4px var(--gutter);margin-bottom:24px;
+  }
+  .mcp-grid::-webkit-scrollbar{display:none}
 }
-.lx[aria-expanded="true"] .lx-info{opacity:1;transform:none}
-.lx-kind{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.lx-name{display:block;margin-top:4px;font-size:clamp(22px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.lx-fact{display:inline-block;margin-top:12px;padding:3px 10px;border:1px solid var(--hair);border-radius:999px;font-size:12px;font-weight:600}
-@media (max-width:760px){
-  .lxs{flex-direction:column;height:auto}
-  .lx{flex:none;height:58px;transition:height 450ms cubic-bezier(.2,.7,.25,1)}
-  .lx[aria-expanded="true"]{height:300px}
-  .lx-tab{writing-mode:horizontal-tb;transform:none;left:18px;bottom:auto;top:50%;translate:0 -50%}
-  .lx-info{min-width:0}
-}
-@media (prefers-reduced-motion:reduce){.lx,.lx img,.lx-tab,.lx-info{transition:none}}
+@media (max-width:480px){.mcp-specs div{grid-template-columns:1fr;gap:4px}}
+@media (prefers-reduced-motion:reduce){.mcp-opt,.mcp-plate img{transition:none}}
 
 /* the machine: the heading beside rows of counting figures, set like
    the home page's Our mission */
@@ -225,55 +237,44 @@
   <div class="sec-head reveal">
     <div>
       <h2 class="h2">Flat &amp; tube cutting capabilities</h2>
-      <p class="lede">What we cut, by material and stock.</p>
+      <p class="lede">Pick a metal, stock or finish to see what we cut in it.</p>
     </div>
   </div>
-  <div class="lxs reveal">
-      <button class="lx" type="button" aria-expanded="true">
-        <img src="https://3unloi5wlp.ucarecd.net/5e588ce8-4cab-4d90-a9e4-d6248623df3f/-/scale_crop/900x1000/center/-/format/auto/l-stainless-steel.jpg" data-raw="https://3unloi5wlp.ucarecd.net/5e588ce8-4cab-4d90-a9e4-d6248623df3f/l-stainless-steel.jpg" alt="Laser-cut Stainless steel" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Stainless steel</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Metal</span><span class="lx-name">Stainless steel</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/6b3c05d5-8b49-4fb5-9d0d-d12bbc5825bf/-/scale_crop/900x1000/center/-/format/auto/l-mild-steel.jpg" data-raw="https://3unloi5wlp.ucarecd.net/6b3c05d5-8b49-4fb5-9d0d-d12bbc5825bf/l-mild-steel.jpg" alt="Laser-cut Mild steel" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Mild steel</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Metal</span><span class="lx-name">Mild steel</span><span class="lx-fact">Up to 28 mm thick</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/a657e61a-4a95-49fc-a9e0-bc81ef25ffa9/-/scale_crop/900x1000/center/-/format/auto/l-titanium.jpg" data-raw="https://3unloi5wlp.ucarecd.net/a657e61a-4a95-49fc-a9e0-bc81ef25ffa9/l-titanium.jpg" alt="Laser-cut Titanium" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Titanium</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Metal</span><span class="lx-name">Titanium</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/718d3bf3-d813-4160-8293-f5dc687073e3/-/scale_crop/900x1000/center/-/format/auto/l-brass.jpg" data-raw="https://3unloi5wlp.ucarecd.net/718d3bf3-d813-4160-8293-f5dc687073e3/l-brass.jpg" alt="Laser-cut Brass" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Brass</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Metal</span><span class="lx-name">Brass</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/945d9511-06e1-4902-8953-55ef136c0e1b/-/scale_crop/900x1000/center/-/format/auto/l-aluminum.jpg" data-raw="https://3unloi5wlp.ucarecd.net/945d9511-06e1-4902-8953-55ef136c0e1b/l-aluminum.jpg" alt="Laser-cut Aluminum" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Aluminum</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Metal</span><span class="lx-name">Aluminum</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/f30e0ce7-29cf-43fe-a7a4-02563507573f/-/scale_crop/900x1000/center/-/format/auto/l-hot-and-cold-rolled.jpg" data-raw="https://3unloi5wlp.ucarecd.net/f30e0ce7-29cf-43fe-a7a4-02563507573f/l-hot-and-cold-rolled.jpg" alt="Laser-cut Hot and cold rolled" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Hot &amp; cold rolled</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Steel</span><span class="lx-name">Hot &amp; cold rolled</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/577969f5-d0ee-43e8-8541-f76f086b3f53/-/scale_crop/900x1000/center/-/format/auto/l-perforated.jpg" data-raw="https://3unloi5wlp.ucarecd.net/577969f5-d0ee-43e8-8541-f76f086b3f53/l-perforated.jpg" alt="Laser-cut Perforated" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Perforated</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Stock</span><span class="lx-name">Perforated</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/07699df2-3751-4d81-9b2a-e65edb97f81d/-/scale_crop/900x1000/center/-/format/auto/l-diamond-plate.jpg" data-raw="https://3unloi5wlp.ucarecd.net/07699df2-3751-4d81-9b2a-e65edb97f81d/l-diamond-plate.jpg" alt="Laser-cut Diamond plate" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Diamond plate</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Stock</span><span class="lx-name">Diamond plate</span></span>
-      </button>
-      <button class="lx" type="button" aria-expanded="false">
-        <img src="https://3unloi5wlp.ucarecd.net/b784074d-662a-457d-93ba-2de08f55a3c6/-/scale_crop/900x1000/center/-/format/auto/l-specialty%20finishes.jpg" data-raw="https://3unloi5wlp.ucarecd.net/b784074d-662a-457d-93ba-2de08f55a3c6/l-specialty%20finishes.jpg" alt="Laser-cut Specialty finishes" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
-        <span class="lx-tab" aria-hidden="true">Specialty finishes</span>
-        <span class="lx-info on-dark"><span class="lx-kind">Finish</span><span class="lx-name">Specialty finishes</span></span>
-      </button>
+
+  <div class="mcp reveal" id="mat-picker">
+    <div class="mcp-controls">
+      <p class="mcp-label" id="mcp-metals">1 &mdash; Metals</p>
+      <div class="mcp-grid" role="group" aria-labelledby="mcp-metals">
+        <button class="mcp-opt is-on" type="button" data-mat="stainless" aria-pressed="true"><img src="" alt=""><span>Stainless steel</span></button>
+        <button class="mcp-opt" type="button" data-mat="mild" aria-pressed="false"><img src="" alt=""><span>Mild steel</span></button>
+        <button class="mcp-opt" type="button" data-mat="titanium" aria-pressed="false"><img src="" alt=""><span>Titanium</span></button>
+        <button class="mcp-opt" type="button" data-mat="brass" aria-pressed="false"><img src="" alt=""><span>Brass</span></button>
+        <button class="mcp-opt" type="button" data-mat="aluminum" aria-pressed="false"><img src="" alt=""><span>Aluminum</span></button>
+      </div>
+      <p class="mcp-label" id="mcp-stock">2 &mdash; Stock &amp; finishes</p>
+      <div class="mcp-grid" role="group" aria-labelledby="mcp-stock">
+        <button class="mcp-opt" type="button" data-mat="rolled" aria-pressed="false"><img src="" alt=""><span>Hot &amp; cold rolled</span></button>
+        <button class="mcp-opt" type="button" data-mat="perforated" aria-pressed="false"><img src="" alt=""><span>Perforated</span></button>
+        <button class="mcp-opt" type="button" data-mat="diamond" aria-pressed="false"><img src="" alt=""><span>Diamond plate</span></button>
+        <button class="mcp-opt" type="button" data-mat="finishes" aria-pressed="false"><img src="" alt=""><span>Specialty finishes</span></button>
+      </div>
+      <p class="mcp-hint">Every material is cut in house on our TruLaser 3040, on sheets up to 6.6 &times; 13 ft.</p>
+    </div>
+
+    <div class="mcp-preview">
+      <figure class="mcp-plate"><img id="mcp-img" src="" alt="" width="900" height="600" decoding="async"></figure>
+      <div class="mcp-body" aria-live="polite">
+        <p class="mcp-kind" id="mcp-kind">Metal</p>
+        <h3 class="mcp-name" id="mcp-name">Stainless steel</h3>
+        <p class="mcp-blurb" id="mcp-blurb"></p>
+        <dl class="mcp-specs">
+          <div><dt>Max thickness</dt><dd id="mcp-thick"></dd></div>
+          <div><dt>Cut as</dt><dd id="mcp-forms"></dd></div>
+          <div><dt>Typical work</dt><dd id="mcp-uses"></dd></div>
+        </dl>
+        <div class="actions"><a class="cta" href="contact.html"><span class="cta-label">Get a quote in <span id="mcp-cta">stainless steel</span></span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -478,21 +479,41 @@ if(mosaic){
   window.addEventListener('resize', setMode);
 }
 } catch (err) { console.error("feature failed:", err); }
-
-try {
-/* ---- the cutting capabilities panels: one open at a time. Hovering
-   opens a panel where there's a mouse; a click or tap opens it anywhere ---- */
-const strip = document.querySelector('.lxs');
-if(strip){
-  const panels = [...strip.querySelectorAll('.lx')];
-  const hover = window.matchMedia('(hover:hover) and (min-width:761px)');
-  const open = p=>panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
-  panels.forEach(p=>{
-    p.addEventListener('click', ()=>open(p));
-    p.addEventListener('mouseenter', ()=>{ if(hover.matches) open(p); });
-  });
-}
-} catch (err) { console.error("feature failed:", err); }
+</script>
+<script>
+/* MOCKUP data. Only the mild steel thickness (28mm) comes from the page;
+   every other thickness, format and use is a placeholder to confirm */
+(function(){
+  var U='https://3unloi5wlp.ucarecd.net/';
+  var M={
+    stainless:{kind:'Metal',name:'Stainless steel',img:'5e588ce8-4cab-4d90-a9e4-d6248623df3f/l-stainless-steel.jpg',blurb:'Corrosion-resistant and clean-edged, for exposed architectural work.',thick:'TBD',forms:'Flat sheet · Round, square & rectangular tube',uses:'Railing infill, signage, cladding'},
+    mild:{kind:'Metal',name:'Mild steel',img:'6b3c05d5-8b49-4fb5-9d0d-d12bbc5825bf/l-mild-steel.jpg',blurb:'Our workhorse, from thin sheet to heavy plate.',thick:'28 mm',known:1,forms:'Flat sheet & plate · Tube',uses:'Stair stringers, brackets, structural parts'},
+    titanium:{kind:'Metal',name:'Titanium',img:'a657e61a-4a95-49fc-a9e0-bc81ef25ffa9/l-titanium.jpg',blurb:'Light, strong and corrosion-proof, for specialty work.',thick:'TBD',forms:'Flat sheet',uses:'Feature panels, specialty parts'},
+    brass:{kind:'Metal',name:'Brass',img:'718d3bf3-d813-4160-8293-f5dc687073e3/l-brass.jpg',blurb:'A warm finish metal for detail and ornament.',thick:'TBD',forms:'Flat sheet',uses:'Inlays, lettering, decorative trim'},
+    aluminum:{kind:'Metal',name:'Aluminum',img:'945d9511-06e1-4902-8953-55ef136c0e1b/l-aluminum.jpg',blurb:'Light and easy to finish, for large panels and screens.',thick:'TBD',forms:'Flat sheet · Tube',uses:'Screens, canopies, panels'},
+    rolled:{kind:'Steel',name:'Hot & cold rolled',img:'f30e0ce7-29cf-43fe-a7a4-02563507573f/l-hot-and-cold-rolled.jpg',blurb:'Hot rolled for structure, cold rolled for a tighter, smoother surface.',thick:'Up to 28 mm (mild steel)',known:1,forms:'Flat sheet & plate',uses:'Structural and finish parts'},
+    perforated:{kind:'Stock',name:'Perforated',img:'577969f5-d0ee-43e8-8541-f76f086b3f53/l-perforated.jpg',blurb:'Stock perforated sheet, cut to shape and profile.',thick:'TBD',forms:'Flat sheet',uses:'Screens, guard infill, ceilings'},
+    diamond:{kind:'Stock',name:'Diamond plate',img:'07699df2-3751-4d81-9b2a-e65edb97f81d/l-diamond-plate.jpg',blurb:'A raised, slip-resistant pattern for treads and platforms.',thick:'TBD',forms:'Flat plate',uses:'Stair treads, landings, kick plates'},
+    finishes:{kind:'Finish',name:'Specialty finishes',img:'b784074d-662a-457d-93ba-2de08f55a3c6/l-specialty%20finishes.jpg',blurb:'Finished in house after cutting, so parts arrive ready to install.',thick:'—',known:1,forms:'Any of the above',uses:'Powder coat, patina, brushed and more'}
+  };
+  var thumb=function(p){var i=p.indexOf('/');return U+p.slice(0,i)+'/-/scale_crop/300x300/center/-/format/auto/'+p.slice(i+1)};
+  var large=function(p){var i=p.indexOf('/');return U+p.slice(0,i)+'/-/scale_crop/900x600/center/-/format/auto/'+p.slice(i+1)};
+  var $=function(id){return document.getElementById(id)};
+  var btns=document.querySelectorAll('#mat-picker .mcp-opt');
+  btns.forEach(function(b){var m=M[b.dataset.mat],im=b.querySelector('img');im.src=thumb(m.img);im.loading='lazy'});
+  function ph(el,text,known){el.innerHTML=text+(known?'':' <span class="ph-tag">Placeholder</span>');el.classList.toggle('ph',!known)}
+  function show(key){
+    var m=M[key],img=$('mcp-img');
+    btns.forEach(function(b){var on=b.dataset.mat===key;b.classList.toggle('is-on',on);b.setAttribute('aria-pressed',on)});
+    img.classList.add('is-fading');
+    var next=new Image();next.onload=next.onerror=function(){img.src=next.src;img.alt=m.name+' — laser-cut sample';img.classList.remove('is-fading')};next.src=large(m.img);
+    $('mcp-kind').textContent=m.kind;$('mcp-name').textContent=m.name;$('mcp-blurb').textContent=m.blurb;
+    ph($('mcp-thick'),m.thick,m.known);ph($('mcp-forms'),m.forms);ph($('mcp-uses'),m.uses);
+    $('mcp-cta').textContent=key==='finishes'?'a specialty finish':m.name.toLowerCase();
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.mat)})});
+  show('stainless');
+})();
 </script>
 </body>
 </html>
