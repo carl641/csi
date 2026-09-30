@@ -49,7 +49,8 @@ the burger menu, so a script checks whether the logo is drawn dark or
 light and the CSS inverts it (`invert(1) hue-rotate(180deg)`, which keeps
 its hues) only on the background that would hide it.
 
-The menu runs Products, Case Studies, Resources and About Us. Products drops down to
+The menu runs Products, Case Studies, Resources and About Us (Resources is
+hidden for now; see below). Products drops down to
 the four sector pages and Laser, and About Us to Contact Us and Careers: a
 mouse opens them by hovering, and the arrow beside each opens it for touch
 and keyboard. At 1180px and below the menu folds into the burger, which
@@ -76,6 +77,18 @@ download files, lead times, EMR, awards, contact names) is set as a
 placeholder with suggested content, in a dashed outline with a
 Placeholder tag (`.ph` and `.ph-tag` in the page's styles), so it can be
 found and replaced.
+
+**Resources is hidden for now** while its content is updated. The page
+itself is still there at `resources.html`, but its links in the menu,
+burger menu and footer on every page are commented out, each marked
+`<!-- resources-link: … -->` with the original link kept inside. Nothing
+else on the site linked to it. To bring the links back, run this from the
+repository folder, which uncomments every one of them:
+
+    sed -i -E 's#<!-- resources-link: (.*) -->#\1#' *.html
+
+(On a Mac, use `sed -i '' -E …`.) Or search the files for `resources-link`
+and remove the comment markers by hand.
 
 Every Get a quote section shares one background photo, set once as
 `--quote-photo` at the top of `site.css` (and in `index.html`'s own copy
