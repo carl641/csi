@@ -63,9 +63,12 @@
 .lx-kind{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .lx-name{display:block;margin-top:4px;font-size:clamp(22px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .lx-fact{display:inline-block;margin-top:12px;padding:3px 10px;border:1px solid var(--hair);border-radius:999px;font-size:12px;font-weight:600}
+/* on a phone the panel opens as it reaches the middle of the screen while
+   scrolling. The heights change at once, not animated, so the script can
+   hold the opened panel in place and nothing on screen jumps */
 @media (max-width:760px){
   .lxs{flex-direction:column;height:auto}
-  .lx{flex:none;height:58px;transition:height 450ms cubic-bezier(.2,.7,.25,1)}
+  .lx{flex:none;height:58px;transition:none}
   .lx[aria-expanded="true"]{height:300px}
   .lx-tab{writing-mode:horizontal-tb;transform:none;left:18px;bottom:auto;top:50%;translate:0 -50%}
   .lx-info{min-width:0}
@@ -481,16 +484,46 @@ if(mosaic){
 
 try {
 /* ---- the cutting capabilities panels: one open at a time. Hovering
-   opens a panel where there's a mouse; a click or tap opens it anywhere ---- */
+   opens a panel where there's a mouse; a click or tap opens it anywhere.
+   On a phone the panels also open one by one as they reach the middle of
+   the screen while scrolling. Opening one there changes the heights above
+   it, so the page is scrolled by the same amount to keep the opened panel
+   where it was, and nothing on screen jumps ---- */
 const strip = document.querySelector('.lxs');
 if(strip){
   const panels = [...strip.querySelectorAll('.lx')];
   const hover = window.matchMedia('(hover:hover) and (min-width:761px)');
-  const open = p=>panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
+  const phone = window.matchMedia('(max-width:760px)');
+  function open(p){
+    if(p.getAttribute('aria-expanded') === 'true') return;
+    const top = phone.matches ? p.getBoundingClientRect().top : 0;
+    panels.forEach(x=>x.setAttribute('aria-expanded', x === p));
+    if(phone.matches){
+      const moved = p.getBoundingClientRect().top - top;
+      if(moved) window.scrollBy({top:moved, behavior:'instant'});
+    }
+  }
+  /* a tapped panel stays open until the page has scrolled on a good way */
+  let heldAt = null;
   panels.forEach(p=>{
-    p.addEventListener('click', ()=>open(p));
+    p.addEventListener('click', ()=>{ heldAt = window.scrollY; open(p); heldAt = window.scrollY; });
     p.addEventListener('mouseenter', ()=>{ if(hover.matches) open(p); });
   });
+
+  /* the panel under a line just above the middle of the screen is the one open */
+  let ticking = false;
+  function follow(){
+    ticking = false;
+    if(!phone.matches) return;
+    if(heldAt !== null){
+      if(Math.abs(window.scrollY - heldAt) < 150) return;
+      heldAt = null;
+    }
+    const line = window.innerHeight * .45;
+    const hit = panels.find(p=>{ const r = p.getBoundingClientRect(); return r.top <= line && r.bottom > line; });
+    if(hit) open(hit);
+  }
+  window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(follow); } }, {passive:true});
 }
 } catch (err) { console.error("feature failed:", err); }
 </script>
