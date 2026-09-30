@@ -1,0 +1,357 @@
+<title>Cutting Capabilities Options</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+/* Layout: a short brief, then four stacked options, each shown inside a
+   copy of the Laser page's tinted section so they compare like-for-like.
+   Tokens are the CSI site's own (site.css); the page keeps its light look. */
+:root{
+  color-scheme:light;
+  --ink:#F4F1EA;          /* page */
+  --tint:#ECE7DE;         /* section ground, as .sec--tint */
+  --card:#FBF9F5;
+  --paper:#15191D;        /* type */
+  --mist:rgba(21,25,29,.7);
+  --hair:rgba(21,25,29,.18);
+  --accent:#8F5A00;       /* bronze: type and lines */
+  --fill:#FFC24B;         /* button yellow */
+  --ph-line:#B98A1E;--ph-bg:#FFE7B0;--ph-fg:#5A4100;
+  --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --gutter:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{padding:clamp(32px,6vh,64px) var(--gutter) 0;max-width:1320px;margin:0 auto}
+
+/* ---------- brief ---------- */
+.kicker{margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.h1{margin:0;font-size:clamp(30px,4.4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:uppercase;text-wrap:balance}
+.lede{margin:14px 0 0;font-family:var(--serif);font-weight:300;font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:var(--mist);max-width:60ch}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0;padding:0;list-style:none}
+.jump a{display:inline-flex;gap:8px;align-items:baseline;padding:9px 14px;border:1px solid var(--hair);border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600;font-size:13px;background:var(--card)}
+.jump a b{color:var(--accent)}
+.jump a:hover{border-color:var(--paper)}
+.legend{margin:16px 0 0;font-size:13px;color:var(--mist)}
+
+/* ---------- each option ---------- */
+.opt{margin-top:clamp(48px,8vh,88px)}
+.opt-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 40px;align-items:end;margin-bottom:18px}
+.opt-name{margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.opt-why{margin:0;font-size:14px;color:var(--mist);max-width:60ch}
+.opt-why b{color:var(--paper);font-weight:600}
+@media (max-width:760px){.opt-head{grid-template-columns:1fr}}
+/* the stage is a copy of the site's tinted section */
+.stage{background:var(--tint);border-radius:10px;padding:clamp(28px,5vw,64px) clamp(16px,4vw,56px)}
+.h2{margin:0;font-size:clamp(24px,3.2vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:uppercase;text-wrap:balance}
+.stage > .lede{margin:12px 0 clamp(24px,4vh,40px);max-width:52ch}
+.label{margin:0 0 12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* ---------- material swatches: a drawn metal behind each photo. The
+   photo covers it on the live site; where a photo can't load the
+   drawing stands in ---------- */
+.sw{position:relative;display:block;overflow:hidden;background:#9aa0a6;border-radius:4px}
+.sw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sw[data-m=stainless]{background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px 3px),linear-gradient(115deg,#c9ced3,#8e959c 45%,#dfe3e6 60%,#9aa1a8)}
+.sw[data-m=mild]{background:radial-gradient(circle at 30% 40%,rgba(90,100,110,.5),transparent 40%),radial-gradient(circle at 75% 70%,rgba(40,48,56,.6),transparent 45%),linear-gradient(135deg,#4a525a,#2f363d)}
+.sw[data-m=titanium]{background:repeating-linear-gradient(90deg,rgba(255,255,255,.1) 0 1px,transparent 1px 4px),linear-gradient(120deg,#8c8f99,#6f6a80 40%,#a9adb6 65%,#7d8290)}
+.sw[data-m=brass]{background:repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 1px,transparent 1px 3px),linear-gradient(115deg,#d8b45a,#a47a2c 45%,#e7c877 62%,#b08a3a)}
+.sw[data-m=aluminum]{background:repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 1px,transparent 1px 3px),linear-gradient(115deg,#e4e7ea,#b8bdc2 50%,#eef0f2 65%,#c4c9ce)}
+.sw[data-m=rolled]{background:linear-gradient(90deg,#2d343b 0 50%,#9aa1a8 50%);}
+.sw[data-m=perforated]{background:radial-gradient(circle,#2a2f35 0 3px,transparent 3.5px) 0 0/12px 12px,linear-gradient(135deg,#aab0b6,#7f868d)}
+.sw[data-m=diamond]{background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(255,255,255,.55) 9px 11px,transparent 11px 20px),repeating-linear-gradient(-45deg,transparent 0 9px,rgba(0,0,0,.25) 9px 11px,transparent 11px 20px),linear-gradient(135deg,#b9bec3,#878e95)}
+.sw[data-m=finishes]{background:linear-gradient(90deg,#3c6e63 0 25%,#8a4b2a 25% 50%,#1f2328 50% 75%,#c9a45c 75%)}
+
+/* placeholder facts, as on the Resources page */
+.ph{outline:1.5px dashed var(--ph-line);outline-offset:2px;border-radius:2px}
+.ph-tag{display:inline-block;padding:2px 7px;border-radius:999px;background:var(--ph-bg);color:var(--ph-fg);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;vertical-align:middle;white-space:nowrap}
+
+.cta{display:inline-flex;align-items:center;gap:12px;padding:14px 26px;border-radius:6px;background:var(--fill);color:#15191D;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.cta:hover{filter:brightness(.96)}
+
+/* ================= A: picker + preview ================= */
+.a{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.a-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:28px}
+.a-opt{display:flex;flex-direction:column;gap:8px;padding:7px 7px 10px;text-align:left;font-size:12.5px;font-weight:600;line-height:1.25;background:var(--card);border:1px solid var(--hair);border-radius:6px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.a-opt .sw{aspect-ratio:1}
+.a-opt:hover{border-color:var(--paper);transform:translateY(-2px)}
+.a-opt[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.a-hint{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--mist);max-width:44ch}
+.a-card{background:var(--card);border:1px solid var(--hair);border-radius:8px;overflow:hidden}
+.a-card .sw{aspect-ratio:3/2;border-radius:0}
+.a-body{padding:clamp(20px,3vw,32px)}
+.a-name{margin:4px 0 0;font-size:clamp(22px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.a-blurb{margin:8px 0 0;font-family:var(--serif);font-weight:300;font-size:17px;color:var(--mist)}
+.facts{margin:20px 0 24px;padding:0;border-top:1px solid var(--hair)}
+.facts div{display:grid;grid-template-columns:9em minmax(0,1fr);gap:14px;padding:11px 0;border-bottom:1px solid var(--hair)}
+.facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);padding-top:3px}
+.facts dd{margin:0;font-weight:600}
+.facts dd .ph-tag{margin-left:6px}
+@media (max-width:900px){
+  .a{grid-template-columns:minmax(0,1fr)}
+  .a-grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));margin-bottom:20px}
+}
+@media (max-width:480px){.facts div{grid-template-columns:1fr;gap:2px}}
+
+/* ================= B: filter gallery ================= */
+.b-bar{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-bottom:24px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px}
+.chip{padding:8px 14px;border:1px solid var(--hair);border-radius:999px;background:var(--card);font-size:13px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.b-count{margin-left:auto;font-size:13px;color:var(--mist);font-variant-numeric:tabular-nums}
+.b-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.b-tile .sw{aspect-ratio:1;border-radius:6px}
+.b-tile .kind{display:block;margin-top:10px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.b-tile .nm{display:block;margin-top:2px;font-size:15px;font-weight:600}
+.b-tile .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{padding:2px 8px;border:1px solid var(--hair);border-radius:999px;font-size:11px;font-weight:600;color:var(--mist)}
+.b-tile .thk{margin:6px 0 0;font-size:13px;color:var(--mist)}
+.b-tile .thk b{color:var(--paper)}
+
+/* ================= C: spec matrix ================= */
+.c-scroll{overflow-x:auto;background:var(--card);border:1px solid var(--hair);border-radius:8px}
+.c-table{width:100%;min-width:720px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.c-table th,.c-table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--hair);vertical-align:middle}
+.c-table thead th{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);background:var(--tint)}
+.c-table tbody tr:last-child td,.c-table tbody tr:last-child th{border-bottom:0}
+.c-group th{padding-top:18px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--card)}
+.c-mat{display:flex;align-items:center;gap:12px;font-weight:600}
+.c-mat .sw{width:44px;height:44px;flex:0 0 auto}
+.c-center{text-align:center!important}
+.yes{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--paper);color:var(--ink);font-size:13px;font-weight:800}
+.no{color:var(--mist)}
+.c-foot{margin:14px 0 0;font-size:13px;color:var(--mist)}
+
+/* ================= D: expanding strip ================= */
+.d{display:flex;gap:8px;height:clamp(380px,52vh,480px)}
+.d-panel{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border:0;padding:0;border-radius:6px;text-align:left;transition:flex-grow .5s cubic-bezier(.2,.7,.25,1);background:none}
+.d-panel .sw{position:absolute;inset:0;border-radius:0}
+.d-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,11,14,.85),rgba(8,11,14,.15) 55%,rgba(8,11,14,0))}
+.d-panel[aria-expanded=true]{flex-grow:5.5}
+.d-vert{position:absolute;left:50%;bottom:18px;z-index:1;color:#F2EFE9;font-size:13px;font-weight:600;white-space:nowrap;writing-mode:vertical-rl;transform:translateX(-50%) rotate(180deg);transition:opacity .3s}
+.d-panel[aria-expanded=true] .d-vert{opacity:0}
+.d-info{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:clamp(18px,2.4vw,28px);color:#F2EFE9;opacity:0;transform:translateY(8px);transition:opacity .35s .15s,transform .35s .15s;min-width:280px}
+.d-panel[aria-expanded=true] .d-info{opacity:1;transform:none}
+.d-info .kind{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fill)}
+.d-info .nm{margin:4px 0 0;font-size:clamp(22px,2.4vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.d-info p{margin:6px 0 0;font-family:var(--serif);font-weight:300;font-size:16px;color:rgba(242,239,233,.8);max-width:42ch}
+.d-info .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.d-info .tag{border-color:rgba(242,239,233,.4);color:#F2EFE9}
+.d-info .tag.ph{outline-color:var(--fill)}
+@media (max-width:760px){
+  /* on a phone the strip turns into a stack: the open one tall, the rest as bars */
+  .d{flex-direction:column;height:auto}
+  .d-panel{flex:none;height:56px;transition:height .45s cubic-bezier(.2,.7,.25,1)}
+  .d-panel[aria-expanded=true]{height:300px}
+  .d-vert{writing-mode:horizontal-tb;transform:none;left:16px;bottom:auto;top:50%;translate:0 -50%}
+  .d-info{min-width:0}
+}
+
+.foot{margin:clamp(48px,8vh,88px) 0 0;padding:24px 0 48px;border-top:1px solid var(--hair);font-size:13px;color:var(--mist)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="kicker">Laser page · section mockups</p>
+    <h1 class="h1">Flat &amp; tube cutting capabilities</h1>
+    <p class="lede">Four ways to lay out the metals, stock and finishes section. Each one uses the same nine materials, so you can compare how the layouts read.</p>
+    <ul class="jump">
+      <li><a href="#opt-a"><b>A</b> Picker &amp; preview</a></li>
+      <li><a href="#opt-b"><b>B</b> Filter gallery</a></li>
+      <li><a href="#opt-c"><b>C</b> Spec table</a></li>
+      <li><a href="#opt-d"><b>D</b> Expanding strip</a></li>
+    </ul>
+    <p class="legend">Facts with a dashed outline are placeholders to confirm with the shop. Only the 28&nbsp;mm mild steel limit and the 6.6&nbsp;×&nbsp;13&nbsp;ft sheet size come from the current site. Where a material photo can't load, a drawn swatch stands in.</p>
+  </header>
+
+  <!-- A -->
+  <section class="opt" id="opt-a" aria-labelledby="a-t">
+    <div class="opt-head">
+      <div><p class="kicker">Option A</p><h2 class="opt-name" id="a-t">Picker &amp; preview</h2></div>
+      <p class="opt-why">Modeled on the Flotation Systems color tool. <b>Best when</b> each material has enough to say to fill a card: its description, facts and its own quote button.</p>
+    </div>
+    <div class="stage">
+      <h3 class="h2">Flat &amp; tube cutting capabilities</h3>
+      <p class="lede">Pick a metal, stock or finish to see what we cut in it.</p>
+      <div class="a">
+        <div>
+          <p class="label" id="a-l1">Metals</p>
+          <div class="a-grid" role="group" aria-labelledby="a-l1" data-set="metal"></div>
+          <p class="label" id="a-l2">Stock &amp; finishes</p>
+          <div class="a-grid" role="group" aria-labelledby="a-l2" data-set="other"></div>
+          <p class="a-hint">Every material is cut in house on our TruLaser 3040, on sheets up to 6.6 × 13 ft.</p>
+        </div>
+        <div class="a-card" aria-live="polite">
+          <span class="sw" id="a-sw"><img id="a-img" alt=""></span>
+          <div class="a-body">
+            <p class="kicker" id="a-kind" style="margin:0"></p>
+            <h4 class="a-name" id="a-name"></h4>
+            <p class="a-blurb" id="a-blurb"></p>
+            <dl class="facts">
+              <div><dt>Max thickness</dt><dd id="a-thk"></dd></div>
+              <div><dt>Cut as</dt><dd id="a-forms"></dd></div>
+              <div><dt>Typical work</dt><dd id="a-uses"></dd></div>
+            </dl>
+            <a class="cta" href="#opt-a">Get a quote in <span id="a-cta"></span> <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="opt" id="opt-b" aria-labelledby="b-t">
+    <div class="opt-head">
+      <div><p class="kicker">Option B</p><h2 class="opt-name" id="b-t">Filter gallery</h2></div>
+      <p class="opt-why">Close to today's swatch rows, with filters on top. <b>Best when</b> visitors arrive with a question like "do you cut tube?" and want the answer at a glance.</p>
+    </div>
+    <div class="stage">
+      <h3 class="h2">Flat &amp; tube cutting capabilities</h3>
+      <p class="lede">What we cut, by material and stock.</p>
+      <div class="b-bar">
+        <div class="seg" role="group" aria-label="Show">
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-f="Metal" aria-pressed="false">Metals</button>
+          <button class="chip" type="button" data-f="Stock" aria-pressed="false">Stock</button>
+          <button class="chip" type="button" data-f="Finish" aria-pressed="false">Finishes</button>
+        </div>
+        <div class="seg" role="group" aria-label="Format">
+          <button class="chip" type="button" data-fmt="tube" aria-pressed="false">Cut as tube</button>
+        </div>
+        <span class="b-count" id="b-count" aria-live="polite"></span>
+      </div>
+      <ul class="b-grid" id="b-grid"></ul>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="opt" id="opt-c" aria-labelledby="c-t">
+    <div class="opt-head">
+      <div><p class="kicker">Option C</p><h2 class="opt-name" id="c-t">Spec table</h2></div>
+      <p class="opt-why">Every material and what can be done with it, on one screen. <b>Best when</b> the audience is architects and fabricators comparing specs. It keeps small swatches so it doesn't read as a data sheet.</p>
+    </div>
+    <div class="stage">
+      <h3 class="h2">Flat &amp; tube cutting capabilities</h3>
+      <p class="lede">What we cut, by material and stock.</p>
+      <div class="c-scroll">
+        <table class="c-table">
+          <thead><tr><th scope="col">Material</th><th scope="col" class="c-center">Flat</th><th scope="col" class="c-center">Tube</th><th scope="col">Max thickness</th><th scope="col">Typical work</th></tr></thead>
+          <tbody id="c-body"></tbody>
+        </table>
+      </div>
+      <p class="c-foot">All cut in house on our TruLaser 3040 · 10 kW · sheets up to 6.6 × 13 ft.</p>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="opt" id="opt-d" aria-labelledby="d-t">
+    <div class="opt-head">
+      <div><p class="kicker">Option D</p><h2 class="opt-name" id="d-t">Expanding strip</h2></div>
+      <p class="opt-why">The metals as tall panels. The chosen one opens wide to show its photo and facts. <b>Best when</b> the photos are the selling point. It is the most visual of the four and holds the least text.</p>
+    </div>
+    <div class="stage">
+      <h3 class="h2">Flat &amp; tube cutting capabilities</h3>
+      <p class="lede">What we cut, by material and stock.</p>
+      <div class="d" id="d-strip"></div>
+    </div>
+  </section>
+
+  <p class="foot">Mockup for review. Nothing here is live on the site yet.</p>
+</div>
+
+<script>
+(function(){
+  /* Only mild steel's 28 mm and the sheet size are known; every field
+     listed in ph[] is a placeholder to confirm */
+  var U='https://3unloi5wlp.ucarecd.net/';
+  var M=[
+    {k:'stainless',set:'metal',kind:'Metal',name:'Stainless steel',img:'5e588ce8-4cab-4d90-a9e4-d6248623df3f/l-stainless-steel.jpg',blurb:'Corrosion-resistant and clean-edged, for exposed architectural work.',thk:'TBD',flat:1,tube:1,uses:'Railing infill, signage, cladding',ph:['thk','tube','uses']},
+    {k:'mild',set:'metal',kind:'Metal',name:'Mild steel',img:'6b3c05d5-8b49-4fb5-9d0d-d12bbc5825bf/l-mild-steel.jpg',blurb:'Our workhorse, from thin sheet to heavy plate.',thk:'28 mm',flat:1,tube:1,uses:'Stair stringers, brackets, structural parts',ph:['tube','uses']},
+    {k:'titanium',set:'metal',kind:'Metal',name:'Titanium',img:'a657e61a-4a95-49fc-a9e0-bc81ef25ffa9/l-titanium.jpg',blurb:'Light, strong and corrosion-proof, for specialty work.',thk:'TBD',flat:1,tube:0,uses:'Feature panels, specialty parts',ph:['thk','tube','uses']},
+    {k:'brass',set:'metal',kind:'Metal',name:'Brass',img:'718d3bf3-d813-4160-8293-f5dc687073e3/l-brass.jpg',blurb:'A warm metal for detail and ornament.',thk:'TBD',flat:1,tube:0,uses:'Inlays, lettering, decorative trim',ph:['thk','tube','uses']},
+    {k:'aluminum',set:'metal',kind:'Metal',name:'Aluminum',img:'945d9511-06e1-4902-8953-55ef136c0e1b/l-aluminum.jpg',blurb:'Light and easy to finish, for large panels and screens.',thk:'TBD',flat:1,tube:1,uses:'Screens, canopies, panels',ph:['thk','tube','uses']},
+    {k:'rolled',set:'other',kind:'Stock',name:'Hot & cold rolled',img:'f30e0ce7-29cf-43fe-a7a4-02563507573f/l-hot-and-cold-rolled.jpg',blurb:'Hot rolled for structure, cold rolled for a smoother surface.',thk:'28 mm',flat:1,tube:0,uses:'Structural and finish parts',ph:['tube','uses']},
+    {k:'perforated',set:'other',kind:'Stock',name:'Perforated',img:'577969f5-d0ee-43e8-8541-f76f086b3f53/l-perforated.jpg',blurb:'Stock perforated sheet, cut to shape and profile.',thk:'TBD',flat:1,tube:0,uses:'Screens, guard infill, ceilings',ph:['thk','uses']},
+    {k:'diamond',set:'other',kind:'Stock',name:'Diamond plate',img:'07699df2-3751-4d81-9b2a-e65edb97f81d/l-diamond-plate.jpg',blurb:'A raised, slip-resistant pattern for treads and platforms.',thk:'TBD',flat:1,tube:0,uses:'Stair treads, landings, kick plates',ph:['thk','uses']},
+    {k:'finishes',set:'other',kind:'Finish',name:'Specialty finishes',img:'b784074d-662a-457d-93ba-2de08f55a3c6/l-specialty%20finishes.jpg',blurb:'Finished in house after cutting, so parts arrive ready to install.',thk:'—',flat:1,tube:1,uses:'Powder coat, patina, brushed and more',ph:['uses','tube']}
+  ];
+  var byK={};M.forEach(function(m){byK[m.k]=m});
+  function src(p,w,h){var i=p.indexOf('/');return U+p.slice(0,i)+'/-/scale_crop/'+w+'x'+h+'/center/-/format/auto/'+p.slice(i+1)}
+  function sw(m,w,h){return '<span class="sw" data-m="'+m.k+'"><img src="'+src(m.img,w,h)+'" alt="" loading="lazy" onerror="this.remove()"></span>'}
+  function esc(s){return s.replace(/&/g,'&amp;')}
+  function isPh(m,f){return m.ph.indexOf(f)>-1}
+  function val(m,f,text){return isPh(m,f)?'<span class="ph">'+esc(text)+'</span><span class="ph-tag">Placeholder</span>':esc(text)}
+  function forms(m){return m.k==='finishes'?'Any of the above':(m.tube?'Flat sheet · Tube':'Flat sheet')}
+
+  /* A */
+  document.querySelectorAll('.a-grid').forEach(function(g){
+    g.innerHTML=M.filter(function(m){return m.set===g.dataset.set}).map(function(m){
+      return '<button class="a-opt" type="button" data-k="'+m.k+'" aria-pressed="false">'+sw(m,240,240)+'<span>'+esc(m.name)+'</span></button>'}).join('');
+  });
+  var aBtns=document.querySelectorAll('.a-opt');
+  function showA(k){
+    var m=byK[k],s=document.getElementById('a-sw'),img=document.getElementById('a-img');
+    aBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});
+    s.dataset.m=k;
+    if(img){img.onerror=function(){this.style.display='none'};img.onload=function(){this.style.display=''};img.src=src(m.img,900,600);img.alt=m.name+' sample'}
+    document.getElementById('a-kind').textContent=m.kind;
+    document.getElementById('a-name').textContent=m.name;
+    document.getElementById('a-blurb').textContent=m.blurb;
+    document.getElementById('a-thk').innerHTML=val(m,'thk',m.thk);
+    document.getElementById('a-forms').innerHTML=val(m,'tube',forms(m));
+    document.getElementById('a-uses').innerHTML=val(m,'uses',m.uses);
+    document.getElementById('a-cta').textContent=k==='finishes'?'a specialty finish':m.name.toLowerCase();
+  }
+  aBtns.forEach(function(b){b.addEventListener('click',function(){showA(b.dataset.k)})});
+  showA('stainless');
+
+  /* B */
+  var bGrid=document.getElementById('b-grid');
+  bGrid.innerHTML=M.map(function(m){
+    return '<li class="b-tile" data-kind="'+m.kind+'" data-tube="'+m.tube+'">'+sw(m,400,400)+
+      '<span class="kind">'+m.kind+'</span><span class="nm">'+esc(m.name)+'</span>'+
+      '<span class="tags"><span class="tag">Flat</span>'+(m.tube?'<span class="tag'+(isPh(m,'tube')?' ph':'')+'">Tube</span>':'')+'</span>'+
+      (m.thk!=='—'?'<p class="thk">Up to <b'+(isPh(m,'thk')?' class="ph"':'')+'>'+m.thk+'</b></p>':'')+'</li>'}).join('');
+  var fKind='all',fTube=false;
+  function applyB(){
+    var n=0;
+    bGrid.querySelectorAll('.b-tile').forEach(function(t){
+      var ok=(fKind==='all'||t.dataset.kind===fKind)&&(!fTube||t.dataset.tube==='1');
+      t.hidden=!ok;if(ok)n++;
+    });
+    document.getElementById('b-count').textContent=n+' of '+M.length+' shown';
+  }
+  document.querySelectorAll('[data-f]').forEach(function(b){b.addEventListener('click',function(){
+    fKind=b.dataset.f;document.querySelectorAll('[data-f]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});applyB()})});
+  var tb=document.querySelector('[data-fmt]');
+  tb.addEventListener('click',function(){fTube=!fTube;tb.setAttribute('aria-pressed',fTube);applyB()});
+  applyB();
+
+  /* C */
+  var yes='<span class="yes" aria-label="Yes">✓</span>',no='<span class="no" aria-label="No">—</span>';
+  function row(m){
+    var t=m.tube?yes:no;if(isPh(m,'tube'))t='<span class="ph">'+t+'</span>';
+    return '<tr><th scope="row"><span class="c-mat">'+sw(m,120,120)+esc(m.name)+'</span></th><td class="c-center">'+yes+'</td><td class="c-center">'+t+'</td><td>'+val(m,'thk',m.thk)+'</td><td>'+val(m,'uses',m.uses)+'</td></tr>'}
+  document.getElementById('c-body').innerHTML=
+    '<tr class="c-group"><th colspan="5">Metals</th></tr>'+M.filter(function(m){return m.set==='metal'}).map(row).join('')+
+    '<tr class="c-group"><th colspan="5">Stock &amp; finishes</th></tr>'+M.filter(function(m){return m.set==='other'}).map(row).join('');
+
+  /* D */
+  var strip=document.getElementById('d-strip');
+  strip.innerHTML=M.map(function(m,i){
+    return '<button class="d-panel" type="button" data-k="'+m.k+'" aria-expanded="'+(i===0)+'" aria-label="'+esc(m.name)+'">'+sw(m,900,1000)+
+      '<span class="d-vert" aria-hidden="true">'+esc(m.name)+'</span>'+
+      '<span class="d-info"><span class="kind">'+m.kind+'</span><span class="nm" style="display:block">'+esc(m.name)+'</span><p>'+esc(m.blurb)+'</p>'+
+      '<span class="row">'+(m.thk!=='—'?'<span class="tag'+(isPh(m,'thk')?' ph':'')+'">Up to '+m.thk+'</span>':'')+'<span class="tag">Flat</span>'+(m.tube?'<span class="tag'+(isPh(m,'tube')?' ph':'')+'">Tube</span>':'')+'</span></span></button>'}).join('');
+  strip.querySelectorAll('.d-panel').forEach(function(p){
+    function open(){strip.querySelectorAll('.d-panel').forEach(function(x){x.setAttribute('aria-expanded',x===p)})}
+    p.addEventListener('click',open);
+    p.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover) and (min-width:761px)').matches)open()});
+  });
+})();
+</script>
