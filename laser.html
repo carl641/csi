@@ -38,7 +38,7 @@
 /* flat & tube cutting capabilities: the materials as tall photo panels
    side by side; the one chosen (hovered, or tapped) opens wide with its
    name. On a phone they stack as bars and the chosen one opens tall */
-.lxs-pin{display:flex;gap:8px;height:clamp(380px,56vh,520px)}
+.lxs-col{display:flex;gap:8px;height:clamp(380px,56vh,520px)}
 .lx{
   position:relative;flex:1 1 0;min-width:0;overflow:hidden;padding:0;
   border-radius:6px;background:var(--mat);text-align:left;
@@ -63,17 +63,19 @@
 .lx-kind{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .lx-name{display:block;margin-top:4px;font-size:clamp(22px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .lx-fact{display:inline-block;margin-top:12px;padding:3px 10px;border:1px solid var(--hair);border-radius:999px;font-size:12px;font-weight:600}
-/* on a phone the panels are bars stacked in a box that stays pinned under
-   the header while the section scrolls past. How far the page has
-   scrolled through the section sets which bar is open: the next one grows
-   as the last one shrinks. The box keeps one height throughout, so the
-   page never changes length and nothing jumps. The script sets the
-   heights; the values here are for a page without it */
+/* on a phone the bars run down a window pinned under the header while
+   the section scrolls past. How far the page has scrolled through the
+   section sets which bar is open: the next grows as the last shrinks,
+   and the column slides up so the bars already passed leave the top of
+   the window. The window keeps one height, so the page never changes
+   length and nothing jumps. The script sets the sizes; the values here
+   are for a page without it */
 @media (max-width:760px){
-  .lxs-pin{flex-direction:column;gap:6px;height:auto}
+  .lxs-col{flex-direction:column;gap:6px;height:auto}
   .lx{flex:none;height:58px;transition:none}
   .lx[aria-expanded="true"]{height:300px}
-  .js .lxs-pin{position:sticky}
+  .js .lxs-pin{position:sticky;overflow:hidden;border-radius:6px}
+  .js .lxs-col{will-change:transform}
   /* the photo settles into place as its bar opens */
   .lx img{transform:scale(1.14);transform-origin:50% 0;transition:transform 900ms cubic-bezier(.22,.8,.22,1)}
   .lx[aria-expanded="true"] img{transform:none}
@@ -239,7 +241,7 @@
     </div>
   </div>
   <div class="lxs reveal">
-    <div class="lxs-pin">
+    <div class="lxs-pin"><div class="lxs-col">
       <button class="lx" type="button" aria-expanded="true">
         <img src="https://3unloi5wlp.ucarecd.net/5e588ce8-4cab-4d90-a9e4-d6248623df3f/-/scale_crop/900x1000/center/-/format/auto/l-stainless-steel.jpg" data-raw="https://3unloi5wlp.ucarecd.net/5e588ce8-4cab-4d90-a9e4-d6248623df3f/l-stainless-steel.jpg" alt="Laser-cut Stainless steel" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;this.src=this.dataset.raw}">
         <span class="lx-tab" aria-hidden="true">Stainless steel</span>
@@ -285,7 +287,7 @@
         <span class="lx-tab" aria-hidden="true">Specialty finishes</span>
         <span class="lx-info on-dark"><span class="lx-kind">Finish</span><span class="lx-name">Specialty finishes</span></span>
       </button>
-    </div>
+    </div></div>
   </div>
 </section>
 
@@ -494,67 +496,99 @@ if(mosaic){
 try {
 /* ---- the cutting capabilities panels. On a wide screen one is open at
    a time: hovering opens a panel where there's a mouse, a click opens it
-   anywhere. On a phone the bars sit in a box pinned under the header,
-   and scrolling through the section opens them one after another, each
-   growing as the one before shrinks, in step with the finger. The
-   section is made tall enough to scroll through them all; a tap on a bar
-   scrolls to the place where that bar is open ---- */
+   anywhere. On a phone the bars run down a window pinned under the
+   header, and scrolling through the section opens them one after
+   another, each growing as the one before shrinks, in step with the
+   finger, while the column slides up so the bars passed leave the top.
+   The section is made tall enough to scroll through them all. A tap
+   scrolls to the place where that bar is open, going straight there:
+   only the open bar and the tapped one change on the way ---- */
 const strip = document.querySelector('.lxs');
 if(strip){
   const pin = strip.querySelector('.lxs-pin');
-  const panels = [...pin.querySelectorAll('.lx')];
+  const col = strip.querySelector('.lxs-col');
+  const panels = [...col.querySelectorAll('.lx')];
   const N = panels.length;
   const hover = window.matchMedia('(hover:hover) and (min-width:761px)');
   const phone = window.matchMedia('(max-width:760px)');
   const only = p=>panels.forEach(x=>{ const on = String(x === p); if(x.getAttribute('aria-expanded') !== on) x.setAttribute('aria-expanded', on); });
-  const BAR = 48, GAP = 6;
-  let open = 300, step = 180, top = 80, width = 0, tall = 0;
-  // the box pins just under the header, which is shorter once the page has scrolled
+  const BAR = 48, GAP = 6, AHEAD = 4;           // bars shown below the open one
   const head = document.querySelector('.masthead');
   const headTop = ()=>(head ? head.offsetHeight : 0) + 12;
+  let open = 300, step = 180, top = 80, win = 500, width = 0;
+  let tween = null;                             // a tap's trip to its bar
 
   function measure(){
     if(!phone.matches){
-      strip.style.removeProperty('height'); pin.style.removeProperty('top');
+      [strip, pin].forEach(x=>x.style.removeProperty('height'));
+      pin.style.removeProperty('top'); col.style.removeProperty('transform');
       panels.forEach(x=>x.style.removeProperty('height'));
       return;
     }
     // sized once per width: a phone's height changes as its address bar
     // hides, and re-sizing then would move the page
     if(window.innerWidth === width) return;
-    width = window.innerWidth; tall = window.innerHeight;
+    width = window.innerWidth;
+    const tall = window.innerHeight;
     top = headTop();
-    open = Math.max(170, Math.min(340, tall - top - 16 - (N - 1) * (BAR + GAP)));
+    open = Math.max(170, Math.min(320, tall - top - 24 - AHEAD * (BAR + GAP)));
+    win = open + AHEAD * (BAR + GAP);
     step = Math.round(tall * .24);
     pin.style.top = top + 'px';
-    strip.style.height = (N - 1) * (BAR + GAP) + open + (N - 1) * step + 'px';
+    pin.style.height = win + 'px';
+    strip.style.height = win + (N - 1) * step + 'px';
     update();
   }
 
-  function update(){
-    if(!phone.matches) return;
-    const t = headTop();
-    if(t !== top){ top = t; pin.style.top = top + 'px'; }
+  // where things stand with bar `at` open (fractions are part way to the next)
+  function layout(at){
+    const hs = panels.map((x,j)=>BAR + (open - BAR) * Math.max(0, 1 - Math.abs(at - j)));
+    const full = hs.reduce((a,b)=>a + b, 0) + (N - 1) * GAP;
+    return {hs, off:Math.min(at * (BAR + GAP), full - win)};
+  }
+  function paint(s, at){
+    panels.forEach((x,j)=>{ x.style.height = s.hs[j] + 'px'; });
+    col.style.transform = 'translateY(' + (-s.off) + 'px)';
+    only(panels[Math.round(at)]);
+  }
+  function atScroll(){
     const passed = top - strip.getBoundingClientRect().top;
     const raw = Math.min(N - 1, Math.max(0, passed / step));
     // each bar holds fully open for the middle half of its stretch
     const i = Math.floor(raw);
     let g = Math.min(1, Math.max(0, (raw - i - .25) / .5));
     g = g * g * (3 - 2 * g);
-    const at = i + g;
-    panels.forEach((x,j)=>{
-      const w = Math.max(0, 1 - Math.abs(at - j));
-      x.style.height = BAR + (open - BAR) * w + 'px';
-    });
-    only(panels[Math.round(at)]);
+    return i + g;
+  }
+  function update(){
+    if(!phone.matches || tween) return;
+    const t = headTop();
+    if(t !== top){ top = t; pin.style.top = top + 'px'; }
+    const at = atScroll();
+    paint(layout(at), at);
   }
 
+  function goTo(j){
+    const from = {hs:panels.map(x=>parseFloat(x.style.height) || BAR), off:layout(atScroll()).off};
+    const to = layout(j);
+    const y0 = window.scrollY;
+    const y1 = y0 + strip.getBoundingClientRect().top - top + j * step;
+    const t0 = performance.now(), TIME = 650;
+    const ease = t=>t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    tween = {j};
+    (function frame(now){
+      if(!tween) return;
+      const k = ease(Math.min(1, (now - t0) / TIME));
+      window.scrollTo({top:y0 + (y1 - y0) * k, behavior:'instant'});
+      paint({hs:from.hs.map((h,i)=>h + (to.hs[i] - h) * k), off:from.off + (to.off - from.off) * k}, j);
+      if(k < 1) requestAnimationFrame(frame); else { tween = null; update(); }
+    })(t0);
+  }
+  // a finger on the screen takes over from a tap's trip
+  window.addEventListener('touchstart', ()=>{ if(tween){ tween = null; update(); } }, {passive:true});
+
   panels.forEach((p,j)=>{
-    p.addEventListener('click', ()=>{
-      if(!phone.matches) return only(p);
-      const y = window.scrollY + strip.getBoundingClientRect().top - top + j * step;
-      window.scrollTo({top:y, behavior:'smooth'});
-    });
+    p.addEventListener('click', ()=>{ if(phone.matches) goTo(j); else only(p); });
     p.addEventListener('mouseenter', ()=>{ if(hover.matches) only(p); });
   });
 
