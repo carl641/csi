@@ -81,6 +81,9 @@
   .lx[aria-expanded="true"] img{transform:none}
   .lx-tab{writing-mode:horizontal-tb;transform:none;left:18px;bottom:auto;top:50%;translate:0 -50%}
   .lx-info{min-width:0;transform:translateY(14px);transition:opacity 400ms 150ms,transform 600ms 100ms cubic-bezier(.22,.8,.22,1)}
+  /* with the script, the photo, the name and the side label follow the
+     scroll too, set frame by frame, so nothing switches at a halfway point */
+  .js .lx img,.js .lx-info,.js .lx-tab{transition:none}
 }
 @media (prefers-reduced-motion:reduce){.lx,.lx img,.lx-tab,.lx-info{transition:none}}
 
@@ -523,6 +526,8 @@ if(strip){
       [strip, pin].forEach(x=>x.style.removeProperty('height'));
       pin.style.removeProperty('top'); col.style.removeProperty('transform');
       panels.forEach(x=>x.style.removeProperty('height'));
+      parts.forEach(q=>[q.img, q.info, q.tab].forEach(e=>e.removeAttribute('style')));
+      shown = null;
       return;
     }
     // sized once per width: a phone's height changes as its address bar
@@ -533,7 +538,7 @@ if(strip){
     top = headTop();
     open = Math.max(170, Math.min(320, tall - top - 24 - AHEAD * (BAR + GAP)));
     win = open + AHEAD * (BAR + GAP);
-    step = Math.round(tall * .24);
+    step = Math.round(tall * .36);
     pin.style.top = top + 'px';
     pin.style.height = win + 'px';
     strip.style.height = win + (N - 1) * step + 'px';
@@ -546,30 +551,51 @@ if(strip){
     const full = hs.reduce((a,b)=>a + b, 0) + (N - 1) * GAP;
     return {hs, off:Math.min(at * (BAR + GAP), full - win)};
   }
+  const parts = panels.map(x=>({img:x.querySelector('img'), info:x.querySelector('.lx-info'), tab:x.querySelector('.lx-tab')}));
   function paint(s, at){
-    panels.forEach((x,j)=>{ x.style.height = s.hs[j] + 'px'; });
+    panels.forEach((x,j)=>{
+      x.style.height = s.hs[j] + 'px';
+      // how open this bar is, 0 to 1: the photo eases in, the name rises in late
+      const w = (s.hs[j] - BAR) / (open - BAR);
+      const n = Math.min(1, Math.max(0, (w - .55) / .45));
+      parts[j].img.style.transform = 'scale(' + (1.14 - .14 * w) + ')';
+      parts[j].info.style.opacity = n;
+      parts[j].info.style.transform = 'translateY(' + (14 * (1 - n)) + 'px)';
+      parts[j].tab.style.opacity = Math.max(0, 1 - w * 2.5);
+    });
     col.style.transform = 'translateY(' + (-s.off) + 'px)';
     only(panels[Math.round(at)]);
   }
   function atScroll(){
     const passed = top - strip.getBoundingClientRect().top;
     const raw = Math.min(N - 1, Math.max(0, passed / step));
-    // each bar holds fully open for the middle half of its stretch
+    // each bar rests fully open for a short stretch, then hands over
+    // gradually across the rest of it
     const i = Math.floor(raw);
-    let g = Math.min(1, Math.max(0, (raw - i - .25) / .5));
+    let g = Math.min(1, Math.max(0, (raw - i - .1) / .8));
     g = g * g * (3 - 2 * g);
     return i + g;
+  }
+  /* the bars glide after the scroll rather than stepping with each
+     scroll event: each frame they cover a share of the way that's left */
+  let shown = null, gliding = false;
+  function glide(){
+    const want = atScroll();
+    if(shown === null || Math.abs(want - shown) < .002) shown = want;
+    else shown += (want - shown) * .2;
+    paint(layout(shown), shown);
+    gliding = shown !== want && phone.matches && !tween;
+    if(gliding) requestAnimationFrame(glide);
   }
   function update(){
     if(!phone.matches || tween) return;
     const t = headTop();
     if(t !== top){ top = t; pin.style.top = top + 'px'; }
-    const at = atScroll();
-    paint(layout(at), at);
+    if(!gliding){ gliding = true; requestAnimationFrame(glide); }
   }
 
   function goTo(j){
-    const from = {hs:panels.map(x=>parseFloat(x.style.height) || BAR), off:layout(atScroll()).off};
+    const from = {hs:panels.map(x=>parseFloat(x.style.height) || BAR), off:layout(shown === null ? atScroll() : shown).off};
     const to = layout(j);
     const y0 = window.scrollY;
     const y1 = y0 + strip.getBoundingClientRect().top - top + j * step;
@@ -581,7 +607,7 @@ if(strip){
       const k = ease(Math.min(1, (now - t0) / TIME));
       window.scrollTo({top:y0 + (y1 - y0) * k, behavior:'instant'});
       paint({hs:from.hs.map((h,i)=>h + (to.hs[i] - h) * k), off:from.off + (to.off - from.off) * k}, j);
-      if(k < 1) requestAnimationFrame(frame); else { tween = null; update(); }
+      if(k < 1) requestAnimationFrame(frame); else { tween = null; shown = j; update(); }
     })(t0);
   }
   // a finger on the screen takes over from a tap's trip
