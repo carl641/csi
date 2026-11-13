@@ -492,10 +492,20 @@ body.is-stuck .masthead{
 .proj-credits dd{margin:0}
 
 /* featured projects: the gallery large beside its write-up, alternating sides */
-.feats{display:grid;gap:clamp(64px,11vh,128px)}
+/* each featured project is its own band: they alternate the page colour
+   and the tint edge to edge, the first sharing the section heading's */
+.feat-sec{padding-bottom:0}
+.feats{display:grid;gap:0}
 .feat{
+  position:relative;
   display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
   gap:clamp(28px,4.5vw,72px);align-items:center;
+  padding:clamp(64px,10vh,120px) 0;
+}
+.feat:first-child{padding-top:0}
+.feat:nth-child(even){
+  background:var(--tint);
+  box-shadow:0 0 0 100vmax var(--tint);clip-path:inset(0 -100vmax);
 }
 .feat:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
 .feat:nth-child(even) .gal{order:2}
