@@ -403,7 +403,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    gold arrow slides in on hover */
 .third-list{list-style:none;margin:0 0 clamp(30px,4.5vh,48px);padding:0;display:grid;gap:2px}
 .third-list a{
-  display:grid;grid-template-columns:40px minmax(0,1fr) 22px;align-items:baseline;gap:8px;
+  display:grid;grid-template-columns:40px minmax(0,1fr);align-items:baseline;gap:8px;
   padding:8px 0;color:var(--paper);text-decoration:none;
 }
 .third-num{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--accent);font-variant-numeric:tabular-nums}
@@ -412,7 +412,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;text-underline-offset:5px;
   transition:text-decoration-color .25s ease;
 }
-.third-go{align-self:center;color:var(--accent);opacity:0;transform:translateX(-8px);transition:opacity .25s ease,transform .25s ease}
+.third-go{display:inline-block;margin-left:10px;vertical-align:.12em;color:var(--accent);opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease}
 .third-go svg{display:block}
 .third-list a:hover .third-name,.third-list a:focus-visible .third-name{text-decoration-color:var(--accent)}
 .third-list a:hover .third-go,.third-list a:focus-visible .third-go{opacity:1;transform:none}
@@ -1309,11 +1309,11 @@ body.is-stuck .masthead{
       <h2>Leaders in architectural metalwork &amp; railing</h2>
     <p class="third-lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p>
     <ol class="third-list">
-      <li><a href="monumental-stairs.html"><span class="third-num" aria-hidden="true">01</span><span class="third-name">Monumental Staircases &amp; Decorative Balustrades</span><span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li>
-      <li><a href="rail-systems.html"><span class="third-num" aria-hidden="true">02</span><span class="third-name">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</span><span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li>
-      <li><a href="canopies.html"><span class="third-num" aria-hidden="true">03</span><span class="third-name">Architectural Canopies, Sunshades, &amp; Trellises</span><span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li>
-      <li><a href="architectural-metalwork.html"><span class="third-num" aria-hidden="true">04</span><span class="third-name">Precision Wall Cladding &amp; Structural Column Covers</span><span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li>
-      <li><a href="laser.html"><span class="third-num" aria-hidden="true">05</span><span class="third-name">High-Capacity, In-House Laser Cutting Services</span><span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li>
+      <li><a href="monumental-stairs.html"><span class="third-num" aria-hidden="true">01</span><span class="third-name">Monumental Staircases &amp; Decorative Balustrades<span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></span></a></li>
+      <li><a href="rail-systems.html"><span class="third-num" aria-hidden="true">02</span><span class="third-name">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)<span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></span></a></li>
+      <li><a href="canopies.html"><span class="third-num" aria-hidden="true">03</span><span class="third-name">Architectural Canopies, Sunshades, &amp; Trellises<span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></span></a></li>
+      <li><a href="architectural-metalwork.html"><span class="third-num" aria-hidden="true">04</span><span class="third-name">Precision Wall Cladding &amp; Structural Column Covers<span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></span></a></li>
+      <li><a href="laser.html"><span class="third-num" aria-hidden="true">05</span><span class="third-name">High-Capacity, In-House Laser Cutting Services<span class="third-go" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></span></a></li>
     </ol>
     <a class="cta" href="case-studies.html">
       <span class="cta-label">Case studies</span>
