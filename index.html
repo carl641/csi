@@ -267,13 +267,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .fifth{
   position:relative;
-  height:100vh;height:100svh;
+  min-height:88vh;min-height:88svh;
   background:var(--ink);
   overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  padding:0 clamp(20px,5vw,72px);
+  padding:clamp(90px,14vh,150px) clamp(20px,5vw,72px);
   text-align:center;
 }
+/* the two buttons, centred, as on the other pages' Get a quote bands */
+.fifth .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .fifth-inner{
   position:relative;z-index:2;
   will-change:transform;
@@ -1109,6 +1111,9 @@ body.is-stuck .masthead{
 .cta:hover .cta-arrow,.cta:focus-visible .cta-arrow{
   opacity:1;transform:translateY(-50%) translateX(0) scale(1);
 }
+/* the quieter second button beside a primary one */
+.cta-ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1px var(--hair)}
+.cta-ghost:hover,.cta-ghost:focus-visible{background:var(--paper);color:var(--ink);box-shadow:none}
 
 /* ---------- bottom rail ---------- */
 .rail{
@@ -1576,9 +1581,7 @@ body.is-stuck .masthead{
   <div class="fifth-inner">
     <h2>Get a quote</h2>
     <p class="fifth-lede">For any inquiries, questions or commendations, call 256.355.7081 — or send the drawings and we will price the ornamental scope.</p>
-    <a class="cta" href="tel:256-355-7081">
-      <span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span>
-    </a>
+    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
   </div>
 </section>
 
