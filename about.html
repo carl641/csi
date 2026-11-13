@@ -34,10 +34,7 @@
 }
 
 /* ---------- products ---------- */
-/* its label sits under a rule, as the materials and affiliations labels do */
-.prod-kicker-rule{border-top:1px solid var(--hair);padding-top:clamp(18px,2.6vh,24px)}
-#products-h{margin-bottom:16px}
-.rows{border-top:0}
+.rows{border-top:1px solid var(--hair)}
 .row{
   position:relative;display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 48px;
@@ -60,31 +57,12 @@
 .row .round-btn{grid-column:3;justify-self:end}
 .row:hover .row-title,.row:focus-visible .row-title{color:var(--accent);transform:translateX(12px)}
 .row:hover .round-btn,.row:focus-visible .round-btn{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
-/* the product's photo lifts out over the row while it's hovered */
-.row-img{
-  position:absolute;z-index:3;right:clamp(70px,10vw,170px);top:50%;
-  width:clamp(220px,21vw,330px);aspect-ratio:4/3;
-  background:var(--mat) var(--photo) center/cover no-repeat;
-  box-shadow:0 30px 60px -30px rgba(21,25,29,.45);
-  opacity:0;pointer-events:none;
-  transform:translateY(-50%) rotate(-4deg) scale(.86);
-  clip-path:inset(50% 0 50% 0);
-  transition:opacity 260ms ease,transform 560ms cubic-bezier(.2,.7,.25,1),clip-path 560ms cubic-bezier(.2,.7,.25,1);
-}
-.row:hover .row-img,.row:focus-visible .row-img{
-  opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1);clip-path:inset(0);
-}
-/* no hover to reveal it: the photo sits in the row instead, and the title
-   runs beside its arrow, with the text and photo full width under it */
+/* on narrow screens the title runs beside its arrow, with the text under it */
 @media (hover:none),(max-width:860px){
   .row{grid-template-columns:minmax(0,1fr) 44px;row-gap:14px}
   .row .round-btn{grid-column:2;grid-row:1;width:44px;height:44px}
   .row-title{grid-column:1;grid-row:1;align-self:center}
   .row-text{grid-column:1 / -1}
-  .row-img{
-    position:relative;right:auto;top:auto;grid-column:1 / -1;
-    width:100%;aspect-ratio:16/9;opacity:1;transform:none;clip-path:none;box-shadow:none;
-  }
   .row:hover .row-title{transform:none}
 }
 
@@ -225,36 +203,35 @@
 </section>
 
 <section class="sec sec-tight" aria-labelledby="products-h">
-  <p class="kicker reveal prod-kicker-rule" id="products-h">Our products include</p>
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="products-h">Our products include</h2>
+    </div>
+  </div>
   <div class="rows">
     <a class="row reveal" href="rail-systems.html" style="--d:0ms">
       <span class="row-title">Rail Systems</span>
       <span class="row-text">Ornamental and functional railing solutions including glass, stainless steel, cable, ornamental balustrades, and custom handrails.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="monumental-stairs.html" style="--d:60ms">
       <span class="row-title">Stair Systems</span>
       <span class="row-text">Integrated feature stairs engineered as unified structural assemblies, including straight-run, curved, spiral, elliptical, and center stringer designs.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="architectural-metalwork.html" style="--d:120ms">
       <span class="row-title">Architectural Metalwork</span>
       <span class="row-text">Decorative and specialized building elements encompassing column covers, custom wall panels, custom light fixtures, torch&egrave;res, gazebos, trellises, and sunshades.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="canopies.html" style="--d:180ms">
       <span class="row-title">Canopies</span>
       <span class="row-text">Walkway and entry canopies structurally engineered for environmental loads, fabricated to precise architectural intent, and installed by our own crews.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="laser.html" style="--d:240ms">
       <span class="row-title">Laser Cutting</span>
       <span class="row-text">Perforated panels, screens and custom profiles, cut in our own shop on a TruLaser 3040 &mdash; from sheet, plate, perforated stock and tube.</span>
-      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1200x1200/-/format/auto/laser-cutting-S.jpg')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
   </div>
