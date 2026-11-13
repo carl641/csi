@@ -65,7 +65,7 @@
 /* the record on the left, the member logos beside it */
 .record{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(32px,6vw,96px);align-items:center;
+  gap:clamp(32px,6vw,96px);align-items:start;
 }
 .record-quote{
   margin:0;max-width:19ch;
@@ -90,7 +90,9 @@
 }
 /* phones: the logos stacked under the record, kept modest */
 @media (max-width:640px){
-  .record{grid-template-columns:1fr}
+  .aff-sec .sec-head{align-items:center;text-align:center}
+  .record{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .record-quote,.record-note{margin-left:auto;margin-right:auto}
   .record .logos{max-width:360px}
   .record .logo-plate{height:96px}
   .record .logo-plate img{max-height:58px}
@@ -243,7 +245,7 @@
   </div>
 </section>
 
-<section class="sec" aria-labelledby="affiliations-h">
+<section class="sec aff-sec" aria-labelledby="affiliations-h">
   <div class="sec-head reveal">
     <div>
       <h2 class="h2" id="affiliations-h">Affiliations</h2>
