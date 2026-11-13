@@ -398,17 +398,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:var(--mist);margin:0 0 18px;
 }
 .third-lede:last-of-type{margin-bottom:clamp(30px,4.5vh,48px)}
-.third-lede:has(+ .third-list){margin-bottom:14px}
+.third-lede:has(+ .third-list){margin-bottom:22px}
+/* the specialties: short sans-serif lines, each led by a small gold square */
 .third-list{
   list-style:none;margin:0 0 clamp(30px,4.5vh,48px);padding:0;
-  font-family:var(--serif);font-weight:300;
-  font-size:clamp(15px,1.4vw,18px);line-height:1.45;color:var(--mist);
+  display:grid;gap:12px;
+  font-family:var(--sans);font-weight:500;
+  font-size:clamp(15px,1.15vw,17px);line-height:1.35;letter-spacing:-.005em;color:var(--paper);
 }
-.third-list li{position:relative;padding:7px 0 7px 22px;border-top:1px solid var(--hair)}
-.third-list li:last-child{border-bottom:1px solid var(--hair)}
+.third-list li{position:relative;padding-left:24px}
 .third-list li::before{
-  content:"";position:absolute;left:0;top:calc(7px + .72em);
-  width:10px;height:2px;background:var(--accent);
+  content:"";position:absolute;left:2px;top:.42em;
+  width:7px;height:7px;background:var(--accent);transform:rotate(45deg);
 }
 
 @media (min-width:1025px){
