@@ -13,12 +13,14 @@
 <script>document.documentElement.classList.add('js')</script>
 <style>
 .phero--short{min-height:72vh;min-height:72svh}
-.contact-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,48px)}
+/* a little more air: a taller section, and more room under the heading */
+.contact-sec{padding-top:clamp(100px,16vh,180px);padding-bottom:clamp(110px,18vh,200px)}
+.contact-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(48px,8vh,88px);padding-bottom:clamp(28px,4vh,40px);border-bottom:1px solid var(--hair)}
 .contact-head h2{margin:0;font-size:clamp(30px,4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1}
 .contact-head p{margin:0;max-width:44ch;font-family:var(--serif);font-weight:300;font-size:17px;line-height:1.5;color:var(--mist)}
-.contact-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(40px,6vh,64px) clamp(28px,3.5vw,56px)}
+.contact-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(56px,8vh,88px) clamp(32px,4vw,64px)}
 .contact-block h3{
-  display:flex;align-items:center;gap:12px;margin:0 0 20px;
+  display:flex;align-items:center;gap:12px;margin:0 0 26px;
   font-size:clamp(20px,1.7vw,24px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--paper);
 }
 .contact-block h3 svg{flex:none;color:var(--accent)}
@@ -26,7 +28,7 @@
   margin:0;font-style:normal;font-weight:400;
   font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:var(--paper);overflow-wrap:anywhere;
 }
-.contact-list{margin:0;padding:0;display:grid;gap:16px}
+.contact-list{margin:0;padding:0;display:grid;gap:22px}
 .contact-list div{display:grid;gap:2px}
 .contact-list dt{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
 .contact-block a:not(.contact-link){
@@ -89,7 +91,7 @@
   </div>
 </section>
 
-<section class="sec" aria-labelledby="contact-h">
+<section class="sec contact-sec" aria-labelledby="contact-h">
   <div class="contact-head reveal">
     <h2 id="contact-h">Contact information</h2>
     <p>Reach the right place the first time — where to send mail, where to ship, and who to call or email.</p>
