@@ -1,0 +1,94 @@
+<title>Specialties List Options</title>
+<script src="https://simplecommenter.com/js/comments.min.js?id=sc_c44951b9b6ddca26" defer></script>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+/* Layout: a short brief, then four stacked options, each shown inside a
+   copy of the home page's Leaders section so they compare like-for-like.
+   Tokens are the CSI site's own (site.css); the page keeps its light look. */
+:root{
+  color-scheme:light;
+  --ink:#F4F1EA;          /* page */
+  --tint:#ECE7DE;         /* section ground, as .sec--tint */
+  --card:#FBF9F5;
+  --paper:#15191D;        /* type */
+  --mist:rgba(21,25,29,.7);
+  --hair:rgba(21,25,29,.18);
+  --accent:#8F5A00;       /* bronze: type and lines */
+  --fill:#FFC24B;         /* button yellow */
+  --ph-line:#B98A1E;--ph-bg:#FFE7B0;--ph-fg:#5A4100;
+  --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --gutter:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{padding:clamp(32px,6vh,64px) var(--gutter) 0;max-width:1320px;margin:0 auto}
+
+/* ---------- brief ---------- */
+.kicker{margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.h1{margin:0;font-size:clamp(30px,4.4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:uppercase;text-wrap:balance}
+.lede{margin:14px 0 0;font-family:var(--serif);font-weight:300;font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:var(--mist);max-width:60ch}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0;padding:0;list-style:none}
+.jump a{display:inline-flex;gap:8px;align-items:baseline;padding:9px 14px;border:1px solid var(--hair);border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600;font-size:13px;background:var(--card)}
+.jump a b{color:var(--accent)}
+.jump a:hover{border-color:var(--paper)}
+.legend{margin:16px 0 0;font-size:13px;color:var(--mist)}
+
+/* ---------- each option ---------- */
+.opt{margin-top:clamp(48px,8vh,88px)}
+.opt-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 40px;align-items:end;margin-bottom:18px}
+.opt-name{margin:0;font-size:clamp(20px,2.2vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.opt-why{margin:0;font-size:14px;color:var(--mist);max-width:60ch}
+.opt-why b{color:var(--paper);font-weight:600}
+@media (max-width:760px){.opt-head{grid-template-columns:1fr}}
+/* the stage is a copy of the site's tinted section */
+.stage{background:var(--tint);border-radius:10px;padding:clamp(28px,5vw,64px) clamp(16px,4vw,56px)}
+.h2{margin:0;font-size:clamp(24px,3.2vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:uppercase;text-wrap:balance}
+.stage > .lede{margin:12px 0 clamp(24px,4vh,40px);max-width:52ch}
+.label{margin:0 0 12px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+
+.col{max-width:760px}
+.btn{display:inline-block;margin-top:clamp(28px,4vh,44px);padding:14px 30px;border-radius:6px;background:var(--fill);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.stage .lede{margin:14px 0 26px;max-width:none}
+/* A */
+.a-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.a-list a{display:grid;grid-template-columns:44px minmax(0,1fr) 24px;align-items:baseline;gap:8px;padding:9px 0;color:var(--paper);text-decoration:none}
+.a-num{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--accent);font-variant-numeric:tabular-nums}
+.a-name{font-size:clamp(17px,1.5vw,21px);font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.a-go{color:var(--accent);opacity:0;transform:translateX(-8px);transition:.25s ease;align-self:center}
+.a-list a:hover .a-go{opacity:1;transform:none}
+.a-list a:hover .a-name{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:5px;text-decoration-thickness:1px}
+/* B */
+.b-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.b-tile{position:relative;display:flex;flex-direction:column;gap:2px;padding:16px 44px 16px 18px;background:var(--card);border-radius:6px;color:var(--paper);text-decoration:none;transition:box-shadow .25s ease}
+.b-tile .label{margin:0 0 4px}
+.b-name{font-weight:600;font-size:15px;line-height:1.3}
+.b-go{position:absolute;right:16px;bottom:18px;color:var(--accent);transition:transform .25s ease}
+.b-tile:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+.b-tile:hover .b-go{transform:translateX(3px)}
+/* C */
+.c-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.c-list a{display:inline-block;padding:9px 16px;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 1px var(--hair);color:var(--paper);text-decoration:none;font-weight:600;font-size:14px}
+.c-list a:hover{box-shadow:inset 0 0 0 1px var(--accent)}
+/* D */
+.d-line{margin:0;font-size:clamp(18px,1.7vw,23px);font-weight:600;letter-spacing:-.015em;line-height:1.55}
+.d-line a{color:var(--paper);text-decoration:none}
+.d-line a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:5px}
+.d-sep{color:var(--accent);margin:0 .5em;font-weight:400}
+.foot-note{margin:clamp(48px,8vh,88px) 0;font-size:13px;color:var(--mist)}
+
+</style>
+<div class="wrap">
+<p class="kicker">Mockup · Home page</p>
+<h1 class="h1">Ways to list the specialties</h1>
+<p class="lede">Four alternatives to bullet points for the list under &ldquo;Leaders in architectural metalwork &amp; railing.&rdquo; In every option, each specialty links to its own page (Stairs, Rails, Canopies, Metalwork, Laser).</p>
+<ul class="jump"><li><a href="#opt-A"><b>A</b>Numbered index, each line links to its page</a></li><li><a href="#opt-B"><b>B</b>Small tiles in a grid</a></li><li><a href="#opt-C"><b>C</b>Pills</a></li><li><a href="#opt-D"><b>D</b>One flowing line</a></li></ul>
+<section class="opt" id="opt-A"><div class="opt-head"><h2 class="opt-name">A. Numbered index, each line links to its page</h2><p class="opt-why"><b>Recommended.</b> Reads as a confident, ordered list of what CSI does, and every specialty becomes a shortcut to its page. Gold number, arrow slides in on hover; no rules between rows.</p></div><div class="stage"><div class="col"><h2 class="h2">Leaders in architectural metalwork &amp; railing</h2><p class="lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p><ol class="a-list"><li><a href="monumental-stairs.html"><span class="a-num">01</span><span class="a-name">Monumental Staircases &amp; Decorative Balustrades</span><span class="a-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li><li><a href="rail-systems.html"><span class="a-num">02</span><span class="a-name">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</span><span class="a-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li><li><a href="canopies.html"><span class="a-num">03</span><span class="a-name">Architectural Canopies, Sunshades, &amp; Trellises</span><span class="a-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li><li><a href="architectural-metalwork.html"><span class="a-num">04</span><span class="a-name">Precision Wall Cladding &amp; Structural Column Covers</span><span class="a-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li><li><a href="laser.html"><span class="a-num">05</span><span class="a-name">High-Capacity, In-House Laser Cutting Services</span><span class="a-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></li></ol><span class="btn">Case studies</span></div></div></section><section class="opt" id="opt-B"><div class="opt-head"><h2 class="opt-name">B. Small tiles in a grid</h2><p class="opt-why">Each specialty gets a short gold tag and its own clickable tile. Most visual; takes a little more room.</p></div><div class="stage"><div class="col"><h2 class="h2">Leaders in architectural metalwork &amp; railing</h2><p class="lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p><div class="b-grid"><a class="b-tile" href="monumental-stairs.html"><span class="label">Stairs</span><span class="b-name">Monumental Staircases &amp; Decorative Balustrades</span><span class="b-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="b-tile" href="rail-systems.html"><span class="label">Rails</span><span class="b-name">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</span><span class="b-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="b-tile" href="canopies.html"><span class="label">Canopies</span><span class="b-name">Architectural Canopies, Sunshades, &amp; Trellises</span><span class="b-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="b-tile" href="architectural-metalwork.html"><span class="label">Metalwork</span><span class="b-name">Precision Wall Cladding &amp; Structural Column Covers</span><span class="b-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="b-tile" href="laser.html"><span class="label">Laser</span><span class="b-name">High-Capacity, In-House Laser Cutting Services</span><span class="b-go"><svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div><span class="btn">Case studies</span></div></div></section><section class="opt" id="opt-C"><div class="opt-head"><h2 class="opt-name">C. Pills</h2><p class="opt-why">Compact tags that wrap. Lightest touch, but the long Railing Systems name makes a wide pill.</p></div><div class="stage"><div class="col"><h2 class="h2">Leaders in architectural metalwork &amp; railing</h2><p class="lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p><ul class="c-list"><li><a href="monumental-stairs.html">Monumental Staircases &amp; Decorative Balustrades</a></li><li><a href="rail-systems.html">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</a></li><li><a href="canopies.html">Architectural Canopies, Sunshades, &amp; Trellises</a></li><li><a href="architectural-metalwork.html">Precision Wall Cladding &amp; Structural Column Covers</a></li><li><a href="laser.html">High-Capacity, In-House Laser Cutting Services</a></li></ul><span class="btn">Case studies</span></div></div></section><section class="opt" id="opt-D"><div class="opt-head"><h2 class="opt-name">D. One flowing line</h2><p class="opt-why">Reads like part of the paragraph, with gold slashes between specialties. Quietest; less scannable.</p></div><div class="stage"><div class="col"><h2 class="h2">Leaders in architectural metalwork &amp; railing</h2><p class="lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p><p class="d-line"><a href="monumental-stairs.html">Monumental Staircases &amp; Decorative Balustrades</a><span class="d-sep" aria-hidden="true">/</span><a href="rail-systems.html">Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</a><span class="d-sep" aria-hidden="true">/</span><a href="canopies.html">Architectural Canopies, Sunshades, &amp; Trellises</a><span class="d-sep" aria-hidden="true">/</span><a href="architectural-metalwork.html">Precision Wall Cladding &amp; Structural Column Covers</a><span class="d-sep" aria-hidden="true">/</span><a href="laser.html">High-Capacity, In-House Laser Cutting Services</a></p><span class="btn">Case studies</span></div></div></section>
+<p class="foot-note">Not linked from the site. Hover a specialty to see its hover state.</p>
+</div>
