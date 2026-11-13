@@ -78,8 +78,14 @@
   font-size:clamp(15px,1.25vw,17px);font-weight:600;line-height:1.5;color:var(--paper);max-width:40ch;
 }
 .record-note abbr{text-decoration:none;color:var(--accent)}
+/* the two logos stacked one over the other, level with the record */
+.record .logos{grid-template-columns:1fr;max-width:420px;width:100%;justify-self:start}
+.record .logo-plate{height:clamp(96px,8.5vw,124px)}
 @media (max-width:860px){
   .record{grid-template-columns:1fr}
+  /* narrower, they sit side by side under the record */
+  .record .logos{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;justify-self:stretch}
+  .record .logo-plate{height:clamp(84px,24vw,112px)}
 }
 
 /* ---------- affiliations ---------- */
@@ -94,9 +100,7 @@
   background:#fff;border-radius:2px;
 }
 .logo-plate img{display:block;max-width:100%;max-height:clamp(56px,5.8vw,84px);width:auto;height:auto}
-@media (max-width:420px){
-  .logos{grid-template-columns:1fr}
-}
+
 
 /* ---------- engineering ---------- */
 .eng{
