@@ -39,7 +39,7 @@
 }
 :root{color-scheme:light}
 /* over photography the type stays light on the dark grade */
-.hero,.work,.fifth,.seventh,
+.hero,.work,.fifth,
 body:not(.is-stuck) .masthead,
 body:not(.is-stuck):not(.menu-open) .burger{
   --ink:#0C1116;
@@ -144,6 +144,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   font-size:clamp(16px,1.5vw,20px);line-height:1.5;
   color:var(--mist);max-width:none;margin:0 0 clamp(30px,4.5vh,48px);
 }
+/* the mission statement leads in the body ink; the supporting text follows in grey */
+.next-copy .next-lede:has(+ .next-body){
+  color:var(--paper);font-weight:400;font-size:clamp(18px,1.75vw,24px);line-height:1.42;margin-bottom:18px;
+}
+.next-body{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(16px,1.5vw,20px);line-height:1.5;
+  color:var(--mist);margin:0 0 clamp(30px,4.5vh,48px);
+}
 .stats{display:block}
 .stat{
   display:flex;align-items:baseline;gap:clamp(16px,2.2vw,32px);
@@ -152,7 +161,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .stat:last-child{border-bottom:1px solid var(--hair)}
 .stat-num{
-  flex:0 0 auto;min-width:4.2ch;
+  flex:0 0 auto;min-width:5.6ch;
   font-size:clamp(30px,3.6vw,48px);font-weight:800;
   letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;
   color:var(--accent);
@@ -256,7 +265,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     overflow:hidden;transform:none!important;
   }
 }
-.fifth,.seventh{
+.fifth{
   position:relative;
   height:100vh;height:100svh;
   background:var(--ink);
@@ -265,24 +274,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding:0 clamp(20px,5vw,72px);
   text-align:center;
 }
-.fifth-inner,.seventh-inner{
+.fifth-inner{
   position:relative;z-index:2;
   will-change:transform;
   max-width:min(56ch,62vw);
 }
-.fifth h2,.seventh h2{
+.fifth h2{
   margin:0 0 14px;font-size:clamp(30px,4.4vw,60px);font-weight:800;
   letter-spacing:-.03em;line-height:1;text-transform:uppercase;
 }
-.fifth-lede,.seventh-lede{
+.fifth-lede{
   font-family:var(--serif);font-weight:300;
   font-size:clamp(16px,1.5vw,20px);line-height:1.5;
   color:var(--mist);margin:0 0 clamp(30px,4.5vh,48px);
 }
 @media (max-width:1024px){
-  .fifth-inner,.seventh-inner{max-width:none}
+  .fifth-inner{max-width:none}
 }
-.fifth-img,.seventh-img{
+.fifth-img{
   position:absolute;inset:-32% 0;
   will-change:transform;
   background:
@@ -291,7 +300,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     repeating-linear-gradient(98deg,rgba(255,255,255,.05) 0 2px,rgba(0,0,0,0) 2px 44px),
     linear-gradient(198deg,#2E3B45,#0B1016);
 }
-.fifth-img::after,.seventh-img::after{
+.fifth-img::after{
   content:"";position:absolute;inset:0;
   background:
     radial-gradient(75% 65% at 50% 50%,rgba(8,12,16,.8) 0%,rgba(8,12,16,.5) 55%,rgba(8,12,16,.25) 100%),
@@ -387,6 +396,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:var(--mist);margin:0 0 18px;
 }
 .third-lede:last-of-type{margin-bottom:clamp(30px,4.5vh,48px)}
+.third-lede:has(+ .third-list){margin-bottom:14px}
+.third-list{
+  list-style:none;margin:0 0 clamp(30px,4.5vh,48px);padding:0;
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(15px,1.4vw,18px);line-height:1.45;color:var(--mist);
+}
+.third-list li{position:relative;padding:7px 0 7px 22px;border-top:1px solid var(--hair)}
+.third-list li:last-child{border-bottom:1px solid var(--hair)}
+.third-list li::before{
+  content:"";position:absolute;left:0;top:calc(7px + .72em);
+  width:10px;height:2px;background:var(--accent);
+}
 
 @media (min-width:1025px){
   .third{
@@ -658,9 +679,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .fifth-img{
   background:#10161C var(--quote-photo) center / cover no-repeat;
 }
-.seventh-img{
-  background:url("https://3unloi5wlp.ucarecd.net/9fd8aee2-054d-4769-9902-951d4c0abf64/-/preview/2048x2048/-/format/auto/hq-Railing%20Systems%20-%20Outdoor%20Rail.jpg") center / cover no-repeat;
-}
 
 /* ---------- journal ---------- */
 .journal{
@@ -839,25 +857,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (max-width:560px){
   .foot-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
   .foot-bottom{flex-direction:column;align-items:flex-start;gap:14px}
-}
-
-/* the same three letters, drawn as an outline over the careers image */
-.seventh-word{
-  position:absolute;z-index:1;left:50%;top:50%;
-  transform:translate(-46%,-50%) rotate(-7deg);
-  transform-origin:60% 50%;
-  font-family:'BBH Hegarty',Impact,sans-serif;
-  /* the outline runs larger than the footer's solid word: with no fill to
-     carry it, it needs the size to read across the picture */
-  font-size:min(clamp(350px,60vw,950px), 147vh);line-height:1;
-  letter-spacing:.06em;white-space:nowrap;pointer-events:none;
-  color:transparent;
-  -webkit-text-stroke:1.5px rgba(242,239,233,.16);
-  text-stroke:1.5px rgba(242,239,233,.16);
-  will-change:transform;
-}
-@media (max-width:760px){
-  .seventh-word{-webkit-text-stroke-width:1px;text-stroke-width:1px}
 }
 
 /* ---------- masthead ---------- */
@@ -1250,7 +1249,8 @@ body.is-stuck .masthead{
   <div class="next-inner">
     <div class="next-copy">
       <h2>Our mission</h2>
-      <p class="next-lede">Engineering and fabrication experience and capabilities, plus a wide range of materials and finishes, provide a single source for your metalwork needs — and single source responsibility for the complicated ornamental portions of a project.</p>
+      <p class="next-lede">To deliver a premium quality product in a timely manner through seamless engineering, precise fabrication, and dedicated site coordination.</p>
+      <p class="next-body">With decades of specialized expertise, we provide single-source responsibility for the complex ornamental portions of your project, streamlining workflows and ensuring your master project schedule remains on track.</p>
 
       <div class="stats" id="stats">
         <div class="stat">
@@ -1261,10 +1261,10 @@ body.is-stuck .masthead{
           </span>
         </div>
         <div class="stat">
-          <span class="stat-num" data-to="200" data-suffix="+">0</span>
+          <span class="stat-num" data-to="5000" data-suffix="+">0</span>
           <span class="stat-text">
-            <span class="stat-label">Projects completed</span>
-            <span class="stat-note">Large and small, from a single gazebo to an entire building complex.</span>
+            <span class="stat-label">Projects delivered</span>
+            <span class="stat-note">From individual gazebos to entire building complexes.</span>
           </span>
         </div>
       </div>
@@ -1295,8 +1295,14 @@ body.is-stuck .masthead{
 <section class="third" aria-label="How we work">
   <div class="third-inner">
       <h2>Leaders in architectural metalwork &amp; railing</h2>
-    <p class="third-lede">We routinely handle projects large and small, from an individual gazebo to rail systems for an entire building complex. We also handle single projects that include a wide variety of different elements such as rails, monumental stairs, wall cladding, light fixtures, column covers and more.</p>
-    <p class="third-lede">Our mission statement is "Provide a quality product in a timely manner." To achieve this we constantly interact with all concerned parties through various means such as verbal and written communication, CPM scheduling and site visits.</p>
+    <p class="third-lede">We specialize in executing complex, multi-element ornamental packages for high-tier commercial and institutional developments. Our teams tightly integrate engineering and craftsmanship to build, finish, and deploy high-specification architectural products tailored to exact project constraints, including:</p>
+    <ul class="third-list">
+      <li>Monumental Staircases &amp; Decorative Balustrades</li>
+      <li>Custom Railing Systems (Glass, Stainless Steel, &amp; Carbon Steel)</li>
+      <li>Architectural Canopies, Sunshades, &amp; Trellises</li>
+      <li>Precision Wall Cladding &amp; Structural Column Covers</li>
+      <li>High-Capacity, In-House Laser Cutting Services</li>
+    </ul>
     <a class="cta" href="case-studies.html">
       <span class="cta-label">Case studies</span>
       <span class="cta-arrow" aria-hidden="true">
@@ -1330,10 +1336,10 @@ body.is-stuck .masthead{
 <section class="fourth" aria-label="Working with us">
   <div class="fourth-inner">
       <h2>One source for the ornamental package</h2>
-    <p class="third-lede">Engineering, fabrication and installation sit together, so the rails, stairs, cladding and fixtures on a job are detailed by the people who will build them.</p>
-    <p class="third-lede">That single source responsibility is what keeps the complicated ornamental portions of a project from becoming somebody else&rsquo;s problem halfway through the schedule.</p>
-    <a class="cta" href="architectural-metalwork.html">
-      <span class="cta-label">Architectural metalwork</span>
+    <p class="third-lede">Our engineering and fabrication teams operate under one roof, working in direct alignment with our dedicated field installation partners. This ensures that the custom railings, monumental stairs, specialized cladding, and architectural fixtures on your job site are detailed by the people who build them, and deployed by crews who know them inside out.</p>
+    <p class="third-lede">This single-source responsibility provides complete accountability. By managing the process from initial design through final field installation, we eliminate trade friction, prevent communication gaps, and ensure the complex ornamental scope never becomes &ldquo;someone else&rsquo;s problem&rdquo; halfway through your master schedule.</p>
+    <a class="cta" href="products.html">
+      <span class="cta-label">See our products</span>
       <span class="cta-arrow" aria-hidden="true">
         <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
           <path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/>
@@ -1526,18 +1532,6 @@ body.is-stuck .masthead{
         <p class="scard-text">Financial services group serving military members and their families.</p>
       </article>
     </div>
-  </div>
-</section>
-
-<section class="seventh" aria-label="Employment">
-  <div class="seventh-img" aria-hidden="true"></div>
-  <div class="seventh-word" aria-hidden="true">CSI</div>
-  <div class="seventh-inner">
-    <h2>Employment</h2>
-    <p class="fifth-lede">To apply for a job with Construction Services, Inc., please send a cover letter together with your C.V. to info@csialabama.com.</p>
-    <a class="cta" href="mailto:info@csialabama.com">
-      <span class="cta-label">Email your C.V.</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span>
-    </a>
   </div>
 </section>
 
@@ -2156,8 +2150,7 @@ if(workTrack){
 try {
 /* ---- parallax on the closing image ---- */
 const bannerPairs = [
-  ['.fifth', '.fifth-img', '.fifth-inner'],
-  ['.seventh', '.seventh-img', '.seventh-inner']
+  ['.fifth', '.fifth-img', '.fifth-inner']
 ].map(([sec,img,copy])=>({
   section: document.querySelector(sec),
   img: document.querySelector(img),
@@ -2260,45 +2253,6 @@ if(svcTrack){
 } catch (err) { console.error("feature failed:", err); }
 
 try {
-/* ---- the Employment outline drifts as its section passes ---- */
-const outlineWords = [
-  {section:document.querySelector('.seventh'), word:document.querySelector('.seventh-word'), x:'-46%', rot:'-7deg'}
-].filter(o=>o.section && o.word);
-
-if(outlineWords.length && !reduced){
-  const OUTLINE_DEPTH = -0.08;  // opposite to the image drift, and gentler
-  const OUTLINE_EASE  = 0.03;   // how quickly the letters catch up — lower trails more
-  outlineWords.forEach(o=>{ o.now = 0; o.goal = 0; });
-  let oRunning = false;
-
-  const measure = ()=>{
-    const vh = window.innerHeight;
-    outlineWords.forEach(o=>{
-      const r = o.section.getBoundingClientRect();
-      o.goal = ((r.top + r.height / 2) - vh / 2) * OUTLINE_DEPTH;
-    });
-  };
-  const paint = ()=>{
-    let moving = false;
-    outlineWords.forEach(o=>{
-      o.now += (o.goal - o.now) * OUTLINE_EASE;
-      if(Math.abs(o.goal - o.now) > 0.1) moving = true; else o.now = o.goal;
-      o.word.style.transform =
-        'translate(' + o.x + ', calc(-50% + ' + o.now.toFixed(1) + 'px)) rotate(' + o.rot + ')';
-    });
-    if(moving) requestAnimationFrame(paint); else oRunning = false;
-  };
-  const kick = ()=>{
-    measure();
-    if(!oRunning){ oRunning = true; requestAnimationFrame(paint); }
-  };
-  window.addEventListener('scroll', kick, {passive:true});
-  window.addEventListener('resize', kick);
-  measure();
-  outlineWords.forEach(o=>{ o.now = o.goal; });
-  kick();
-}
-
 const footSection = document.querySelector('.foot');
 const footWord = document.querySelector('.foot-word');
 // same movement as the banner outlines: slight drift, long trailing lag

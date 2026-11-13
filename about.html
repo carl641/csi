@@ -12,23 +12,30 @@
 <link rel="stylesheet" href="site.css?v=202609291519">
 <script>document.documentElement.classList.add('js')</script>
 <style>
+/* ---------- hero ---------- */
+/* "About us" set as a small label; the statement beneath carries the hero */
+.phero-title.phero-label{
+  font-size:clamp(13px,1.2vw,17px);font-weight:600;line-height:1.2;
+  letter-spacing:.16em;color:var(--accent);
+}
+.phero-lede.phero-statement{
+  font-family:inherit;font-weight:800;
+  font-size:clamp(26px,3.7vw,56px);line-height:1.1;letter-spacing:-.025em;
+  color:var(--paper);max-width:24ch;margin-top:clamp(14px,2.2vh,22px);
+}
+
 /* ---------- history ---------- */
-.hist{
-  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);
-  gap:clamp(28px,5vw,90px);align-items:start;
+/* centred: a small "Est." line, the heading, then the story */
+.hist{max-width:980px;margin:0 auto;text-align:center}
+.hist-est{
+  margin:0 0 clamp(12px,2vh,18px);
+  font-size:clamp(12px,1vw,14px);font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
 }
-/* the year, drawn in outline in the site's display face */
-.hist-year{
-  margin:0;
-  font-family:var(--display);font-size:clamp(88px,10.4vw,200px);line-height:.8;
-  letter-spacing:.02em;white-space:nowrap;
-  color:transparent;-webkit-text-stroke:1.5px var(--accent);
-}
-.hist-copy .h2{margin-bottom:clamp(20px,3.5vh,34px)}
-.hist-copy .intro-text{margin-bottom:.9em}
-@media (max-width:860px){
-  .hist{grid-template-columns:1fr}
-  .hist-year{-webkit-text-stroke-width:1px}
+.hist .h2{font-size:clamp(36px,5.2vw,72px);margin-bottom:clamp(20px,3.5vh,34px)}
+.hist .intro-text{
+  font-size:clamp(19px,1.9vw,27px);line-height:1.45;
+  max-width:52ch;margin:0 auto;
 }
 
 /* ---------- products ---------- */
@@ -205,19 +212,16 @@
   <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/2048x2048/-/format/auto/hq-hotel.png')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
 
   <div class="phero-copy">
-    <h1 class="phero-title">About us</h1>
-    <p class="phero-lede">Leaders in architectural metalwork and railing since 1967. Engineering, fabrication and installation from a single source.</p>
+    <h1 class="phero-title phero-label">About us</h1>
+    <p class="phero-lede phero-statement">Since 1967, Construction Services, Inc. has delivered single-source engineering, fabrication, and installation for complex architectural metalwork.</p>
   </div>
 </section>
 
 <section class="sec" aria-labelledby="history-h">
   <div class="hist">
-    <p class="hist-year reveal" aria-hidden="true">1967</p>
-    <div class="hist-copy">
-      <h2 class="h2 reveal" id="history-h">History</h2>
-      <p class="intro-text reveal">Construction Services, Inc. was founded by Mike Scroggins and has been incorporated since February 3, 1967.</p>
-      <p class="lede reveal">Once established as a manufacturer, CSI concentrated on miscellaneous metals, i.e. steel stairs and railings. Over the years, CSI has evolved into a specialized metals fabricator.</p>
-    </div>
+    <p class="hist-est reveal">Est. 1967</p>
+    <h2 class="h2 reveal" id="history-h">Our History</h2>
+    <p class="intro-text reveal">Founded by Mike Scroggins and incorporated on February 3, 1967, Construction Services, Inc. (CSI) began as a manufacturer of miscellaneous metals before evolving into a specialized metal fabricator. As a NOMMA member with a history of industry awards and a 100% contract fulfillment rate since inception, CSI delivers proven reliability to commercial partners.</p>
   </div>
 </section>
 
@@ -286,12 +290,12 @@
     </div>
     <div class="eng-items">
       <div class="eng-item reveal">
-        <h3 class="col-title">Structural computations</h3>
-        <p class="col-text">CSI offers structural computations of a design project by using COSMOS/M finite element analysis software. Monumental stairs, canopies and guard railings, to name a few, are analyzed for material sizes and connection details required to meet loading criteria and code requirements.</p>
+        <h3 class="col-title">Certified Calculations</h3>
+        <p class="col-text">To ensure absolute safety and code compliance, we partner with a dedicated third-party engineering firm to handle all project calculations. Complex structures—such as monumental stairs, canopies, and railing systems—are independently analyzed and stamped to meet your specific project loading criteria and local building codes.</p>
       </div>
       <div class="eng-item reveal" style="--d:100ms">
-        <h3 class="col-title">Preliminary design assistance</h3>
-        <p class="col-text">The preliminary design assistance can save the designer time and money in the development process. Our engineering department uses CAD and MicroStation systems that are compatible with most designers&rsquo; systems.</p>
+        <h3 class="col-title">Preliminary Design Assistance</h3>
+        <p class="col-text">Providing preliminary design assistance allows us to save designers and architects substantial time and expense during the development process. Our engineering and design department utilizes advanced software platforms—including AutoCAD, MicroStation, SolidWorks, and TruTops Boost—to ensure complete compatibility with your team&rsquo;s existing systems. Partnering with us early in the design phase ensures a seamless transition from concept to fabrication while preventing costly conflicts on the job site.</p>
       </div>
     </div>
   </div>
