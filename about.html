@@ -12,26 +12,8 @@
 <link rel="stylesheet" href="site.css?v=202611132203">
 <script>document.documentElement.classList.add('js')</script>
 <style>
-/* ---------- hero ---------- */
-/* "About us" set as a small label; the statement beneath carries the hero */
-.phero-title.phero-label{
-  font-size:clamp(13px,1.2vw,17px);font-weight:600;line-height:1.2;
-  letter-spacing:.16em;color:var(--accent);
-}
-.phero-lede.phero-statement{
-  font-family:inherit;font-weight:800;
-  font-size:clamp(26px,3.7vw,56px);line-height:1.1;letter-spacing:-.025em;
-  color:var(--paper);max-width:24ch;margin-top:clamp(14px,2.2vh,22px);
-}
-
 /* ---------- history ---------- */
-/* the heading on the left, the story beside it */
-.hist{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:clamp(24px,5vw,72px);align-items:start}
-.hist .h2{margin:0}
-.hist .intro-text{font-size:clamp(19px,1.8vw,26px);line-height:1.5;max-width:56ch}
-@media (max-width:860px){
-  .hist{grid-template-columns:1fr}
-}
+.hist .intro-text{max-width:52ch}
 
 /* ---------- products ---------- */
 .rows{border-top:1px solid var(--hair)}
@@ -45,7 +27,7 @@
 }
 .row-title{
   grid-column:1;
-  font-size:clamp(26px,3.4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:.95;
+  font-size:clamp(20px,2.2vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.05;
   text-transform:uppercase;
   transition:color 220ms ease,transform 420ms cubic-bezier(.2,.7,.25,1);
 }
@@ -84,7 +66,7 @@
 .record-quote{
   margin:0;max-width:19ch;
   font-family:var(--serif);font-style:italic;font-weight:300;
-  font-size:clamp(32px,4.8vw,72px);line-height:1.05;letter-spacing:-.015em;
+  font-size:clamp(28px,3.4vw,48px);line-height:1.1;letter-spacing:-.015em;
 }
 .record-quote em{color:var(--accent)}
 @media (max-width:860px){
@@ -92,14 +74,9 @@
 }
 
 /* ---------- affiliations ---------- */
-.affil{
-  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);
-  gap:clamp(24px,5vw,72px);align-items:center;
-}
-.affil .h2{margin:0}
 .logos{
   list-style:none;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);max-width:900px;
 }
 /* the logos are drawn for a white page, so each sits on its own white plate */
 .logo-plate{
@@ -108,9 +85,6 @@
   background:#fff;border-radius:2px;
 }
 .logo-plate img{display:block;max-width:100%;max-height:clamp(56px,5.8vw,84px);width:auto;height:auto}
-@media (max-width:860px){
-  .affil{grid-template-columns:1fr;gap:18px}
-}
 @media (max-width:420px){
   .logos{grid-template-columns:1fr}
 }
@@ -186,17 +160,19 @@
   <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/2048x2048/-/format/auto/hq-hotel.png')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
 
   <div class="phero-copy">
-    <h1 class="phero-title phero-label">About us</h1>
-    <p class="phero-lede phero-statement">Since 1967, Construction Services, Inc. has delivered single-source engineering, fabrication, and installation for complex architectural metalwork.</p>
+    <h1 class="phero-title">About us</h1>
+    <p class="phero-lede">Since 1967, Construction Services, Inc. has delivered single-source engineering, fabrication, and installation for complex architectural metalwork.</p>
   </div>
 </section>
 
 <section class="sec" aria-labelledby="history-h">
-  <div class="hist">
-    <h2 class="h2 reveal" id="history-h">Our History</h2>
-    <div class="reveal" style="--d:80ms">
-      <p class="intro-text">Founded by Mike Scroggins and incorporated on February 3, 1967, Construction Services, Inc. (CSI) began as a manufacturer of miscellaneous metals before evolving into a specialized metal fabricator. As a NOMMA member with a history of industry awards and a 100% contract fulfillment rate since inception, CSI delivers proven reliability to commercial partners.</p>
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="history-h">Our History</h2>
     </div>
+  </div>
+  <div class="hist reveal" style="--d:80ms">
+    <p class="intro-text">Founded by Mike Scroggins and incorporated on February 3, 1967, Construction Services, Inc. (CSI) began as a manufacturer of miscellaneous metals before evolving into a specialized metal fabricator. As a NOMMA member with a history of industry awards and a 100% contract fulfillment rate since inception, CSI delivers proven reliability to commercial partners.</p>
   </div>
 </section>
 
@@ -254,8 +230,12 @@
 </section>
 
 <section class="sec sec--tint" aria-labelledby="affiliations-h">
+  <div class="sec-head reveal">
+    <div>
+      <h2 class="h2" id="affiliations-h">Affiliations</h2>
+    </div>
+  </div>
   <div class="affil">
-    <h2 class="h2 reveal" id="affiliations-h">Affiliations</h2>
     <ul class="logos">
       <li class="logo-plate reveal"><img src="https://3unloi5wlp.ucarecd.net/0fc01ddf-ccea-4f99-89a5-a585d5fe9951/-/preview/800x800/-/format/auto/nomma_logo_web.png" data-raw="https://3unloi5wlp.ucarecd.net/0fc01ddf-ccea-4f99-89a5-a585d5fe9951/nomma_logo_web.png" alt="NOMMA, the National Ornamental &amp; Miscellaneous Metals Association" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></li>
       <li class="logo-plate reveal" style="--d:80ms"><img src="https://3unloi5wlp.ucarecd.net/08c45c58-8c4f-413a-b651-09c8ce0999d6/-/preview/800x800/-/format/auto/decatur-chamber-logo.png" data-raw="https://3unloi5wlp.ucarecd.net/08c45c58-8c4f-413a-b651-09c8ce0999d6/decatur-chamber-logo.png" alt="Decatur Chamber of Commerce" loading="lazy" decoding="async" onerror="if(!this.dataset.fell){this.dataset.fell=1;window.csiRawOnly=1;this.src=this.dataset.raw}"></li>
