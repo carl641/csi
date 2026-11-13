@@ -78,8 +78,22 @@
   font-size:clamp(15px,1.25vw,17px);font-weight:600;line-height:1.5;color:var(--paper);max-width:40ch;
 }
 .record-note abbr{text-decoration:none;color:var(--accent)}
-@media (max-width:860px){
+/* the two logos stacked one over the other, level with the record */
+.record .logos{grid-template-columns:1fr;width:100%}
+.record .logo-plate{height:clamp(130px,12vw,180px)}
+.record .logo-plate img{max-height:clamp(80px,7.6vw,118px)}
+/* tablets: still the record beside the logos, the logos smaller */
+@media (max-width:1024px){
+  .record{gap:clamp(24px,4vw,48px)}
+  .record .logo-plate{height:clamp(96px,12vw,124px)}
+  .record .logo-plate img{max-height:clamp(52px,7vw,76px)}
+}
+/* phones: the logos stacked under the record, kept modest */
+@media (max-width:640px){
   .record{grid-template-columns:1fr}
+  .record .logos{max-width:360px}
+  .record .logo-plate{height:96px}
+  .record .logo-plate img{max-height:58px}
 }
 
 /* ---------- affiliations ---------- */
@@ -94,9 +108,7 @@
   background:#fff;border-radius:2px;
 }
 .logo-plate img{display:block;max-width:100%;max-height:clamp(56px,5.8vw,84px);width:auto;height:auto}
-@media (max-width:420px){
-  .logos{grid-template-columns:1fr}
-}
+
 
 /* ---------- engineering ---------- */
 .eng{
