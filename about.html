@@ -25,21 +25,19 @@
 }
 
 /* ---------- history ---------- */
-/* centred: a small "Est." line, the heading, then the story */
-.hist{max-width:980px;margin:0 auto;text-align:center}
-.hist-est{
-  margin:0 0 clamp(12px,2vh,18px);
-  font-size:clamp(12px,1vw,14px);font-weight:400;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
-}
-.hist .h2{font-size:clamp(36px,5.2vw,72px);margin-bottom:clamp(20px,3.5vh,34px)}
-.hist .intro-text{
-  font-size:clamp(19px,1.9vw,27px);line-height:1.45;
-  max-width:52ch;margin:0 auto;
+/* the heading on the left, the story beside it */
+.hist{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:clamp(24px,5vw,72px);align-items:start}
+.hist .h2{margin:0;font-size:clamp(34px,4.6vw,64px)}
+.hist .intro-text{font-size:clamp(19px,1.8vw,26px);line-height:1.5;max-width:56ch}
+@media (max-width:860px){
+  .hist{grid-template-columns:1fr}
 }
 
 /* ---------- products ---------- */
-.rows{border-top:1px solid var(--hair)}
+/* its label sits under a rule, as the materials and affiliations labels do */
+.prod-kicker-rule{border-top:1px solid var(--hair);padding-top:clamp(18px,2.6vh,24px)}
+#products-h{margin-bottom:16px}
+.rows{border-top:0}
 .row{
   position:relative;display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 48px;
@@ -219,29 +217,44 @@
 
 <section class="sec" aria-labelledby="history-h">
   <div class="hist">
-    <p class="hist-est reveal">Est. 1967</p>
     <h2 class="h2 reveal" id="history-h">Our History</h2>
-    <p class="intro-text reveal">Founded by Mike Scroggins and incorporated on February 3, 1967, Construction Services, Inc. (CSI) began as a manufacturer of miscellaneous metals before evolving into a specialized metal fabricator. As a NOMMA member with a history of industry awards and a 100% contract fulfillment rate since inception, CSI delivers proven reliability to commercial partners.</p>
+    <div class="reveal" style="--d:80ms">
+      <p class="intro-text">Founded by Mike Scroggins and incorporated on February 3, 1967, Construction Services, Inc. (CSI) began as a manufacturer of miscellaneous metals before evolving into a specialized metal fabricator. As a NOMMA member with a history of industry awards and a 100% contract fulfillment rate since inception, CSI delivers proven reliability to commercial partners.</p>
+    </div>
   </div>
 </section>
 
 <section class="sec sec-tight" aria-labelledby="products-h">
-  <p class="kicker reveal" id="products-h" style="margin-bottom:clamp(18px,3vh,28px)">Our products include</p>
+  <p class="kicker reveal prod-kicker-rule" id="products-h">Our products include</p>
   <div class="rows">
     <a class="row reveal" href="rail-systems.html" style="--d:0ms">
-      <span class="row-title">Rail systems</span>
+      <span class="row-title">Rail Systems</span>
+      <span class="row-text">Ornamental and functional railing solutions including glass, stainless steel, cable, ornamental balustrades, and custom handrails.</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/1fddffef-2b8d-4364-a841-f8d0e7081626/Rail%20Systems%20-%20McNeese1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="monumental-stairs.html" style="--d:60ms">
-      <span class="row-title">Monumental and radiused/<wbr>spiral stairs</span>
+      <span class="row-title">Stair Systems</span>
+      <span class="row-text">Integrated feature stairs engineered as unified structural assemblies, including straight-run, curved, spiral, elliptical, and center stringer designs.</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/352c015a-a9d9-4c3f-a88c-ae980420f3d8/Monumental%20Stairs%20-%20Hero1.avif')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
     <a class="row reveal" href="architectural-metalwork.html" style="--d:120ms">
-      <span class="row-title">Architectural metalwork</span>
-      <span class="row-text">A wide variety, including, but not limited to, wall panels, torcheres, gazebos, column covers and decorative art designs.</span>
+      <span class="row-title">Architectural Metalwork</span>
+      <span class="row-text">Decorative and specialized building elements encompassing column covers, custom wall panels, custom light fixtures, torch&egrave;res, gazebos, trellises, and sunshades.</span>
       <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/f30f2dcb-f6d7-4e72-8c49-2b3e9330f718/Architectural%20Metalwork%20-%20Sonnie5.avif')" aria-hidden="true"></span>
+      <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+    </a>
+    <a class="row reveal" href="canopies.html" style="--d:180ms">
+      <span class="row-title">Canopies</span>
+      <span class="row-text">Walkway and entry canopies structurally engineered for environmental loads, fabricated to precise architectural intent, and installed by our own crews.</span>
+      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/90016cb8-8c69-4695-9182-88a7ef40b657/Canopies%20-%20Dynetics1.avif')" aria-hidden="true"></span>
+      <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+    </a>
+    <a class="row reveal" href="laser.html" style="--d:240ms">
+      <span class="row-title">Laser Cutting</span>
+      <span class="row-text">Perforated panels, screens and custom profiles, cut in our own shop on a TruLaser 3040 &mdash; from sheet, plate, perforated stock and tube.</span>
+      <span class="row-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/34dfaded-275f-4999-89b0-81de5a9fc699/-/preview/1200x1200/-/format/auto/laser-cutting-S.jpg')" aria-hidden="true"></span>
       <span class="round-btn" aria-hidden="true"><svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M0 6h15M10.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></span>
     </a>
   </div>
