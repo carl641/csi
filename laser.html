@@ -149,11 +149,10 @@
 .quote-route-tag{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);transition:color .3s ease}
 .quote-route-title{font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.015em;line-height:1.2}
 .quote-route-mail{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);font-family:var(--serif);font-weight:300;font-size:16px;opacity:.8;transition:border-color .3s ease,opacity .3s ease}
-.quote-route-mail svg{flex:none;transition:transform .3s ease}
-.quote-route:hover,.quote-route:focus-visible{background:var(--paper);color:var(--ink);box-shadow:none}
-.quote-route:hover .quote-route-tag,.quote-route:focus-visible .quote-route-tag{color:var(--ink)}
-.quote-route:hover .quote-route-mail,.quote-route:focus-visible .quote-route-mail{opacity:1;border-color:rgba(12,17,22,.18)}
-.quote-route:hover .quote-route-mail svg,.quote-route:focus-visible .quote-route-mail svg{transform:translateX(4px)}
+.quote-route-mail svg{flex:none;transition:transform .3s ease,color .3s ease}
+.quote-route:hover,.quote-route:focus-visible{background:rgba(12,17,22,.75);box-shadow:inset 0 0 0 1px var(--accent)}
+.quote-route:hover .quote-route-mail,.quote-route:focus-visible .quote-route-mail{opacity:1}
+.quote-route:hover .quote-route-mail svg,.quote-route:focus-visible .quote-route-mail svg{transform:translateX(4px);color:var(--accent)}
 .quote-alt{margin:0;font-size:15px;color:rgba(242,239,233,.72)}
 .quote-alt a{color:var(--paper);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--hair)}
 .quote-alt a:hover,.quote-alt a:focus-visible{text-decoration-color:currentColor}
