@@ -76,16 +76,24 @@
 }
 
 /* ---------- a project: its photos beside its write-up ---------- */
+/* each project is its own band, alternating the tint and the page colour
+   edge to edge, so one project ends clearly before the next begins */
+.cases-sec{padding-top:0;padding-bottom:0}
 .case{
+  position:relative;
   display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
   gap:clamp(32px,6vw,100px);align-items:start;
-  margin:clamp(90px,15vh,170px) 0;
-  scroll-margin-top:90px;
+  padding:clamp(70px,11vh,130px) 0;
+  scroll-margin-top:70px;
 }
-.cases > :first-child{margin-top:0}
-.cases > :last-child{margin-bottom:0}
+.case:nth-child(odd){
+  background:var(--tint);
+  box-shadow:0 0 0 100vmax var(--tint);clip-path:inset(0 -100vmax);
+}
 .case--flip .case-media{order:2}
-.case-body{position:sticky;top:110px;padding-top:clamp(0px,2vh,20px)}
+/* the photos hold still beside a long write-up while it scrolls past */
+.case-media{position:sticky;top:110px}
+.case-body{padding-top:clamp(0px,2vh,20px)}
 .case-meta{
   margin:0 0 12px;
   font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
@@ -117,7 +125,8 @@
 @media (max-width:900px){
   .case{grid-template-columns:1fr}
   .case--flip .case-media{order:0}
-  .case-body{position:static;padding-top:0}
+  .case-media{position:static}
+  .case-body{padding-top:0}
 }
 </style>
 <script src="https://simplecommenter.com/js/comments.min.js?id=sc_c44951b9b6ddca26" defer></script>
@@ -189,7 +198,7 @@
   </ol>
 </section>
 
-<section class="sec sec-tight" aria-label="Case studies">
+<section class="sec sec-tight cases-sec" aria-label="Case studies">
   <div class="cases">
 
   <article class="case" id="vanderbilt">
