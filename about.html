@@ -12,6 +12,18 @@
 <link rel="stylesheet" href="site.css?v=202611132203">
 <script>document.documentElement.classList.add('js')</script>
 <style>
+/* ---------- hero ---------- */
+/* "About us" set as a small label; the statement beneath carries the hero */
+.phero-title.phero-label{
+  font-size:clamp(13px,1.2vw,17px);font-weight:600;line-height:1.2;
+  letter-spacing:.16em;color:var(--accent);
+}
+.phero-lede.phero-statement{
+  font-family:inherit;font-weight:800;
+  font-size:clamp(26px,3.7vw,56px);line-height:1.1;letter-spacing:-.025em;
+  color:var(--paper);max-width:24ch;margin-top:clamp(14px,2.2vh,22px);
+}
+
 /* ---------- history ---------- */
 .hist .intro-text{max-width:52ch}
 
@@ -160,8 +172,8 @@
   <div class="phero-img" style="--photo:url('https://3unloi5wlp.ucarecd.net/578fce53-59fb-4076-889e-516f682e4909/-/preview/2048x2048/-/format/auto/hq-hotel.png')" data-drift="0.10" data-slack="0.12" aria-hidden="true"></div>
 
   <div class="phero-copy">
-    <h1 class="phero-title">About us</h1>
-    <p class="phero-lede">Since 1967, Construction Services, Inc. has delivered single-source engineering, fabrication, and installation for complex architectural metalwork.</p>
+    <h1 class="phero-title phero-label">About us</h1>
+    <p class="phero-lede phero-statement">Since 1967, Construction Services, Inc. has delivered single-source engineering, fabrication, and installation for complex architectural metalwork.</p>
   </div>
 </section>
 
