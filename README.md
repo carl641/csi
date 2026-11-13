@@ -63,7 +63,7 @@ still lists every page.
 Hero with rotating sector frames · Our mission (animated stat counters) ·
 Leaders in architectural metalwork (S letterform) · One source for the
 ornamental package (I letterform) · Laser cutting carousel ·
-See our work on display (venue rail) · Employment · Case studies ·
+See our work on display (venue rail) · Case studies ·
 Get a quote · Footer.
 
 The Products page sums up the four product lines as large photo cards,
