@@ -134,9 +134,35 @@
 }
 .parts-info{align-self:center}
 .parts-info .lede{margin-bottom:0}
-.band-mail{list-style:none;margin:calc(-1 * clamp(14px,2.2vh,24px)) auto clamp(30px,4.5vh,48px);padding:0;font-family:var(--serif);font-weight:300;font-size:16px;line-height:1.55;color:rgba(242,239,233,.72)}
-.band-mail li+li{margin-top:6px}
-.band-mail a{color:var(--paper);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+/* Get a quote: the two estimating mailboxes as cards, then a quiet line
+   for calling or the contact page */
+.band--quote .band-inner{max-width:min(860px,100%)}
+.band--quote .lede{max-width:56ch}
+.quote-routes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.4vw,18px);margin:0 0 clamp(26px,4vh,40px);text-align:left}
+.quote-route{
+  display:flex;flex-direction:column;gap:10px;min-height:100%;
+  padding:clamp(20px,2.4vw,28px);color:var(--paper);text-decoration:none;
+  background:rgba(12,17,22,.55);box-shadow:inset 0 0 0 1px var(--hair);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:background-color .3s ease,color .3s ease,box-shadow .3s ease;
+}
+.quote-route-tag{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);transition:color .3s ease}
+.quote-route-title{font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.quote-route-mail{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);font-family:var(--serif);font-weight:300;font-size:16px;opacity:.8;transition:border-color .3s ease,opacity .3s ease}
+.quote-route-mail svg{flex:none;transition:transform .3s ease}
+.quote-route:hover,.quote-route:focus-visible{background:var(--paper);color:var(--ink);box-shadow:none}
+.quote-route:hover .quote-route-tag,.quote-route:focus-visible .quote-route-tag{color:var(--ink)}
+.quote-route:hover .quote-route-mail,.quote-route:focus-visible .quote-route-mail{opacity:1;border-color:rgba(12,17,22,.18)}
+.quote-route:hover .quote-route-mail svg,.quote-route:focus-visible .quote-route-mail svg{transform:translateX(4px)}
+.quote-alt{margin:0;font-size:15px;color:rgba(242,239,233,.72)}
+.quote-alt a{color:var(--paper);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--hair)}
+.quote-alt a:hover,.quote-alt a:focus-visible{text-decoration-color:currentColor}
+.quote-alt-sep{margin:0 .6em;opacity:.5}
+.quote-alt-lead{margin-right:.75em}
+@media (max-width:640px){
+  .quote-routes{grid-template-columns:1fr}
+  .quote-route-mail{font-size:15px}
+}
 /* the facts as taller rows */
 .spec{position:relative;margin:clamp(32px,5vh,44px) 0 clamp(32px,5vh,44px)}
 .spec-row{padding:clamp(22px,3.4vh,30px) 0;border-bottom:1px solid var(--hair)}
@@ -366,16 +392,24 @@
   </div>
 </section>
 
-<section class="band" aria-label="Get a quote">
+<section class="band band--quote" aria-label="Get a quote">
   <div class="band-img" data-drift="0.10" data-slack="0.18" aria-hidden="true"></div>
   <div class="band-inner reveal">
     <h2>Get a quote</h2>
-    <p class="lede">For project inquiries, pricing requests, or immediate consultations, call 256.355.7081. Alternatively, forward your project plans and drawings directly to our specialized estimating mailboxes:</p>
-    <ul class="band-mail">
-      <li>Division 05 Custom Commercial Projects &amp; Luxury Residential Bidding: <a href="mailto:estimating@csialabama.com">estimating@csialabama.com</a></li>
-      <li>Custom &amp; Production Laser Cutting: <a href="mailto:laser@csialabama.com">laser@csialabama.com</a></li>
-    </ul>
-    <div class="actions"><a class="cta" href="tel:256-355-7081"><span class="cta-label">Call 256.355.7081</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="mailto:estimating@csialabama.com"><span class="cta-label">Commercial Projects &amp; Luxury Residential</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="mailto:laser@csialabama.com"><span class="cta-label">Custom &amp; Production Laser Cutting</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a><a class="cta cta-ghost" href="contact.html"><span class="cta-label">Contact details</span><span class="cta-arrow" aria-hidden="true"><svg width="15" height="10" viewBox="0 0 15 10" fill="none"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span></a></div>
+    <p class="lede">For project inquiries, pricing requests, or immediate consultations, send your plans and drawings directly to the right estimating team:</p>
+    <div class="quote-routes">
+      <a class="quote-route" href="mailto:estimating@csialabama.com">
+        <span class="quote-route-tag">Division 05</span>
+        <span class="quote-route-title">Commercial Projects &amp; Luxury Residential</span>
+        <span class="quote-route-mail">estimating@csialabama.com <svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      </a>
+      <a class="quote-route" href="mailto:laser@csialabama.com">
+        <span class="quote-route-tag">Laser cutting</span>
+        <span class="quote-route-title">Custom &amp; Production Laser Cutting</span>
+        <span class="quote-route-mail">laser@csialabama.com <svg width="15" height="10" viewBox="0 0 15 10" fill="none" aria-hidden="true"><path d="M0 5h13M9.5 1L13.5 5L9.5 9" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      </a>
+    </div>
+    <p class="quote-alt"><span class="quote-alt-lead">Prefer to talk?</span><a href="tel:256-355-7081">Call 256.355.7081</a><span class="quote-alt-sep" aria-hidden="true">·</span><a href="contact.html">Contact details</a></p>
   </div>
 </section>
 </main>
